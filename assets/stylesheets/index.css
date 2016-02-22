@@ -1,0 +1,153 @@
+
+* {box-sizing: border-box;}
+
+body {
+  margin: 0;
+  font-family: 'Lucida Grande', Helvetica, Arial, sans-serif; 
+}
+
+.navigation {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  text-decoration: none;
+  padding: 20px 0px;
+}
+
+.navigation-offset {
+  margin-top: 30px;
+}
+
+.navigation img {
+  width: 30px;
+}
+
+.navigation .container {
+  position: relative;
+}
+
+.navigation .container:before {
+  content: "←";
+  position: absolute;
+  top: 0px;
+  left: -15px;
+  bottom: 0px;
+  color: #cde;
+  line-height: 42px;
+}
+
+.navigation:hover .container:before {
+  left: -18px;
+  color: #08f;
+}
+
+.section {
+  padding: 30px 0px;
+}
+
+#emblem {
+  width: 100px;
+  margin-top: 20px;
+}
+
+.container {
+  margin: 0px auto;
+  max-width: 840px;
+  padding: 0px 20px;
+}
+
+.document {}
+
+.document-left {
+  max-width: 560px;
+  padding: 0px 0px;
+}
+
+.document h1,
+.document h2,
+.document h3,
+.document h4 {
+  margin: 0px;
+  padding: 1em 0 0 0;
+}
+
+.document p {
+  margin: 0px;
+  padding: 0 0 1em 0;
+}
+
+.document p {
+  line-height: 1.28em;
+}
+
+.document h1 {color: #123; font-size: 2em;}
+.document h2 {color: #234; font-size: 1.6em;}
+.document h3 {color: #345; font-size: 1.2em;}
+.document h4 {color: #567; font-size: 1em;}
+.document p  {color: #456; font-size: 1em;}
+
+.document p a,
+.projects p a {
+  color: #08f;
+  text-decoration: none;
+}
+.document p a:hover,
+.projects p a:hover {
+  text-decoration: underline;
+}
+
+.major-projects,
+.minor-projects {
+  margin-bottom: 50px;
+}
+
+.project {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-top: 1px solid #f4f4ff;
+}
+
+.project:hover h3,
+.project:hover b {
+  text-decoration: underline;
+}
+
+.project[data-visited] h3:after {
+  content: '\2713  Seen';
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 0.8em;
+  font-weight: 500;
+  color: #abc;
+}
+
+
+.minor-projects p {
+  margin: 0px;
+  padding: 15px 0px;
+  color: #456;
+}
+
+.minor-projects .project b {
+  display: inline-block;
+  color: #234;
+}
+
+.minor-projects .project b:after {
+  content: '—';
+  display: inline-block;
+  margin: 0 0 0 5px;
+  color: #abc;
+}
+
+@media(max-width: 500px) {
+  .minor-projects .project b {display: block;}
+  .minor-projects .project b:after {display: none;}
+}
+
+
+
+

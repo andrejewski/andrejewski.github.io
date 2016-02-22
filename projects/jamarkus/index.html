@@ -1,0 +1,114 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-type" content="text/html;charset=UTF-8"><meta name="author" content="Chris Andrejewski"><meta name="description" content="Software engineer and full-stack developer who specializes in everything JavaScript"><meta name="keywords" content="software, engineer, code, portfolio"><link rel="stylesheet" href="/assets/stylesheets/index.css"><link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon"><title>Jamarkus - Chris Andrejewski</title></head><body><a href="/" class="navigation"><div class="container"><img src="/assets/images/emblem.png"></div></a><div class="navigation-offset"></div><div class="container"><div class="section"><div class="document document-left"><h1>Jamarkus</h1><p>Some of the best thoughts in life are fleeting. The ability 
+to capture these ideas quickly and effectively is an 
+important enterprise. Jamarkus was an application with aims 
+of being that capture utility.
+</p><p>At the time of Jamarkus's inception, applications that 
+recorded personal thoughts were either crummy note-taking 
+applications or a trusty hand-written journal or hand-typed 
+text file. Jamarkus is different because it was accessible 
+from anywhere, any computer or mobile device. As a web 
+application there was no need to install tedious updates 
+and thoughts reflected across multiple mediums 
+synchronously.
+</p><h2>Strategy</h2><p>Jamarkus is targeted at abstract-random and concrete random 
+thinkers. A system for capturing those types of 
+unstructured and obscure ideas should be catered to such 
+needs.
+</p><p>Whatever organization structure is implemented must also be 
+light-weight and quickly fade away to allow someone to 
+focus on their idea alone. Not unnecessary buttons are 
+cruft should complicate the experience.
+</p><p>Imagination is limitless and the recorder should follow 
+suit. Notes should be able to express as many mediums of 
+information as possible. There needs to be a flexible 
+interface to allow text, quotes, pictures, links, and 
+videos.
+
+Ideas form instantly and they should be reflected across 
+someone's devices at all times. No one is tied to her 
+desktop, laptops and phones offer quicker access to any 
+application especially while in roam. Having all of their 
+thoughts with them at any time helps frame and build out 
+new thoughts.
+</p><h2>Design</h2><p>Every great web application needs equally great homepage. 
+instead of images I opted for pure CSS to generate the 
+imagery. Since CSS is pixel and vector based, on any device 
+the icons will look crisp.
+</p><p>The Jamarkus brand is a composition different shades of 
+green and white which are present in all application 
+screens. Once logged in to the application, the 
+eye-catching green takes a backseat to the eye-soothing 
+white.
+</p><p>I choose to go with the most simple form of organization, 
+the list. Jamarkus terms these collections of ideas books, 
+which in turn contain notes. Books are completed optional; 
+if under-used, all notes still appear in the "All Notes" 
+collection.
+
+Book creation and editing were made as easy to operate as 
+possible. Jamarkus keeps the user's focus by maintaining 
+almost the entire application in one screen.
+</p><p>The implementation of notes was even more simple. All that 
+was required for notes was really a text box. When punching 
+out a quick note a submit button is not needed, instead 
+listening for an Enter key made note entry much more 
+efficient. Editing was just a simple except editing 
+requires an explicit submit as notes can be stretched out 
+into multiple paragraphs over time. The content of notes is 
+Markdown.
+</p><p>With hundreds of notes, some organized into books and some 
+not, search was a necessary feature can Jamarkus took 
+advantage of screen real estate by having the note entry 
+bar toggle into a search bar with instant results as 
+someone types a query. Again, no need for a submit button.
+</p><p>And what of being available on all devices? In my 
+consistent designing fashion, the application is completely 
+responsive. Both desktop and mobile have the exact same 
+features and speed.
+</p><p>As someone who has used many different note taking 
+application beforehand, I had come across pain points with 
+vendor lock-in. Jamarkus did not own user data. A 
+preference page was created so people could download their 
+notes and even wipe their entire accounts from Jamarkus 
+servers.
+</p><p>All in all, it was a pretty extensive single page 
+application. The layout and interactions were not designed 
+for everyone. Jamarkus is a very niche product that targets 
+the transcendent minds, ones which would appreciate the 
+minimalism and lack of distraction.
+</p><h2>Development</h2><p>As a technology, Jamarkus is pretty sweet. The server-side 
+is a Node.js Express app using Mongoose and MongoDB for 
+persistence. But the application is extended to handle not 
+only HTTP requests but also Websocket (Socket.io) 
+connections. The client is pure JavaScript using Backbone 
+as the data layer, React as the view, and a Socket.io 
+connection for coordination with the server/controller.
+</p><p>Notes are written in Markdown, which allows text formatting 
+and tons of other extensibility. There are many 
+interesting, intricate details that are quite original as 
+well: auto-magic synchronization of the entire app, the 
+immutability of the client-side data, and offline 
+functionality to name a few.
+</p><p>While building Jamarkus, I found myself struggling to 
+incorporate Backbone with React. To relieve the pain, I 
+invested in creating a common library which manages this 
+integration. The library is called Reactbone and 
+open-source on Github.
+</p><h2>Conclusion</h2><p>Jamarkus is a personal project of mine that I released in 
+an early alpha stage of the product. It attained some 300 
+users before I made the decision to terminate the 
+application.
+</p><p>With so many note-taking competitors with large user bases, 
+I still believed Jamarkus could find a niche market based 
+on its unique features. In the months following however the 
+landscape shifted and today many popular note applications 
+cater to Jamarkus's core feature set.
+</p><p>I decided to work on to something more challenging and less 
+congested. Jamarkus seised operations in May 2014.</p></div></div></div><div class="projects section"><div class="major-projects"><a href="/projects/subtweet/" class="project"><div class="container"><div class="document document-left"><h3>Subtweet</h3><p>The solution to Twitter DMs, Subtweet extends Twitter's
+Direct Messages to allow for messages of any length,
+embedding tweets, and group conversations.</p></div></div></a><a href="/projects/npca-nhs/" class="project"><div class="container"><div class="document document-left"><h3>Collegiate NHS</h3><p>The online portal to the National Honor Society of
+Collegiate Academy which manages news, events, members,
+and service hours for the club.</p></div></div></a><a href="/projects/jamarkus/" class="project"><div class="container"><div class="document document-left"><h3>Jamarkus</h3><p>Note taking app for recording amazing ideas and
+thoughts as quickly and simply as possible.
+Real-time on any device with text formatting.</p></div></div></a></div><div class="minor-projects"><a href="https://github.com/andrejewski/seth" class="project"><div class="container"><p><b>Seth</b> Functional Set Theory for JavaScript</p></div></a><a href="https://github.com/andrejewski/reactbone" class="project"><div class="container"><p><b>Reactbone</b> React.js extensions for Backbone.js</p></div></a><a href="https://github.com/andrejewski/himalaya" class="project"><div class="container"><p><b>Himalaya</b> JavaScript HTML to JSON parser</p></div></a><a href="https://github.com/andrejewski/smithsonian" class="project"><div class="container"><p><b>Smithsonian</b> Web interface for Metalsmith</p></div></a><a href="https://github.com/andrejewski/dn-paint" class="project"><div class="container"><p><b>DN Paint</b> Paint tool for portraits and headers</p></div></a><a href="https://github.com/andrejewski/reem" class="project"><div class="container"><p><b>Reem</b> Awesome static site generator</p></div></a><a href="https://github.com/andrejewski/truth-table" class="project"><div class="container"><p><b>Truth Table</b> Visualize propositions as truth tables</p></div></a><a href="https://github.com/andrejewski/color-converter" class="project"><div class="container"><p><b>Color Converter</b> Hex, RGB, HSV, CMYK, ???, all-in-one</p></div></a><a href="https://github.com/andrejewski/vainglory" class="project"><div class="container"><p><b>Vainglory</b> Look like you're hardcore programming</p></div></a><div class="project"><div class="container"><p><a href="https://github.com/andrejewski">Check out my 55+ projects on Github. &rarr;</a></p></div></div></div></div><div class="contact section"><div class="container"><div class="document"><h3>Getting in touch</h3><p>If you would like to work together or just say hello,
+<a href="mailto:christopher.andrejewski@gmail.com">contact me</a>.</p></div></div></div><script src="/assets/scripts/visited-local.js"></script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-43674193-3', 'chrisandrejewski.com');ga('send', 'pageview');</script></body></html>
