@@ -1,0 +1,15 @@
+
+.project-header {
+  background-color: #D6E4F1;
+  padding: 30px;
+
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+}
+
+.project-header img {
+  display: block;
+  margin: 0px auto;
+}
+

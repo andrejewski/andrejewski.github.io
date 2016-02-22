@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-type" content="text/html;charset=UTF-8"><meta name="author" content="Chris Andrejewski"><meta name="description" content="Software engineer and full-stack developer who specializes in everything JavaScript"><meta name="keywords" content="software, engineer, code, portfolio"><link rel="stylesheet" href="/assets/stylesheets/index.css"><link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon"><title>Subtweet - Chris Andrejewski</title></head><body><a href="/" class="navigation"><div class="container"><img src="/assets/images/emblem.png"></div></a><div class="navigation-offset"></div><div class="container"><div class="section"><div class="document document-left"><h1>Subtweet</h1><p>I created a group messaging application on top of Twitter
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-type" content="text/html;charset=UTF-8"><meta name="author" content="Chris Andrejewski"><meta name="description" content="Software engineer and full-stack developer who specializes in everything JavaScript"><meta name="keywords" content="software, engineer, code, portfolio"><link rel="stylesheet" href="/assets/stylesheets/index.css"><link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon"><title>Subtweet - Chris Andrejewski</title><link rel="stylesheet" href="/assets/stylesheets/subtweet.css"></head><body><a href="/" class="navigation"><div class="container"><img src="/assets/images/emblem.png"></div></a><div class="project-header"><div class="container"><div class="document-left"><img width="150" src="/assets/images/subtweet/logo.png"></div></div></div><div class="container"><div class="section"><div class="document document-left"><h1>Subtweet</h1><p>I created a group messaging application on top of Twitter
 to combat the issues of their own Direct Message service.
 And here is the story of everything that happened.
 </p><p>I knew I would have to write this one day, it was just a
@@ -18,7 +18,10 @@ most everything and I did not see it as being anything
 but better Direct Messaging. As I continued to use plain
 Direct Message and Subtweet for conversations, Subtweet
 out performed in all aspects (IKEA bias?).
-</p><p>To build such an app, I used some new tools:
+</p><figure class="asset"><img width="469" src="/assets/images/subtweet/homepage.jpg"><figcaption>The Subtweet homepage features the key benefits it has
+over Twitter's service and a single call-to-action
+front and center.
+</figcaption></figure><p>To build such an app, I used some new tools:
 React, Flux, and Superagent (bundled with Browserify).
 I did originally try to do server-side rendering but
 as the main app view got more complex I knew I would
@@ -28,7 +31,13 @@ and Flux, I built my own Flux-architecture
 <a href="https://github.com/andrejewski/emf">Even More Flux</a> 
 that I now use in newer applications instead of the
 bare architecture provided by Facebook.
-</p><p>Knowing the Twitter API, I was able to for the most
+</p><figure class="asset"><img width="469" src="/assets/images/subtweet/create.jpg"><figcaption>The desktop application is designed as a spilt layout:
+the first view contains all conversations and displays
+notifcations, new messages, and account settings access.
+</figcaption></figure><figure class="asset"><img width="457" src="/assets/images/subtweet/conversation.jpg"><figcaption>The second view contains the current conversation, the box
+to send a new message, and the detail view about who is in
+the conversation and requests to join the group.
+</figcaption></figure></div><div class="document document-left"><p>Knowing the Twitter API, I was able to for the most
 part divert most of the work of authenticating users
 and loading embedded tweets to Twitter. Subtweet
 required a database only for user sessions and message
@@ -45,7 +54,10 @@ time was spent. Luckily some brave souls have come
 before me and made project to expedite the 
 authentication process, but for anything else I was
 on my own.
-</p><p>I designed Subtweet from the beginning to be a 
+</p><figure class="asset"><img width="200" src="/assets/images/subtweet/conversation-mobile.jpg"><img width="200" src="/assets/images/subtweet/details-mobile.jpg"><figcaption>In the mobile application, the split view is collapsed
+and the conversation view becomes prominent. The list
+of conversations folds into a navigation bar.
+</figcaption></figure><p>I designed Subtweet from the beginning to be a 
 mobile-first application. This meant building all the 
 functionality cleanly into the mobile experience
 and then growing out the design for the desktop
