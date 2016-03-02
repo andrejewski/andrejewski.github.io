@@ -54,7 +54,7 @@ body {
 
 .container {
   margin: 0px auto;
-  max-width: 840px;
+  max-width: 580px;
   padding: 0px 20px;
 }
 
@@ -140,6 +140,14 @@ body {
   color: #abc;
 }
 
+.project-link p {
+  color: #08f !important;
+}
+
+.project-link:hover p {
+  text-decoration: underline;
+}
+
 
 .minor-projects p {
   margin: 0px;
@@ -162,6 +170,20 @@ body {
 @media(max-width: 500px) {
   .minor-projects .project b {display: block;}
   .minor-projects .project b:after {display: none;}
+}
+
+.contact {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.contact span {
+  color: #08f;
+}
+
+.contact:hover span {
+  text-decoration: underline;
 }
 
 .image-list {
