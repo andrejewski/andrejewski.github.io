@@ -326,6 +326,28 @@ section {
   color: #08f;
   text-decoration: none;
 }
+.document .content ul,
+.document .content ol {
+  margin: 0;
+  padding: 0;
+}
+.document .content li {
+  padding: 0 0 1.5em 0;
+}
+.document .content ul li {
+  list-style-type: none;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: start;
+      align-items: flex-start;
+}
+.document .content ul li:before {
+  content: '►';
+  font-size: 1.3em;
+  padding-right: 10px;
+}
 .talks {
   background-color: #fff;
   box-shadow: 0 0 5px #123;
