@@ -316,6 +316,7 @@ section {
 .document .content p {
   color: #234;
   font-size: 1.3em;
+  line-height: 1.4em;
   margin: 0px;
   padding-bottom: 1.5em;
 }
@@ -347,6 +348,10 @@ section {
   content: '►';
   font-size: 1.3em;
   padding-right: 10px;
+}
+.document .content time {
+  color: #444;
+  font-size: 1.1em;
 }
 .talks {
   background-color: #fff;
