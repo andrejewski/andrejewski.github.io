@@ -327,6 +327,9 @@ section {
   color: #08f;
   text-decoration: none;
 }
+.document .content a:hover {
+  text-decoration: underline;
+}
 .document .content ul,
 .document .content ol {
   margin: 0;
@@ -352,6 +355,11 @@ section {
 .document .content time {
   color: #444;
   font-size: 1.1em;
+}
+.document .content hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 3em 0;
 }
 .talks {
   background-color: #fff;
