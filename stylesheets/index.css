@@ -324,11 +324,11 @@ section {
   padding-bottom: 0;
 }
 .document .content a {
-  color: #08f;
-  text-decoration: none;
+  color: inherit;
+  text-decoration: underline;
 }
 .document .content a:hover {
-  text-decoration: underline;
+  color: #08f;
 }
 .document .content ul,
 .document .content ol {
@@ -342,8 +342,8 @@ section {
   list-style-type: none;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: center;
-      justify-content: center;
+  -ms-flex-pack: start;
+      justify-content: flex-start;
   -ms-flex-align: start;
       align-items: flex-start;
 }
