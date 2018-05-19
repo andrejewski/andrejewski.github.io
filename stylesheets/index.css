@@ -313,6 +313,12 @@ section {
   font-size: 1.8em;
   color: #012;
 }
+.document .content h3 {
+  margin: 0px;
+  font-family: Lato, Helvetica, sans-serif;
+  font-size: 1.5em;
+  color: #012;
+}
 .document .content p {
   color: #234;
   font-size: 1.3em;

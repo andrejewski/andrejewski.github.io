@@ -1,0 +1,67 @@
+<!DOCTYPE html><html><head><title>What is Raj</title><meta name="description" content="What problems Raj solves and how it compares to Redux and Elm"><meta name="keywords" content="JavaScript, Elm, framework, application, web, best, Redux"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-type" content="text/html;charset=UTF-8"><meta name="author" content="Chris Andrejewski"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.ico">
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.ico">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lato:900" rel="stylesheet"><link rel="stylesheet" href="/stylesheets/index.css"></head><body><div class="page"><div class="document"><div class="content"><h1>What is Raj</h1><p><a href="https://jew.ski/raj/">Raj</a> solves two problems: state management and running side-effects.
+These problems are the hardest problems in building client applications.
+</p><p>State management is two things: storing state and handling state transitions.
+Raj holds a single variable which stores the application state.
+Raj will update this variable as messages are dispatched.
+State transitions are synchronous and preferably written in an immutable manner as to be simple to test quickly.
+</p><p>The only way to move state forward is to dispatch messages.
+All side-effects are functions which may dispatch any number of messages.
+The view is modeled as a side-effect so it dispatches messages as well.
+We force the nastiness of side-effects to the edges of the system.
+</p><p>These are two really good problems to solve right off the bat.</p><h2>How is Raj different from Redux?</h2><p>Redux and Raj draw inspiration from the programming language Elm.
+The biggest difference between Raj and Redux in this regard is time.
+Redux was built based on what Elm looked like prior to <a href="http://elm-lang.org/blog/farewell-to-frp">Elm's farwell to FRP</a> and prior to new JavaScript language features, notably object and array rest/spread/destructuring.
+</p><p>Raj was built based on Elm's newer functional programming model, not the functional reactive programming model and was grown and developed using those new language features in application code.
+Raj is a stricter adaption of the modern Elm architecture.
+</p><p>Raj and Redux have similarities.
+Both:
+</p><ul><li><p>Are agnostic to any particular view layer</p></li><li><p>Are quite small frameworks</p></li><li><p>Promote a uni-directional data flow</p></li><li><p>Move state forward with actions (in Raj "messages")</p></li><li><p>Store UI state in a single place (ideally)</p></li><li><p>Feature time-travel debugging</p></li></ul><h3>Growth complexity</h3><p>Raj differs from Redux in growth complexity.
+</p><p>Redux encourages a structure where as a program grows, more data is put into the top-level state and more actions and reducers are added to an existing list.
+This growth is O(N).
+As we add new state, actions, and reducers we need to know the existing list and avoid conflicts.
+Eventually the mental overhead of these systems requires the addition of new libraries and ways to simulate scope.
+</p><p>In Raj we have isolated "programs" that define independent units of data, logic, and views.
+These programs are nested and composed in a tree structure.
+This growth is O(log N).
+As each individual unit does not need to be aware of any other program's data, logic, or view.
+Working in a Raj program we can think in terms of localized state, logic, and views.
+</p><p>This decoupling means most feature work for an individual or team can be carried out in parallel.
+This optimal growth complexity also means we do not need to re-architect or pull in new dependencies as our applications grow.
+Programs as a unit of application code also enables code reuse as higher-order programs take application composition to a new level.
+</p><h3>Side-effects</h3><p>Redux does not have any particular position on how to handle side-effects and asynchronous effects.
+There are many competing ways to solve Redux side-effects.
+Beyond the paradox of choice, many of these solutions lead to bad architectures, are hard to understand, and "work until they don't" meaning eventual rewrites and larger re-architecting as a program or system grows.
+</p><p>Raj has a clear side-effect story built into the framework.
+Side-effects are functions which dispatch messages.
+In order to dispatch messages into the system an effect must be given to Raj to be called with a callback to dispatch those messages.
+These constraints are enough to do side-effects right and cover all use cases.
+</p><p>To summarize, Raj is a stricter adaption of the Elm architecture that provides more compelling and defined stories from both growth complexity and side-effect management.
+</p><h2>How is Raj different than Elm?</h2><p><i>(Written as of Elm 0.18.)</i></p><p>Elm is a niche programming language designed for building web applications.
+As such the project moves slower than the JavaScript ecosystem.
+This is a clear benefit to the Elm community: JavaScript churn is notoriously wasteful and complicated.
+However this also means there is a smaller ecosystem of existing packages and fewer problems have been solved in Elm, given its constraints.
+</p><p>Elm is a great language everyone should experience, but it does not currently align with business goals that application developers have.
+Elm is a golden goose not to be tainted by the newest hotness and as such there are many things that  cannot be done in Elm without a lot of workaround boilerplate.
+From a language designer perspective, Elm is doing an amazing job.
+It's minimal surface area and the seamless way it does solve the problems it chooses is superb.
+It is definitely a language worth spectating.
+</p><p>From an application developer perspective, it is less than ideal.
+The consensus is if Elm does not solve your problem, come back later.
+The release cycle is not transparent and developers must reinvent many things themselves.
+Since Elm is a web-only language, this means universal code is still a JavaScript advantage.
+The Elm ecosystem is dwarfed by the JavaScript ecosystem.
+</p><p>Luckily, the Elm architecture is independent of the Elm language.
+The goal of Raj is to bring this architecture to JavaScript applications in a way that feels natural to JavaScript developers.
+The excellence of the architecture is worth bringing into the larger JavaScript community, at least until Elm is ready for prime-time.
+Raj exists because we should not have to wait to build apps the best way possible today in JavaScript.
+</p><p>With the power and looseness of JavaScript, Raj has opened the door to great features not yet possible in Elm, such as code splitting, lazy loading, and advanced program composition.
+</p><p>Raj is the JavaScript version of the Elm architecture.
+It does not have all Elm features but it is used effectively by application developers today.
+</p><time>Published Saturday, May 19, 2018</time></div></div></div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-43674193-3', 'auto');ga('send', 'pageview');</script></body></html>
