@@ -344,7 +344,7 @@ section {
 .document .content li {
   padding: 0 0 1.5em 0;
 }
-.document .content ul li {
+.document .content ul:not(.unordered-list) li {
   list-style-type: none;
   display: -ms-flexbox;
   display: flex;
@@ -353,7 +353,7 @@ section {
   -ms-flex-align: start;
       align-items: flex-start;
 }
-.document .content ul li:before {
+.document .content ul:not(.unordered-list) li:before {
   content: '►';
   font-size: 1.3em;
   padding-right: 10px;
@@ -362,10 +362,19 @@ section {
   color: #444;
   font-size: 1.1em;
 }
+.document .content code {
+  font-family: Monaco, monospace;
+  border-radius: 3px;
+}
 .document .content hr {
   border: none;
   border-top: 1px solid #ddd;
   margin: 3em 0;
+}
+.document .unordered-list {
+  list-style: disc inside;
+  font-size: 1.3em;
+  color: #234;
 }
 .talks {
   background-color: #fff;
