@@ -336,7 +336,7 @@ section {
 .document .content a:hover {
   color: #08f;
 }
-.document .content ul,
+.document .content ul:not(.unordered-list),
 .document .content ol {
   margin: 0;
   padding: 0;
@@ -372,9 +372,11 @@ section {
   margin: 3em 0;
 }
 .document .unordered-list {
-  list-style: disc inside;
+  list-style: disc;
   font-size: 1.3em;
   color: #234;
+  margin: 0 0 0 1em;
+  padding: 0px;
 }
 .talks {
   background-color: #fff;
