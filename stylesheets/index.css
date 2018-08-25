@@ -460,6 +460,67 @@ section {
   margin: 0px;
   color: #444;
 }
+.texts {
+  background-color: #f1f7fe;
+  margin: -100px 0px 30px;
+  padding: 100px 0 30px;
+  overflow: hidden;
+}
+.texts-inner {
+  position: relative;
+  max-width: 640px;
+  margin: 0px auto;
+}
+.texts .book-funk {
+  position: absolute;
+  bottom: -80px;
+  right: 100%;
+  opacity: 0.1;
+  padding-right: 25px;
+}
+.texts h2 {
+  color: #111;
+  font-size: 2em;
+  font-family: Lato, Helvetica, sans-serif;
+  padding: 20px;
+  margin: 0px auto;
+}
+.texts ul {
+  padding: 25px 20px;
+  margin: 0 auto;
+  list-style: none;
+  -ms-flex-pack: center;
+      justify-content: center;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+}
+.texts li {
+  display: inline-block;
+  padding: 10px 0px;
+}
+.texts h4 {
+  font-size: 1.4em;
+  font-family: Lato, Helvetica, sans-serif;
+  margin: 0px;
+}
+.texts h4 a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 5px;
+  transition: 0.1s linear all;
+}
+.texts h4 a:hover {
+  color: #000;
+  border-bottom: 2px solid #000;
+}
+.texts p {
+  font-size: 1em;
+  margin: 0px;
+}
 .contact {
   position: relative;
   max-width: 640px;
