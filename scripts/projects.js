@@ -27,8 +27,27 @@ function request(method, url, callback) {
   xmlhttp.send();
 }
 
-function getRepos(callback) {
-  request('get', 'https://api.github.com/users/andrejewski/repos?per_page=100', callback);
+var pageSize = 100;
+
+function getRepos(callback, pageNumber) {
+  pageNumber = pageNumber || 1;
+  request('get', 'https://api.github.com/users/andrejewski/repos?page=' + pageNumber + '&per_page=' + pageSize, function (error, repos) {
+    if (error) {
+      return callback(error);
+    }
+
+    if (repos.length < pageSize) {
+      return callback(null, repos);
+    }
+
+    getRepos(function (error, moreRepos) {
+      if (error) {
+        return callback(error);
+      }
+
+      callback(null, repos.concat(moreRepos));
+    }, pageNumber + 1);
+  });
 }
 
 function n(tagAndClass) {
