@@ -320,7 +320,7 @@ section {
   color: #012;
 }
 .document .content p {
-  color: #234;
+  color: #012;
   font-size: 1.3em;
   line-height: 1.4em;
   margin: 0px;
@@ -374,9 +374,16 @@ section {
 .document .unordered-list {
   list-style: disc;
   font-size: 1.3em;
-  color: #234;
+  color: #012;
   margin: 0 0 0 1em;
   padding: 0px;
+}
+.document .unordered-list--short {
+  margin: 0 0 0 1em;
+  padding-bottom: 1.5em;
+}
+.document .unordered-list--short li {
+  padding: 0 0 0.5em 0;
 }
 .talks {
   background-color: #fff;
