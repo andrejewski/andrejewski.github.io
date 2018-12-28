@@ -469,7 +469,8 @@ section {
 }
 .texts {
   background-color: #f1f7fe;
-  margin: -100px 0px 30px;
+  border-bottom: 1px solid #d2dde9;
+  margin: -100px 0px 0px;
   padding: 100px 0 30px;
   overflow: hidden;
 }
@@ -528,11 +529,47 @@ section {
   font-size: 1em;
   margin: 0px;
 }
+.comics {
+  background-color: #fff;
+}
+.comics-title {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  padding: 30px 10px 10px;
+  margin: 0px auto;
+}
+.comics-action {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  height: 120px;
+}
+.comics-button {
+  display: block;
+}
+.comics-button img.plain {
+  display: block;
+  width: 150px;
+}
+.comics-button img.hover {
+  display: none;
+  width: 180px;
+}
+.comics-button:hover img.plain {
+  display: none;
+}
+.comics-button:hover img.hover {
+  display: block;
+}
 .contact {
   position: relative;
   max-width: 640px;
   margin: 0px auto;
-  padding: 25px 20px;
+  padding: 50px 20px 25px 20px;
 }
 .contact .cavebob {
   position: absolute;
