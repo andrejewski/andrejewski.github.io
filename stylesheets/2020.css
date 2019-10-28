@@ -1,0 +1,104 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  margin: 0px;
+}
+header {
+  padding: 60px 40px 40px;
+  max-width: 700px;
+  margin: 0px auto;
+}
+h1,
+h2,
+h3 {
+  margin: 0px;
+}
+h1 a,
+h2 a,
+h3 a {
+  color: inherit;
+}
+h1 {
+  font-size: 2em;
+}
+h2 {
+  font-size: 1.5em;
+}
+h3 {
+  font-size: 1.1em;
+}
+ul {
+  list-style: none;
+  padding: 5px 0px;
+  margin: 0px;
+}
+li a {
+  display: block;
+  color: inherit;
+  padding: 5px 0px;
+}
+.logo {
+  max-width: 87.5px;
+  padding-bottom: 20px;
+}
+.section-group {
+  max-width: 700px;
+  margin: 0px auto;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.section-group--nested {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+section {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.equal-split {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  width: 90%;
+}
+footer {
+  max-width: 700px;
+  margin: 0px auto;
+  padding: 40px;
+}
+footer p {
+  font-size: 0.9em;
+  margin: 0px;
+}
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.4em;
+  }
+  h2 {
+    font-size: 1.2em;
+  }
+  h3 {
+    font-size: 1em;
+  }
+  .logo {
+    width: 48px;
+  }
+  .equal-split {
+    display: block;
+    width: auto;
+  }
+  header {
+    padding: 25px;
+  }
+  .section-group,
+  footer {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+
+/*# sourceMappingURL=2020.css.map */
