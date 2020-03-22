@@ -20,10 +20,10 @@ The recipient gets the envelope and opens it for the note.
 The envelope, bag, bin, airplane.
 Even the note if the value is what is written on it.
 These envelopes range in complexity, but:
-</p><ul class="unordered-list"><li>Contain things</li><li>Have information other than their content</li><li>Can be opened and inspected (disregarding legality)</li><li>Do not restrict what their contents are (excluding size)</li><li>Do not restrict how they are contained</li><li>Do not do anything on their own</li></ul><p>We see a very similar process in computer networks.
+</p><ul><li>Contain things</li><li>Have information other than their content</li><li>Can be opened and inspected (disregarding legality)</li><li>Do not restrict what their contents are (excluding size)</li><li>Do not restrict how they are contained</li><li>Do not do anything on their own</li></ul><p>We see a very similar process in computer networks.
 Frames, packets, and what not serve as envelopes for routing information.
 </p><p>The properties of envelopes are pretty cool. An envelope implemented in code would:
-</p><ul class="unordered-list"><li>Be generic, like <code>Envelope&lt;T&gt;</code> where <code>T</code> could be anything or nothing</li><li>Express some information in itself</li></ul><p>With a definition like <code>Envelope&lt;T&gt;</code> an envelope could contain another.</p><p>An envelope would also be side-effect free and as close to data as the language would allow as envelopes are inert.</p><p>Envelopes would be best built so they are inspect-able at each level just as a bin can be looked in and an envelope can be opened.</p><h2>System properties</h2><p>There is another value in envelopes: decoupled responsibility.
+</p><ul><li>Be generic, like <code>Envelope&lt;T&gt;</code> where <code>T</code> could be anything or nothing</li><li>Express some information in itself</li></ul><p>With a definition like <code>Envelope&lt;T&gt;</code> an envelope could contain another.</p><p>An envelope would also be side-effect free and as close to data as the language would allow as envelopes are inert.</p><p>Envelopes would be best built so they are inspect-able at each level just as a bin can be looked in and an envelope can be opened.</p><h2>System properties</h2><p>There is another value in envelopes: decoupled responsibility.
 The sender, receiver, mailmen, and pilots work in their own domains.
 Even though they are facilitating the same communication, they are only acting in the context of their own envelopes.
 This is a tree of behaviors interacting with messages.

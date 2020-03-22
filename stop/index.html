@@ -17,7 +17,7 @@ You get data, you pass it to functions, you return new data.
 You read I/O, you write I/O.
 That covers everything that we actually need to do.
 </p><p>In short, the following are complete trash:
-</p><ul class="unordered-list"><li>Object.defineProperty, Object.getPropertyDescriptor, etc.</li><li>Getters and setters</li><li>Classes and Prototypes</li><li>Iterators</li><li>Generators</li><li>Weak Map and Weak Set</li><li>Symbols</li><li>Proxies</li></ul><p>You will run out of feet before you run out of bullets using these.</p><h3>Object.* stuff</h3><p>The methods on Object that are okay: assign, keys, values, and entries.
+</p><ul><li>Object.defineProperty, Object.getPropertyDescriptor, etc.</li><li>Getters and setters</li><li>Classes and Prototypes</li><li>Iterators</li><li>Generators</li><li>Weak Map and Weak Set</li><li>Symbols</li><li>Proxies</li></ul><p>You will run out of feet before you run out of bullets using these.</p><h3>Object.* stuff</h3><p>The methods on Object that are okay: assign, keys, values, and entries.
 Everything else is stupidly complicated and unnecessary.
 </p><h3>Getters and setters</h3><p>Pretend that getters and setters do not exist in JavaScript for a moment.
 I have an object `o` and I access `o.foo`. We know the complexity of this operation.

@@ -102,7 +102,7 @@ section {
   padding: 20px;
 }
 .about-me {
-  background-color: #F6F8FF;
+  background-color: #f6f8ff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   margin: 0px 0px 40px;
   padding: 30px 20px;
@@ -144,7 +144,7 @@ section {
   display: inline-block;
   padding: 3px 0px;
   text-decoration: none;
-  border-bottom: 2px solid #A2B7FF;
+  border-bottom: 2px solid #a2b7ff;
   color: #567cff;
   transition: all 0.25s linear;
 }
@@ -336,33 +336,34 @@ section {
 .document .content a:hover {
   color: #08f;
 }
-.document .content ul:not(.unordered-list),
+.document .content ul,
 .document .content ol {
   margin: 0;
-  padding: 0;
+  padding: 0 0 1em 20px;
 }
 .document .content li {
-  padding: 0 0 1.5em 0;
-}
-.document .content ul:not(.unordered-list) li {
-  list-style-type: none;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: start;
-      justify-content: flex-start;
-  -ms-flex-align: start;
-      align-items: flex-start;
-}
-.document .content ul:not(.unordered-list) li:before {
-  content: '►';
+  padding: 0 0 0.75em 0;
   font-size: 1.3em;
-  padding-right: 10px;
+  line-height: 1.4em;
+}
+.document .content li p {
+  font-size: 1em;
 }
 .document .content time {
   display: block;
   color: #444;
   font-size: 1.1em;
   line-height: 1.4em;
+}
+.document .content pre {
+  margin: 0px;
+  padding-bottom: 2em;
+  font-size: 1em;
+}
+.document .content pre > code {
+  display: block;
+  background-color: #eee;
+  padding: 0.5em;
 }
 .document .content code {
   font-family: Monaco, monospace;
@@ -372,20 +373,6 @@ section {
   border: none;
   border-top: 1px solid #ddd;
   margin: 3em 0;
-}
-.document .unordered-list {
-  list-style: disc;
-  font-size: 1.3em;
-  color: #012;
-  margin: 0 0 0 1em;
-  padding: 0px;
-}
-.document .unordered-list--short {
-  margin: 0 0 0 1em;
-  padding-bottom: 1.5em;
-}
-.document .unordered-list--short li {
-  padding: 0 0 0.5em 0;
 }
 .talks {
   background-color: #fff;
@@ -418,7 +405,7 @@ section {
 }
 .talks-inner > p .offer {
   display: inline-block;
-  background-color: #FFb700;
+  background-color: #ffb700;
   color: #fff;
   padding: 3px 5px;
   margin: 0px 5px;

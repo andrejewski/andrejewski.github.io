@@ -22,7 +22,7 @@ Redux was built based on what Elm looked like prior to <a href="http://elm-lang.
 Raj is a stricter adaption of the modern Elm architecture.
 </p><p>Raj and Redux have similarities.
 Both:
-</p><ul><li><p>Are agnostic to any particular view layer</p></li><li><p>Are quite small frameworks</p></li><li><p>Promote a uni-directional data flow</p></li><li><p>Move state forward with actions (in Raj "messages")</p></li><li><p>Store UI state in a single place (ideally)</p></li><li><p>Feature time-travel debugging</p></li></ul><h3>Growth complexity</h3><p>Raj differs from Redux in growth complexity.
+</p><ul><li>Are agnostic to any particular view layer</li><li>Are quite small frameworks</li><li>Promote a uni-directional data flow</li><li>Move state forward with actions (in Raj "messages")</li><li>Store UI state in a single place (ideally)</li><li>Feature time-travel debugging</li></ul><h3>Growth complexity</h3><p>Raj differs from Redux in growth complexity.
 </p><p>Redux encourages a structure where as a program grows, more data is put into the top-level state and more actions and reducers are added to an existing list.
 This growth is O(N).
 As we add new state, actions, and reducers we need to know the existing list and avoid conflicts.
