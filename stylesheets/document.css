@@ -58,6 +58,10 @@ body {
 .document .content code {
   font-family: Monaco, monospace;
 }
+.document .content pre {
+  background-color: #eee;
+  padding: 0.5em;
+}
 .document .content hr {
   border: none;
   border-top: 2px solid #dedede;
