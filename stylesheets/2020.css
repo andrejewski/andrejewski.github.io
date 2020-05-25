@@ -65,6 +65,10 @@ section {
       justify-content: space-between;
   width: 90%;
 }
+.updates p {
+  max-width: 260px;
+  margin: 0.5em 0;
+}
 footer {
   max-width: 700px;
   margin: 0px auto;
