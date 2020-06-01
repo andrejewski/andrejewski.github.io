@@ -1,0 +1,96 @@
+<!DOCTYPE html><html><head><title>Interface Design: Developer Experience</title><meta name="description" content="Design principles for building great code interfaces and developer experiences"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-type" content="text/html;charset=UTF-8"><meta name="author" content="Chris Andrejewski"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.ico">
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.ico">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="/stylesheets/document.css"></head><body><div class="page"><div class="document"><div class="content"><h1>Interface Design: Developer Experience</h1>
+<p>Improving product development is my current focus at Stripe.
+There's:</p>
+<ul>
+<li>Enabling engineers to move faster and write more features</li>
+<li>Building the fundamental infrastructure to support those features</li>
+<li>Providing great code interfaces, tooling, and support</li>
+</ul>
+<p>Developer experience (DX), how developers interact with software, is always top of mind for me.
+I've developed a few design principles about great DX that I'd like to share.</p>
+<h2>Know your customers</h2>
+<p>Audience analysis is really important to predictably providing value.
+As such it is important to tangibly talk about the insights at your disposal here.</p>
+<p>The levels of understanding your customers:</p>
+<ol>
+<li>I know who is using my interface.</li>
+<li>I know what they are using it for.</li>
+<li>I know why they are using it in the way that they are.</li>
+</ol>
+<p>We can roughly map these to common audiences:</p>
+<ul>
+<li>Open source: you don't know who is using it, it could be anyone for any reason</li>
+<li>A service where users need to register (sign up) to use it: you know who is using it but aren't sure for what</li>
+<li>A registered service with good observability into usage: you know who is using it for what, but aren't sure why</li>
+<li>Closed, internal system: you know who is using it and for what and why</li>
+</ul>
+<p>The more fidelity you have, the more flexibility you have to meet people's needs.
+A greater fidelity also implies narrow, more situated problems where it is easier to make assumptions.
+For example, within a single company you can say, &quot;I will provide data consistency guarantees using [common company database].&quot;
+Whereas with open-source, more often than not interfaces must be written agnostic to choice of persistence layer.</p>
+<p>Choosing a lens through which you will serve users is the most important aspect to designing an interface.</p>
+<h2>People don't read documentation</h2>
+<p>There is so much a developer is expected to read.
+It's better to design interfaces like documentation doesn't exist.
+Definitely write documentation, but don't use documentation as a crutch instead of investing time in making an interface more intuitive.</p>
+<p>It's important to remember, especially as you get super invested and deep into a problem space, that no one else should be expected to think that critically.
+Developers at any level copy-and-paste working code and twist it to fit their use case.
+A good interface design acknowledges this and ensures a good outcome regardless.</p>
+<h2>People don't write tests</h2>
+<p>Such is life.
+Tests have a cost just like any other piece of code.
+What you believe to be worth testing about using your interface won't align with people using it.
+Don't count on the tests of your consumers to give you confidence about your interface.</p>
+<p>Definitely write code that can be tested for those who do.
+Lower the cost of testing by providing test helpers.
+Orient code in such a way that even if people don't write tests now, when it comes time to debug or pin functionality down they can.
+No matter how simple or slick an interface, if it can't be tested before production it is a nightmare.</p>
+<h2>Don't be afraid of feature friction</h2>
+<p>It's okay to not provide a general purpose tool.
+Especially when you're serving a single company, you don't need to be thinking about your interfaces like POSIX or duck tape.
+Not supporting the unforeseen is not only fine, it's advantageous.</p>
+<p>I can't count the number of times that I've prevented bad outcomes just by not supporting them.</p>
+<p>Limiting possibilities introduces friction into other engineers' work and brings the discussion to you.
+While the quote may not have been Ford's, &quot;If I had asked people what they wanted, they would have said faster horses&quot; resonates with me strongly.
+Having the discussions, asking &quot;what are you really trying to do?&quot; gets to the heart of the problems developers are facing. Better solutions follow.</p>
+<p>A more open interface just lets each engineer that uses it re-invent in their own bespoke way how to solve the problem at hand. These problems more often than not could have a well-defined interface and documentation around it.</p>
+<p>This sounds like forcing user research and it very much is. To understand your customers' use cases is the best way to meet them.</p>
+<h2>Optimize for interface changes</h2>
+<p>There's a counterweight to providing a really great developer experience, which is you need to think about the maintainer experience as well.
+If a public interface comes at the cost of internal changes being very costly, either:</p>
+<ul>
+<li>The service provided will fail to provide the functionality it promises intermittently as it breaks or not sustain guarantees as it scales.</li>
+<li>The maintenance burden will be so great, a new interface will be needed. Having a proliferation of interfaces serving similar purposes is a bad place to be and happens once you've taken on too much debt.</li>
+</ul>
+<p>As the change paralysis sets in internally, external uses also inevitably become instant tech debt that will need to be ported over to something else some day.</p>
+<p>Take the time to understand what a maintainer may want:</p>
+<ul>
+<li>How will someone make future feature additions? Deletions? Scope out some speculative features and take a stab at implementing them.</li>
+<li>What mental overhead does your internal design assume and can you reduce it? Phases of refactoring and/or leveraging a type system can help offload the implicit assumptions or make them concrete in the code.</li>
+<li>What will give high confidence the system is working over time? Rolling changes to the interface to production should be easy and predictable.</li>
+<li>Are consumers of the interface expected to also use other interfaces? Coupling to other behaviors or sources of truth outside a single system can easily become a mess, those touch points also deserve some love even if they are not the primary interface.</li>
+<li>What invariants should we lock down upfront while it is easiest to do so? Especially with a brand new interface, be aggressive about providing as little as possible. Fundamental properties are really hard to tack on later as abstractions inevitably leak.</li>
+</ul>
+<p>A good interface that doesn't deliver is worse than a clunky one that always does.
+A great interface can evolve over time to keep up with everything else around it.</p>
+<h2>Strive for 'can't screw it up' technology</h2>
+<p>Depending on the problem space, there are extents to which things can go very wrong.
+Providing an interface around a problem, you want to be thinking about all outcomes, not just the good ones.</p>
+<p>Engineers building on top of your interface won't be writing project estimates and deadlines around all the internal failure modes of your system.
+If there's opportunity to introduce more friction so they are aware of these concerns, you have choices of:</p>
+<ul>
+<li>An extra upfront N hours working out how to build a robust feature.</li>
+<li>An extra N hours firefighting issues in production because it wasn't obvious how to build a robust feature.</li>
+</ul>
+<p>Remember, we're talking about developer <em>experience</em>.
+Live issues are strictly more stressful to deal with than issues that come up in tests before the code is even merged.</p>
+<h2>Wrapping up</h2>
+<p>I've done a lot of interface design. Open source interfaces, where there's so many assumptions you shouldn't make, I've found that simply scratching my own itch and designing an interface that if it were made by someone else I would use is good enough for most small projects. Certainly, open source is supposed to be fun and boxing yourself in prematurely can be daunting.</p>
+<p>When it becomes business, however, I've definitely seen great results thinking about the meta-game of interface design. And different businesses have different risk appetites. Certainly my focus is more on sustainable growth and preventing bad outcomes because of the stage Stripe is at. If you're just trying to get something working at all, by all means cherry pick!</p>
+<p>Thanks for reading!</p>
+<time>Published Sunday, May 31, 2020</time></div></div></div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-43674193-3', 'auto');ga('send', 'pageview');</script></body></html>
