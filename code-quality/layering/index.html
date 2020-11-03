@@ -1,0 +1,148 @@
+<!DOCTYPE html><html><head><title>Code Quality: Layering</title><meta name="description" content="Layering is a tool in the code quality tool belt to help with dividing code into easier to understand units."><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-type" content="text/html;charset=UTF-8"><meta name="author" content="Chris Andrejewski"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.ico">
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.ico">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="/stylesheets/document.css"></head><body><div class="page"><div class="document"><div class="content"><h1>Code Quality: Layering</h1>
+<p>It helps to divide code into easy to understand units.
+Layering is a tool in the code quality tool belt to help with this.
+Essentially you drive wedges between the pieces of a larger problem space.
+These small problems are layers.
+Each layer has a unique characteristic and sits in an ordered list by that characteristic.</p>
+<p>For example, in computer networking layers are employed readily in protocol stacks.
+The <a href="https://en.wikipedia.org/wiki/Internet_protocol_suite">Internet protocol suite</a> (commonly IP/TCP) is illustrated with layers:</p>
+<p><img src="/images/code-quality/network-layering.png" alt="Layering for computer networks following the IP/TCP model."></p>
+<p>At the top, we are furthest removed from the hardware and extending down we get closer and closer to the raw metal.
+Each layer provides functionality which the lower layers to not provide which is useful to the layers above it.</p>
+<p>Layering as a problem modeling technique is broadly applicable.
+For code quality, layering aims to help with:</p>
+<ul>
+<li>Organizing larger problems in a logical way</li>
+<li>Encapsulating concerns such that they are only dealt with uniquely in a few places</li>
+<li>Enabling <em>good</em> reuse of functionality (as opposed to simply focusing on de-duplication of code as text)</li>
+<li>Applying friction to make bad code harder to write</li>
+</ul>
+<h2>Approaches</h2>
+<p>A common way to layer code is by its <em>applicability</em>.
+In this way layers help answer the question, 'When does it makes sense to (re)use this code for the problem we are solving?'
+Exploring this in a business setting we may define layers like this:</p>
+<p><img src="/images/code-quality/business-layering.png" alt="Layering for business. The layers are listed along with an example for each."></p>
+<p>Breaking these layers down from bottom to top:</p>
+<ul>
+<li>
+<p><strong>Language standard library</strong> code provides the very basics of working in whatever programming language you choose.
+Some languages provide more comprehensive libraries than others.
+JavaScript for example doesn't have a strong standard library.
+(It has been getting better over time.)
+The features the language provides are ever present and generally applicable to solving problems.</p>
+<p>In terms of mental overhead, it is common to imply everyone working in a language is familiar with the standard library.
+On the flip side, don't use all of a language's standard library just for the sake of it.
+Standard libraries can be bad, deprecated, broken, obscure code too, for example JavaScript's <code>Date</code> object.</p>
+</li>
+<li>
+<p><strong>Utilities</strong> cover the short-comings of the standard library and paper over the ever present language problems with better features.
+For example, Lodash is a common open-source &quot;utility belt&quot; to compensate for JavaScript's lacking set.
+Utilities need not be open-source, but it's a good rule of thumb that if you weren't comfortable open sourcing the code, it probably isn't a utility.</p>
+<p>Most often the set of utilities you have will be small because there are few constructs one can write that are both very generic and generally applicable.</p>
+</li>
+<li>
+<p><strong>Primitives</strong> are where we start building themes of code, things most programs need to deal with to be useful programs.
+This includes storage (for example database access or access to file systems), networking, compute management (for example process or thread management), secrets, logging, and monitoring.
+Conceivably anything you would build may rely on these primitive pieces to meet its requirements.</p>
+<p>Note that these themes can be quite complex, unlike utilities which definitely ought to have guessable, simple internals and low complexity.
+Primitives juggle the problem of exposing just enough flexibility to use cases while maintaining good commonalities.</p>
+<p>Primitives might be thought of as the &quot;building blocks&quot; of the code because they are composed together to solve most problems.
+They may be underpinned by full systems.
+For example managing the database servers could be encapsulated: you use the database access primitive and you get the management for free conceptually.</p>
+</li>
+<li>
+<p><strong>General concerns</strong> are answers to somewhat common problems.
+We can take email as an example; most code shouldn't shoulder the complexity of database storage, sending servers, etc.
+So we build on primitives and bundle up email as a concern.</p>
+<p>These are less applicable than primitives and ought to be more prescriptive about how they are applied in both the code interface and documentation.
+Quite a many applications do not require email, for example.</p>
+</li>
+<li>
+<p><strong>Business concerns</strong> are where we actually do something useful.
+It can certainly be strange to say that because all the layers we've previous described are so complex, but it is true: thus far we've only built tools.
+This layer is where we apply them to specific problems.
+Things in this layer are least applicable to anything else.</p>
+<p>If we built a feature of sending weekly reminders about how much money someone made, we would leverage:</p>
+<ul>
+<li>The email concern to send the emails out</li>
+<li>The data stored the database to pull completed transactions</li>
+<li>The language's built-in <code>Array.reduce</code> method to sum up the totals</li>
+</ul>
+<p>In this way, business concerns leverage the lower layers to make stuff happen.</p>
+</li>
+</ul>
+<p>The above layering is pretty common in larger organizations' engineering team structures and code bases, but with cooler names:</p>
+<ul>
+<li>Primitives → Infrastructure</li>
+<li>General concerns → Platform</li>
+<li>Business concerns → Product</li>
+</ul>
+<p>Multiple layering strategies can co-exist and fit within each other.
+To add one more example beside applicability, we can look at security.
+Specifically, let's talk about guarding against security vulnerabilities in the code that we write.</p>
+<p><img src="/images/code-quality/security-layering.png" alt="Layering for security. We establish a trust boundary to allow engineers to indirectly use unsafe layers."></p>
+<p>Breaking it down:</p>
+<ul>
+<li>
+<p><strong>Raw, abusable features</strong> exist.
+They need to exist to enable all of the cool stuff we build.
+Some are better than others certainly insofar as making it most clear what is safe and isn't.
+The Document Object Model (DOM) allows low level access to web pages, loading scripts and other assets.</p>
+</li>
+<li>
+<p>The <strong>trust boundary</strong> is the critical layer we use encapsulate the above risk.
+It doesn't scale for each implementation built on top of the primitives above to carry the mental overhead or the risk.
+So the trust boundary restricts access to the lower interface and receives much more scrutiny, testing, and rigor.</p>
+<p>For example, React wraps the DOM to <a href="https://reactjs.org/docs/introducing-jsx.html#jsx-prevents-injection-attacks">safely encode HTML content</a> by default.
+This solves issues with cross-site scripting (XSS) and content injection attacks.</p>
+<pre><code class="language-js">&lt;p&gt;{'&lt;script&gt;evil()&lt;/script&gt;'}&lt;/p&gt;
+//=&gt; &lt;p&gt;&amp;lt;script&amp;gt;evil()&amp;lt;/script&amp;gt;&lt;/p&gt;
+</code></pre>
+</li>
+<li>
+<p>The <strong>use cases</strong> are the individual implementations.
+The goal is to have the code written at this layer impossible to screw up.
+Leveraging the trust boundary, the unsafe sharp edges aren't bleeding into everything else.</p>
+<p>React does give an escape hatch <code>dangerouslySetInnerHTML</code> to work around this safety, but at least the risk is more obvious.</p>
+<pre><code class="language-js">&lt;MyComponent dangerouslySetInnerHTML={{__html: htmlString}} /&gt;
+</code></pre>
+</li>
+</ul>
+<h2>Evolution</h2>
+<p>It is fair to say most code is not written with layering in mind.
+As was touched on earlier, this is pretty understandable.
+When you are starting from scratch the layers may not be obvious in the beginning.
+If you are implementing weekly reminders but haven't built any other email feature, it may not be obvious there are parts to a full email service here.</p>
+<p>Some good hints you might want to look into layering:</p>
+<ul>
+<li>
+<p>The <strong>Rule of Three</strong> basically says once you've written similar things three times start looking for commonalities.
+The weekly reminder email may be the only use case for awhile so introducing layering too early may frame solutions too closely to that exact shape of problem.
+By the time you also have welcome and password reset emails, you'll hopefully see a pattern forming to start building around.</p>
+</li>
+<li>
+<p>Too much cognitive overhead to maintaining or adding new features.
+There are many ways to combat this, layering is one of them.</p>
+<p>In our security example, if we found a vulnerability we needed to address we wouldn't need to scour all the code to patch it.
+We get it fixed at the trust boundary and every usage benefits with no or minimal work.</p>
+<p>In our applicability example, ideally most work can be done in the mindset of one layer.</p>
+</li>
+<li>
+<p>Spaghetti special casing of 'this or that' riddled throughout the code.
+For example, for customer A send this email otherwise do that other thing.
+These types of checks are very costly and layering can apply counter pressure and friction to these types of changes.</p>
+<p>In our applicability example, lower level primitives and concerns would not have a concept of &quot;customers.&quot;
+As such it would feel really bad and be quite brittle to hack up these lower layers to handle a business requirement.
+This would however be easier at the higher levels where the cost of getting it wrong is lower.</p>
+<p>Similarly in our security example, if we riddled the trust boundary with special casing it would defeat a lot of the value of having the strict separation in the first place.</p>
+</li>
+</ul>
+<p>Knowing when applying layering makes sense and how to do so takes practice and good understanding of the situation.
+It's important to acknowledge layering for its own sake ought not be a goal, but for the benefits it should deliver.
+Layers are always a work in progress.</p>
+<time>Published Tuesday, November 3, 2020</time></div></div></div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-43674193-3', 'auto');ga('send', 'pageview');</script></body></html>
