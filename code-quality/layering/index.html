@@ -95,8 +95,8 @@ Some are better than others certainly insofar as making it most clear what is sa
 The Document Object Model (DOM) allows low level access to web pages, loading scripts and other assets.</p>
 </li>
 <li>
-<p>The <strong>trust boundary</strong> is the critical layer we use encapsulate the above risk.
-It doesn't scale for each implementation built on top of the primitives above to carry the mental overhead or the risk.
+<p>The <strong>trust boundary</strong> is the critical layer we use to encapsulate the above risk.
+It doesn't scale for each implementation built on top of the features above to carry the mental overhead or the risk.
 So the trust boundary restricts access to the lower interface and receives much more scrutiny, testing, and rigor.</p>
 <p>For example, React wraps the DOM to <a href="https://reactjs.org/docs/introducing-jsx.html#jsx-prevents-injection-attacks">safely encode HTML content</a> by default.
 This solves issues with cross-site scripting (XSS) and content injection attacks.</p>
