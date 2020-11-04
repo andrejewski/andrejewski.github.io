@@ -87,7 +87,7 @@ Because it was done in a far-off place, the type system cannot help make the con
 This leads to adding more noise to satisfy the typechecker or annotations to opt-out of types, making the tests get less out of typing.</p>
 <p>Beyond types, asserting side-effects have occurred also can suffer from this first-verify-before-then-test issue.
 This happens very naturally when there's an implicit assumption about how the <code>before</code> should run.
-Since before is shared and may be refactored, we may need some verification to <em>test the before</em> is doing the right thing.
+Since <code>before</code> is shared and may be refactored, we may need some verification to <em>test the <code>before</code></em> is doing the right thing.
 Being explicit with functions, we don't need this defensive checking.</p>
 </li>
 <li>
@@ -96,7 +96,7 @@ Hooks put negative social pressure on the growth of the code.
 Using <code>before</code> may feel nice: test cases are shorter because all the work is in <code>before</code>!
 While true, this also means <em>all the work is in <code>before</code></em>.
 As new code is added, people most often repeat established patterns.
-This leads to more and more code dumped into before, it becomes a junk drawer which exacerbates all the above issues.</p>
+This leads to more and more code dumped into <code>before</code>, it becomes a junk drawer which exacerbates all the above issues.</p>
 </li>
 <li>
 <p>Even more problems exist with <strong>different implementations</strong> of hooks.
