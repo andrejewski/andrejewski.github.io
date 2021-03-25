@@ -1,0 +1,207 @@
+<!DOCTYPE html><html><head><title>Interface Design: Developer Experience</title><meta name="description" content="Design principles for building great code interfaces and developer experiences"><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-type" content="text/html;charset=UTF-8"><meta name="author" content="Chris Andrejewski"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.ico">
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.ico">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="/stylesheets/document.css"></head><body><div class="page"><div class="document"><div class="content"><h1>Interface Design: Security</h1>
+<p>Stripe's number one priority is always security.
+So over the years I've gone from not worrying much at all, to always thinking security first.
+This has brought a lot of nuance to how I design APIs and think its worth sharing and reflecting on exactly how that looks.</p>
+<h2>Progressions</h2>
+<p>To effectively think security first, you have to start with <a href="https://en.wikipedia.org/wiki/Threat_model">threat modeling</a>,
+figuring out what you actually care to secure today and what you will want to secure next.</p>
+<p>No security is eventually bad, too much security and nothing ever happens.
+Great security is about carving out the right postures for the business, accepting risk where appropriate, and over time drawing stronger lines on what is table stakes for keeping the business operating and growing safely.</p>
+<p>Security-first interfaces fit within this framing.
+You will have many possible interfaces and the hardest choice on which to choose will be easiest when informed by a threat model.</p>
+<p>The only counterweight to designing strictly by your threat model is designing for change.
+Sometimes even if the posture is not strong enough, it will be worth it to over-optimize just to save time later.
+Because it is a progression: if everything goes well, security will get stronger over time.
+So as a provider of an interface, designing for change and a bit into the future to save your future self time is totally cool.
+These incremental over-wins really do get balls rolling and become self-fulfilling prophecies in the right company.</p>
+<h2>Example: email headers</h2>
+<p>Email headers are like HTTP headers: key-value pairs that are included in each email. Some common headers include <code>Subject</code>, <code>To</code>, and <code>From</code>.
+When I joined Stripe, the API for specifying email headers was:</p>
+<pre><code>send_email(
+  from String:,
+  to: Array[String],
+  subject: String,
+  html_body: String,
+  custom_headers: Map[String, String]
+)
+</code></pre>
+<p>This is alright, it did do the job for many years. In terms of being abusable, we were doing pretty good. For example, if our interface where instead:</p>
+<pre><code>send_email(
+  message: String
+)
+</code></pre>
+<p>And we put the onus on all callers to construct email headers and compile the full message themselves, we could not prevent content injection and escaping issues
+caused by malicious user input.
+With the <code>Map[String, String]</code> interface we can do that proper escaping of headers for our callers.
+Luckily, most email building libraries are oriented around this style of building up message bodies, so this interface wasn't actively informed by a threat model.</p>
+<p>Interestingly, you'll find weird ambiguity with the <code>Map[String, String]</code> interface. For example, what might render out when we do:</p>
+<pre><code>send_email(
+  ...,
+  subject: 'Hello',
+  custom_headers: {
+    'subject' =&gt; 'foo',
+    'SUBJECT' =&gt; 'bar',
+    'Subject' =&gt; 'baz'
+  }
+)
+</code></pre>
+<p>Headers are case insensitive so how are we going to resolve this, what takes precedence?
+Surely the dedicated <code>subject:</code> param should always be used, right?
+Like minded engineers may disagree on the role <code>custom_headers</code> should play.</p>
+<p>We can apply a threat model now:</p>
+<ul>
+<li>What do we care about?
+<ul>
+<li><strong>All emails should not arrive completely broken to end-users.</strong>
+If we weren't applying proper escaping to email headers, we could not say this.
+This is important to us as we need to maintain trust with our users.
+They trust us with much more important things than email, so we have to secure email reasonably as well.</li>
+<li><strong>All emails should not serve a purpose beyond the company's intent.</strong>
+Within the company we trust each other to deliver an email but don't have that same trust in bad actors.
+Email headers can control presentation in ways we don't intend and can be abused by malicious users.</li>
+</ul>
+</li>
+<li>Brainstorm: What are some example situations?
+<ul>
+<li>Malicious input breaks our escaping and emails render out broken.</li>
+<li>Malicious valid custom header does some weird thing for a particular email client.</li>
+</ul>
+</li>
+<li>How do we want to respond when that happens?
+<ul>
+<li>No response; make it impossible from the outset</li>
+<li>Find and disable the vulnerable email</li>
+<li>Find the vulnerability and make a code change to fix it</li>
+<li>Do nothing, it's not worth our time</li>
+</ul>
+</li>
+</ul>
+<p>Where we drew the line in this case is, &quot;Any email header we send must be intended by an engineer.&quot;
+The misuse of any value of an intended header we can mitigate by turning off an email or making a code change,
+but given how varied email clients are in interpreting a multitude of headers we can't know all the headers are safe to pass along.</p>
+<p>Cool! Now designing the interface is easy: <code>Map[String, String]</code> is too powerful.
+An engineer could be easily forgiven for passing an arbitrary map of random, unintended headers if they were given that interface.
+Instead we need a fixed set of known headers for engineers to use and add to over time.
+This interface looks like this:</p>
+<pre><code>send_email(
+  ...,
+  custom_headers: [
+    EmailHeader.in_reference_to('Message-ID'),
+    EmailHeader.references(['Message-ID', ...]),
+  ]
+)
+</code></pre>
+<p>Now if someone wants to use a new header, they need to add a new header method to <code>EmailHeader</code>.
+At a glance we can go into the code and see every custom email header we could possibly be sending by looking at <code>EmailHeader</code>.
+If you have a static type system, you can find each header's usages in the code as well.
+We have our fixed set of email headers.</p>
+<p>This interface also solves our case-insensitivity problem because header names are no longer a part of the interface.
+We do still struggle with ambiguity; what renders when we do:</p>
+<pre><code>custom_headers: [
+  EmailHeader.in_reference_to('foo'),
+  EmailHeader.in_reference_to('bar'),
+]
+</code></pre>
+<p>So that still needs to worked through with a well-defined behavior or runtime check if the type system isn't powerful enough to describe unique sets.</p>
+<p>The other cool thing about this interface is how bespoke we can get in terms of specifying header names and values.
+An engineer might design a single <code>EmailHeader</code> method that sets multiple headers and takes well defined values.
+It can also be well typed and tested in one place instead of having email implementation details bleed all over as <code>String</code> manipulation.</p>
+<p>I think email headers are a particularly interesting example to demonstrate progression:</p>
+<ul>
+<li>They are conceptually pretty simple and have a bunch of concerns in the details.</li>
+<li>No implementation is right or wrong unless you apply a threat model.</li>
+<li>Implementing <code>EmailHeader</code> over a simple <code>Map[String, String]</code> is a pretty low cost investment, but can have so many advantages if you want them.</li>
+</ul>
+<h2>Example: email addresses</h2>
+<p>Wait, addresses are email headers, right? We just had a whole section on those.
+This is true, but email addresses are special headers.</p>
+<p>Custom headers at their worst can, through exploits in escaping, cause emails to send to someone else by fudging the address headers up.
+But after preventing that, they can really only break presentation.</p>
+<p>Addresses need special attention because of authorization, reputation, and data exfiltration.
+To threat model again:</p>
+<ul>
+<li>
+<p>What do we care about?</p>
+<ul>
+<li>
+<p><strong>Emails should only be sent to the intended individuals or trusted parties.</strong>
+We need to send the email to the correct audience.
+Tangibility sending the email to the wrong place can get us marked as spam and make it harder to reach our users in the general case.</p>
+</li>
+<li>
+<p><strong>We need to keep user data entrusted to us secure.</strong>
+Emails can contain user data so sending it to the wrong place or to someone who shouldn't see it is really bad.
+Once an email is sent, we cannot claw it back; the damage has been done.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Brainstorm: What are some example situations?</p>
+<ul>
+<li>User Bob gets an email intended for user Mary.</li>
+<li>Bob receives an email, but so does someone who shouldn't on CC or BCC.</li>
+<li>User data in the email copy, in attachments, or unauthenticated links is accessible to bad actors.</li>
+</ul>
+</li>
+</ul>
+<p>This is really serious!
+It's important to call out that sometime the best interface is no interface.
+For example, if someone wanted to send a confidential document as an email attachment: heck no!
+We would instead send an email with a link to authenticate and then download the document.
+We don't trust email as a medium for all communications to users.</p>
+<p>In terms of an actual interface however, we have designed to make addressing safer.</p>
+<h3>Richer addressing</h3>
+<p>Easiest way to deal with addresses at the interface is to not deal with addresses.
+Instead of:</p>
+<pre><code>send_email(
+  to: Array[String],
+  cc: Array[String],
+  bcc: Array[String],
+  ...
+)
+</code></pre>
+<p>We can meet developers where they are and do the heavy lifting for them:</p>
+<pre><code>send_user_email(
+  user: User,
+  ...
+)
+</code></pre>
+<p>And figure out all the proper addressing under the interface.
+This is really powerful in many ways.
+We've captured a much higher level intent of &quot;send to this user&quot; as opposed to &quot;send to this address.&quot;</p>
+<p>Of course, we provide more than this interface so people can do their jobs: we don't always have a user.
+However the richer we can specialize for the <code>User</code> scenario, the more context we have to evolve how we communicate over time.
+No one really cared to have to type <code>send_email(to: [user.email])</code> over and over anyways.</p>
+<h3>Limited addressing</h3>
+<p>To avoid problems with users being over shared data they should not see, we opted to scrutinize having multiple <code>To</code> addresses,
+and whether we even needed <code>CC</code> and <code>BCC</code> addresses at all in our higher level interfaces.
+As it turned out for us, yeah they are not really needed.</p>
+<p>We do have use cases for CC addresses, but given how uncommon they are we've been able to manage them behind a private interface.
+Tied to using this interface is well defined posture for when it is okay to use.</p>
+<p>Limiting emails to &quot;one per recipient&quot; makes modeling much easier and allows us to ensure each individual send is getting the same authorization checks.
+It also helps answer some product quality questions such as, &quot;If Bob wants his email in Spanish and Mary in English, what do they get?&quot;</p>
+<p>So that's addressing. It's another pretty cool example of progression:</p>
+<ul>
+<li>
+<p>Often times platforms and infra teams can think their only job is to provide a library matching the wire protocol and they're done.
+In this case we were able to cut out a lot of that complexity by providing interfaces that better matched developer intent.
+But it happened gradually, we offered everything and then trimmed away what wasn't necessary by applying our threat model.</p>
+</li>
+<li>
+<p>Sometimes the risk is too high and no interface is the very best interface.
+As much as we iterate on interfaces there is a limit to what we can encourage and prevent by having one at all.
+We used to support BCC, now we don't at all.</p>
+</li>
+</ul>
+<hr>
+<p>Ugh, there's so much more to talk about.
+But this is enough for now.
+If you're interested in more API design, check out my other article <a href="/interface-design-developer-experience">Interface Design: Developer Experience</a> and let me know if you'd like to read more on <a href="https://twitter.com/compooter">Twitter</a> or <a href="mailto:christopher.andrejewski@gmail.com">shoot me an email</a> (with headers).</p>
+<p>Go create a threat model and make an interface that satisfies it (maybe better than needed)!</p>
+<p>Thanks for reading!</p>
+<time>Published Thursday, March 25, 2021</time></div></div></div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-43674193-3', 'auto');ga('send', 'pageview');</script></body></html>
