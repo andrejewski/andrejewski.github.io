@@ -30,7 +30,7 @@ When I joined Stripe, the API for specifying email headers was:</p>
   custom_headers: Map[String, String]
 )
 </code></pre>
-<p>This is alright, it did do the job for many years. In terms of being abusable, we were doing pretty good. For example, if our interface where instead:</p>
+<p>This is alright, it did do the job for many years. In terms of being abusable, we were doing pretty good. For example, if our interface were instead:</p>
 <pre><code>send_email(
   message: String
 )
@@ -60,7 +60,7 @@ Like minded engineers may disagree on the role <code>custom_headers</code> shoul
 <li><strong>All emails should not arrive completely broken to end-users.</strong>
 If we weren't applying proper escaping to email headers, we could not say this.
 This is important to us as we need to maintain trust with our users.
-They trust us with much more important things than email, so we have to secure email reasonably as well.</li>
+They trust us with much more important things than email, so we have to secure and be perceived to be securing email reasonably as well.</li>
 <li><strong>All emails should not serve a purpose beyond the company's intent.</strong>
 Within the company we trust each other to deliver an email but don't have that same trust in bad actors.
 Email headers can control presentation in ways we don't intend and can be abused by malicious users.</li>
@@ -69,7 +69,7 @@ Email headers can control presentation in ways we don't intend and can be abused
 <li>Brainstorm: What are some example situations?
 <ul>
 <li>Malicious input breaks our escaping and emails render out broken.</li>
-<li>Malicious valid custom header does some weird thing for a particular email client.</li>
+<li>Malicious, but valid, custom headers does some weird thing for some email client.</li>
 </ul>
 </li>
 <li>How do we want to respond when that happens?
@@ -150,7 +150,7 @@ Once an email is sent, we cannot claw it back; the damage has been done.</p>
 </li>
 </ul>
 <p>This is really serious!
-It's important to call out that sometime the best interface is no interface.
+It's important to call out that sometimes the best interface is no interface.
 For example, if someone wanted to send a confidential document as an email attachment: heck no!
 We would instead send an email with a link to authenticate and then download the document.
 We don't trust email as a medium for all communications to users.</p>
@@ -187,9 +187,10 @@ There's also familiarity: everyone is already working with user IDs in their bus
 and whether we even needed <code>CC</code> and <code>BCC</code> addresses at all in our higher level interfaces.
 As it turned out for us, yeah they are not really needed.</p>
 <p>We do have use cases for CC addresses, but given how uncommon they are we've been able to manage them behind a private interface.
-Tied to using this interface is well defined posture for when it is okay to use.</p>
+Tied to using this interface is a well defined posture for when it is okay to use.</p>
 <p>Limiting emails to &quot;one per recipient&quot; makes modeling much easier and allows us to ensure each individual send is getting the same authorization checks.
-It also helps answer some product quality questions such as, &quot;If Bob wants his email in Spanish and Mary in English, what do they get?&quot;</p>
+It also helps answer some product quality questions such as, &quot;If Bob wants his email in Spanish and Mary in English, what do they get?&quot;
+Each recipient gets their own email in the language they want it.</p>
 <p>So that's addressing. It's another pretty cool example of progression:</p>
 <ul>
 <li>
