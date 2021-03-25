@@ -174,9 +174,14 @@ Instead of:</p>
 <p>And figure out all the proper addressing under the interface.
 This is really powerful in many ways.
 We've captured a much higher level intent of &quot;send to this user&quot; as opposed to &quot;send to this address.&quot;</p>
-<p>Of course, we provide more than this interface so people can do their jobs: we don't always have a user.
-However the richer we can specialize for the <code>User</code> scenario, the more context we have to evolve how we communicate over time.
+<p>We provide more than this interface so people can do their jobs: we don't always have a user.
+So we generally have two APIs: the low-level one to more closely match the wire protocol and the one 99% of developers use that is tuned to business domain concerns.</p>
+<p>The richer we can specialize for the <code>User</code> scenario, the more context we have to evolve how we communicate over time.
 No one really cared to have to type <code>send_email(to: [user.email])</code> over and over anyways.</p>
+<p>A great benefit of having the richer interfaces is observability.
+A user's email address can change over time but their ID is unique, durable, and safe to log.
+Email addresses are personally identifiable information (PII), which we don't want to log all over.
+There's also familiarity: everyone is already working with user IDs in their business logic.</p>
 <h3>Limited addressing</h3>
 <p>To avoid problems with users being over shared data they should not see, we opted to scrutinize having multiple <code>To</code> addresses,
 and whether we even needed <code>CC</code> and <code>BCC</code> addresses at all in our higher level interfaces.
