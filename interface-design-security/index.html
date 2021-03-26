@@ -118,11 +118,11 @@ It can also be well typed and tested in one place instead of having email implem
 <li>Implementing <code>EmailHeader</code> over a simple <code>Map[String, String]</code> is a pretty low cost investment, but can have so many advantages if you want them.</li>
 </ul>
 <h2>Example: email addresses</h2>
-<p>Wait, addresses are email headers, right? We just had a whole section on those.
-This is true, but email addresses are special headers.</p>
-<p>Custom headers at their worst can, through exploits in escaping, cause emails to send to someone else by fudging the address headers up.
+<p>Wait, addresses are values in email headers, right? We just had a whole section on those.
+This is true, but headers for email addresses are special.</p>
+<p>Custom headers at their worst can, through exploits in escaping or overriding of headers, cause emails to send to someone else by fudging the address headers up.
 But after preventing that, they can really only break presentation.</p>
-<p>Addresses need special attention because of authorization, reputation, and data exfiltration.
+<p>Address headers need special attention because of authorization, reputation, and data exfiltration.
 To threat model again:</p>
 <ul>
 <li>
