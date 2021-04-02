@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="/stylesheets/document.css"></head><body><div class="page"><div class="document"><div class="content"><h1>Interface Design: Security</h1>
 <p>Stripe's number one priority is always security.
 So over the years I've gone from not worrying much at all, to always thinking security first.
-This has brought a lot of nuance to how I design APIs and think its worth sharing and reflecting on exactly how that looks.</p>
+This has brought a lot of nuance to how I design APIs and think it's worth sharing and reflecting on exactly how that looks.</p>
 <h2>Progressions</h2>
 <p>To effectively think security first, you have to start with <a href="https://en.wikipedia.org/wiki/Threat_model">threat modeling</a>,
 figuring out what you actually care to secure today and what you will want to secure next.</p>
@@ -69,7 +69,7 @@ Email headers can control presentation in ways we don't intend and can be abused
 <li>Brainstorm: What are some example situations?
 <ul>
 <li>Malicious input breaks our escaping and emails render out broken.</li>
-<li>Malicious, but valid, custom headers does some weird thing for some email client.</li>
+<li>Malicious, but valid, custom headers do some weird thing for some email client.</li>
 </ul>
 </li>
 <li>How do we want to respond when that happens?
@@ -107,7 +107,7 @@ We do still struggle with ambiguity; what renders when we do:</p>
   EmailHeader.in_reference_to('bar'),
 ]
 </code></pre>
-<p>So that still needs to worked through with a well-defined behavior or runtime check if the type system isn't powerful enough to describe unique sets.</p>
+<p>So that still needs to be worked through with a well-defined behavior or runtime check if the type system isn't powerful enough to describe unique sets.</p>
 <p>The other cool thing about this interface is how bespoke we can get in terms of specifying header names and values.
 An engineer might design a single <code>EmailHeader</code> method that sets multiple headers and takes well defined values.
 It can also be well typed and tested in one place instead of having email implementation details bleed all over as <code>String</code> manipulation.</p>
@@ -194,14 +194,14 @@ Each recipient gets their own email in the language they want it.</p>
 <p>So that's addressing. It's another pretty cool example of progression:</p>
 <ul>
 <li>
-<p>Often times platforms and infra teams can think their only job is to provide a library matching the wire protocol and they're done.
+<p>Oftentimes platforms and infra teams can think their only job is to provide a library matching the wire protocol and they're done.
 In this case we were able to cut out a lot of that complexity by providing interfaces that better matched developer intent.
 But it happened gradually, we offered everything and then trimmed away what wasn't necessary by applying our threat model.</p>
 </li>
 <li>
 <p>Sometimes the risk is too high and no interface is the very best interface.
 As much as we iterate on interfaces there is a limit to what we can encourage and prevent by having one at all.
-We used to support BCC, now we don't at all.</p>
+We used to support BCC, but now we don't at all.</p>
 </li>
 </ul>
 <hr>
