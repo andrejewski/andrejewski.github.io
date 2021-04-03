@@ -10,7 +10,7 @@ This has brought a lot of nuance to how I design APIs and think it's worth shari
 <h2>Progressions</h2>
 <p>To effectively think security first, you have to start with <a href="https://en.wikipedia.org/wiki/Threat_model">threat modeling</a>,
 figuring out what you actually care to secure today and what you will want to secure next.</p>
-<p>No security is eventually bad, too much security and nothing ever happens.
+<p>Zero security is eventually bad, too much security and nothing ever happens.
 Great security is about carving out the right postures for the business, accepting risk where appropriate, and over time drawing stronger lines on what is table stakes for keeping the business operating and growing safely.</p>
 <p>Security-first interfaces fit within this framing.
 You will have many possible interfaces and the hardest choice on which to choose will be easiest when informed by a threat model.</p>
@@ -91,8 +91,8 @@ This interface looks like this:</p>
 <pre><code>send_email(
   ...,
   custom_headers: [
-    EmailHeader.in_reference_to('Message-ID'),
-    EmailHeader.references(['Message-ID', ...]),
+    EmailHeader.in_reply_to('Message-ID'),
+    EmailHeader.reply_to_address(‘me@example.com’),
   ]
 )
 </code></pre>
@@ -103,8 +103,8 @@ We have our fixed set of email headers.</p>
 <p>This interface also solves our case-insensitivity problem because header names are no longer a part of the interface.
 We do still struggle with ambiguity; what renders when we do:</p>
 <pre><code>custom_headers: [
-  EmailHeader.in_reference_to('foo'),
-  EmailHeader.in_reference_to('bar'),
+  EmailHeader.in_reply_to('foo'),
+  EmailHeader.in_reply_to('bar'),
 ]
 </code></pre>
 <p>So that still needs to be worked through with a well-defined behavior or runtime check if the type system isn't powerful enough to describe unique sets.</p>
@@ -131,7 +131,7 @@ To threat model again:</p>
 <li>
 <p><strong>Emails should only be sent to the intended individuals or trusted parties.</strong>
 We need to send the email to the correct audience.
-Tangibility sending the email to the wrong place can get us marked as spam and make it harder to reach our users in the general case.</p>
+Tangibly sending the email to the wrong place can get us marked as spam and make it harder to reach our users in the general case.</p>
 </li>
 <li>
 <p><strong>We need to keep user data entrusted to us secure.</strong>
@@ -183,11 +183,11 @@ A user's email address can change over time but their ID is unique, durable, and
 Email addresses are personally identifiable information (PII), which we don't want to log all over.
 There's also familiarity: everyone is already working with user IDs in their business logic.</p>
 <h3>Limited addressing</h3>
-<p>To avoid problems with users being over shared data they should not see, we opted to scrutinize having multiple <code>To</code> addresses,
+<p>To avoid problems with users being overshared data they should not see, we opted to scrutinize having multiple <code>To</code> addresses,
 and whether we even needed <code>CC</code> and <code>BCC</code> addresses at all in our higher level interfaces.
 As it turned out for us, yeah they are not really needed.</p>
 <p>We do have use cases for CC addresses, but given how uncommon they are we've been able to manage them behind a private interface.
-Tied to using this interface is a well defined posture for when it is okay to use.</p>
+Tied to using this interface is a well defined criteria for when it is okay to use.</p>
 <p>Limiting emails to &quot;one per recipient&quot; makes modeling much easier and allows us to ensure each individual send is getting the same authorization checks.
 It also helps answer some product quality questions such as, &quot;If Bob wants his email in Spanish and Mary in English, what do they get?&quot;
 Each recipient gets their own email in the language they want it.</p>
