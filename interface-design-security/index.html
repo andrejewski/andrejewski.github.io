@@ -91,10 +91,18 @@ This interface looks like this:</p>
 <pre><code>send_email(
   ...,
   custom_headers: [
-    EmailHeader.in_reply_to('Message-ID'),
-    EmailHeader.reply_to_address(‘me@example.com’),
+    EmailHeader.in_reply_to(
+      message_id: '&lt;foo…&gt;',
+    ),
+    EmailHeader.reply_to(
+      address: ‘me@example.com’,
+    ),
   ]
 )
+</code></pre>
+<p>And will yield these headers in the final email:</p>
+<pre><code>Reply-To: me@example.com
+In-Reply-To: &lt;foo…&gt;
 </code></pre>
 <p>Now if someone wants to use a new header, they need to add a new header method to <code>EmailHeader</code>.
 At a glance we can go into the code and see every custom email header we could possibly be sending by looking at <code>EmailHeader</code>.
@@ -103,8 +111,8 @@ We have our fixed set of email headers.</p>
 <p>This interface also solves our case-insensitivity problem because header names are no longer a part of the interface.
 We do still struggle with ambiguity; what renders when we do:</p>
 <pre><code>custom_headers: [
-  EmailHeader.in_reply_to('foo'),
-  EmailHeader.in_reply_to('bar'),
+  EmailHeader.in_reply_to(message_id: '&lt;foo…&gt;'),
+  EmailHeader.in_reply_to(message_id: '&lt;bar…&gt;'),
 ]
 </code></pre>
 <p>So that still needs to be worked through with a well-defined behavior or runtime check if the type system isn't powerful enough to describe unique sets.</p>
@@ -131,7 +139,7 @@ To threat model again:</p>
 <li>
 <p><strong>Emails should only be sent to the intended individuals or trusted parties.</strong>
 We need to send the email to the correct audience.
-Tangibly sending the email to the wrong place can get us marked as spam and make it harder to reach our users in the general case.</p>
+Tangibly, sending the email to the wrong place can get us marked as spam and make it harder to reach our users in the general case.</p>
 </li>
 <li>
 <p><strong>We need to keep user data entrusted to us secure.</strong>
