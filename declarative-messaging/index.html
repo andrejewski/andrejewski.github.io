@@ -1,0 +1,146 @@
+<!DOCTYPE html><html><head><title>Declarative Messaging</title><meta name="description" content="A framework and pattern of designing communication systems."><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-type" content="text/html;charset=UTF-8"><meta name="author" content="Chris Andrejewski"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.ico">
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.ico">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="/stylesheets/document.css"></head><body><div class="page"><div class="document"><div class="content"><h1>Declarative Messaging</h1>
+<p>In 2019, Stripe needed to send some new emails. So I was there :)</p>
+<p>A lot of what I find interesting about working at Stripe is our focus on users and how we engage with them.
+To people not on Stripe, we want to be seen as moving quickly, innovating, and building and maintaining trustworthy, reliable systems.
+To people on Stripe, we want that and to be seen as <em>solving away</em> major problems in running a business.</p>
+<p>&quot;Redesigning a plane while it is in flight&quot; is the Stripe day to day.
+Laws and regulations change, payment methods die and are born again, and tax law is tax law.
+The value prop of Stripe is not needing to know this, as a user.</p>
+<p>What this means in regard to communicating to users, is that reaching out and making them do anything is not great.
+And so we don't send a lot of emails and it is no one's goal to send a lot of emails.
+I'm a fan and strong advocate of not wasting people's time, and that reflects in our messaging.</p>
+<p>So, anyway, we did need to send some (okay, a lot of) emails.
+Better make it good, then!</p>
+<h2>State of the art</h2>
+<p>We'd sent lots of emails prior to 2019, so there's tons of history.
+What we were looking to build next was a multi-step email campaign, synced with messaging via notifications in the Dashboard and even SMS.
+Based on the actions people took, or didn't take in time, we would send more emails or change account functionality (very sensitive!).</p>
+<p>Previous campaigns were sent manually and tracked in spreadsheets, run as inefficient, offline data migrations, or used some convoluted flow of emitting events based on actions and heartbeats on a schedule.
+The last option was particularly gnarly as it would &quot;infect&quot; the core business logic, and being sprinkled about made it hard to reason about and change.</p>
+<p>Coming from a web development background I thought, &quot;Is this <a href="https://backbonejs.org/">Backbone</a>?&quot;
+Event listeners/emitters all over, state tracking in a whole bunch of places, no lifecycle management, and terribly complex testing.</p>
+<p>I wanted to bring some clarity to this madness for this next set of campaigns, and future campaigns.
+Lots of one-off frameworks cropped up over the years, and I reviewed them all to see what worked and what didn't.
+Ultimately, each system devolved to optimizing a single use case or set of use cases the supporting team had.
+What could I glean to make something general purpose for everyone to be able to use?</p>
+<p>I wanted something testable.
+These campaigns would be serious business and while there's always a constant push in the messaging space for going more and more no-code in the tooling, having systems in code lets us write tests.
+I wanted the tests for campaigns to be easy to write and comprehensive.
+More precisely, since the business logic itself could not be reduced further (complex things are complex), making the communication part of the problem easier was my aim.</p>
+<p>I've found time and time again, designing something testable yields something simple.
+In some ways, it is a matter of incentives: if it is easier to write tests, more tests will be written.
+If it's easy to write tests, that means there's not much ceremony (e.g. no FactoryFactories) or boilerplate.
+If there's not much boilerplate, it means we're working with the good stuff: simple functions and data.</p>
+<h2>React for messaging</h2>
+<p>Backbone was replaced with React, so I went on an API design journey to build a React but for communication systems.
+The central premise I built on was, &quot;What should the user be looking at right now?&quot;
+Based on external state we'd have a function returning messaging as data:</p>
+<pre><code class="language-js">function render (state) {
+  if (state.userHasUpdatedCompanyOwnership) {
+    return messaging({status: 'finished'})
+  }
+
+  return messaging({
+    status: 'needs_to_update',
+    email: {
+      key: 'reminder',
+      subject: '[Action required] Update company ownership',
+      // ...
+    }
+  })
+}
+</code></pre>
+<p>This is a simple example.
+We are trying to have a user update their account info.
+If they have done that we have nothing to show them.
+If they haven't they should get an email.</p>
+<p>The <code>key</code> is required and used for idempotency.
+Sending the email will be recorded in the database and subsequent emails matching that key won't be sent.
+This is similar to React's DOM diffing, applying only what has changed by comparing the old and new render tree.</p>
+<p>The <code>status</code> is also required but is more of a convenience label for observability into the campaign.
+We always want to track the progression of campaigns, and use the status to aggregate users into cohorts.</p>
+<p>But <code>render</code> is totally user-defined, you can call it a million times and it would do nothing but return plain data.
+This is perfect for tests and left the actual messaging to the framework, which provided two methods:</p>
+<ul>
+<li><code>applyCommunications({campaignType, userId, messaging})</code> to diff against the current state and trigger emails and other communications if necessary.</li>
+<li><code>getCommunications({campaignType, userId})</code> to receive the trail of sent messages. This could be used to inform the external state passed to <code>render</code>.</li>
+</ul>
+<p>The <code>campaignType</code> is a way of isolating campaigns from one another.</p>
+<p>Using this framework has many benefits:</p>
+<ul>
+<li>
+<p><strong>Testing is easy and fast.</strong>
+The <code>render</code> function contains just business logic and returns data.
+So tests didn't need to verify what would happen end-to-end and were simple to construct and decoupled from database and network reads/writes.
+Developers could trust the underlying framework to do the right thing and not re-test those internals.</p>
+</li>
+<li>
+<p><strong>Supporting multiple channels is easy.</strong>
+In the example above, we have an <code>email:</code> slot.
+The framework's design easily accommodates other channels, like text messaging:</p>
+<pre><code class="language-js">messaging({
+  status: 'urgently_needs_to_update',
+  text_message: {
+    key: 'urgent_alert',
+    text: 'Yo, like seriously, you gotta update your account.'
+  }
+})
+</code></pre>
+<p>One cool limitation in this particular interface which I love is you can't send two emails about a campaign at once.
+By only having single <code>email:</code> and <code>text_message:</code> slots, we have guarded against a bad practice of sending conflicting or too many messages at each step in a campaign.</p>
+</li>
+<li>
+<p><strong>Campaigns are described in one place.</strong>
+The <code>render</code> function tells the whole story of what contributes to what a user is seeing.
+The calculation of state could be super complicated but the communications stay simple.</p>
+</li>
+<li>
+<p><strong>Functions provide the composition.</strong>
+Helpers and utilities building around plain functions and data are the easiest to write.
+We can build an ecosystem of reusable components.
+To break up a complex system, we break it into more render functions.</p>
+</li>
+<li>
+<p><strong>Good baseline observability.</strong>
+The <code>status</code> and the paper trail of messages sent by campaign to a user allows us to provide tooling and dashboards
+for free showing where a campaign is and detailed breakdowns for individual users.
+Each campaign used to require manual work to track itself, but now all someone needs is the <code>campaignType</code> to start digging.</p>
+</li>
+</ul>
+<p>This is fundamentally what was built, but it's worth calling out some complexities.
+There are things to consider beyond what's described here:</p>
+<ul>
+<li>
+<p><strong>When is <code>render</code> called?</strong>
+A framework like React controls the state and provides <code>setState</code> so it can see when it changes.
+In a backend you could build something to watch the database I suppose.
+In practice we leverage events to trigger <code>render</code>, or if the passage of time factors in, trigger <code>render</code> via a cron job.
+We encapsulated <code>render</code> and applying the messages together to prevent mistakes of calling the wrong <code>render</code> for a campaign while still keeping it testable in isolation.</p>
+<p>In general, being agnostic here allows campaign owners to expend the exact amount of compute they feel necessary to run a good campaign.</p>
+</li>
+<li>
+<p><strong>State is more permanent.</strong>
+In a front-end framework, if you screw up in your <code>render</code> method, the fix is to refresh the page.
+For messaging, state is much more long lived and for most messaging channels you can't scrape those messages out of people's inboxes once sent.</p>
+<p>Testing and making regular changes safe and easy is more important to a successful project.
+Prioritizing observability, metrics, detectors, kill switches, etc is prudent to safe operation.
+Luckily much of this can be provided by the framework and common tooling.</p>
+</li>
+</ul>
+<p>Finally, I'll leave you with the coolest thing about this design: <strong>dark testing</strong>.
+We encode what the user should be seeing right now, but oftentimes a messaging campaign's greatest enemy is assuming we actually modeled our system correctly.</p>
+<p>We have a stateless <code>render</code> at our disposal so we can have tons of fun simulating campaigns <em>before</em> they happen, against production data.
+Running them in the dark against users, but not showing or sending users any messaging, to gain confidence in how production will behave.</p>
+<p>You can build this simulation tooling in many ways, but when all you have is engineers stringing complex messaging flows together by hand, no one is going to build this out as they go.
+Designed this way, it's simply yet another feature of the framework and its tooling.</p>
+<hr>
+<p>I get really excited about this style of encoding messaging systems.
+They can be super expressive and easy to test, enabling good separation of concerns and some sick tooling.
+I haven't come across this elsewhere since I built it up in 2019, so I wanted to share!</p>
+<p>Thanks for reading!</p>
+<time>Published Wednesday, July 14, 2021</time></div></div></div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-43674193-3', 'auto');ga('send', 'pageview');</script></body></html>
