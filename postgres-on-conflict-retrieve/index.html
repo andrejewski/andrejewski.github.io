@@ -1,0 +1,108 @@
+<!DOCTYPE html><html><head><title>Postgres: On Conflict Retrieve</title><meta name="description" content="A Postgres feature request for supporting create-or-retrieve on INSERT statements."><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-type" content="text/html;charset=UTF-8"><meta name="author" content="Chris Andrejewski"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.ico">
+<link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.ico">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="/stylesheets/document.css"></head><body><div class="page"><div class="document"><div class="content"><h1>Postgres: On Conflict Retrieve</h1>
+<p>There's a feature I really want for Postgres. I call it <code>ON CONFLICT RETRIEVE</code>.<br>
+Basically I want to be able to do:</p>
+<pre><code class="language-sql">CREATE TABLE dog_breeds (
+  id serial,
+  name text,
+
+  CONSTRAINT unique_name UNIQUE (name)
+);
+
+INSERT INTO dog_breeds (name)
+VALUES ('labrador')
+RETURNING (id);
+
+-- =&gt;
+--  id             
+-- ----
+--   1
+-- (1 row)
+
+INSERT INTO dog_breeds (name)
+VALUES ('labrador')
+ON CONFLICT ON CONSTRAINT unique_name RETRIEVE
+RETURNING (id);
+
+-- =&gt;
+--  id             
+-- ----
+--   1
+-- (1 row)          
+</code></pre>
+<p>In a single statement, I can attempt to insert a record and if it already exists just return the conflicting record.</p>
+<p>Without this feature, we tend to write application code that looks like this:</p>
+<pre><code class="language-js">async function createOrRetrieveDogBreedId (db, dogBreedName) {
+  // See note A
+  try {
+    const result = await db.exec(
+      `INSERT INTO dog_breeds (name) VALUES (?) RETURNING (id)`,
+      [dogBreedName]
+    )
+
+    return result.rows[0].id
+  } catch (error) {
+    // See note B
+    if (!isDogNameUniqueConstraintError(error)) {
+      throw error
+    }
+
+    const result = await db.exec(
+      `SELECT id from dog_breeds where name = ?`,
+      [dogBreedName]
+    )
+    const id = result.rows[0]?.id
+
+    // See note C
+    return id
+  }
+}
+</code></pre>
+<p><strong>Note A</strong>: In a distributed context, you generally want to attempt the <code>INSERT</code> then <code>SELECT</code> if needed.
+This is because two processes may both query for a result, find nothing, and then both attempt to <code>INSERT</code>.
+This means one will hit the unique constraint error and need to handle it anyway.</p>
+<p><strong>Note B</strong>: Detecting constraint errors is relatively straight forward.
+Most Postgres drivers will return the name of the constraint that was violated so you just need to make sure your application's understanding of the constraint names matches the database naming.
+The potential for mismatch is reason to explicitly name constraints which is a good idea in general.</p>
+<p><strong>Note C</strong>: Here we have to make a choice:</p>
+<ol>
+<li>
+<p>Assume it is highly unlikely that the dog breed was deleted or changed since trying to insert.
+This gets more and more risky in GC'd languages where your application might pause at random points between queries or when database request latency is high.</p>
+</li>
+<li>
+<p>If the ID is not returned, try the create-or-retrieve again until you succeed.
+A programmer might reach for recursion to drive towards a consistent state, which is problematic for reliable systems.
+For example, if <code>isDogNameUniqueConstraintError</code> is implemented incorrectly, this function may infinite loop due to a different error.</p>
+</li>
+</ol>
+<p>The <code>ON CONFLICT conflict_target RETRIEVE</code> feature is awesome because:</p>
+<ul>
+<li>It's a single point-in-time operation and a single statement. I don't have to issue a new <code>SELECT</code> query that might query state that may have changed since the <code>INSERT</code> attempt.</li>
+<li>It's fast: we've already traversed the indices and have access to the row IDs from trying to <code>INSERT</code> so it is a perfect time to pivot to returning results.</li>
+<li>It's so handy. Create-or-retrieve is a very common operation. It is a huge win to reduce either the amount of application code I need to write or cut down the complexity of submitted statements.</li>
+</ul>
+<p>I've seen many StackOverflow threads where people have proposed hacks to work around not having this, leveraging:</p>
+<ul>
+<li>The existing <code>ON CONFLICT DO UPDATE SET column = column</code> for a no-op mutation but this does lock the row and has other consequences and the overhead of an <code>UPDATE</code>.</li>
+<li>A butt ton of Postgres wizardry and CTEs, which again carries overhead.</li>
+</ul>
+<p>Perhaps there's already a way to do this in Postgres while meeting all my desired requirements.
+I have been unable to find it written about on the internet.</p>
+<p>I don't think <code>RETRIEVE</code> needs to be the syntax. Today we have:</p>
+<ul>
+<li><code>ON CONFLICT DO NOTHING</code></li>
+<li><code>ON CONFLICT DO UPDATE</code></li>
+</ul>
+<p>So it seems nice to keep with the <code>DO _</code> pattern. I could see these working:</p>
+<ul>
+<li><code>ON CONFLICT DO SELECT</code>. I hesitate on this one though because <code>SELECT</code> is so overloaded and we wouldn't want to be so feature rich in my opinion.</li>
+<li><code>ON CONFLICT DO RETURN</code>. This one is nice and simple, but <code>DO RETURN</code> is kinda weird in that it's really forcing the <code>DO _</code> convention. Perhaps a simple <code>ON CONFLICT RETURN</code> would be good.</li>
+</ul>
+<p>It's super odd we don't have this feature yet because it seems so easy to implement since we already have <code>DO UPDATE</code>.
+Hopefully it is easy to add because I want this really really bad!</p>
+<time>Published Wednesday, December 29th, 2021</time></div></div></div><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-43674193-3', 'auto');ga('send', 'pageview');</script></body></html>
