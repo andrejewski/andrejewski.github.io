@@ -16,8 +16,8 @@
 <h2>Placement</h2>
 <p>Locality at a more &quot;physical&quot; level is how things are grouped:</p>
 <ul>
-<li>Similar methods are grouped together within a file</li>
-<li>Similar methods are grouped into a file</li>
+<li>Similar methods are grouped together within a section of a file</li>
+<li>Similar sections are grouped into a file</li>
 <li>Similar files are grouped in a directory</li>
 <li>Similar directories are grouped into a package, repo, and so on</li>
 </ul>
@@ -43,6 +43,46 @@
 <p>And this same structure grouped by feature we'd have:</p>
 <pre><code>my-app/
   authentication/
+    user
+    user_session
+    login
+    logout
+  banking
+    bank_account
+    balance_entries
+    balance_page
+  servers/
+    primary
+</code></pre>
+<p>In this feature (or “concern”) case, you'll notice that <code>servers</code> remain the same as presumably the server is hosting both the authentication and the banking features.
+It does not distinctly belong in one or the other.
+In each style there will be things that don't all fit into neat boxes.</p>
+<p>But let's compare these two approaches:</p>
+<ul>
+<li>
+<p>Grouping by type of thing, it's immediately obvious how many things of each type there are. For example, we can plainly see there are 4 models. However, with all models placed in the same folder, it is hard to conceptually drive a wedge between how models are used and how they ought to interact.</p>
+</li>
+<li>
+<p>Grouping by feature, it's immediately clear that <code>user_session</code> is for authentication and <code>balance_entry</code> is for banking. However, what is a model and what is a view we cannot be certain.</p>
+</li>
+</ul>
+<p>When we consider change management, the &quot;type of thing&quot; approach is generally more optimal for the &quot;type of thing&quot; team to work on: everything they need to touch regarding the big picture of models is in one place. It's easier to make sweeping changes to all models and oversee their usages. The feature approach is more optimal for feature developers as the elements that compose into a useful feature are in one place and can be iterated on is lockstep. Ideally if an entire feature is made obsolete, you can simply delete the feature's folder and move on.</p>
+<p>There's an inherent struggle here on which locality scheme is optimal. In my experience which style is adopted in a given situation is oriented around the organization of people working on the code. An infrastructure team will naturally bias towards the &quot;type of thing&quot; they are responsible for: this code structure is neat and orderly for them. A product team will group by feature as that's how they iterate: building feature after feature, some succeed and some fail. They are primarily responsible for producing value, not organizing things such that they can steward a single feature long term or maintain it indefinitely.</p>
+<p>I recommend a balanced approach here where infrastructure teams and product teams are catered to. The reasoning:</p>
+<ul>
+<li>
+<p><strong>Product teams are nomadic.</strong> Once a feature is built, they move on. This is optimal: innovation comes from chasing, taking risks, and failing. With this mobility and churn, knowledge transfer breaks down more readily: people come and go and don't understand the things that have been built. As such you want to allow product teams the liberty to isolate features and draw proper boundaries. Those isolated features that do succeed tend to be easier for infrastructure teams to adopt and champion.</p>
+</li>
+<li>
+<p><strong>Infrastructure teams grind.</strong> All those successful features become entrenched and hard to change. Strewn throughout a codebase with no way to grok the big picture and make cross-feature changes to these common types of things leaves infrastructure teams in a tough spot. They may not be able to dig themselves out of a hole and in the meantime product teams working in isolation in aggregate exacerbate the problems. In order for infrastructure teams to keep pace with product teams, they need to be trailing but not too far behind.</p>
+</li>
+<li>
+<p><strong>Culture and leadership are major factors.</strong> Leaders who value features and won't see the value in infrastructure see developer velocity grind to halts. Leaders who allow the infrastructure to always be tip-top never see features. Interestingly, in these environments, the best engineers are often running the unspoken counter-culture: incremental releases of features and continual, strategic investment in velocity. This is the balanced approach.</p>
+</li>
+</ul>
+<p>A balanced approach to the above, in which you can enable both styles to coexist, looks like:</p>
+<pre><code>my-app/
+  authentication/
     models/
       user
       user_session
@@ -58,45 +98,14 @@
   servers/
     primary
 </code></pre>
-<p>In this feature (or “concern”) case, you'll notice that <code>servers</code> remain the same as presumably the server is hosting both the authentication and the banking features. It does not distinctly belong in one or the other. In each style there will be things that don't all fit into neat boxes.</p>
-<p>But let's compare these two approaches:</p>
-<ul>
-<li>
-<p>Grouping by type of thing, it's immediately obvious how many things there are. For example, we can plainly see there are 4 models. By adhering to a folder convention in the feature case, it's possible to count up the models in each folder but you'll need to enforce that or accept answering the question will be more difficult to solve.</p>
-</li>
-<li>
-<p>Grouping by feature, it's immediately clear that <code>user_session</code> is for authentication and <code>balance_entry</code> is for banking. With all models colocated in the same folder, it's hard to conceptually drive a wedge between how models are used and how they ought to interact.</p>
-</li>
-</ul>
-<p>When we consider change management, the &quot;type of thing&quot; approach is generally more optimal for the &quot;type of thing&quot; team to work on: everything they need to touch regarding the big picture of models is in one place. It's easier to make sweeping changes to all models and oversee their usages. The feature approach is more optimal for feature developers as the elements that compose into a useful feature are in one place and can be iterated on is lockstep. Ideally if an entire feature is made obsolete, you can simply delete the feature's folder and move on.</p>
-<p>There's an inherent struggle here on which locality scheme is optimal. In my experience which style is adopted in a given situation is oriented around the organization of people working on the code. An infrastructure team will naturally bias towards the &quot;type of thing&quot; they are responsible for: this code structure is neat and orderly for them. A product team will group by feature as that's how they iterate: building feature after feature, some succeed and some fail. They are primarily responsible for producing value, not organizing things such that they can steward a single feature long term or maintain it indefinitely.</p>
-<p>There's not a single right answer of which scheme to use and in fact it is advantageous to consider systems in which you can enable both styles to coexist. We can see this plainly in the folder convention we laid out in the feature grouping case. Within each concern we did group types of files together which is already a compromise. It's not uncommon to see the full ad-hoc feature folder structure:</p>
-<pre><code>my-app/
-  authentication/
-    user
-    user_session
-    login
-    logout
-  banking
-    bank_account
-    balance_entries
-    balance_page
-  servers/
-    primary
-</code></pre>
-<p>In this case, what is a model and what is a view we cannot be certain. I deemed this too messy because indeed even product engineers benefit from some kind of feature-local categorization.</p>
-<p>I recommend a balanced approach here where infrastructure teams and product teams are catered to. The reasoning:</p>
-<ul>
-<li>
-<p>Product teams are nomadic. Once a feature is built, they move on. This is optimal: innovation comes from chasing, taking risks, and failing. With this mobility and churn, knowledge transfer breaks down more readily: people come and go and don't understand the things that have been built. As such you want to allow product teams the liberty to isolate features and draw proper boundaries. Those isolated features that do succeed tend to be easier for infrastructure teams to adopt and champion.</p>
-</li>
-<li>
-<p>Infrastructure teams grind. All those successful features become entrenched and hard to change. Strewn throughout a codebase with no way to grok the big picture and make cross-feature changes to these common types of things leaves infrastructure teams in a tough spot. They may not be able to dig themselves out of a hole and in the meantime product teams working in isolation in aggregate exacerbate the problems. In order for infrastructure teams to keep pace with product teams, they need to be trailing but not too far behind.</p>
-</li>
-<li>
-<p>Culture and leadership are major factors. Leaders who value features and won't see the value in infrastructure see developer velocity grind to halts. Leaders who allow the infrastructure to always be tip-top never see features. Interestingly, in these environments, the best engineers are often running the unspoken counter-culture: incremental releases of features and continual, strategic investment in velocity. This is the balanced approach.</p>
-</li>
-</ul>
+<p>We can build tools to observe code structured in this format using both product and infrastructure lenses.
+We treat the <code>authentication</code> and <code>banking</code> directories as features (more commonly called modules or packages), modeling them as a &quot;type of thing.&quot;
+We build tooling to support introspecting these features in aggregate, e.g. &quot;Give me a list of all the features.&quot;</p>
+<p>This serves as a starting point to drive a consistent structure within features.
+For example, enforce that all models must live in the <code>${feature}/models</code> directory.
+Now we can get all of the models by querying for all models within each feature.
+In this case, product teams write against a prescribed pattern but otherwise code how they want to model and work out a problem.
+And infrastructure teams can still understand the big picture and make sweeping changes across models as they need.</p>
 <p>At a macro-level code locality is an approximation of the organization of people which maintain the code. Expect the optimal locality to change over a feature's lifetime.</p>
 <h2>Immediacy</h2>
 <p>Code locality is an optimization problem of:</p>
