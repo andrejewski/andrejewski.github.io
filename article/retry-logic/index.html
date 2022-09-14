@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Retry Logic</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="The story of a programmer going back in time and fixing all the things."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link
+      rel="canonical"
+      href="http://localhost:8620/_reserved/not-found.html"
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Retry Logic" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta
+      property="og:url"
+      content="http://localhost:8620/_reserved/not-found.html"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .eBtA-dh {
+        margin: 3rem 0;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'eBtA-dh,';
+      } /*!sc*/
+      .iUGkOU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'iUGkOU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .gIJIXF {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #ffc87b;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .gIJIXF:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .gIJIXF {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'gIJIXF,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .hHECxp {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #ffe8c7;
+        color: #d19649;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .hHECxp .sc-iBkjds {
+        color: #402604;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .hHECxp ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .hHECxp a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .hHECxp a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #efd5b4;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'hHECxp,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #fef2e7;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-eIVHya1'] {
+        content: 'sc-global-eIVHya1,';
+      } /*!sc*/
+      .fyabtt {
+        padding: 1rem 0px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .fyabtt h1 {
+        font-size: 1.5rem;
+        margin: 0;
+      } /*!sc*/
+      .fyabtt h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .fyabtt h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .fyabtt ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: right;
+      } /*!sc*/
+      .fyabtt ul li {
+        display: inline-block;
+        padding: 0px 0.5rem;
+        text-align: right;
+      } /*!sc*/
+      data-styled.g13[id='sc-kDDrLX'] {
+        content: 'fyabtt,';
+      } /*!sc*/
+      .dXbzen h1 > a,
+      .dXbzen h2 > a,
+      .dXbzen h3 > a,
+      .dXbzen h4 > a,
+      .dXbzen h5 > a,
+      .dXbzen h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .dXbzen h1 > a:hover,
+      .dXbzen h2 > a:hover,
+      .dXbzen h3 > a:hover,
+      .dXbzen h4 > a:hover,
+      .dXbzen h5 > a:hover,
+      .dXbzen h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .dXbzen p,
+      .dXbzen li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen p,
+        .dXbzen li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .dXbzen a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .dXbzen ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .dXbzen code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .dXbzen h1 code,
+      .dXbzen h2 code,
+      .dXbzen h3 code,
+      .dXbzen h4 code,
+      .dXbzen h5 code,
+      .dXbzen h6 code,
+      .dXbzen li code,
+      .dXbzen p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #ffeeda;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen h1 code,
+        .dXbzen h2 code,
+        .dXbzen h3 code,
+        .dXbzen h4 code,
+        .dXbzen h5 code,
+        .dXbzen h6 code,
+        .dXbzen li code,
+        .dXbzen p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .dXbzen pre {
+        background-color: #ffeed9;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .dXbzen img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .dXbzen video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .dXbzen figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .dXbzen figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .dXbzen figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .dXbzen .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .dXbzen .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'dXbzen,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-kDDrLX fyabtt">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi eBtA-dh">
+            <p class="sc-iBkjds xFOWy">
+              <a href="/category/fiction/index.html" class="sc-ftvSup gIJIXF"
+                >Fiction</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf iUGkOU">
+              <a href="#" class="sc-papXJ iHVwPn"><span>Retry Logic</span></a>
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              The story of a programmer going back in time and fixing all the
+              things.
+            </p>
+          </div>
+          <div class="sc-jqUVSM hHECxp">
+            <p class="sc-iBkjds xFOWy">Table of contents</p>
+            <div>
+              <ul>
+                <li>
+                  <a href="#chapter-1-initialization"
+                    >Chapter 1: Initialization</a
+                  >
+                </li>
+                <li>
+                  <a href="#chapter-2-typeof-null">Chapter 2: Typeof null</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-crXcEl dXbzen">
+              <p>Programmer's log: star date: I've never been on a date.</p>
+              <h1 id="chapter-1:-initialization">
+                <a href="#chapter-1:-initialization"
+                  >Chapter 1: Initialization</a
+                >
+              </h1>
+              <p>
+                I have been chosen to participate in a government time travel
+                program. It sounded like a scam to me too. I got a letter about
+                joining a research experiment. The letter itself was pretty
+                flimsy and most government departments don't have good
+                reputations for official looking logos and signatures. I
+                responded, hoping to waste some scammer's time, maybe get a TED
+                talk out of it.
+              </p>
+              <p>
+                They responded, double-checking my interest in participating.
+                The very next day a Homeland Security official showed up to my
+                office and escorted me out. That was so embarrassing. I got so
+                panicked in front of everyone. He didn't even give me a chance
+                to push my code. More worrisome, he wasn't discreet at all.
+                You'd think secret government programs would do the witness
+                protection kidnap or disappearance thing. Not this guy.
+              </p>
+              <p>
+                He took me to his home office. Again, they asked if I was
+                interested. Now it was more serious so I hesitated. Governments
+                tend to screw over people recruited into secret programs.
+                However, there is a project at work coming up I'd very much like
+                to skip. Participating sounded much better than that. They had
+                me sign some non-disclosure agreements and such.
+              </p>
+              <p>
+                They explained the program. Basically, the government finally
+                figured out how to time travel and needs people willing to go
+                back in time and test it out. A sub-goal of this project is to
+                also gather information on how to alter history to make a better
+                world. They aren't looking for much, even slightly better would
+                be great they say.
+              </p>
+              <p>
+                My mentor explained to me they initially had much higher hopes.
+                The &quot;go back in time and kill Hitler&quot; change didn't
+                yield the results they were looking for. Altering the course of
+                history on such a large scale is a fickle thing. They began
+                recruiting people like me for smaller missions after a few dozen
+                failed attempts. They admitted it was hard to find volunteers.
+              </p>
+              <p>
+                From what I understand the time travel itself is pretty cool. At
+                least the rules are pretty straight forward. I pick a start time
+                between now and 1945, they fork our universe in a simulator, and
+                I get to live out a life in that universe until I
+                &quot;die&quot; or end the simulation. Honestly, the fork our
+                universe bit is the more interesting part to me, but time travel
+                is cool too.
+              </p>
+              <p>
+                It was hard to pick my first mission. My mentor recommended
+                starting with something really, really small that I was also
+                passionate about. I thought about going back in time and getting
+                all of my favorite cancelled TV shows resurrected. There were
+                some real cliffhangers I got screwed on. Even that my mentor
+                said would probably be too big a change for my first time.
+              </p>
+              <p>
+                My mentor's &quot;theme&quot; for his missions is interesting.
+                He goes back to prevent car defects. He has gone back and
+                scrubbed up a lot of manufacturing and software negligence. It
+                is impactful, saves lives, and is prevented so early in the
+                process that it rarely has negative side-effects. Sure, he does
+                save some mass murdering children by saving their parents, but
+                overall we are better off so it fits the quota of &quot;slightly
+                better.&quot;
+              </p>
+              <p>
+                He worked in car manufacturing so having prior experience in the
+                history you're correcting may be the key for me too. The only
+                thing I'm really knowledgeable about is programming. This will
+                be my theme for now. I shall go back in time and rid the world
+                of programmer suffering and mistakes, making my job when I get
+                back easier to boot. Sounds like a plan, let's get started!
+              </p>
+              <h1 id="chapter-2:-typeof-null">
+                <a href="#chapter-2:-typeof-null">Chapter 2: Typeof null</a>
+              </h1>
+              <p>
+                I've done quite a bit of front-end development so there's a
+                clear thing to fix: JavaScript. There is a lot of cruft and just
+                plain stupid things in that language worth eradicating. I posted
+                a question to StackOverflow: &quot;How are far back in time
+                would I have to go to fix JavaScript?&quot; The question was
+                closed for being too broad. I didn't feel ready to take on the
+                whole language. I would chip away at it and I knew just where to
+                start.
+              </p>
+              <p>
+                In JavaScript, the type of null is &quot;object&quot; which is
+                confusing because null is most often the absence of an object
+                and otherwise a primitive type. This means in practice the
+                variable being checked needs to be checked for both not being
+                null and being of type object. Making the typeof null be
+                &quot;null&quot; would probably make things &quot;slightly
+                better.&quot;
+              </p>
+              <p>
+                I submitted my mission brief and it was approved. The next step
+                was making my plan of attack. I had originally thought it was a
+                typo in the ECMAScript specification that everyone just rolled
+                with. I researched how this bug actually crept in and like most
+                things it was Brendan Eich's fault.
+              </p>
+              <p>
+                The creator of JavaScript had only a week to make the first
+                implementation, so these things happened. The typeof bug can be
+                traced back to the initial project called Mocha. The issue was
+                each value in the language was tagged with its type. Objects
+                were stored in memory ending with 000, integers ended with 1,
+                strings ended with 100, and so on. Null was represented as an
+                object type 000 and its value being the C null pointer 0x00. The
+                typeof operator only checked the type, not whether it was also a
+                null pointer, so it returned &quot;object&quot;.
+              </p>
+              <p>
+                I needed to make the check for the null pointer. This would be
+                only a couple line changes in Mocha.
+              </p>
+              <p>
+                When to travel to was less clear. Searching I could only find
+                reference to &quot;10 days in May 1995&quot; but no exact days.
+                The destination was Mountain View, California in the Netscape
+                Communications office. I did not have an exact address but
+                figured I could use the phone books from that time to find it
+                once I got there.
+              </p>
+              <p>
+                I was beginning to realize I was going to be dropping into a
+                focal point of the history of the internet. Despite picking
+                something I thought was simple, JavaScript easily could end up
+                even worse than it is now. Luckily I had room to experiment.
+              </p>
+              <p>
+                The scientist assigned to help me loaded up a simulation for the
+                beginning of May 1995 to be sure I didn't overshoot it. I would
+                be dropped onto what is modern day Castro Street in Mountain
+                View and begin my quest. I would also start out with a couple
+                hundred dollars to make it through my time.
+              </p>
+              <p>
+                My first mission began. Not wasting any time I went to the
+                nearest coffee shop and asked for a phone book to look up the
+                Netscape office. It wasn't there. Netscape had only started a
+                year prior so this wasn't surprising. I wasn't about to walk
+                through the street asking people. I gave up and pulled out of
+                the simulation.
+              </p>
+              <p>
+                I dug deeper into Netscape and found their home office address
+                and phone number in their IPO filing. 501 East Middlefield Road
+                is the place, now filled by Symantec. It's good I found the
+                address as it saves me an hour walk from Castro. I was ready to
+                retry my mission.
+              </p>
+              <p>
+                I walked into the office and asked to speak with Brendan Eich.
+                The front desk phoned him and he came to greet me. We walked
+                back to his desk. I read a bit about Scheme, his favorite
+                language, beforehand so we could have something to talk about
+                before I got into the real stuff. Once we sat I asked, &quot;So
+                how's Mocha going?&quot;
+              </p>
+              <p>
+                Brendan responded, &quot;What's Mocha?&quot; My heart sank. He
+                hadn't gotten started at all this early in the month. Flapping
+                butterfly wings flashed before my eyes. I knew I had already
+                screwed this timeline. Naming is a big deal to programmers and
+                so is wanting to be original. Now that I had thrown Mocha out
+                there he was going to call it something different like Frappe or
+                Cappuccino. It was downhill from here.
+              </p>
+              <p>
+                I powered through and told him a story about a time where I
+                forgot to handle the type reflection for the null pointer in my
+                language. I explained the bug he would eventually write as if I
+                had made the same mistake. I knew roughly how he implemented it
+                using a discriminated union in C so I described it the same way.
+              </p>
+              <p>
+                The whole conversation was very confusing for Brendan. A random
+                weirdo showing up talking about language implementations only
+                happens at meet ups. I put him at ease early on by saying I was
+                a friend of Marc, one of Netscape's founders. I hoped that would
+                imply to Brenden I was in the know about his upcoming work for
+                the Netscape browser.
+              </p>
+              <p>
+                We exchanged parting pleasantries and I left the office. I
+                walked a few blocks, making sure I wasn't being watched and left
+                the simulation.
+              </p>
+              <p>
+                It takes awhile for the simulation to play out and process. My
+                scientist pinged me a few hours later to share the results. She
+                had some good and bad news for me.
+              </p>
+              <p>
+                The good news I was right about the naming. While in the end it
+                became &quot;JavaScript&quot; all the same, Brendan called Mocha
+                &quot;Expresso&quot; instead. Honestly that made more sense as
+                JavaScript was supposed to be for easier scripts than Java, so
+                Expresso, express, quick, fast, etc.
+              </p>
+              <p>
+                The bad news was nothing else changed. I had described the exact
+                bug he would make no more than two weeks later and he still made
+                it regardless. I thought I had ruined everything but my presence
+                actually didn't make a difference. I had mixed emotions, but was
+                mostly bitter he completely ignored my warning. I had to change
+                up my approach.
+              </p>
+              <p>
+                He didn't begin working on Mocha at the beginning of May. The
+                month of May has 31 days so I decided to binary search May for
+                the opportune day to call out the bug. At least getting access
+                to Brendan at his office each time would be easy.
+              </p>
+              <p>
+                I went back to the office in the middle of month and told him my
+                exact same story. He had begun work on Mocha at this point and
+                said he was making good progress. Once I finished my story, he
+                told me about how he was modeling his language's variables in
+                the same way and he showed me some of the code. Trying to hit
+                the jackpot I asked if he had written the type reflection yet.
+                He had just taken his first stab at it. This was awesome, I
+                would be able to pair program this bug out of existence.
+              </p>
+              <p>
+                We got into the typeof code and I was quick to point out he was
+                never returning &quot;null&quot; for the null case. He read the
+                code and said, &quot;Ah, yes. This is by design. Nulls indicate
+                an empty reference to an object.&quot; My heart sank, my face
+                went pale, and then I punched him in the face and ended the
+                simulation.
+              </p>
+              <p>
+                That was an overreaction, but things made sense now. Brendan
+                considered it to be a feature, not a bug, so my original warning
+                fell on deaf ears. He also wasn't categorically wrong. Languages
+                with pointers worked this way, a pointer pointed at something or
+                it didn't. But Brendan also didn't know what the fallout of this
+                decision would be. He couldn't anticipate all the butt hurt
+                comments in r/javascript, questions on StackOverflow, and
+                downstream bugs that this decision would create.
+              </p>
+              <p>
+                Now I had to convince Brendan it was a bad idea. I couldn't just
+                tell him what happens in the future because that would screw up
+                the timeline in some way. I didn't know of an exemplar language
+                to speak to that existed in 1995. Nowadays it is much easier to
+                discuss language design. To win arguments, you just say,
+                &quot;That's not how Rust does it, dumb dumb.&quot; Back then
+                pointers and null were where it was at. It seemed that to
+                complete this mission I would have to buff up on programming
+                language design in the context of 1995 to make a compelling
+                case.
+              </p>
+              <p>
+                Before I began researching my scientist interjected, &quot;You
+                know you can possess people in these simulations, right?&quot;
+                No one told me that was a thing I could do.
+              </p>
+              <p>
+                We set the simulation to start that same day in the middle of
+                May when Brendan was working at this desk. I dropped in as him,
+                opened the typeof code, made the change, and got out in under a
+                minute. No grand debate that devolves into bickering needed.
+                Mocha was such a rush job he wouldn't go back and notice.
+              </p>
+              <p>
+                I waited eagerly for the results. The scientist pinged me within
+                the hour. The simulation didn't complete. She explained that the
+                simulations process much faster when they don't reach present
+                day. Making that typeof change caused a world extinction event
+                somewhere down the line. She complimented me. &quot;This was
+                your first time ending the world and in record time,&quot; she
+                joked.
+              </p>
+              <p>
+                I was fed up. The Internet of Things was going to be the death
+                of us. This tiny change was the lynchpin. It is only a matter of
+                time before something else causes IoT to kill us all. Truly our
+                world is built on top of foundations made from C4.
+              </p>
+              <p>&quot;Fuck it,&quot; I said. We went home for the day.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

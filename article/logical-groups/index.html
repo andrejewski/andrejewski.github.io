@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Logical groups</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Thoughts on avoiding coupling in modeling, using users and database partitions as examples."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link
+      rel="canonical"
+      href="http://localhost:8620/_reserved/not-found.html"
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Logical groups" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta
+      property="og:url"
+      content="http://localhost:8620/_reserved/not-found.html"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .eBtA-dh {
+        margin: 3rem 0;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'eBtA-dh,';
+      } /*!sc*/
+      .iUGkOU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'iUGkOU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .gIJIXF {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #ffc87b;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .gIJIXF:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .gIJIXF {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'gIJIXF,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .hHECxp {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #ffe8c7;
+        color: #d19649;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .hHECxp .sc-iBkjds {
+        color: #402604;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .hHECxp ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .hHECxp a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .hHECxp a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #efd5b4;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'hHECxp,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #fef2e7;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-eIVHya1'] {
+        content: 'sc-global-eIVHya1,';
+      } /*!sc*/
+      .fyabtt {
+        padding: 1rem 0px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .fyabtt h1 {
+        font-size: 1.5rem;
+        margin: 0;
+      } /*!sc*/
+      .fyabtt h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .fyabtt h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .fyabtt ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: right;
+      } /*!sc*/
+      .fyabtt ul li {
+        display: inline-block;
+        padding: 0px 0.5rem;
+        text-align: right;
+      } /*!sc*/
+      data-styled.g13[id='sc-kDDrLX'] {
+        content: 'fyabtt,';
+      } /*!sc*/
+      .dXbzen h1 > a,
+      .dXbzen h2 > a,
+      .dXbzen h3 > a,
+      .dXbzen h4 > a,
+      .dXbzen h5 > a,
+      .dXbzen h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .dXbzen h1 > a:hover,
+      .dXbzen h2 > a:hover,
+      .dXbzen h3 > a:hover,
+      .dXbzen h4 > a:hover,
+      .dXbzen h5 > a:hover,
+      .dXbzen h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .dXbzen p,
+      .dXbzen li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen p,
+        .dXbzen li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .dXbzen a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .dXbzen ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .dXbzen code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .dXbzen h1 code,
+      .dXbzen h2 code,
+      .dXbzen h3 code,
+      .dXbzen h4 code,
+      .dXbzen h5 code,
+      .dXbzen h6 code,
+      .dXbzen li code,
+      .dXbzen p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #ffeeda;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen h1 code,
+        .dXbzen h2 code,
+        .dXbzen h3 code,
+        .dXbzen h4 code,
+        .dXbzen h5 code,
+        .dXbzen h6 code,
+        .dXbzen li code,
+        .dXbzen p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .dXbzen pre {
+        background-color: #ffeed9;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .dXbzen img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .dXbzen video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .dXbzen figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .dXbzen figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .dXbzen figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .dXbzen .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .dXbzen .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'dXbzen,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-kDDrLX fyabtt">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi eBtA-dh">
+            <p class="sc-iBkjds xFOWy">
+              <a
+                href="/category/system-design/index.html"
+                class="sc-ftvSup gIJIXF"
+                >System design</a
+              ><a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup gIJIXF"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf iUGkOU">
+              <a href="#" class="sc-papXJ iHVwPn"
+                ><span>Logical groups</span></a
+              >
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              Thoughts on avoiding coupling in modeling, using users and
+              database partitions as examples.
+            </p>
+          </div>
+          <div class="sc-jqUVSM hHECxp">
+            <p class="sc-iBkjds xFOWy">Table of contents</p>
+            <div>
+              <ul>
+                <li><a href="#product-modeling">Product modeling</a></li>
+                <li>
+                  <a href="#database-partitioning">Database partitioning</a>
+                </li>
+                <li>
+                  <a href="#decoupling">Decoupling</a>
+                  <ul>
+                    <li>
+                      <a href="#decouple-partitioning">Decouple partitioning</a>
+                    </li>
+                    <li><a href="#decouple-product">Decouple product</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-crXcEl dXbzen">
+              <p>
+                Logical grouping is a common problem in architecting software
+                systems. We've got so many names and words for grouping in the
+                language of software engineering, it's a bit crazy just how
+                little I see it discussed.
+              </p>
+              <p>
+                I primarily want to discuss two themes I've had a passion for
+                digging into and understanding.
+              </p>
+              <h1 id="product-modeling">
+                <a href="#product-modeling">Product modeling</a>
+              </h1>
+              <p>
+                This is how we design our software as it is to be understood by
+                end-users. The quickest example common to almost every business
+                application: how we model &quot;users&quot; themselves.
+              </p>
+              <p>
+                In business-to-consumer (B2C) you might choose to model your
+                users as each being their own User (mapping to some single
+                representation and ID).
+              </p>
+              <p>
+                In business-to-business (B2B), that's not enough: people work
+                together therefore you need Organizations as well. Here we have
+                to answer a few questions on the relationship these models
+                share:
+              </p>
+              <p>
+                <strong>Can an organization exist without any users?</strong>
+                Usually we say, &quot;no, an organization must have at least one
+                user (usually the 'organization owner').&quot;
+              </p>
+              <p>
+                <strong>Can a user belong to multiple organizations?</strong>
+                This one is less straight-forward. A user as mapped to a human
+                can co-exist and work within multiple organizations. However,
+                are we modeling a human or are we modeling a participant in an
+                organization? Throw in GDPR, data privacy, and access control
+                considerations for good measure. Who owns the data: is the user
+                the owner or is the user a contributor to the organization which
+                owns the data? If we're modeling humans, can the organization
+                modify the user's identity at all, globally, or just in the
+                context of that organization?
+              </p>
+              <p>I'll throw out some examples to answering this question:</p>
+              <p>AWS has two types of users:</p>
+              <ul>
+                <li>
+                  Root users, the free floating users which have standalone
+                  identity with passwords that can access multiple accounts and
+                  can own accounts
+                </li>
+                <li>
+                  Account-scoped users, users that only exist within the context
+                  of a single account
+                </li>
+              </ul>
+              <p>
+                Customers pick and choose which model they lean into and how
+                aggressively, but AWS steers folks towards the account-scoped
+                users and suggests keeping few, well secured root users. No
+                accounting for capturing human identity, manage it how you will.
+                This is classic AWS: many options, a few right ways, and some
+                exceptions and overloaded terms at times.
+              </p>
+              <p>
+                Companies will answer this question primarily based on how they
+                start out and whether they've managed to evolve out of their
+                initial choice. If you start as a B2C, users map to humans and
+                this is an identity containing
+                <code>{name, email, birthday}</code>. Then when you find you
+                need organizations you have options:
+              </p>
+              <ul>
+                <li>
+                  Users are now organizations, you just allow multiple
+                  &quot;logins&quot; and eventually those &quot;logins&quot;
+                  become the users.
+                </li>
+                <li>
+                  Organizations are created as optional. Some users will be in
+                  organizations and some will not. The user that creates an
+                  organization will be the owner.
+                </li>
+                <li>
+                  No overlap, a free-floating user cannot participate in an
+                  organization. Create an organization, start from scratch as a
+                  user in that organization.
+                </li>
+              </ul>
+              <p>And similarly a B2B moving to support B2C:</p>
+              <ul>
+                <li>
+                  &quot;Users might want to become an organization eventually.
+                  Let's create a shadow organization behind the scenes that each
+                  user is a part of.&quot;
+                </li>
+                <li>
+                  Organizations are users. Give them profiles and special case
+                  when the organization only has a single User.
+                </li>
+                <li>
+                  No overlap. Cut a clean slate and have free-floating users.
+                </li>
+              </ul>
+              <p>
+                Enterprise B2B will often throw more wretches into the mix:
+                sub-organizations, then full hierarchies. Basically you can end
+                up taking a company's org chart and mapping it to your product.
+              </p>
+              <p>
+                Answering all these modeling questions requires additional
+                context and knowing the customers you're working with.
+              </p>
+              <p>
+                If the right answer needs additional context, context that may
+                change over time as a business grows, could the wrong answer be
+                to pick any particular model?
+              </p>
+              <p>
+                Surely we must start somewhere, so we must pick something. The
+                elephant in the room is not all the business strategies or
+                customer feedback to sift through to inform a decision, it's all
+                the technical debt we take on when building on the wrong model
+                of the world.
+              </p>
+              <p>
+                We have a word for this, where changes in one aspect effects or
+                inhibits another: coupling. We know this stuff is bad. We slice
+                and dice conceptual problems into smaller ones to avoid being
+                boxed into a corner. And yet most software we write for business
+                applications tends to cling to whatever the user model flavor of
+                the time is. Code is riddled with user concerns.
+              </p>
+              <p>
+                This leaves us in tough places, especially in enterprise as more
+                and more structure is introduced and we are fighting not just
+                with the business problem but how we fit it into our existing
+                models to make it easiest for us to deliver just enough until
+                the next assumption breaks. This will repeat and repeat, only
+                getting more difficult to eventually claw back and restructure.
+              </p>
+              <h1 id="database-partitioning">
+                <a href="#database-partitioning">Database partitioning</a>
+              </h1>
+              <p>
+                Let's look at a lower-level, similar problem: 'at scale'
+                databases cannot contain infinite amounts of data. For efficient
+                querying, availability, redundancy, etc, you'll eventually need
+                to split up one data store into many.
+              </p>
+              <p>
+                Most often the shard key in most systems is the organization,
+                user, account, workspace, repository, or some user-understood
+                container of resources. It's never quite right, but going from
+                no partitioning (as almost everything should start) to some
+                partitioning, it is the simplest choice at the moment.
+              </p>
+              <p>
+                However, whatever is chosen to use as the basis for the shard
+                key is always wrong for someone. Say you're Twitter and you pick
+                users, well some people are incredibly popular and some aren't
+                so you've got to find another means to sub-shard per user. Say
+                you pick organizations, well again there's always your top X
+                organizations doing most of the business. They'll individually
+                outsize a single physical database or dislike the notion that
+                all their data is stored in a single place from an availability
+                perspective.
+              </p>
+              <p>
+                So we're gonna get it wrong no matter what we pick, just like in
+                the product modeling situation.
+              </p>
+              <p>
+                Getting it wrong on these two concerns often happens in
+                lockstep. A B2B all-in on building features coupled to their
+                current notion of organizations will design the database models
+                and the sharding scheme (and all related tooling) around the
+                current notion of organizations. Everyday development feeds a
+                vicious cycle of coupling as it becomes too hard not to couple
+                for the average engineer trying to make forward progress.
+              </p>
+              <p>
+                Tooling will be built for the 90% use case and everything that
+                doesn't fit the model will need to be custom built.
+              </p>
+              <p>
+                You are fighting a war on two fronts: customers taking your
+                product in unforeseen directions, wanting to slice and dice to
+                solve their exact problem and reliability pressures on the
+                inside as they do it. It's a war of peppering over problems
+                half-heartedly and either bending over backwards to meet your
+                customers' requirements or solving them kinda / close enough.
+              </p>
+              <h1 id="decoupling"><a href="#decoupling">Decoupling</a></h1>
+              <p>
+                The solution is flashing in our faces: solve the coupling
+                problems here. Take a page out of the code quality guide:
+                enforce strict layers between your code software and the product
+                you expose. The email infrastructure doesn't need to know about
+                users to send emails. The billing code doesn't need to know
+                &quot;customers&quot; map to organizations to charge credit
+                cards. Keep software and data agnostic to the business mappings
+                and have a thin layer of wiring to connect the two.
+              </p>
+              <p>
+                This seems obvious, but it's not when the bread and butter of
+                day to day product development is down the path of this
+                coupling. There is a serious momentum to continue down the road
+                because the 90% case is well trodden and the objective is to
+                build something now, not do what's best for tomorrow.
+              </p>
+              <p>
+                I've found this very friction to be a lot of the work in
+                designing systems with these coupling issues. Sometimes I decide
+                to lean into the coupling which exacerbates the long-term
+                problem but solves an immediate one. Other times, I'm pushing
+                the decoupled approach. Having a sense of when to choose is an
+                extremely acquired taste, that one need not build up if they
+                think about these problems either seriously enough to correct
+                course or early enough to not have at all.
+              </p>
+              <h2 id="decouple-partitioning">
+                <a href="#decouple-partitioning">Decouple partitioning</a>
+              </h2>
+              <p>
+                I do mention database partitioning in particular here because
+                this tends to be the make or break thing for me on whether to
+                couple to business models. Consider this situation, when met
+                with designing a new system:
+              </p>
+              <ul>
+                <li>
+                  You must design a reliable system. Reliable means no single
+                  points of failure, and multiple physical databases perhaps
+                  across multiple geographies.
+                </li>
+                <li>
+                  All you have at your disposal is a single shard scheme. Let's
+                  say we are partitioning by organization.
+                </li>
+                <li>
+                  The momentum of database tooling and organization is such that
+                  you cannot introduce a new shard scheme to be used in this
+                  system within the scope of this project.
+                </li>
+              </ul>
+              <p>
+                In these constraints, an engineer must eat the cost of doing the
+                wrong thing to make forward progress.
+              </p>
+              <p>
+                This situation isn't unusual in the evolution of a business. If
+                not over-scaling, generally you'll start with no partitioning at
+                all and when you first tip your toes into it, reliability has
+                already become an indispensable part of new designs. So be wary
+                of building too much tooling around the
+                business-modeling-coupled shard scheme alone, if you do at all.
+                You'll be setting your product development into a vicious cycle.
+              </p>
+              <h2 id="decouple-product">
+                <a href="#decouple-product">Decouple product</a>
+              </h2>
+              <p>
+                Aside: I could advocate simplifying product models here, but I
+                won't share my biases on that one. To speak on and give advice
+                for a generic set of customers and recommend a path forward for
+                a business I don't have context on...Understanding customer
+                needs is really, really hard and don't escape it.
+              </p>
+              <p>
+                What I can recommend is (1) get used to evolving. Database
+                partitioning is one thing that's easy to get entrenched in and
+                go far and fast without good, decoupled tooling. Build the
+                muscles for data migrations, UI migrations, etc so you're not
+                trading off building the right thing versus time to engineer
+                given the current debt and how hard it is to pay off.
+              </p>
+              <p>
+                And (2) consider letting your customers evolve themselves. Those
+                same muscles you build internally might make sense to reveal
+                externally. Database products will sometimes just accept a shard
+                key, call it what it is and call it a day. Ask if there's truly
+                a competitive advantage in not revealing your hand and letting
+                customers build their system inside yours instead of you
+                building your system for theirs (and everyone else's).
+              </p>
+              <p>
+                Either in a product or in a system, you can't always know what
+                will be best and what's best will change. So maybe let the
+                customer define their own logical groupings and get on with
+                building nicely decoupled capabilities.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

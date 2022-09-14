@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Envelopes</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Cool properties of envelopes and apply them to program state"
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link
+      rel="canonical"
+      href="http://localhost:8620/_reserved/not-found.html"
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Envelopes" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta
+      property="og:url"
+      content="http://localhost:8620/_reserved/not-found.html"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .eBtA-dh {
+        margin: 3rem 0;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'eBtA-dh,';
+      } /*!sc*/
+      .iUGkOU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'iUGkOU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .gIJIXF {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #ffc87b;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .gIJIXF:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .gIJIXF {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'gIJIXF,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .hHECxp {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #ffe8c7;
+        color: #d19649;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .hHECxp .sc-iBkjds {
+        color: #402604;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .hHECxp ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .hHECxp a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .hHECxp a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #efd5b4;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'hHECxp,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #fef2e7;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-eIVHya1'] {
+        content: 'sc-global-eIVHya1,';
+      } /*!sc*/
+      .fyabtt {
+        padding: 1rem 0px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .fyabtt h1 {
+        font-size: 1.5rem;
+        margin: 0;
+      } /*!sc*/
+      .fyabtt h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .fyabtt h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .fyabtt ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: right;
+      } /*!sc*/
+      .fyabtt ul li {
+        display: inline-block;
+        padding: 0px 0.5rem;
+        text-align: right;
+      } /*!sc*/
+      data-styled.g13[id='sc-kDDrLX'] {
+        content: 'fyabtt,';
+      } /*!sc*/
+      .dXbzen h1 > a,
+      .dXbzen h2 > a,
+      .dXbzen h3 > a,
+      .dXbzen h4 > a,
+      .dXbzen h5 > a,
+      .dXbzen h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .dXbzen h1 > a:hover,
+      .dXbzen h2 > a:hover,
+      .dXbzen h3 > a:hover,
+      .dXbzen h4 > a:hover,
+      .dXbzen h5 > a:hover,
+      .dXbzen h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .dXbzen p,
+      .dXbzen li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen p,
+        .dXbzen li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .dXbzen a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .dXbzen ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .dXbzen code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .dXbzen h1 code,
+      .dXbzen h2 code,
+      .dXbzen h3 code,
+      .dXbzen h4 code,
+      .dXbzen h5 code,
+      .dXbzen h6 code,
+      .dXbzen li code,
+      .dXbzen p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #ffeeda;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen h1 code,
+        .dXbzen h2 code,
+        .dXbzen h3 code,
+        .dXbzen h4 code,
+        .dXbzen h5 code,
+        .dXbzen h6 code,
+        .dXbzen li code,
+        .dXbzen p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .dXbzen pre {
+        background-color: #ffeed9;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .dXbzen img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .dXbzen video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .dXbzen figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .dXbzen figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .dXbzen figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .dXbzen .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .dXbzen .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'dXbzen,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-kDDrLX fyabtt">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi eBtA-dh">
+            <p class="sc-iBkjds xFOWy">
+              <a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup gIJIXF"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf iUGkOU">
+              <a href="#" class="sc-papXJ iHVwPn"><span>Envelopes</span></a>
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              Cool properties of envelopes and apply them to program state
+            </p>
+          </div>
+          <div class="sc-jqUVSM hHECxp">
+            <p class="sc-iBkjds xFOWy">Table of contents</p>
+            <div>
+              <ul>
+                <li><a href="#envelope-properties">Envelope properties</a></li>
+                <li><a href="#system-properties">System properties</a></li>
+                <li><a href="#application-state">Application state</a></li>
+                <li><a href="#further-reading">Further reading</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-crXcEl dXbzen">
+              <p>
+                Envelopes are an interesting concept. Long-distance physical
+                mail is a good example:
+              </p>
+              <p>
+                Someone writes a note and puts it an envelope marked with a
+                recipient. That envelope is picked up by a mailman responsible
+                for the sender's block. That mailman takes their bag of
+                collected envelopes to their post office. That post office
+                assigns the envelope to the correct outgoing bin. That bin is
+                put into an airplane.
+              </p>
+              <p>
+                The plane arrives and someone takes the bin to the post office.
+                The post office distributes the bin to the mail bags. Some
+                mailman distributes their bag to the recipient's block. The
+                recipient gets the envelope and opens it for the note.
+              </p>
+              <h1 id="envelope-properties">
+                <a href="#envelope-properties">Envelope properties</a>
+              </h1>
+              <p>
+                Thinking abstractly, there are quite a few &quot;envelopes&quot;
+                in this process. The envelope, bag, bin, airplane. Even the note
+                if the value is what is written on it. These envelopes range in
+                complexity, but:
+              </p>
+              <ul>
+                <li>Contain things</li>
+                <li>Have information other than their content</li>
+                <li>Can be opened and inspected (disregarding legality)</li>
+                <li>
+                  Do not restrict what their contents are (excluding size)
+                </li>
+                <li>Do not restrict how they are contained</li>
+                <li>Do not do anything on their own</li>
+              </ul>
+              <p>
+                We see a very similar process in computer networks. Frames,
+                packets, and what not serve as envelopes for routing
+                information.
+              </p>
+              <p>
+                The properties of envelopes are pretty cool. An envelope
+                implemented in code would:
+              </p>
+              <ul>
+                <li>
+                  Be generic, like <code>Envelope&lt;T&gt;</code> where
+                  <code>T</code> could be anything or nothing
+                </li>
+                <li>Express some information in itself</li>
+              </ul>
+              <p>
+                With a definition like <code>Envelope&lt;T&gt;</code> an
+                envelope could contain another.
+              </p>
+              <p>
+                An envelope would also be side-effect free and as close to data
+                as the language would allow as envelopes are inert.
+              </p>
+              <p>
+                Envelopes would be best built so they are inspect-able at each
+                level just as a bin can be looked in and an envelope can be
+                opened.
+              </p>
+              <h1 id="system-properties">
+                <a href="#system-properties">System properties</a>
+              </h1>
+              <p>
+                There is another value in envelopes: decoupled responsibility.
+                The sender, receiver, mailmen, and pilots work in their own
+                domains. Even though they are facilitating the same
+                communication, they are only acting in the context of their own
+                envelopes. This is a tree of behaviors interacting with
+                messages.
+              </p>
+              <p>
+                Imagine we wanted to inspect every piece of mail, censor certain
+                pieces of mail, or just block all mail between the sender and
+                recipient. We could do these things at the plane-level as all
+                letters flow through that point. If the sender and recipient
+                were in the same city we could intervene at the post office
+                level. If the sender was the receiver, everyone in the tree
+                could intervene.
+              </p>
+              <p>
+                Imagine the bins were overflowing and it required two planes, or
+                there was bad weather and there were no planes, or maybe a new
+                post office hub combined the original post office with others.
+                The sender and recipient do not care about changes in the tree.
+              </p>
+              <h1 id="application-state">
+                <a href="#application-state">Application state</a>
+              </h1>
+              <p>
+                Apply these features to the idea of application state.
+                Application state is a tree structure wherein there are global
+                and local states. We can communicate up and down this structure.
+                We have choke-points for messages to be observed or manipulated.
+                We have localized state relative to what program is handling
+                which envelopes. We can grow out the state without breaking
+                existing communications.
+              </p>
+              <p>
+                The decoupling means these layers would be simple to test. We
+                could give a layer an empty envelope and test if it was routed
+                correctly. If envelopes are just plain data, there is nothing to
+                mock; tests are very small, input-output.
+              </p>
+              <p>These are very powerful characteristics.</p>
+              <h1 id="further-reading">
+                <a href="#further-reading">Further reading</a>
+              </h1>
+              <p>
+                There are implementations of this envelope architecture. The Elm
+                Architecture (TEA) is built around these communication
+                constructs. The
+                <a href="http://elm-lang.org/">programming language Elm</a> and
+                <a href="https://jew.ski/raj/">JavaScript framework Raj</a> are
+                good things to try to really gain an in depth understanding.
+              </p>
+              <p>
+                I created Raj based on TEA and have grown to appreciate this
+                power and simplicity as I have built more apps and libraries
+                leveraging it. I do recommend Elm, but Raj better highlights the
+                full extent of these patterns because of JavaScript's dynamic
+                and generic nature.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

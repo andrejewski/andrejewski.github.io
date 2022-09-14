@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Learning to like types</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="The considerations that took me from being opposed to type systems to enjoying (some of) them."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link
+      rel="canonical"
+      href="http://localhost:8620/_reserved/not-found.html"
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Learning to like types" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta
+      property="og:url"
+      content="http://localhost:8620/_reserved/not-found.html"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .eBtA-dh {
+        margin: 3rem 0;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'eBtA-dh,';
+      } /*!sc*/
+      .iUGkOU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'iUGkOU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .gIJIXF {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #ffc87b;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .gIJIXF:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .gIJIXF {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'gIJIXF,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .hHECxp {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #ffe8c7;
+        color: #d19649;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .hHECxp .sc-iBkjds {
+        color: #402604;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .hHECxp ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .hHECxp a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .hHECxp a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #efd5b4;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'hHECxp,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #fef2e7;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-eIVHya1'] {
+        content: 'sc-global-eIVHya1,';
+      } /*!sc*/
+      .fyabtt {
+        padding: 1rem 0px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .fyabtt h1 {
+        font-size: 1.5rem;
+        margin: 0;
+      } /*!sc*/
+      .fyabtt h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .fyabtt h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .fyabtt ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: right;
+      } /*!sc*/
+      .fyabtt ul li {
+        display: inline-block;
+        padding: 0px 0.5rem;
+        text-align: right;
+      } /*!sc*/
+      data-styled.g13[id='sc-kDDrLX'] {
+        content: 'fyabtt,';
+      } /*!sc*/
+      .dXbzen h1 > a,
+      .dXbzen h2 > a,
+      .dXbzen h3 > a,
+      .dXbzen h4 > a,
+      .dXbzen h5 > a,
+      .dXbzen h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .dXbzen h1 > a:hover,
+      .dXbzen h2 > a:hover,
+      .dXbzen h3 > a:hover,
+      .dXbzen h4 > a:hover,
+      .dXbzen h5 > a:hover,
+      .dXbzen h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .dXbzen p,
+      .dXbzen li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen p,
+        .dXbzen li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .dXbzen a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .dXbzen ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .dXbzen code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .dXbzen h1 code,
+      .dXbzen h2 code,
+      .dXbzen h3 code,
+      .dXbzen h4 code,
+      .dXbzen h5 code,
+      .dXbzen h6 code,
+      .dXbzen li code,
+      .dXbzen p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #ffeeda;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen h1 code,
+        .dXbzen h2 code,
+        .dXbzen h3 code,
+        .dXbzen h4 code,
+        .dXbzen h5 code,
+        .dXbzen h6 code,
+        .dXbzen li code,
+        .dXbzen p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .dXbzen pre {
+        background-color: #ffeed9;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .dXbzen img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .dXbzen video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .dXbzen figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .dXbzen figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .dXbzen figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .dXbzen .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .dXbzen .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'dXbzen,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-kDDrLX fyabtt">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi eBtA-dh">
+            <p class="sc-iBkjds xFOWy">
+              <a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup gIJIXF"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf iUGkOU">
+              <a href="#" class="sc-papXJ iHVwPn"
+                ><span>Learning to like types</span></a
+              >
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              The considerations that took me from being opposed to type systems
+              to enjoying (some of) them.
+            </p>
+          </div>
+          <div class="sc-jqUVSM hHECxp">
+            <p class="sc-iBkjds xFOWy">Table of contents</p>
+            <div>
+              <ul>
+                <li>
+                  <a href="#bad-typing">Bad typing</a>
+                  <ul>
+                    <li><a href="#verbosity">Verbosity</a></li>
+                    <li><a href="#coupling-to-oo">Coupling to OO</a></li>
+                    <li><a href="#lack-of-openness">Lack of openness</a></li>
+                    <li>
+                      <a href="#lack-of-conviction">Lack of conviction</a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#good-typing">Good typing</a>
+                  <ul>
+                    <li>
+                      <a href="#lack-of-conviction-1">Lack of conviction</a>
+                    </li>
+                    <li><a href="#lack-of-openness-1">Lack of openness</a></li>
+                    <li><a href="#coupling-to-oo-1">Coupling to OO</a></li>
+                    <li><a href="#verbosity-1">Verbosity</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-crXcEl dXbzen">
+              <p>
+                After writing software for quite some time and having worked the
+                end-to-end of many projects in a full-stack capacity, I held a
+                pretty strong belief: &quot;All types are bad, skip 'em.&quot;
+              </p>
+              <p>What made me dislike types so much?</p>
+              <ul>
+                <li>
+                  Verbosity: I'm literally writing double or triple the code I
+                  need to accomplish my goal when I use types.
+                </li>
+                <li>
+                  The coupling between types and object-oriented (OO)
+                  programming: the languages where you can't have types without
+                  tons of internal state, pointless class hierarchies, and a
+                  lack of meaningful expressiveness.
+                </li>
+                <li>
+                  Lack of openness: I can't use typed software in the ways the
+                  original author didn't foresee. I'm trapped for what I view as
+                  arbitrary reasons.
+                </li>
+                <li>
+                  Lack of conviction: You're telling me to deal with all the
+                  above and then I'm dealing with spooky un-typed garbage
+                  anyways? (Like how anything can be <code>Object</code> in Java
+                  or <code>any</code> in Typescript) You want me to play the
+                  game that you admit doesn't work?
+                </li>
+              </ul>
+              <p>
+                Something that was interesting to me was, despite not liking
+                types of any sort, I carried a significant mental overhead
+                around them. Why? Compiler and interpreter optimization: knowing
+                how variables are used leads to more efficient programs. Notably
+                in JavaScript, duck-typing was off the table for any serious
+                work–V8 choked on redefining a variable to multiple types. I
+                <em>felt</em> smart keeping track of these things in my head.
+              </p>
+              <h1 id="bad-typing"><a href="#bad-typing">Bad typing</a></h1>
+              <p>
+                Another thing that made me dislike types so much was the culture
+                and feedback loops around them: shit code begets shit code. Some
+                examples:
+              </p>
+              <h2 id="verbosity"><a href="#verbosity">Verbosity</a></h2>
+              <p>
+                We get antiquated to verbosity in a codebase: &quot;I expect
+                that to accomplish &lt;task&gt; I'm going to need X%
+                non-reducible boilerplate.&quot; Slowly, perhaps, but surely X
+                increases and we're full steam ahead in what I refer to as
+                &quot;pasta town.&quot;
+              </p>
+              <h2 id="coupling-to-oo">
+                <a href="#coupling-to-oo">Coupling to OO</a>
+              </h2>
+              <p>
+                Similarly if you're given an object-oriented interface that
+                pulls a few tricks: internal state, inheritance, magic
+                dependency-injection you have two paths:
+              </p>
+              <ul>
+                <li>
+                  Fight this interface with functional programming and take 3X
+                  times as long to get the job done and it's done well.
+                </li>
+                <li>
+                  Keep fanning the flames: get the job done poorly, sprinkle
+                  more hacks atop, and let the next person suffer.
+                </li>
+              </ul>
+              <h2 id="lack-of-openness">
+                <a href="#lack-of-openness">Lack of openness</a>
+              </h2>
+              <p>
+                The first time a dev faces the friction of not being able to use
+                something that is <em>almost</em> a perfect fit, they are
+                distraught. They are forced to duplicate the code, but don't get
+                scolded. The next time they do it, they feel fine. &quot;This is
+                life.&quot;
+              </p>
+              <h2 id="lack-of-conviction">
+                <a href="#lack-of-conviction">Lack of conviction</a>
+              </h2>
+              <p>
+                We embrace more and more clever tricks in the abuse and skirting
+                of type systems. &quot;We require typed code&quot; meets a
+                deadline and then it's &quot;We require typed code except for
+                this bit over here cuz–&quot; and it degrades to &quot;use types
+                when it's convenient for the author.&quot; Great, now we get to
+                deal with typing &quot;: Object&quot; over and over without
+                gaining any additional safety.
+              </p>
+              <p>
+                I joined Stripe holding all these underlying beliefs that types
+                were bad. I joined a team with 2 ex-Java engineers no less. We
+                were all forced to write Ruby and use Sorbet for type-checking.
+                For me it was, &quot;yuck, types.&quot; For the others it was,
+                &quot;yuck, no types and bad tooling.&quot; (Sorbet was
+                essentially a CLI script at that point. We were years away from
+                auto-complete and go-to-definition.)
+              </p>
+              <p>
+                Forced to use a typed language, my gut led me to using as little
+                of it as possible. Find a way to leverage types in order to
+                check the &quot;it has type-checking&quot; box and not fall into
+                these bad things I'd conflated with type systems in general. How
+                did it go?
+              </p>
+              <h1 id="good-typing"><a href="#good-typing">Good typing</a></h1>
+              <p>
+                I love types now! I'm picky about what types I find valuable,
+                and types are a super-power when wielded properly. Let's work
+                backwards through my previous issues with types:
+              </p>
+              <h2 id="lack-of-conviction">
+                <a href="#lack-of-conviction">Lack of conviction</a>
+              </h2>
+              <p>
+                Sorbet was novel to me as its type system operates at two
+                levels: static, &quot;compile-time&quot; checking AND runtime
+                checking. Sorbet was designed for gentrifying years of untyped
+                code. Littering wrong type annotations on existing code helps no
+                one.
+              </p>
+              <p>
+                Adoption was incremental, but the run-time type-checking made
+                all the difference. There was no magic <code>Object</code>/<code
+                  >any</code
+                >
+                escape hatch tricks you could throw at the type system. If you
+                cheated on the static time checks, you got caught on it in
+                production with an exception. There was no ceremony for the sake
+                of ceremony, in fact when you put a type on something you needed
+                to be damn sure it is what you say it is. We could trust nothing
+                else.
+              </p>
+              <h2 id="lack-of-openness">
+                <a href="#lack-of-openness">Lack of openness</a>
+              </h2>
+              <p>
+                Types limit what you can do: you can't re-use code if the author
+                did not intend it. I thought this was a bad thing but it's a god
+                send. Using code in ways it wasn't intended is a good 80% of the
+                holes we as infrastructure / platform teams dig out of. Types
+                let us stop some of those holes from even forming? Sign me up!
+              </p>
+              <p>
+                When something is <em>almost</em> a perfect fit, it is not a
+                perfect fit. You want to know that. You want to be making a
+                conscious choice to either extend something to meet your needs
+                or build something yourself. Over-extension can be deadly for
+                velocity. You don't want to walk into it blind.
+              </p>
+              <p>
+                I'll also emphasize the importance of having solid, simple
+                primitives that are general purpose. For example, if one service
+                is the only one that has rate-limiting, instead of asking,
+                &quot;dang how can I get my code on that service to take
+                advantage of the rate-limiting?&quot; Ask, &quot;can we make
+                some general-purpose rate-limiting tooling? I'd like some
+                too.&quot; Worry less about code size and worry more about
+                simplicity and coupling concerns.
+              </p>
+              <h2 id="coupling-to-oo">
+                <a href="#coupling-to-oo">Coupling to OO</a>
+              </h2>
+              <p>
+                Don't worry, OO was trash and still is. You can use types
+                without it. It's just a matter of how hard the language makes it
+                for you:
+              </p>
+              <ul>
+                <li>
+                  Java: yep, it's garbage. There's just no separation. I won't
+                  consider Java a real typed language until it gets strict
+                  nullability and its new record syntax for lightweight data
+                  classes. (Other JVM languages do a better job.)
+                </li>
+                <li>
+                  Ruby/Sorbet: Ruby is still class based but you don't have to
+                  use those parts. Lean on static methods, modules, and
+                  <code>T::Struct</code>.
+                </li>
+                <li>
+                  Typescript: <code>{a: number}</code> Beautiful! So little
+                  boilerplate that I can just talk about data with minimal
+                  ceremony.
+                </li>
+              </ul>
+              <p>
+                Sadly, people will fall into traps here. Get comfortable with
+                using only 10% of the total language and plan on needing a
+                strong mentorship and code review process to keep from straying
+                down the OO path. I think solving this problem of how to get a
+                popular language without the 90s/00s cruft of OO and its
+                influence <em>with types</em> is ongoing. The benefits of types
+                are there, so be patient and vigilant.
+              </p>
+              <h2 id="verbosity"><a href="#verbosity">Verbosity</a></h2>
+              <p>
+                Types are more typing. There are ways to reduce it but it's
+                never zero. What's this? Oh it's–
+              </p>
+              <p>TRADE OFFER ALERT</p>
+              <p>You give me: writing expressive and useful types</p>
+              <p>
+                I give you: an order of magnitude less unit and integration
+                tests to write, more self-documenting code, and immediate
+                feedback via IDE tools.
+              </p>
+              <p>
+                I have done the grind with no types. I know
+                <em>for good software</em> we're trading off time spent writing
+                tests for time spent writing types. You can't take just any old
+                types like the crappy ones you're probably used to and say they
+                are better than tests. But think of runtime enforced types: why
+                am I wasting the time to write, &quot;X does this when given a
+                number / string / etc&quot; style tests when types can outright
+                prevent the ones which don't make sense.
+              </p>
+              <p>
+                The expressive, code-local nature of types overweighs the value
+                of far-off, non-exhaustive tests. I'm going to be spending time
+                on one or the other and I'd rather work to make types worth the
+                investment.
+              </p>
+              <p>Okay, so to summarize:</p>
+              <ul>
+                <li>
+                  Types are good? Maybe! I can't defend Java, but there are type
+                  systems that are valuable to development that you ought to be
+                  participating in. The best I can do in this piece is take
+                  someone from absolutely anti-type to &quot;hmmm...&quot;
+                </li>
+                <li>
+                  Incorrect types are useless. Better type-systems, which I
+                  offer as the example runtime type-checking, allow us to prove
+                  they are correct where it matters: production.
+                </li>
+                <li>
+                  Verbosity due to types is non-zero. It is more to write but
+                  there are systems where instead of simply adding more work it
+                  reduces the work to be done in other areas (e.g. tests).
+                </li>
+                <li>
+                  Yep, object-oriented code is still bad. Strong focus on
+                  simplicity and decoupling remain essential.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

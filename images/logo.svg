@@ -1,1 +1,17 @@
-<svg width="320" height="430" xmlns="http://www.w3.org/2000/svg"><g style="mix-blend-mode:darken" fill="#08F" fill-rule="evenodd"><path d="M319.527 49.943C285.6 19.006 239.59 0 188.92 0 84.583 0 0 80.589 0 180s84.583 180 188.92 180c50.67 0 96.68-19.006 130.607-49.943l-39.702-41.67c-23.426 21.875-55.512 35.363-90.905 35.363-71.732 0-129.882-55.405-129.882-123.75S117.188 56.25 188.92 56.25c35.393 0 67.479 13.488 90.905 35.362l39.702-41.67z"/><path d="M160 110l160 320H0l160-320zm0 120L60 430h200L160 230z"/></g></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="320px" height="430px" viewBox="0 0 320 430" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <title>insignia</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="insignia" fill="#0088FF">
+            <g id="see-aye" style="mix-blend-mode: darken;">
+                <g id="Combined-Shape">
+                    <path d="M319.527064,49.9427243 C285.600174,19.0055481 239.58982,0 188.920494,0 C84.5825862,0 0,80.588745 0,180 C0,279.411255 84.5825862,360 188.920494,360 C239.58982,360 285.600174,340.994452 319.527064,310.057276 L279.825089,268.387738 C256.398626,290.262452 224.312712,303.75 188.920494,303.75 C117.188182,303.75 59.0376544,248.345238 59.0376544,180 C59.0376544,111.654762 117.188182,56.25 188.920494,56.25 C224.312712,56.25 256.398626,69.7375478 279.825089,91.6122617 L319.527064,49.9427243 Z"></path>
+                    <path d="M160,110 L320,430 L0,430 L160,110 Z M160,230 L60,430 L260,430 L160,230 Z"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

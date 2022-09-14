@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Power</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Power is a concept we can apply to reason about making optimal solutions with good code quality."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link
+      rel="canonical"
+      href="http://localhost:8620/_reserved/not-found.html"
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Power" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta
+      property="og:url"
+      content="http://localhost:8620/_reserved/not-found.html"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .eBtA-dh {
+        margin: 3rem 0;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'eBtA-dh,';
+      } /*!sc*/
+      .iUGkOU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'iUGkOU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .gIJIXF {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #ffc87b;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .gIJIXF:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .gIJIXF {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'gIJIXF,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .hHECxp {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #ffe8c7;
+        color: #d19649;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .hHECxp .sc-iBkjds {
+        color: #402604;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .hHECxp ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .hHECxp a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .hHECxp a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #efd5b4;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'hHECxp,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #fef2e7;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-eIVHya1'] {
+        content: 'sc-global-eIVHya1,';
+      } /*!sc*/
+      .fyabtt {
+        padding: 1rem 0px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .fyabtt h1 {
+        font-size: 1.5rem;
+        margin: 0;
+      } /*!sc*/
+      .fyabtt h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .fyabtt h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .fyabtt ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: right;
+      } /*!sc*/
+      .fyabtt ul li {
+        display: inline-block;
+        padding: 0px 0.5rem;
+        text-align: right;
+      } /*!sc*/
+      data-styled.g13[id='sc-kDDrLX'] {
+        content: 'fyabtt,';
+      } /*!sc*/
+      .dXbzen h1 > a,
+      .dXbzen h2 > a,
+      .dXbzen h3 > a,
+      .dXbzen h4 > a,
+      .dXbzen h5 > a,
+      .dXbzen h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .dXbzen h1 > a:hover,
+      .dXbzen h2 > a:hover,
+      .dXbzen h3 > a:hover,
+      .dXbzen h4 > a:hover,
+      .dXbzen h5 > a:hover,
+      .dXbzen h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .dXbzen p,
+      .dXbzen li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen p,
+        .dXbzen li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .dXbzen a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .dXbzen ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .dXbzen code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .dXbzen h1 code,
+      .dXbzen h2 code,
+      .dXbzen h3 code,
+      .dXbzen h4 code,
+      .dXbzen h5 code,
+      .dXbzen h6 code,
+      .dXbzen li code,
+      .dXbzen p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #ffeeda;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen h1 code,
+        .dXbzen h2 code,
+        .dXbzen h3 code,
+        .dXbzen h4 code,
+        .dXbzen h5 code,
+        .dXbzen h6 code,
+        .dXbzen li code,
+        .dXbzen p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .dXbzen pre {
+        background-color: #ffeed9;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .dXbzen img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .dXbzen video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .dXbzen figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .dXbzen figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .dXbzen figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .dXbzen .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .dXbzen .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'dXbzen,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-kDDrLX fyabtt">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi eBtA-dh">
+            <p class="sc-iBkjds xFOWy">
+              <a
+                href="/category/code-quality/index.html"
+                class="sc-ftvSup gIJIXF"
+                >Code quality principles</a
+              ><a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup gIJIXF"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf iUGkOU">
+              <a href="#" class="sc-papXJ iHVwPn"><span>Power</span></a>
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              Power is a concept we can apply to reason about making optimal
+              solutions with good code quality.
+            </p>
+          </div>
+          <div class="sc-jqUVSM hHECxp">
+            <p class="sc-iBkjds xFOWy">Table of contents</p>
+            <div>
+              <ul>
+                <li><a href="#power-levels">Power levels</a></li>
+                <li><a href="#simplicity">Simplicity</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-crXcEl dXbzen">
+              <p>
+                There are many ways to solve a problem. Choosing the optimal
+                approach is important to write good code and maintain its
+                quality over time. One concept we can use to help us reason
+                though figuring out this solution is power: the flexibility and
+                dynamism of the constructs we use to model solutions. At a
+                minimum, a program needs enough &quot;power&quot; to meet its
+                immediate requirements; but how much more than that?
+              </p>
+              <p>For code quality, an awareness of power:</p>
+              <ul>
+                <li>
+                  Helps to frame discussions around simplicity and flexibility
+                </li>
+                <li>
+                  Encourages thinking about the growth and limitations of a
+                  system over time
+                </li>
+                <li>
+                  Discourages over-engineering and unnecessary premature
+                  optimization
+                </li>
+              </ul>
+              <h2 id="power-levels">
+                <a href="#power-levels">Power levels</a>
+              </h2>
+              <p>
+                Programming languages expose features with different power
+                levels. Before we talk about proper use of power, we should talk
+                about the common options.
+              </p>
+              <ol>
+                <li>
+                  <p>
+                    <strong>Data</strong> is the least powerful thing. It is
+                    inert. These are most languages' primitive types such as
+                    integers and strings, but also include more complex data
+                    structures. These things lack dynamism and ought to be
+                    immutable.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <strong>Conditionals</strong> are where things start to get
+                    dynamic. If-else, switch, case-when and other decision
+                    points form the bedrock of actually executing code.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <strong>Flow control operators</strong> are worth calling
+                    out because they introduce the idea that code may never
+                    finish running. While loops can get caught in infinite loops
+                    if misused, or may be intentional for long running tasks. In
+                    this vein, functions also fit as recursion can be used to
+                    this effect as well. (And without
+                    <a href="https://en.wikipedia.org/wiki/Tail_call"
+                      >tail-call optimization</a
+                    >, recursive functions can cause stack overflows much more
+                    readily). Non-recursive, acyclic functions ought not be
+                    considered powerful; these are simply a means for organizing
+                    code since they don't introduce these issues.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <strong>Interfaces and dynamic dispatch</strong> (often
+                    &quot;methods&quot;) introduces indirection between the
+                    caller and receiver. It is at this point where we can start
+                    to lose a sense of what will happen when we call something
+                    as methods meeting a common interface may do very different
+                    things. In another sense this is where we start to think of
+                    functions as values.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <strong>Goto statements</strong> have fallen out of favor
+                    but do deserve a shout out for just how crazy powerful they
+                    are. &quot;Pause whatever we are doing and start executing
+                    code at line X&quot; blows through so much one might intend
+                    to have happened before the code is run. We also have to
+                    understand the &quot;context&quot; of the call because
+                    unlike a function we can't pass or return values so this
+                    guarantees some shared global state.
+                  </p>
+                  <p>
+                    Notice goto operates at the code-as-text level since it
+                    maintains the relation to a <em>line of code</em> or label
+                    whereas everything above can be reasoned about as
+                    non-textual concepts.
+                  </p>
+                </li>
+              </ol>
+              <p>
+                Beyond these programming level features, we should also talk
+                about some facets of power that can differ based on language.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                    <strong>Asynchrony.</strong> In a language like JavaScript,
+                    asynchronous behavior is mostly implicit in the code. Unless
+                    you are diligent in adopting
+                    <code>async/await</code> annotations, what is blocking
+                    execution and what is async is fairly arbitrary.
+                    Asynchronous work is incredibly powerful because it can take
+                    a long time and other things can execute in the meantime.
+                    Other things happening means things can change. Careful
+                    attention must be paid to when and where assumptions are
+                    made because they may be far removed from when a resulting
+                    action is taken.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <strong>Meta-programming</strong> is implemented wildly
+                    differently in languages, if it is at all. To even begin to
+                    discuss this, let's say meta-programming in the general case
+                    is more powerful than dynamic dispatch. This ought not be
+                    true for an executing program because meta-programming can
+                    elide dynamic dispatch. For example, Rust supports generic
+                    types which when compiled generate monomorphic function
+                    code. You pay the cost of that indirection as the difference
+                    between the written code and what executes.
+                  </p>
+                  <p>
+                    Rust also supports hygienic macros which generate more
+                    arbitrary code. These macros are more robust and
+                    maintainable than text-based macros more common in C/C++.
+                    When we talk about power though, these are roughly
+                    equivalent in the amount of indirection they introduce.
+                  </p>
+                  <p>
+                    For text based languages there's always the avenue of
+                    writing programs to write files which will then be
+                    compiled/interpreted. In which case you're not getting the
+                    benefits of the language's built-in meta-programming
+                    facilities, which may not have enough power.
+                  </p>
+                  <p>
+                    But all that is child's play compared to runtime
+                    meta-programming. Writing code using macros in real time is
+                    the power feature of Lisp and similar languages. This is the
+                    pinnacle of power (besides maybe self-learning ML/AI). Of
+                    course JavaScript participates in this space with
+                    <code>eval()</code>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <strong>Remote procedure calls (RPC)</strong> represent
+                    power beyond a single computer. All bets are off making
+                    networked connections to services. They don't use the same
+                    programming language, change dramatically over time, may
+                    become unreachable, and with the pace of technology are
+                    unconstricted by any current notion of power. Entering this
+                    realm of power invites understanding topics in distributed
+                    systems.
+                  </p>
+                </li>
+              </ul>
+              <h2 id="simplicity"><a href="#simplicity">Simplicity</a></h2>
+              <p>
+                With all of the above power levels and features laid out,
+                there's really not much else to say other than to make the case
+                for simplicity in code. Lots of notable quotes in this area:
+              </p>
+              <blockquote>
+                <p>
+                  Everything should be made as simple as possible, but no
+                  simpler.
+                </p>
+              </blockquote>
+              <blockquote>
+                <p>
+                  Always implement things when you actually need them, never
+                  when you just foresee that you need them.
+                </p>
+              </blockquote>
+              <blockquote>
+                <p>
+                  We should forget about small efficiencies, say about 97% of
+                  the time: premature optimization is the root of all evil.
+                </p>
+              </blockquote>
+              <p>
+                And so it is with power: picking the least powerful construct to
+                solve a problem aids the most simple solution. This is bundled
+                up nicely as the
+                <a href="https://en.wikipedia.org/wiki/Rule_of_least_power"
+                  >Rule of least power</a
+                >. And there are some complimentary acronyms to say the same
+                thing in a rush:
+                <a href="https://en.wikipedia.org/wiki/KISS_principle"
+                  >Keep it simple stupid (KISS)</a
+                >
+                and
+                <a
+                  href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it"
+                  >&quot;You ain't gonna need it&quot; (YAGNI)</a
+                >.
+              </p>
+              <p>
+                There are legitimate use cases for each of these levels of power
+                and appropriate times to use them. Deciding what is unnecessary
+                power often boils down to &quot;can we make this work with this
+                less powerful thing?&quot; and iterating on that until there's
+                no reasonable weaker choice.
+              </p>
+              <p>
+                We also need to be cognizant and articulate exactly what
+                <em>is necessary</em> to make this decision. Getting these
+                explicit requirements figured out is the harder problem. Lacking
+                those requirements, airing on the side of least power initially
+                is easier to recover from than something more powerful.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

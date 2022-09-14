@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Engineering – Writing</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Software engineering, code quality, and system design articles."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link
+      rel="canonical"
+      href="http://localhost:8620/_reserved/not-found.html"
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Engineering – Writing" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta
+      property="og:url"
+      content="http://localhost:8620/_reserved/not-found.html"
+    />
+
+    <style data-styled="true" data-styled-version="5.3.5">
+      .kvjZgE {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .kvjZgE {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      data-styled.g1[id='sc-bczRLJ'] {
+        content: 'kvjZgE,';
+      } /*!sc*/
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .eBtA-dh {
+        margin: 3rem 0;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'eBtA-dh,';
+      } /*!sc*/
+      .iUGkOU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'iUGkOU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #fef2e7;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-eIVHya1'] {
+        content: 'sc-global-eIVHya1,';
+      } /*!sc*/
+      .fyabtt {
+        padding: 1rem 0px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .fyabtt h1 {
+        font-size: 1.5rem;
+        margin: 0;
+      } /*!sc*/
+      .fyabtt h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .fyabtt h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .fyabtt ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: right;
+      } /*!sc*/
+      .fyabtt ul li {
+        display: inline-block;
+        padding: 0px 0.5rem;
+        text-align: right;
+      } /*!sc*/
+      data-styled.g13[id='sc-kDDrLX'] {
+        content: 'fyabtt,';
+      } /*!sc*/
+      .glLgsE {
+        margin: 3rem 0;
+      } /*!sc*/
+      data-styled.g16[id='sc-evZas'] {
+        content: 'glLgsE,';
+      } /*!sc*/
+      .kEbYda {
+        list-style: none;
+        margin: 1rem 0;
+        padding: 0;
+      } /*!sc*/
+      .kEbYda li {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        padding: 0.5rem;
+      } /*!sc*/
+      .kEbYda li:nth-child(2n-1) {
+        background-color: rgb(245 196 129 / 19%);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .kEbYda li:nth-child(2n-1) {
+          background-color: #20344c;
+        }
+      } /*!sc*/
+      .kEbYda li time {
+        opacity: 0.7;
+        font-size: 0.9rem;
+      } /*!sc*/
+      data-styled.g18[id='sc-ksZaOG'] {
+        content: 'kEbYda,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-kDDrLX fyabtt">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi eBtA-dh">
+            <h1 class="sc-gKXOVf iUGkOU">Engineering</h1>
+            <p class="sc-iBkjds xFOWy">
+              Software engineering, code quality, and system design articles.
+            </p>
+          </div>
+          <section class="sc-evZas glLgsE">
+            <ul class="sc-ksZaOG kEbYda">
+              <li>
+                <a
+                  href="/article/human-friendly-tokens"
+                  class="sc-bczRLJ kvjZgE"
+                  >Human friendly tokens</a
+                ><time datetime="2022-09-11T00:00:00.000Z">9/11/2022</time>
+              </li>
+              <li>
+                <a
+                  href="/article/learning-to-like-types"
+                  class="sc-bczRLJ kvjZgE"
+                  >Learning to like types</a
+                ><time datetime="2022-08-22T00:00:00.000Z">8/22/2022</time>
+              </li>
+              <li>
+                <a href="/article/code-comments" class="sc-bczRLJ kvjZgE"
+                  >Code comments</a
+                ><time datetime="2022-07-31T00:00:00.000Z">7/31/2022</time>
+              </li>
+              <li>
+                <a href="/article/effective-sorbet" class="sc-bczRLJ kvjZgE"
+                  >Effective Sorbet</a
+                ><time datetime="2022-07-31T00:00:00.000Z">7/31/2022</time>
+              </li>
+              <li>
+                <a href="/article/logical-groups" class="sc-bczRLJ kvjZgE"
+                  >Logical groups</a
+                ><time datetime="2022-07-31T00:00:00.000Z">7/31/2022</time>
+              </li>
+              <li>
+                <a href="/article/ruby-style-guide" class="sc-bczRLJ kvjZgE"
+                  >Ruby style guide</a
+                ><time datetime="2022-07-31T00:00:00.000Z">7/31/2022</time>
+              </li>
+              <li>
+                <a href="/article/locality" class="sc-bczRLJ kvjZgE">Locality</a
+                ><time datetime="2022-06-20T00:00:00.000Z">6/20/2022</time>
+              </li>
+              <li>
+                <a
+                  href="/article/postgres-on-conflict-retrieve"
+                  class="sc-bczRLJ kvjZgE"
+                  >Postgres: On Conflict Retrieve</a
+                ><time datetime="2021-12-29T00:00:00.000Z">12/29/2021</time>
+              </li>
+              <li>
+                <a
+                  href="/article/declarative-messaging"
+                  class="sc-bczRLJ kvjZgE"
+                  >Declarative messaging</a
+                ><time datetime="2021-07-14T00:00:00.000Z">7/14/2021</time>
+              </li>
+              <li>
+                <a
+                  href="/article/interface-design-security"
+                  class="sc-bczRLJ kvjZgE"
+                  >Interface Design: Security</a
+                ><time datetime="2021-03-25T00:00:00.000Z">3/25/2021</time>
+              </li>
+              <li>
+                <a
+                  href="/article/db-interface-evolution"
+                  class="sc-bczRLJ kvjZgE"
+                  >Database interface evolution</a
+                ><time datetime="2021-01-18T00:00:00.000Z">1/18/2021</time>
+              </li>
+              <li>
+                <a href="/article/before-you-before" class="sc-bczRLJ kvjZgE"
+                  >Before you before</a
+                ><time datetime="2020-11-04T00:00:00.000Z">11/4/2020</time>
+              </li>
+              <li>
+                <a href="/article/layering" class="sc-bczRLJ kvjZgE">Layering</a
+                ><time datetime="2020-11-03T00:00:00.000Z">11/3/2020</time>
+              </li>
+              <li>
+                <a href="/article/power" class="sc-bczRLJ kvjZgE">Power</a
+                ><time datetime="2020-11-03T00:00:00.000Z">11/3/2020</time>
+              </li>
+              <li>
+                <a
+                  href="/article/interface-design-developer-experience"
+                  class="sc-bczRLJ kvjZgE"
+                  >Interface Design: Developer Experience</a
+                ><time datetime="2020-05-31T00:00:00.000Z">5/31/2020</time>
+              </li>
+              <li>
+                <a href="/article/javascript-vs-ruby" class="sc-bczRLJ kvjZgE"
+                  >JavaScript vs Ruby</a
+                ><time datetime="2020-05-18T00:00:00.000Z">5/18/2020</time>
+              </li>
+              <li>
+                <a href="/article/nothing" class="sc-bczRLJ kvjZgE">Nothing</a
+                ><time datetime="2018-08-11T00:00:00.000Z">8/11/2018</time>
+              </li>
+              <li>
+                <a href="/article/objections" class="sc-bczRLJ kvjZgE"
+                  >Objections</a
+                ><time datetime="2018-07-13T00:00:00.000Z">7/13/2018</time>
+              </li>
+              <li>
+                <a href="/article/envelope" class="sc-bczRLJ kvjZgE"
+                  >Envelopes</a
+                ><time datetime="2018-06-09T00:00:00.000Z">6/9/2018</time>
+              </li>
+              <li>
+                <a href="/article/what-is-raj" class="sc-bczRLJ kvjZgE"
+                  >What is Raj</a
+                ><time datetime="2018-05-19T00:00:00.000Z">5/19/2018</time>
+              </li>
+              <li>
+                <a href="/article/rr-lyrics" class="sc-bczRLJ kvjZgE"
+                  >Rhythmic Rebellion Lyrics</a
+                ><time datetime="2017-12-18T00:00:00.000Z">12/18/2017</time>
+              </li>
+              <li>
+                <a href="/article/stop" class="sc-bczRLJ kvjZgE">Stop</a
+                ><time datetime="2017-11-16T00:00:00.000Z">11/16/2017</time>
+              </li>
+              <li>
+                <a href="/article/cali-a2j-doc" class="sc-bczRLJ kvjZgE"
+                  >CALI A2J Doc</a
+                ><time datetime="2017-10-30T00:00:00.000Z">10/30/2017</time>
+              </li>
+              <li>
+                <a href="/article/why-raj" class="sc-bczRLJ kvjZgE">Why Raj</a
+                ><time datetime="2017-10-03T04:00:00.000Z">10/3/2017</time>
+              </li>
+              <li>
+                <a href="/article/performance" class="sc-bczRLJ kvjZgE"
+                  >Performance</a
+                ><time datetime="2017-08-21T00:00:00.000Z">8/21/2017</time>
+              </li>
+              <li>
+                <a href="/article/contact-forms" class="sc-bczRLJ kvjZgE"
+                  >Contact forms</a
+                ><time datetime="2015-04-04T00:00:00.000Z">4/4/2015</time>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nothing</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="The complexities of the absence of a value in JavaScript."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link
+      rel="canonical"
+      href="http://localhost:8620/_reserved/not-found.html"
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Nothing" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta
+      property="og:url"
+      content="http://localhost:8620/_reserved/not-found.html"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .eBtA-dh {
+        margin: 3rem 0;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'eBtA-dh,';
+      } /*!sc*/
+      .iUGkOU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'iUGkOU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .gIJIXF {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #ffc87b;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .gIJIXF:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .gIJIXF {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'gIJIXF,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #fef2e7;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-eIVHya1'] {
+        content: 'sc-global-eIVHya1,';
+      } /*!sc*/
+      .fyabtt {
+        padding: 1rem 0px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .fyabtt h1 {
+        font-size: 1.5rem;
+        margin: 0;
+      } /*!sc*/
+      .fyabtt h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .fyabtt h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .fyabtt ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: right;
+      } /*!sc*/
+      .fyabtt ul li {
+        display: inline-block;
+        padding: 0px 0.5rem;
+        text-align: right;
+      } /*!sc*/
+      data-styled.g13[id='sc-kDDrLX'] {
+        content: 'fyabtt,';
+      } /*!sc*/
+      .dXbzen h1 > a,
+      .dXbzen h2 > a,
+      .dXbzen h3 > a,
+      .dXbzen h4 > a,
+      .dXbzen h5 > a,
+      .dXbzen h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .dXbzen h1 > a:hover,
+      .dXbzen h2 > a:hover,
+      .dXbzen h3 > a:hover,
+      .dXbzen h4 > a:hover,
+      .dXbzen h5 > a:hover,
+      .dXbzen h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .dXbzen p,
+      .dXbzen li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen p,
+        .dXbzen li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .dXbzen a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .dXbzen ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .dXbzen code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .dXbzen h1 code,
+      .dXbzen h2 code,
+      .dXbzen h3 code,
+      .dXbzen h4 code,
+      .dXbzen h5 code,
+      .dXbzen h6 code,
+      .dXbzen li code,
+      .dXbzen p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #ffeeda;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen h1 code,
+        .dXbzen h2 code,
+        .dXbzen h3 code,
+        .dXbzen h4 code,
+        .dXbzen h5 code,
+        .dXbzen h6 code,
+        .dXbzen li code,
+        .dXbzen p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .dXbzen pre {
+        background-color: #ffeed9;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .dXbzen img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .dXbzen video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .dXbzen figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .dXbzen figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .dXbzen figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .dXbzen .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .dXbzen .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'dXbzen,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-kDDrLX fyabtt">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi eBtA-dh">
+            <p class="sc-iBkjds xFOWy">
+              <a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup gIJIXF"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf iUGkOU">
+              <a href="#" class="sc-papXJ iHVwPn"><span>Nothing</span></a>
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              The complexities of the absence of a value in JavaScript.
+            </p>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-crXcEl dXbzen">
+              <p>
+                In JavaScript, we have tons of foot guns. I was recently asked
+                how to best convey the absence of a value.
+              </p>
+              <p>
+                My immediate reaction was, &quot;Definitely not
+                exceptions.&quot; Looking at a function signature will not let
+                us know to handle that case. Placing try/catch syntax around
+                calls is tedious in JavaScript as it is procedural, not
+                expression based. Exceptions have their place, but should not
+                express common or expected behavior.
+              </p>
+              <p>
+                The next question was null or undefined. Null means &quot;no
+                object&quot; and undefined means &quot;not assigned.&quot;
+                Neither of these exactly means nothing. Before choosing, it is
+                worth knowing the differences.
+              </p>
+              <p>
+                The type of null is object, the type of undefined is undefined.
+                Choosing undefined, a type check would blow up faster.
+              </p>
+              <p>
+                Null key values are preserved in JSON serialization, undefined
+                is not. Choosing undefined, a key set to undefined would not be
+                present in JSON. (Interestingly, JSON.stringify casts undefined
+                within an array to null.)
+              </p>
+              <p>
+                Default values for arguments and destructuring only are used
+                when undefined. Choosing undefined, default values would be
+                used.
+              </p>
+              <p>
+                These differences do not provide a clear answer. Sometimes we
+                don't want to blow up on type checks since most JavaScript
+                developers do know the type of null is object. Sometimes we
+                would like to see a key in JSON to know something could be
+                there. Sometimes we do not want default values to apply unless
+                we are truly passed fewer arguments.
+              </p>
+              <p>
+                So it boils down to what is idiomatic for the absence of a
+                value. Undefined is the idiomatic choice based on the standard
+                data structures. The value of a key in an object that does not
+                exist is undefined. The value of an index in an array that does
+                not exist is undefined. If Array.find has no match, it returns
+                undefined.
+              </p>
+              <p>
+                Undefined is the idiomatic nothing for JavaScript, but can we do
+                better? Given only these two options we should pick undefined,
+                but there is another option. Our issue most often is one of
+                ambiguity where the values we deal in can be anything, including
+                nothing. If our consumer is dealing in undefined values, we
+                would still be clobbering their data.
+              </p>
+              <p>
+                Left to their own devices, consumers would most likely
+                encapsulate all of their values in some data wrapper. This
+                wrapper would hopefully allow us to process their values and
+                allow them to pluck back the original values. The consumer is
+                using <a href="/article/envelopes/">envelopes</a> to work around
+                our ambiguity.
+              </p>
+              <p>
+                We can do better by the consumer by returning union types. In
+                the case of returning nothing, we'd need something like a
+                &quot;Maybe&quot; type. Maybe we have a value or we have nothing
+                to return.
+              </p>
+              <p>
+                We can return a nothing object <code>{type: 'nothing'}</code> or
+                value object <code>{type: 'something', value}</code>. The caller
+                must anticipate the possibility of an absence of a value since
+                they will be forced to check the type. The value can be anything
+                since nothing is its own type.
+              </p>
+              <p>
+                Union types solve ambiguity, but are they idiomatic JavaScript?
+                The Maybe type has yet to see any strong mainstream
+                implementation.
+              </p>
+              <p>
+                Another common union type Result has existed in JavaScript for
+                some time. Result encapsulates either an error or a value. We
+                can trace JavaScript's Result all the way to callback hell. The
+                Node-style callback signature <code>(error, value)</code> was
+                the start. Over the years, Promises came to reflect the same in
+                resolve/reject. It has not progressed to being a
+                standalone/non-async value yet.
+              </p>
+              <p>
+                While union types solve the problem best, they are not yet
+                idiomatic.
+              </p>
+              <p>
+                For those of us writing JavaScript today, we are in a bit of a
+                pickle. If we choose undefined, we embrace what is idiomatic at
+                the sacrifice of ambiguity. If we choose union types, there is
+                no ambiguity but we lack an idiomatic bedrock to build upon.
+                Languages with common union types have many helpful utilities to
+                assist in handling them. JavaScript has no such support system
+                at the moment.
+              </p>
+              <p>
+                Unfortunately, we have to use our best judgement in approaching
+                these problems. Unfortunately, since this problem is both so
+                common yet so complex we will keep getting it wrong.
+              </p>
+              <p>
+                Ultimately, if we want to solve this problem we will need union
+                types at the language level. If this sounds unappealing, I can
+                sympathize. JavaScript continues to grow and I'll be the first
+                to admit I don't like
+                <a href="/article/stop/">many additions</a>. However, I come to
+                this conclusion after years of it being a known problem solved
+                many times in libraries.
+              </p>
+              <p>
+                Searching for Result and Maybe will reveal a land of misfit
+                union types, none of which have won out. It is hard to claim
+                victory when the solutions are so simplistic and easily
+                hand-rolled. Everyone wants a bit more of their own
+                functionality, less of anything else. The community has not
+                chosen a strong bedrock and we all suffer.
+              </p>
+              <p>
+                I think this is a problem worth addressing with a formal TC39
+                proposal. I have created a
+                <a href="https://github.com/andrejewski/proposal-unions"
+                  >TC-39 Strawman proposal</a
+                >
+                to start developing these ideas in hopes of proposing idiomatic
+                union types and getting this effort championed. If interested in
+                shaping this proposal please reach out.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>What is Raj</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="What problems Raj solves and how it compares to Redux and Elm"
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link
+      rel="canonical"
+      href="http://localhost:8620/_reserved/not-found.html"
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="What is Raj" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta
+      property="og:url"
+      content="http://localhost:8620/_reserved/not-found.html"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .eBtA-dh {
+        margin: 3rem 0;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'eBtA-dh,';
+      } /*!sc*/
+      .iUGkOU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'iUGkOU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .gIJIXF {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #ffc87b;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .gIJIXF:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .gIJIXF {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'gIJIXF,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .hHECxp {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #ffe8c7;
+        color: #d19649;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .hHECxp .sc-iBkjds {
+        color: #402604;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .hHECxp ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .hHECxp a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .hHECxp a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #efd5b4;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'hHECxp,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #fef2e7;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-eIVHya1'] {
+        content: 'sc-global-eIVHya1,';
+      } /*!sc*/
+      .fyabtt {
+        padding: 1rem 0px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .fyabtt h1 {
+        font-size: 1.5rem;
+        margin: 0;
+      } /*!sc*/
+      .fyabtt h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .fyabtt h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .fyabtt ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: right;
+      } /*!sc*/
+      .fyabtt ul li {
+        display: inline-block;
+        padding: 0px 0.5rem;
+        text-align: right;
+      } /*!sc*/
+      data-styled.g13[id='sc-kDDrLX'] {
+        content: 'fyabtt,';
+      } /*!sc*/
+      .dXbzen h1 > a,
+      .dXbzen h2 > a,
+      .dXbzen h3 > a,
+      .dXbzen h4 > a,
+      .dXbzen h5 > a,
+      .dXbzen h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .dXbzen h1 > a:hover,
+      .dXbzen h2 > a:hover,
+      .dXbzen h3 > a:hover,
+      .dXbzen h4 > a:hover,
+      .dXbzen h5 > a:hover,
+      .dXbzen h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .dXbzen p,
+      .dXbzen li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen p,
+        .dXbzen li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .dXbzen a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .dXbzen ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .dXbzen code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .dXbzen h1 code,
+      .dXbzen h2 code,
+      .dXbzen h3 code,
+      .dXbzen h4 code,
+      .dXbzen h5 code,
+      .dXbzen h6 code,
+      .dXbzen li code,
+      .dXbzen p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #ffeeda;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen h1 code,
+        .dXbzen h2 code,
+        .dXbzen h3 code,
+        .dXbzen h4 code,
+        .dXbzen h5 code,
+        .dXbzen h6 code,
+        .dXbzen li code,
+        .dXbzen p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .dXbzen pre {
+        background-color: #ffeed9;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .dXbzen img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .dXbzen video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .dXbzen figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .dXbzen figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .dXbzen figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .dXbzen .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .dXbzen .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'dXbzen,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-kDDrLX fyabtt">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi eBtA-dh">
+            <p class="sc-iBkjds xFOWy">
+              <a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup gIJIXF"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf iUGkOU">
+              <a href="#" class="sc-papXJ iHVwPn"><span>What is Raj</span></a>
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              What problems Raj solves and how it compares to Redux and Elm
+            </p>
+          </div>
+          <div class="sc-jqUVSM hHECxp">
+            <p class="sc-iBkjds xFOWy">Table of contents</p>
+            <div>
+              <ul>
+                <li>
+                  <a href="#how-is-raj-different-from-redux"
+                    >How is Raj different from Redux?</a
+                  >
+                  <ul>
+                    <li><a href="#growth-complexity">Growth complexity</a></li>
+                    <li><a href="#side-effects">Side-effects</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#how-is-raj-different-than-elm"
+                    >How is Raj different than Elm?</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-crXcEl dXbzen">
+              <p>
+                <a href="https://jew.ski/raj/">Raj</a> solves two problems:
+                state management and running side-effects. These problems are
+                the hardest problems in building client applications.
+              </p>
+              <p>
+                State management is two things: storing state and handling state
+                transitions. Raj holds a single variable which stores the
+                application state. Raj will update this variable as messages are
+                dispatched. State transitions are synchronous and preferably
+                written in an immutable manner as to be simple to test quickly.
+              </p>
+              <p>
+                The only way to move state forward is to dispatch messages. All
+                side-effects are functions which may dispatch any number of
+                messages. The view is modeled as a side-effect so it dispatches
+                messages as well. We force the nastiness of side-effects to the
+                edges of the system.
+              </p>
+              <p>
+                These are two really good problems to solve right off the bat.
+              </p>
+              <h1 id="how-is-raj-different-from-redux">
+                <a href="#how-is-raj-different-from-redux"
+                  >How is Raj different from Redux?</a
+                >
+              </h1>
+              <p>
+                Redux and Raj draw inspiration from the programming language
+                Elm. The biggest difference between Raj and Redux in this regard
+                is time. Redux was built based on what Elm looked like prior to
+                <a href="http://elm-lang.org/blog/farewell-to-frp"
+                  >Elm's farwell to FRP</a
+                >
+                and prior to new JavaScript language features, notably object
+                and array rest/spread/destructuring.
+              </p>
+              <p>
+                Raj was built based on Elm's newer functional programming model,
+                not the functional reactive programming model and was grown and
+                developed using those new language features in application code.
+                Raj is a stricter adaption of the modern Elm architecture.
+              </p>
+              <p>Raj and Redux have similarities. Both:</p>
+              <ul>
+                <li>Are agnostic to any particular view layer</li>
+                <li>Are quite small frameworks</li>
+                <li>Promote a uni-directional data flow</li>
+                <li>
+                  Move state forward with actions (in Raj &quot;messages&quot;)
+                </li>
+                <li>Store UI state in a single place (ideally)</li>
+                <li>Feature time-travel debugging</li>
+              </ul>
+              <h2 id="growth-complexity">
+                <a href="#growth-complexity">Growth complexity</a>
+              </h2>
+              <p>Raj differs from Redux in growth complexity.</p>
+              <p>
+                Redux encourages a structure where as a program grows, more data
+                is put into the top-level state and more actions and reducers
+                are added to an existing list. This growth is O(N). As we add
+                new state, actions, and reducers we need to know the existing
+                list and avoid conflicts. Eventually the mental overhead of
+                these systems requires the addition of new libraries and ways to
+                simulate scope.
+              </p>
+              <p>
+                In Raj we have isolated &quot;programs&quot; that define
+                independent units of data, logic, and views. These programs are
+                nested and composed in a tree structure. This growth is O(log
+                N). As each individual unit does not need to be aware of any
+                other program's data, logic, or view. Working in a Raj program
+                we can think in terms of localized state, logic, and views.
+              </p>
+              <p>
+                This decoupling means most feature work for an individual or
+                team can be carried out in parallel. This optimal growth
+                complexity also means we do not need to re-architect or pull in
+                new dependencies as our applications grow. Programs as a unit of
+                application code also enables code reuse as higher-order
+                programs take application composition to a new level.
+              </p>
+              <h2 id="side-effects">
+                <a href="#side-effects">Side-effects</a>
+              </h2>
+              <p>
+                Redux does not have any particular position on how to handle
+                side-effects and asynchronous effects. There are many competing
+                ways to solve Redux side-effects. Beyond the paradox of choice,
+                many of these solutions lead to bad architectures, are hard to
+                understand, and &quot;work until they don't&quot; meaning
+                eventual rewrites and larger re-architecting as a program or
+                system grows.
+              </p>
+              <p>
+                Raj has a clear side-effect story built into the framework.
+                Side-effects are functions which dispatch messages. In order to
+                dispatch messages into the system an effect must be given to Raj
+                to be called with a callback to dispatch those messages. These
+                constraints are enough to do side-effects right and cover all
+                use cases.
+              </p>
+              <p>
+                To summarize, Raj is a stricter adaption of the Elm architecture
+                that provides more compelling and defined stories from both
+                growth complexity and side-effect management.
+              </p>
+              <h1 id="how-is-raj-different-than-elm">
+                <a href="#how-is-raj-different-than-elm"
+                  >How is Raj different than Elm?</a
+                >
+              </h1>
+              <p><em>(Written as of Elm 0.18.)</em></p>
+              <p>
+                Elm is a niche programming language designed for building web
+                applications. As such the project moves slower than the
+                JavaScript ecosystem. This is a clear benefit to the Elm
+                community: JavaScript churn is notoriously wasteful and
+                complicated. However this also means there is a smaller
+                ecosystem of existing packages and fewer problems have been
+                solved in Elm, given its constraints.
+              </p>
+              <p>
+                Elm is a great language everyone should experience, but it does
+                not currently align with business goals that application
+                developers have. Elm is a golden goose not to be tainted by the
+                newest hotness and as such there are many things that cannot be
+                done in Elm without a lot of workaround boilerplate. From a
+                language designer perspective, Elm is doing an amazing job. It's
+                minimal surface area and the seamless way it does solve the
+                problems it chooses is superb. It is definitely a language worth
+                spectating.
+              </p>
+              <p>
+                From an application developer perspective, it is less than
+                ideal. The consensus is if Elm does not solve your problem, come
+                back later. The release cycle is not transparent and developers
+                must reinvent many things themselves. Since Elm is a web-only
+                language, this means universal code is still a JavaScript
+                advantage. The Elm ecosystem is dwarfed by the JavaScript
+                ecosystem.
+              </p>
+              <p>
+                Luckily, the Elm architecture is independent of the Elm
+                language. The goal of Raj is to bring this architecture to
+                JavaScript applications in a way that feels natural to
+                JavaScript developers. The excellence of the architecture is
+                worth bringing into the larger JavaScript community, at least
+                until Elm is ready for prime-time. Raj exists because we should
+                not have to wait to build apps the best way possible today in
+                JavaScript.
+              </p>
+              <p>
+                With the power and looseness of JavaScript, Raj has opened the
+                door to great features not yet possible in Elm, such as code
+                splitting, lazy loading, and advanced program composition.
+              </p>
+              <p>
+                Raj is the JavaScript version of the Elm architecture. It does
+                not have all Elm features but it is used effectively by
+                application developers today.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ruby style guide</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Style guidelines and tips I've developed and adhere to when writing Ruby code."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link
+      rel="canonical"
+      href="http://localhost:8620/_reserved/not-found.html"
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Ruby style guide" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta
+      property="og:url"
+      content="http://localhost:8620/_reserved/not-found.html"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .eBtA-dh {
+        margin: 3rem 0;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'eBtA-dh,';
+      } /*!sc*/
+      .iUGkOU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'iUGkOU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .gIJIXF {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #ffc87b;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .gIJIXF:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .gIJIXF {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'gIJIXF,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .hHECxp {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #ffe8c7;
+        color: #d19649;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .hHECxp .sc-iBkjds {
+        color: #402604;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .hHECxp ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .hHECxp a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .hHECxp a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #efd5b4;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'hHECxp,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #fef2e7;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-eIVHya1'] {
+        content: 'sc-global-eIVHya1,';
+      } /*!sc*/
+      .fyabtt {
+        padding: 1rem 0px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .fyabtt h1 {
+        font-size: 1.5rem;
+        margin: 0;
+      } /*!sc*/
+      .fyabtt h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .fyabtt h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .fyabtt ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: right;
+      } /*!sc*/
+      .fyabtt ul li {
+        display: inline-block;
+        padding: 0px 0.5rem;
+        text-align: right;
+      } /*!sc*/
+      data-styled.g13[id='sc-kDDrLX'] {
+        content: 'fyabtt,';
+      } /*!sc*/
+      .dXbzen h1 > a,
+      .dXbzen h2 > a,
+      .dXbzen h3 > a,
+      .dXbzen h4 > a,
+      .dXbzen h5 > a,
+      .dXbzen h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .dXbzen h1 > a:hover,
+      .dXbzen h2 > a:hover,
+      .dXbzen h3 > a:hover,
+      .dXbzen h4 > a:hover,
+      .dXbzen h5 > a:hover,
+      .dXbzen h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .dXbzen p,
+      .dXbzen li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen p,
+        .dXbzen li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .dXbzen a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .dXbzen ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .dXbzen code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .dXbzen h1 code,
+      .dXbzen h2 code,
+      .dXbzen h3 code,
+      .dXbzen h4 code,
+      .dXbzen h5 code,
+      .dXbzen h6 code,
+      .dXbzen li code,
+      .dXbzen p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #ffeeda;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen h1 code,
+        .dXbzen h2 code,
+        .dXbzen h3 code,
+        .dXbzen h4 code,
+        .dXbzen h5 code,
+        .dXbzen h6 code,
+        .dXbzen li code,
+        .dXbzen p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .dXbzen pre {
+        background-color: #ffeed9;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .dXbzen img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .dXbzen video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .dXbzen figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .dXbzen figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .dXbzen figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .dXbzen .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .dXbzen .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'dXbzen,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-kDDrLX fyabtt">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi eBtA-dh">
+            <p class="sc-iBkjds xFOWy">
+              <a href="/category/ruby/index.html" class="sc-ftvSup gIJIXF"
+                >Ruby programming</a
+              ><a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup gIJIXF"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf iUGkOU">
+              <a href="#" class="sc-papXJ iHVwPn"
+                ><span>Ruby style guide</span></a
+              >
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              Style guidelines and tips I&#x27;ve developed and adhere to when
+              writing Ruby code.
+            </p>
+          </div>
+          <div class="sc-jqUVSM hHECxp">
+            <p class="sc-iBkjds xFOWy">Table of contents</p>
+            <div>
+              <ul>
+                <li>
+                  <a href="#do-not-use-nil">Do not use <code>nil?</code></a>
+                </li>
+                <li>
+                  <a href="#do-not-use-present-or-blank"
+                    >Do not use <code>present?</code> or <code>blank?</code></a
+                  >
+                </li>
+                <li>
+                  <a href="#do-not-use-unless"
+                    >Do not use <code>unless</code></a
+                  >
+                </li>
+                <li>
+                  <a href="#do-not-use-right-hand-conditionals"
+                    >Do not use right-hand conditionals</a
+                  >
+                </li>
+                <li>
+                  <a href="#use-the-rich-standard-library"
+                    >Use the rich standard library</a
+                  >
+                  <ul>
+                    <li>
+                      <a href="#use-map-instead-of-each"
+                        >Use <code>map</code> instead of <code>each</code></a
+                      >
+                    </li>
+                    <li>
+                      <a href="#use-flat_map-instead-of-each"
+                        >Use <code>flat_map</code> instead of
+                        <code>each</code></a
+                      >
+                    </li>
+                    <li>
+                      <a href="#use-to_h-instead-of-each-hash-building"
+                        >Use <code>to_h</code> instead of each hash building</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#do-not-use-namespace-shorthand-constants"
+                    >Do not use namespace shorthand constants</a
+                  >
+                </li>
+                <li>
+                  <a href="#avoid-redundant-self-use"
+                    >Avoid redundant <code>self</code> use</a
+                  >
+                </li>
+                <li>
+                  <a href="#dont-use-hashkey"
+                    >Don’t use <code>Hash.key?</code></a
+                  >
+                </li>
+                <li>
+                  <a href="#dont-use-hashfetch"
+                    >Don’t use <code>Hash.fetch</code></a
+                  >
+                </li>
+                <li>
+                  <a href="#take-advantage-of-expressions"
+                    >Take advantage of expressions</a
+                  >
+                </li>
+                <li>
+                  <a href="#naming-conventions-for-booleans"
+                    >Naming conventions for booleans</a
+                  >
+                </li>
+                <li><a href="#constantly-scream">Constantly scream</a></li>
+                <li>
+                  <a href="#dont-perform-unnecessary-type-conversions"
+                    >Don’t perform unnecessary type conversions</a
+                  >
+                </li>
+                <li>
+                  <a href="#have-really-tight-beginrescue-blocks"
+                    >Have really tight <code>begin..rescue</code> blocks</a
+                  >
+                </li>
+                <li>
+                  <a href="#naming-conventions-for-bad-things"
+                    >Naming conventions for bad things</a
+                  >
+                </li>
+                <li>
+                  <a href="#ruby-gems-wrap-them-up">Ruby Gems: Wrap them up</a>
+                </li>
+                <li>
+                  <a href="#be-careful-with-class%23name"
+                    >Be careful with <code>Class#name</code></a
+                  >
+                </li>
+                <li>
+                  <a href="#avoid-helper-modules">Avoid “Helper” modules</a>
+                </li>
+                <li>
+                  <a href="#avoid-constants-modules"
+                    >Avoid “Constants” modules</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-crXcEl dXbzen">
+              <p>
+                This style guide started as a personal collection of fixes for
+                nits, experienced bugs, and poor readability as I wrote and
+                reviewed Ruby code at Stripe.
+              </p>
+              <p>
+                Stripe has an
+                <a href="https://sorbet.org/"
+                  >open source type-checker Sorbet</a
+                >
+                for Ruby which I reference a lot here since the type system is
+                pretty relevant to coding standards. However Sorbet knowledge is
+                not needed for this collection. Sorbet has its own collection if
+                you're interested.
+              </p>
+              <h1 id="do-not-use">
+                <a href="#do-not-use">Do not use <code>nil?</code></a>
+              </h1>
+              <p>
+                Writing idiomatic code for any language means understanding its
+                rules. In Ruby, only false and nil are falsey. Coming from a
+                JavaScript background, this is awesome (so simple). As such,
+                it’s actually very uncommon to need to use <code>nil?</code>:
+              </p>
+              <pre><code class="language-rb"><span class="hljs-keyword">if</span> !x.<span class="hljs-literal">nil</span>?
+  <span class="hljs-comment"># TODO</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>Can be written as:</p>
+              <pre><code class="language-rb"><span class="hljs-keyword">if</span> x
+  <span class="hljs-comment"># TODO</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                While not strictly equivalent because of false, the use of
+                <code>nil?</code> is quite noisy and if you’re reaching for it,
+                it’s often a sign of primitive obsession where you’re making nil
+                explicitly mean something.
+              </p>
+              <h1 id="do-not-use-or">
+                <a href="#do-not-use-or"
+                  >Do not use <code>present?</code> or <code>blank?</code></a
+                >
+              </h1>
+              <p>
+                The methods are usually implemented on the base
+                <code>Object</code> making them quite infectious. An object is
+                blank if it's nil, false, empty, or a whitespace string.
+                Otherwise it is present.
+              </p>
+              <p>
+                Definitely don’t use <code>present?</code> or
+                <code>blank?</code> when you simply mean to check for
+                <code>nil</code>.
+              </p>
+              <p>
+                These are really only useful for nil-able String values and
+                otherwise introduce much more mental overhead than needed.
+              </p>
+              <p>
+                The use of <code>present?</code> and <code>blank?</code> should
+                really only be done at system boundaries (processing text
+                formats or user input) if at all, in order to simplify a String
+                to nil-able String. After that conversion process we can
+                leverage Sorbet: Sorbet can help with handling nil-able String
+                but it can't tell the programmer to account for empty strings in
+                String.
+              </p>
+              <p>
+                These methods are anti-patterns because they encourage extreme
+                defensive checking which is less performant and complicates code
+                complexity.
+              </p>
+              <p>
+                Within well typed code there is almost never a reason for such a
+                permissive interface of <code>NilClass</code>,
+                <code>TrueClass</code>, <code>FalseClass</code>,
+                <code>String</code>, and <code>ObjectWithEmptyMethod</code>.
+              </p>
+              <h1 id="do-not-use">
+                <a href="#do-not-use">Do not use <code>unless</code></a>
+              </h1>
+              <pre><code class="language-rb"><span class="hljs-keyword">unless</span> x
+<span class="hljs-comment"># TODO</span>
+<span class="hljs-keyword">end</span>
+<span class="hljs-comment"># ...is the same as...</span>
+<span class="hljs-keyword">if</span> !x
+<span class="hljs-comment"># TODO</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                <code>unless</code> is longer and harder to reason about. At
+                Stripe, we already had established lint rules for preventing
+                complex usages of <code>unless</code> because it was so
+                unreadable. Even with single expression <code>unless</code> it
+                was still unreadable so I don't advocate its use in any
+                situation.
+              </p>
+              <h1 id="do-not-use-right-hand-conditionals">
+                <a href="#do-not-use-right-hand-conditionals"
+                  >Do not use right-hand conditionals</a
+                >
+              </h1>
+              <p>
+                Right-hands make it too easy for complexity to hide, especially
+                when reviewing code. Since I’ve stop using them I’ve been less
+                likely to need precondition guards. It’s easier for me to
+                visualize I’m doing too much in one place and avoid it.
+              </p>
+              <pre><code class="language-rb"><span class="hljs-keyword">return</span> <span class="hljs-keyword">if</span> !x
+<span class="hljs-comment"># ...is the same as...</span>
+<span class="hljs-keyword">if</span> !x
+  <span class="hljs-keyword">return</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                To using right-hand conditionals makes the flow of logic much
+                more readable. Quickly, what is the
+                <a href="https://en.wikipedia.org/wiki/Cyclomatic_complexity"
+                  >cyclomatic complexity</a
+                >
+                of this code?
+              </p>
+              <pre><code class="language-rb">really_long_expression_or_method_call_that_does_something <span class="hljs-keyword">if</span> really_long_expression_or_method_call_that_does_something
+really_long_expression_or_method_call_that_does_something <span class="hljs-keyword">if</span> really_long_expression_or_method_call_that_does_something
+really_long_expression_or_method_call_that_does_something <span class="hljs-keyword">if</span> really_long_expression_or_method_call_that_does_something
+really_long_expression_or_method_call_that_does_something
+really_long_expression_or_method_call_that_does_something <span class="hljs-keyword">if</span> really_long_expression_or_method_call_that_does_something
+</code></pre>
+              <p>What is the cyclomatic complexity of this code?</p>
+              <pre><code class="language-rb"><span class="hljs-keyword">if</span> really_long_expression_or_method_call_that_does_something
+  really_long_expression_or_method_call_that_does_something
+<span class="hljs-keyword">end</span>
+really_long_expression_or_method_call_that_does_something
+<span class="hljs-keyword">if</span> really_long_expression_or_method_call_that_does_something
+  really_long_expression_or_method_call_that_does_something
+<span class="hljs-keyword">end</span>
+really_long_expression_or_method_call_that_does_something
+</code></pre>
+              <p>
+                It's much easier to see the branching logic because we can lean
+                on the visual indentation to help us out.
+              </p>
+              <h1 id="use-the-rich-standard-library">
+                <a href="#use-the-rich-standard-library"
+                  >Use the rich standard library</a
+                >
+              </h1>
+              <p>
+                This isn’t too clear, especially when you just start using Ruby
+                but it’s really nice and has useful helpers. Try to leverage
+                them to reduce “procedural noise” in your code. Some examples:
+              </p>
+              <h2 id="use-instead-of">
+                <a href="#use-instead-of"
+                  >Use <code>map</code> instead of <code>each</code></a
+                >
+              </h2>
+              <pre><code class="language-rb"><span class="hljs-comment"># Bad</span>
+new_list = []
+old_list.each <span class="hljs-keyword">do</span> |<span class="hljs-params">item</span>|
+  new_list.push(item + <span class="hljs-number">1</span>)
+<span class="hljs-keyword">end</span>
+<span class="hljs-comment"># Good</span>
+new_list = old_list.map {|<span class="hljs-params">item</span>| item + <span class="hljs-number">1</span>}
+</code></pre>
+              <h2 id="use-instead-of">
+                <a href="#use-instead-of"
+                  >Use <code>flat_map</code> instead of <code>each</code></a
+                >
+              </h2>
+              <pre><code class="language-rb"><span class="hljs-comment"># Bad</span>
+new_list = []
+old_list.each <span class="hljs-keyword">do</span> |<span class="hljs-params">item</span>|
+  new_list.push(item + <span class="hljs-number">1</span>)
+  new_list.push(item + <span class="hljs-number">2</span>)
+  new_list.push(item + <span class="hljs-number">3</span>)
+<span class="hljs-keyword">end</span>
+<span class="hljs-comment"># Good</span>
+new_list = old_list.flat_map <span class="hljs-keyword">do</span> |<span class="hljs-params">item</span>|
+  [item + <span class="hljs-number">1</span>, item + <span class="hljs-number">2</span>, item + <span class="hljs-number">3</span>]
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <h2 id="use-instead-of-each-hash-building">
+                <a href="#use-instead-of-each-hash-building"
+                  >Use <code>to_h</code> instead of each hash building</a
+                >
+              </h2>
+              <pre><code class="language-rb"><span class="hljs-comment"># Bad</span>
+new_hash = {}
+old_list.each <span class="hljs-keyword">do</span> |<span class="hljs-params">item</span>|
+  new_hash[item.key] = item.value
+<span class="hljs-keyword">end</span>
+<span class="hljs-comment"># Good</span>
+new_hash = old_list.map <span class="hljs-keyword">do</span> |<span class="hljs-params">item</span>|
+  [item.key, item.value]
+<span class="hljs-keyword">end</span>.to_h
+</code></pre>
+              <p>
+                And know <code>hash.transform_keys</code> and
+                <code>hash.transform_values</code> are also things!
+              </p>
+              <h1 id="do-not-use-namespace-shorthand-constants">
+                <a href="#do-not-use-namespace-shorthand-constants"
+                  >Do not use namespace shorthand constants</a
+                >
+              </h1>
+              <p>
+                My team was pretty guilty of this when we all first started
+                writing Ruby. We have some old code like:
+              </p>
+              <pre><code class="language-rb"><span class="hljs-keyword">module</span> MyPackage::Private::Helpers
+  <span class="hljs-variable constant_">PM</span> = MyPackage::Private::Model
+  <span class="hljs-variable constant_">PX</span> = MyPackage::Private::Extras
+
+  <span class="hljs-keyword">def</span> <span class="hljs-title function_">self</span>.action
+    <span class="hljs-variable constant_">PM</span><span class="hljs-symbol">:</span><span class="hljs-symbol">:MyModel</span>.load(<span class="hljs-string">&#x27;something&#x27;</span>)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>The right way to write the above is:</p>
+              <pre><code class="language-rb"><span class="hljs-keyword">module</span> MyPackage
+  <span class="hljs-keyword">module</span> Private::Helpers <span class="hljs-comment"># &lt;-- splitting this out lets us skip typing MyPackage</span>
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">self</span>.action
+      Private::Model::MyModel.load(<span class="hljs-string">&#x27;something&#x27;</span>)
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                Shorthands hinder readability and are confusing, preferring
+                short term convenience for long term maintenance. Not the best
+                trade-off especially now that its being maintained.
+              </p>
+              <p>
+                If you see these, don’t continue to to use them. I removed all
+                of these usages so I don’t need this rule anymore; I’ve not seen
+                anyone else do this.
+              </p>
+              <h1 id="avoid-redundant-use">
+                <a href="#avoid-redundant-use"
+                  >Avoid redundant <code>self</code> use</a
+                >
+              </h1>
+              <p>
+                The <code>self</code> is implied in Ruby so no need to litter
+                the code with it when calling methods.
+              </p>
+              <pre><code class="language-rb"><span class="hljs-comment"># Bad</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">BankAccount</span>
+  <span class="hljs-keyword">def</span> <span class="hljs-title function_">withdraw</span>(<span class="hljs-params">amount</span>)
+    <span class="hljs-variable language_">self</span>.increment(-amount)
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-keyword">def</span> <span class="hljs-title function_">deposit</span>(<span class="hljs-params">amount</span>)
+    <span class="hljs-variable language_">self</span>.increment(amount)
+  <span class="hljs-keyword">end</span>
+
+  private increment(amount); <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># Good</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">BankAccount</span>
+  <span class="hljs-keyword">def</span> <span class="hljs-title function_">withdraw</span>(<span class="hljs-params">amount</span>)
+    increment(-amount)
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-keyword">def</span> <span class="hljs-title function_">deposit</span>(<span class="hljs-params">amount</span>)
+    increment(amount)
+  <span class="hljs-keyword">end</span>
+
+  private increment(amount); <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <h1 id="dont-use">
+                <a href="#dont-use">Don’t use <code>Hash.key?</code></a>
+              </h1>
+              <p>
+                <code>key?</code> rarely is what you want (and doesn't help with
+                type narrowing):
+              </p>
+              <pre><code class="language-rb">{<span class="hljs-symbol">a:</span> <span class="hljs-literal">nil</span>}.key?(<span class="hljs-symbol">:a</span>)
+<span class="hljs-comment"># =&gt; true</span>
+</code></pre>
+              <p>Better to just make the access and check the value:</p>
+              <pre><code class="language-rb">value = hash[key]
+<span class="hljs-keyword">if</span> value
+<span class="hljs-comment"># ...</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>(The same applies to <code>Hash.includes?(key)</code>.)</p>
+              <h1 id="dont-use">
+                <a href="#dont-use">Don’t use <code>Hash.fetch</code></a>
+              </h1>
+              <p>
+                If a value does not exist for a key, a <code>KeyError</code> is
+                raised which leads to ugly handling like:
+              </p>
+              <pre><code class="language-rb">value = <span class="hljs-keyword">begin</span>
+  hash.fetch(<span class="hljs-symbol">:a</span>)
+<span class="hljs-keyword">rescue</span> KeyError =&gt; error
+  <span class="hljs-comment"># ...</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                Just use the common [key] method which returns a nil-able value
+                that Sorbet can help us handle if it is missing:
+              </p>
+              <pre><code class="language-rb">value = hash[<span class="hljs-symbol">:a</span>]
+<span class="hljs-keyword">if</span> value
+<span class="hljs-comment"># ...</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                Similar to <code>Hash.key?</code> above, we have the unexpected
+                issue with explicit nils and default values:
+              </p>
+              <pre><code class="language-rb">{<span class="hljs-symbol">a:</span> <span class="hljs-literal">nil</span>}.fetch(<span class="hljs-symbol">:a</span>, <span class="hljs-number">1</span>)
+<span class="hljs-comment"># =&gt; nil</span>
+</code></pre>
+              <h1 id="take-advantage-of-expressions">
+                <a href="#take-advantage-of-expressions"
+                  >Take advantage of expressions</a
+                >
+              </h1>
+              <p>
+                In Ruby everything is an expression, take advantage of it! The
+                code is more clear, less noisy, and more oriented towards values
+                rather than imperative statements.
+              </p>
+              <pre><code class="language-rb"><span class="hljs-comment"># BAD</span>
+<span class="hljs-keyword">if</span> foo
+  bar = <span class="hljs-number">1</span>
+<span class="hljs-keyword">else</span>
+  bar = <span class="hljs-number">2</span>
+<span class="hljs-keyword">end</span>
+<span class="hljs-comment"># GOOD</span>
+bar = <span class="hljs-keyword">if</span> foo
+  <span class="hljs-number">1</span>
+<span class="hljs-keyword">else</span>
+  <span class="hljs-number">2</span>
+<span class="hljs-keyword">end</span>
+<span class="hljs-comment"># BAD</span>
+val = <span class="hljs-literal">nil</span>
+<span class="hljs-keyword">if</span> foo
+  val = <span class="hljs-number">1</span>
+<span class="hljs-keyword">end</span>
+<span class="hljs-comment"># GOOD</span>
+val = <span class="hljs-keyword">if</span> foo
+  <span class="hljs-number">1</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <h1 id="naming-conventions-for-booleans">
+                <a href="#naming-conventions-for-booleans"
+                  >Naming conventions for booleans</a
+                >
+              </h1>
+              <p>
+                With regard to how to name boolean variables, the only
+                definitive advice to follow is if you define a method which
+                returns a boolean, write it with a <code>method?</code> question
+                mark.
+              </p>
+              <p>
+                For instance variables, prefer trying be be clear. You might try
+                to use <code>can_</code>, <code>has_</code>, etc to improve
+                readability, but sometimes you ought not to. For example
+                <code>is_</code> doesn’t add much more usually. If used, Sorbet
+                is there to help with hover-over type information and if you are
+                (definitely should be) using Sorbet to the fullest this
+                information will be readily in reach.
+              </p>
+              <h1 id="constantly-scream">
+                <a href="#constantly-scream">Constantly scream</a>
+              </h1>
+              <p>You’ll see two ways constants are written:</p>
+              <pre><code class="language-rb">PascalCase = <span class="hljs-number">1_000</span>
+<span class="hljs-variable constant_">SCREAMING_SNAKE_CASE</span> = <span class="hljs-number">1_000_000</span>
+</code></pre>
+              <p>
+                I was in the Pascal case camp for quite awhile, coming from a
+                JavaScript background I found no pleasure in screaming in all my
+                code. However, we do need to standardize and the reason I now
+                lean towards screaming is because Pascal case always has a
+                reserved purpose: classes and modules. As such it’s better to
+                scream constants always so it’s more clear.
+              </p>
+              <h1 id="dont-perform-unnecessary-type-conversions">
+                <a href="#dont-perform-unnecessary-type-conversions"
+                  >Don’t perform unnecessary type conversions</a
+                >
+              </h1>
+              <p>For example, a method like:</p>
+              <pre><code class="language-rb"><span class="hljs-keyword">def</span> <span class="hljs-title function_">self</span>.do_thing(key) <span class="hljs-comment"># key is a String</span>
+  <span class="hljs-comment"># ...</span>
+  other_thing(key.to_sym)
+  <span class="hljs-comment"># ...</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                Instead of taking a String and then converting to a Symbol, just
+                take a Symbol. You might say, “Ah but I do that so the caller
+                has an easier time.” But now consider someone had a Symbol,
+                which is exactly what is wanted by <code>other_thing</code>,
+                then they’ll have to do <code>do_thing(symbol.to_s)</code> and
+                pay the cost of a <em>double</em> conversion.
+              </p>
+              <p>
+                In a similar vein, don’t take args which you’ll immediately put
+                into a data structure or do parsing/validation. This allows the
+                caller (which has the broader context) to appropriately
+                construct the inputs and handle any potential errors.
+              </p>
+              <p>
+                Of course, a nice benefit of not embedding these type conversion
+                is that the code will look much clearer. Someone won’t have read
+                through a bunch of code wondering “why was it done with way?”
+              </p>
+              <h1 id="have-really-tight-blocks">
+                <a href="#have-really-tight-blocks"
+                  >Have really tight <code>begin..rescue</code> blocks</a
+                >
+              </h1>
+              <p>We’ve all seen code like this:</p>
+              <pre><code class="language-rb"><span class="hljs-keyword">begin</span>
+  a = do_this(input.method)
+  b = do_that(a)
+  <span class="hljs-comment"># ...dozens, hundreds of lines of code...</span>
+  also_this(b)
+<span class="hljs-keyword">rescue</span> =&gt; error <span class="hljs-comment"># or `catch` in other languages</span>
+  error_handling
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                This is just plain lazy, the author didn’t bother to understand
+                what might fail, or if they did they haven’t bothered to share
+                with anyone else. Refactoring and maintaining this code will be
+                a nightmare because we’ve smattered so many potential errors
+                together.
+              </p>
+              <p>
+                Instead, keep your <code>begin..rescue</code> cases as isolated
+                to individual failures as possible. So taking the above and
+                writing it properly:
+              </p>
+              <pre><code class="language-rb">value = input.method
+a = <span class="hljs-keyword">begin</span>
+  do_this(value)
+<span class="hljs-keyword">rescue</span> =&gt; do_this_error
+  do_this_error_handling
+<span class="hljs-keyword">end</span>
+
+b = do_that(a)
+<span class="hljs-comment"># ...dozens, hundreds of lines of code... (but preferably not)</span>
+<span class="hljs-keyword">begin</span>
+  also_this(b)
+<span class="hljs-keyword">rescue</span> =&gt; also_this_error
+  also_this_error_handling
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>This is much better!</p>
+              <p>
+                The next reader of the code now does not have to investigate
+                <code>input.method</code> nor <code>do_that</code> for potential
+                errors, since working with them in isolation we know they don’t
+                raise exceptions in any way we intend to handle.
+              </p>
+              <p>
+                Error handling has better code locality. We’re not jumping back
+                and forth in a huge method trying to see how each method call
+                may map to the result errors below.
+              </p>
+              <p>
+                It’s now easier to split out and test individual pieces, and
+                start constructing result types to manage these exceptions
+                instead.
+              </p>
+              <h1 id="naming-conventions-for-bad-things">
+                <a href="#naming-conventions-for-bad-things"
+                  >Naming conventions for bad things</a
+                >
+              </h1>
+              <ul>
+                <li>
+                  Use <code>dangerous</code> for things related to security
+                  which may need more scrutiny.
+                </li>
+                <li>
+                  Use <code>deplorable</code> for things that should not be done
+                  because they are a bad coding pattern.
+                </li>
+              </ul>
+              <p>
+                I would like to use these keywords to track various code
+                migration burn downs. For example, to get free observability
+                into a method’s decline, team’s simply would need to do a rename
+                and then get all the dashboards for free.
+              </p>
+              <p>
+                I pitched this at Stripe as project &quot;CodeTrend&quot; but it
+                never moved beyond a proposal.
+              </p>
+              <h1 id="ruby-gems:-wrap-them-up">
+                <a href="#ruby-gems:-wrap-them-up">Ruby Gems: Wrap them up</a>
+              </h1>
+              <p>
+                You can use a third party Ruby gem from anywhere, just require
+                it:
+              </p>
+              <pre><code class="language-rb"><span class="hljs-keyword">require</span> <span class="hljs-string">&#x27;mail&#x27;</span>
+</code></pre>
+              <p>
+                Except don’t do that! You see Ruby gems shouldn’t really be
+                allowed to be used that way, for a couple reasons:
+              </p>
+              <ul>
+                <li>
+                  <p>
+                    <strong>Most Ruby gems aren’t typed.</strong> Sorbet is open
+                    source but most gems are not using it. We mitigate this
+                    slightly using
+                    <a href="https://sorbet.org/docs/rbi"
+                      >Ruby Interface (RBI) files</a
+                    >
+                    which give us known methods we can call on Ruby gems we use.
+                    The problem with RBIs is they are terrible i.e. mostly
+                    <code>T.untyped</code> which makes sense because we lack the
+                    type information.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <strong
+                      >Ruby gems ought not be available everywhere.</strong
+                    >
+                    In Stripe's mono-repo, we’ve got some work to do for
+                    packaging up cross-cutting dependencies and we really ought
+                    to be tracking Gem dependencies per package instead of being
+                    able to loosely load them up from anywhere. Loading up a
+                    whole bunch of gems that won’t be used contribute to slow
+                    Ruby code.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <strong>Ruby gems need maintenance.</strong> Suppose 500
+                    places in the code we use a gem and we need to upgrade that
+                    gem from 0.2 to 0.6, how bad might that change be? This is
+                    really tough to answer because we don’t know how everyone
+                    expected the gem to work, nor can we assume everyone’s well
+                    tested their use of the gem. (Some gems are huge and we will
+                    often only need one or two method from them.) Sorbet typing
+                    can’t save us here because some files lack types and
+                    behavior changes would go undetected most likely.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                So instead, do not use gems directly. Create (well-typed Sorbet)
+                wrappers around the gem in its own module or package, tests
+                those functions for the behavior you expect them to have, and
+                use those interfaces instead of the gem directly.
+              </p>
+              <p>
+                My team wraps all third-party code in well-typed interfaces,
+                allowing us to completely refactor and replace internals. For
+                example, when upgrading Apple push notifications for the entire
+                company, securing a template language, or moving to a new email
+                provider.
+              </p>
+              <h1 id="be-careful-with">
+                <a href="#be-careful-with"
+                  >Be careful with <code>Class#name</code></a
+                >
+              </h1>
+              <p>
+                In general, <code>class.name</code> is a foot-gun. Leaning on it
+                is surprising as people should feel comfortable renaming Ruby
+                classes without consequence. Using it can break logs, metrics,
+                code deployed across multiple services, etc which is why stable
+                IDs are an established pattern in most of my team's frameworks.
+              </p>
+              <p>
+                Stable IDs are the more durable ID for a piece of code or
+                concept, you can see this pattern in most Ruby DSL’s like in:
+              </p>
+              <pre><code class="language-rb"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyThing</span> &lt; <span class="hljs-title class_ inherited__">AbstractFrameworkThing</span>
+  config(
+    <span class="hljs-symbol">stable_id:</span> <span class="hljs-symbol">:my_thing</span>,
+    <span class="hljs-comment"># ... other config</span>
+  )
+<span class="hljs-keyword">end</span>
+<span class="hljs-comment"># or</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">MyStuff</span> &lt; <span class="hljs-title class_ inherited__">AbstractFrameworkThing</span>
+  stable_id <span class="hljs-symbol">:my_thing</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>With these, the Ruby class name can change freely.</p>
+              <h1 id="avoid-helper-modules">
+                <a href="#avoid-helper-modules">Avoid “Helper” modules</a>
+              </h1>
+              <p>
+                &quot;Helper&quot; modules tend to become junk drawers of
+                unrelated code so I tend to only use helper modules in tests as
+                a last resort and if the helper is already used across multiple
+                test files.
+              </p>
+              <p>
+                If a set of methods can be grouped together, they should have a
+                more descriptive name. Often times the best grouping is around a
+                “policy” or “concern” module.
+              </p>
+              <h1 id="avoid-constants-modules">
+                <a href="#avoid-constants-modules">Avoid “Constants” modules</a>
+              </h1>
+              <p>
+                Similar to helper modules, instead of defining unrelated
+                constants in one big file keep constants relevant to a piece of
+                functionality alongside those files (preferably in the same
+                module).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

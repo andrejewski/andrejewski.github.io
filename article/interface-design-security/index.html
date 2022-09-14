@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Interface Design: Security</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Thinking and examples of security first API design."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link
+      rel="canonical"
+      href="http://localhost:8620/_reserved/not-found.html"
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Interface Design: Security" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta
+      property="og:url"
+      content="http://localhost:8620/_reserved/not-found.html"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .eBtA-dh {
+        margin: 3rem 0;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'eBtA-dh,';
+      } /*!sc*/
+      .iUGkOU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'iUGkOU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .gIJIXF {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #ffc87b;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .gIJIXF:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .gIJIXF {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'gIJIXF,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .hHECxp {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #ffe8c7;
+        color: #d19649;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .hHECxp .sc-iBkjds {
+        color: #402604;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .hHECxp ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .hHECxp a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .hHECxp a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #efd5b4;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'hHECxp,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #fef2e7;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-eIVHya1'] {
+        content: 'sc-global-eIVHya1,';
+      } /*!sc*/
+      .fyabtt {
+        padding: 1rem 0px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .fyabtt h1 {
+        font-size: 1.5rem;
+        margin: 0;
+      } /*!sc*/
+      .fyabtt h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .fyabtt h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .fyabtt ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: right;
+      } /*!sc*/
+      .fyabtt ul li {
+        display: inline-block;
+        padding: 0px 0.5rem;
+        text-align: right;
+      } /*!sc*/
+      data-styled.g13[id='sc-kDDrLX'] {
+        content: 'fyabtt,';
+      } /*!sc*/
+      .dXbzen h1 > a,
+      .dXbzen h2 > a,
+      .dXbzen h3 > a,
+      .dXbzen h4 > a,
+      .dXbzen h5 > a,
+      .dXbzen h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .dXbzen h1 > a:hover,
+      .dXbzen h2 > a:hover,
+      .dXbzen h3 > a:hover,
+      .dXbzen h4 > a:hover,
+      .dXbzen h5 > a:hover,
+      .dXbzen h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .dXbzen p,
+      .dXbzen li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen p,
+        .dXbzen li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .dXbzen a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .dXbzen ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .dXbzen code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .dXbzen h1 code,
+      .dXbzen h2 code,
+      .dXbzen h3 code,
+      .dXbzen h4 code,
+      .dXbzen h5 code,
+      .dXbzen h6 code,
+      .dXbzen li code,
+      .dXbzen p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #ffeeda;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen h1 code,
+        .dXbzen h2 code,
+        .dXbzen h3 code,
+        .dXbzen h4 code,
+        .dXbzen h5 code,
+        .dXbzen h6 code,
+        .dXbzen li code,
+        .dXbzen p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .dXbzen pre {
+        background-color: #ffeed9;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .dXbzen img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .dXbzen video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .dXbzen figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .dXbzen figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .dXbzen figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .dXbzen .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .dXbzen .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'dXbzen,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-kDDrLX fyabtt">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi eBtA-dh">
+            <p class="sc-iBkjds xFOWy">
+              <a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup gIJIXF"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf iUGkOU">
+              <a href="#" class="sc-papXJ iHVwPn"
+                ><span>Interface Design: Security</span></a
+              >
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              Thinking and examples of security first API design.
+            </p>
+          </div>
+          <div class="sc-jqUVSM hHECxp">
+            <p class="sc-iBkjds xFOWy">Table of contents</p>
+            <div>
+              <ul>
+                <li><a href="#progressions">Progressions</a></li>
+                <li>
+                  <a href="#example-email-headers">Example: email headers</a>
+                </li>
+                <li>
+                  <a href="#example-email-addresses"
+                    >Example: email addresses</a
+                  >
+                  <ul>
+                    <li><a href="#richer-addressing">Richer addressing</a></li>
+                    <li>
+                      <a href="#limited-addressing">Limited addressing</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-crXcEl dXbzen">
+              <p>
+                Stripe's number one priority is always security. So over the
+                years I've gone from not worrying much at all, to always
+                thinking security first. This has brought a lot of nuance to how
+                I design APIs and think it's worth sharing and reflecting on
+                exactly how that looks.
+              </p>
+              <h1 id="progressions">
+                <a href="#progressions">Progressions</a>
+              </h1>
+              <p>
+                To effectively think security first, you have to start with
+                <a href="https://en.wikipedia.org/wiki/Threat_model"
+                  >threat modeling</a
+                >, figuring out what you actually care to secure today and what
+                you will want to secure next.
+              </p>
+              <p>
+                Zero security is eventually bad, too much security and nothing
+                ever happens. Great security is about carving out the right
+                postures for the business, accepting risk where appropriate, and
+                over time drawing stronger lines on what is table stakes for
+                keeping the business operating and growing safely.
+              </p>
+              <p>
+                Security-first interfaces fit within this framing. You will have
+                many possible interfaces and the hardest choice on which to
+                choose will be easiest when informed by a threat model.
+              </p>
+              <p>
+                The only counterweight to designing strictly by your threat
+                model is designing for change. Sometimes even if the posture is
+                not strong enough, it will be worth it to over-optimize just to
+                save time later. Because it is a progression: if everything goes
+                well, security will get stronger over time. So as a provider of
+                an interface, designing for change and a bit into the future to
+                save your future self time is totally cool. These incremental
+                over-wins really do get balls rolling and become self-fulfilling
+                prophecies in the right company.
+              </p>
+              <h1 id="example:-email-headers">
+                <a href="#example:-email-headers">Example: email headers</a>
+              </h1>
+              <p>
+                Email headers are like HTTP headers: key-value pairs that are
+                included in each email. Some common headers include
+                <code>Subject</code>, <code>To</code>, and <code>From</code>.
+                When I joined Stripe, the API for specifying email headers was:
+              </p>
+              <pre><code class="language-rb">send_email(
+  from <span class="hljs-symbol">String:</span>,
+  <span class="hljs-symbol">to:</span> Array[String],
+  <span class="hljs-symbol">subject:</span> String,
+  <span class="hljs-symbol">html_body:</span> String,
+  <span class="hljs-symbol">custom_headers:</span> Map[String, String]
+)
+</code></pre>
+              <p>
+                This is alright, it did do the job for many years. In terms of
+                being abusable, we were doing pretty good. For example, if our
+                interface were instead:
+              </p>
+              <pre><code class="language-rb">send_email(
+  <span class="hljs-symbol">message:</span> String
+)
+</code></pre>
+              <p>
+                And we put the onus on all callers to construct email headers
+                and compile the full message themselves, we could not prevent
+                content injection and escaping issues caused by malicious user
+                input. With the <code>Map[String, String]</code> interface we
+                can do that proper escaping of headers for our callers. Luckily,
+                most email building libraries are oriented around this style of
+                building up message bodies, so this interface wasn't actively
+                informed by a threat model.
+              </p>
+              <p>
+                Interestingly, you'll find weird ambiguity with the
+                <code>Map[String, String]</code> interface. For example, what
+                might render out when we do:
+              </p>
+              <pre><code class="language-rb">send_email(
+  ...,
+  <span class="hljs-symbol">subject:</span> <span class="hljs-string">&#x27;Hello&#x27;</span>,
+  <span class="hljs-symbol">custom_headers:</span> {
+    <span class="hljs-string">&#x27;subject&#x27;</span> =&gt; <span class="hljs-string">&#x27;foo&#x27;</span>,
+    <span class="hljs-string">&#x27;SUBJECT&#x27;</span> =&gt; <span class="hljs-string">&#x27;bar&#x27;</span>,
+    <span class="hljs-string">&#x27;Subject&#x27;</span> =&gt; <span class="hljs-string">&#x27;baz&#x27;</span>
+  }
+)
+</code></pre>
+              <p>
+                Headers are case insensitive so how are we going to resolve
+                this, what takes precedence? Surely the dedicated
+                <code>subject:</code> param should always be used, right? Like
+                minded engineers may disagree on the role
+                <code>custom_headers</code> should play.
+              </p>
+              <p>We can apply a threat model now:</p>
+              <ul>
+                <li>
+                  What do we care about?
+                  <ul>
+                    <li>
+                      <strong
+                        >All emails should not arrive completely broken to
+                        end-users.</strong
+                      >
+                      If we weren't applying proper escaping to email headers,
+                      we could not say this. This is important to us as we need
+                      to maintain trust with our users. They trust us with much
+                      more important things than email, so we have to secure and
+                      be perceived to be securing email reasonably as well.
+                    </li>
+                    <li>
+                      <strong
+                        >All emails should not serve a purpose beyond the
+                        company's intent.</strong
+                      >
+                      Within the company we trust each other to deliver an email
+                      but don't have that same trust in bad actors. Email
+                      headers can control presentation in ways we don't intend
+                      and can be abused by malicious users.
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Brainstorm: What are some example situations?
+                  <ul>
+                    <li>
+                      Malicious input breaks our escaping and emails render out
+                      broken.
+                    </li>
+                    <li>
+                      Malicious, but valid, custom headers do some weird thing
+                      for some email client.
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  How do we want to respond when that happens?
+                  <ul>
+                    <li>No response; make it impossible from the outset</li>
+                    <li>Find and disable the vulnerable email</li>
+                    <li>
+                      Find the vulnerability and make a code change to fix it
+                    </li>
+                    <li>Do nothing, it's not worth our time</li>
+                  </ul>
+                </li>
+              </ul>
+              <p>
+                Where we drew the line in this case is, &quot;Any email header
+                we send must be intended by an engineer.&quot; The misuse of any
+                value of an intended header we can mitigate by turning off an
+                email or making a code change, but given how varied email
+                clients are in interpreting a multitude of headers we can't know
+                all the headers are safe to pass along.
+              </p>
+              <p>
+                Cool! Now designing the interface is easy:
+                <code>Map[String, String]</code> is too powerful. An engineer
+                could be easily forgiven for passing an arbitrary map of random,
+                unintended headers if they were given that interface. Instead we
+                need a fixed set of known headers for engineers to use and add
+                to over time. This interface looks like this:
+              </p>
+              <pre><code class="language-rb">send_email(
+  ...,
+  <span class="hljs-symbol">custom_headers:</span> [
+    EmailHeader.in_reply_to(
+      <span class="hljs-symbol">message_id:</span> <span class="hljs-string">&#x27;&lt;foo…&gt;&#x27;</span>,
+    ),
+    EmailHeader.reply_to(
+      <span class="hljs-symbol">address:</span> ‘me<span class="hljs-variable">@example</span>.com’,
+    ),
+  ]
+)
+</code></pre>
+              <p>And will yield these headers in the final email:</p>
+              <pre><code>Reply-To: me@example.com
+In-Reply-To: &lt;foo…&gt;
+</code></pre>
+              <p>
+                Now if someone wants to use a new header, they need to add a new
+                header method to <code>EmailHeader</code>. At a glance we can go
+                into the code and see every custom email header we could
+                possibly be sending by looking at <code>EmailHeader</code>. If
+                you have a static type system, you can find each header's usages
+                in the code as well. We have our fixed set of email headers.
+              </p>
+              <p>
+                This interface also solves our case-insensitivity problem
+                because header names are no longer a part of the interface. We
+                do still struggle with ambiguity; what renders when we do:
+              </p>
+              <pre><code>custom_headers: [
+  EmailHeader.in_reply_to(message_id: '&lt;foo…&gt;'),
+  EmailHeader.in_reply_to(message_id: '&lt;bar…&gt;'),
+]
+</code></pre>
+              <p>
+                So that still needs to be worked through with a well-defined
+                behavior or runtime check if the type system isn't powerful
+                enough to describe unique sets.
+              </p>
+              <p>
+                The other cool thing about this interface is how bespoke we can
+                get in terms of specifying header names and values. An engineer
+                might design a single <code>EmailHeader</code> method that sets
+                multiple headers and takes well defined values. It can also be
+                well typed and tested in one place instead of having email
+                implementation details bleed all over as
+                <code>String</code> manipulation.
+              </p>
+              <p>
+                I think email headers are a particularly interesting example to
+                demonstrate progression:
+              </p>
+              <ul>
+                <li>
+                  They are conceptually pretty simple and have a bunch of
+                  concerns in the details.
+                </li>
+                <li>
+                  No interface is right or wrong unless you apply a threat
+                  model.
+                </li>
+                <li>
+                  Implementing <code>EmailHeader</code> over a simple
+                  <code>Map[String, String]</code> is a pretty low cost
+                  investment, but can have so many advantages if you want them.
+                </li>
+              </ul>
+              <h1 id="example:-email-addresses">
+                <a href="#example:-email-addresses">Example: email addresses</a>
+              </h1>
+              <p>
+                Wait, addresses are values in email headers, right? We just had
+                a whole section on those. This is true, but headers for email
+                addresses are special.
+              </p>
+              <p>
+                Custom headers at their worst can, through exploits in escaping
+                or overriding of headers, cause emails to send to someone else
+                by fudging the address headers up. But after preventing that,
+                they can really only break presentation.
+              </p>
+              <p>
+                Address headers need special attention because of authorization,
+                reputation, and data exfiltration. To threat model again:
+              </p>
+              <ul>
+                <li>
+                  <p>What do we care about?</p>
+                  <ul>
+                    <li>
+                      <p>
+                        <strong
+                          >Emails should only be sent to the intended
+                          individuals or trusted parties.</strong
+                        >
+                        We need to send the email to the correct audience.
+                        Tangibly, sending the email to the wrong place can get
+                        us marked as spam and make it harder to reach our users
+                        in the general case.
+                      </p>
+                    </li>
+                    <li>
+                      <p>
+                        <strong
+                          >We need to keep user data entrusted to us
+                          secure.</strong
+                        >
+                        Emails can contain user data so sending it to the wrong
+                        place or to someone who shouldn't see it is really bad.
+                        Once an email is sent, we cannot claw it back; the
+                        damage has been done.
+                      </p>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <p>Brainstorm: What are some example situations?</p>
+                  <ul>
+                    <li>User Bob gets an email intended for user Mary.</li>
+                    <li>
+                      Bob receives an email, but so does someone who shouldn't
+                      on CC or BCC.
+                    </li>
+                    <li>
+                      User data in the email copy, in attachments, or
+                      unauthenticated links is accessible to bad actors.
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <p>
+                This is really serious! It's important to call out that
+                sometimes the best interface is no interface. For example, if
+                someone wanted to send a confidential document as an email
+                attachment: heck no! We would instead send an email with a link
+                to authenticate and then download the document. We don't trust
+                email as a medium for all communications to users.
+              </p>
+              <p>
+                In terms of an actual interface however, we have designed to
+                make addressing safer.
+              </p>
+              <h2 id="richer-addressing">
+                <a href="#richer-addressing">Richer addressing</a>
+              </h2>
+              <p>
+                Easiest way to deal with addresses at the interface is to not
+                deal with addresses. Instead of:
+              </p>
+              <pre><code class="language-rb">send_email(
+  <span class="hljs-symbol">to:</span> Array[String],
+  <span class="hljs-symbol">cc:</span> Array[String],
+  <span class="hljs-symbol">bcc:</span> Array[String],
+  ...
+)
+</code></pre>
+              <p>
+                We can meet developers where they are and do the heavy lifting
+                for them:
+              </p>
+              <pre><code class="language-rb">send_user_email(
+  <span class="hljs-symbol">user:</span> User,
+  ...
+)
+</code></pre>
+              <p>
+                And figure out all the proper addressing under the interface.
+                This is really powerful in many ways. We've captured a much
+                higher level intent of &quot;send to this user&quot; as opposed
+                to &quot;send to this address.&quot;
+              </p>
+              <p>
+                We provide more than this interface so people can do their jobs:
+                we don't always have a user. So we generally have two APIs: the
+                low-level one to more closely match the wire protocol and the
+                one 99% of developers use that is tuned to business domain
+                concerns.
+              </p>
+              <p>
+                The richer we can specialize for the <code>User</code> scenario,
+                the more context we have to evolve how we communicate over time.
+                No one really cared to have to type
+                <code>send_email(to: [user.email])</code> over and over anyways.
+              </p>
+              <p>
+                A great benefit of having the richer interfaces is
+                observability. A user's email address can change over time but
+                their ID is unique, durable, and safe to log. Email addresses
+                are personally identifiable information (PII), which we don't
+                want to log all over. There's also familiarity: everyone is
+                already working with user IDs in their business logic.
+              </p>
+              <h2 id="limited-addressing">
+                <a href="#limited-addressing">Limited addressing</a>
+              </h2>
+              <p>
+                To avoid problems with users being overshared data they should
+                not see, we opted to scrutinize having multiple
+                <code>To</code> addresses, and whether we even needed
+                <code>CC</code> and <code>BCC</code> addresses at all in our
+                higher level interfaces. As it turned out for us, yeah they are
+                not really needed.
+              </p>
+              <p>
+                We do have use cases for CC addresses, but given how uncommon
+                they are we've been able to manage them behind a private
+                interface. Tied to using this interface is a well defined
+                criteria for when it is okay to use.
+              </p>
+              <p>
+                Limiting emails to &quot;one per recipient&quot; makes modeling
+                much easier and allows us to ensure each individual send is
+                getting the same authorization checks. It also helps answer some
+                product quality questions such as, &quot;If Bob wants his email
+                in Spanish and Mary in English, what do they get?&quot; Each
+                recipient gets their own email in the language they want it.
+              </p>
+              <p>
+                So that's addressing. It's another pretty cool example of
+                progression:
+              </p>
+              <ul>
+                <li>
+                  <p>
+                    Oftentimes platforms and infra teams can think their only
+                    job is to provide a library matching the wire protocol and
+                    they're done. In this case we were able to cut out a lot of
+                    that complexity by providing interfaces that better matched
+                    developer intent. But it happened gradually, we offered
+                    everything and then trimmed away what wasn't necessary by
+                    applying our threat model.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Sometimes the risk is too high and no interface is the very
+                    best interface. As much as we iterate on interfaces there is
+                    a limit to what we can encourage and prevent by having one
+                    at all. We used to support BCC, but now we don't at all.
+                  </p>
+                </li>
+              </ul>
+              <hr />
+              <p>
+                Ugh, there's so much more to talk about. But this is enough for
+                now. If you're interested in more API design, check out my other
+                article
+                <a href="/interface-design-developer-experience"
+                  >Interface Design: Developer Experience</a
+                >
+                and let me know if you'd like to read more on
+                <a href="https://twitter.com/compooter">Twitter</a> or
+                <a href="mailto:christopher.andrejewski@gmail.com"
+                  >shoot me an email</a
+                >
+                (with headers).
+              </p>
+              <p>
+                Go create a threat model and make an interface that satisfies it
+                (maybe better than needed)!
+              </p>
+              <p>Thanks for reading!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

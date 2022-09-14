@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Code comments</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Code comments should explain 'why' the code is written as it is. Otherwise, try to let the code document itself."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link
+      rel="canonical"
+      href="http://localhost:8620/_reserved/not-found.html"
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Code comments" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta
+      property="og:url"
+      content="http://localhost:8620/_reserved/not-found.html"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .eBtA-dh {
+        margin: 3rem 0;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'eBtA-dh,';
+      } /*!sc*/
+      .iUGkOU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'iUGkOU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .gIJIXF {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #ffc87b;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .gIJIXF:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .gIJIXF {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'gIJIXF,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .hHECxp {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #ffe8c7;
+        color: #d19649;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .hHECxp .sc-iBkjds {
+        color: #402604;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .hHECxp ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .hHECxp a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .hHECxp a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #efd5b4;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'hHECxp,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #fef2e7;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-eIVHya1'] {
+        content: 'sc-global-eIVHya1,';
+      } /*!sc*/
+      .fyabtt {
+        padding: 1rem 0px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .fyabtt h1 {
+        font-size: 1.5rem;
+        margin: 0;
+      } /*!sc*/
+      .fyabtt h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .fyabtt h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .fyabtt ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: right;
+      } /*!sc*/
+      .fyabtt ul li {
+        display: inline-block;
+        padding: 0px 0.5rem;
+        text-align: right;
+      } /*!sc*/
+      data-styled.g13[id='sc-kDDrLX'] {
+        content: 'fyabtt,';
+      } /*!sc*/
+      .dXbzen h1 > a,
+      .dXbzen h2 > a,
+      .dXbzen h3 > a,
+      .dXbzen h4 > a,
+      .dXbzen h5 > a,
+      .dXbzen h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .dXbzen h1 > a:hover,
+      .dXbzen h2 > a:hover,
+      .dXbzen h3 > a:hover,
+      .dXbzen h4 > a:hover,
+      .dXbzen h5 > a:hover,
+      .dXbzen h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .dXbzen p,
+      .dXbzen li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen p,
+        .dXbzen li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .dXbzen a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .dXbzen ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .dXbzen code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .dXbzen h1 code,
+      .dXbzen h2 code,
+      .dXbzen h3 code,
+      .dXbzen h4 code,
+      .dXbzen h5 code,
+      .dXbzen h6 code,
+      .dXbzen li code,
+      .dXbzen p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #ffeeda;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen h1 code,
+        .dXbzen h2 code,
+        .dXbzen h3 code,
+        .dXbzen h4 code,
+        .dXbzen h5 code,
+        .dXbzen h6 code,
+        .dXbzen li code,
+        .dXbzen p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .dXbzen pre {
+        background-color: #ffeed9;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .dXbzen img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .dXbzen video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .dXbzen figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .dXbzen figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .dXbzen figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .dXbzen .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .dXbzen .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'dXbzen,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-kDDrLX fyabtt">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi eBtA-dh">
+            <p class="sc-iBkjds xFOWy">
+              <a href="/category/ruby/index.html" class="sc-ftvSup gIJIXF"
+                >Ruby programming</a
+              ><a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup gIJIXF"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf iUGkOU">
+              <a href="#" class="sc-papXJ iHVwPn"><span>Code comments</span></a>
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              Code comments should explain &#x27;why&#x27; the code is written
+              as it is. Otherwise, try to let the code document itself.
+            </p>
+          </div>
+          <div class="sc-jqUVSM hHECxp">
+            <p class="sc-iBkjds xFOWy">Table of contents</p>
+            <div>
+              <ul>
+                <li>
+                  <a href="#leverage-the-type-system-instead"
+                    >Leverage the type system instead</a
+                  >
+                </li>
+                <li>
+                  <a href="#comments-explain-why">Comments explain why</a>
+                </li>
+                <li><a href="#code-generation">Code generation</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-crXcEl dXbzen">
+              <h1 id="leverage-the-type-system-instead">
+                <a href="#leverage-the-type-system-instead"
+                  >Leverage the type system instead</a
+                >
+              </h1>
+              <p>
+                I use comments sparingly. A lot of comments generally means
+                there’s a lot of un-modeled complexity lurking in the code.
+                Simple example:
+              </p>
+              <pre><code class="language-rb">sig {params(<span class="hljs-symbol">retry_count:</span> Integer).returns(Payload)}
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">make_some_request</span>(<span class="hljs-params"><span class="hljs-symbol">retry_count:</span></span>); ...; <span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                We are under-specified here: what happens when retry_count is
+                negative, or even zero?
+              </p>
+              <p>To combat this, lazily, with a code comment:</p>
+              <pre><code class="language-rb"><span class="hljs-comment"># `retry_count` must be a positive integer</span>
+</code></pre>
+              <p>
+                This code comment explains a constraint but not what happens
+                when you violate it. So someone may say this and add the
+                corresponding special handling:
+              </p>
+              <pre><code class="language-rb"><span class="hljs-comment"># `retry_count` defaults to zero if negative</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">make_some_request</span>(<span class="hljs-params"><span class="hljs-symbol">retry_count:</span></span>)
+  retry_count = retry_count &gt;= <span class="hljs-number">0</span> ? retry_count : <span class="hljs-number">0</span>
+  <span class="hljs-comment"># ...</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                But we can do better and avoid most code comments by leveraging
+                types instead:
+              </p>
+              <pre><code class="language-rb"><span class="hljs-keyword">class</span> <span class="hljs-title class_">PositiveInteger</span>
+  sig {returns(Integer)}
+  <span class="hljs-keyword">attr_reader</span> <span class="hljs-symbol">:value</span>
+
+  <span class="hljs-keyword">def</span> <span class="hljs-title function_">initializer</span>(<span class="hljs-params">int</span>)
+    <span class="hljs-keyword">if</span> int &lt; <span class="hljs-number">1</span>
+      raise <span class="hljs-comment"># <span class="hljs-doctag">NOTE:</span> exceptions like this are bad, this is just for brevity</span>
+    <span class="hljs-keyword">end</span>
+    <span class="hljs-variable">@value</span> = int
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+sig {params(<span class="hljs-symbol">retry_count:</span> T.nilable(PositiveInteger).returns(Payload)}
+</code></pre>
+              <p>
+                Leveraging the type system is better than comments because we:
+              </p>
+              <ul>
+                <li>can actually check invariants,</li>
+                <li>can communicate them inline,</li>
+                <li>and force them to be considered by our callers</li>
+                <li>
+                  plus, types don’t rot (especially run-time checked types)
+                </li>
+                <li>
+                  plus plus, in this example, no need to defensively guard
+                  against invalid inputs
+                </li>
+              </ul>
+              <p>
+                Most places where you are specifying what you are best served by
+                using clearer variable names and leveraging smaller, more
+                expressive types to encode invariants.
+              </p>
+              <h1 id="comments-explain-why">
+                <a href="#comments-explain-why">Comments explain why</a>
+              </h1>
+              <p>
+                So when do I actually comment? To explain <em>why</em>. Why are
+                we doing this instead of that, why do we have to call this
+                method and if it fails call it again with different arguments,
+                why is the code structured this way, and why did I get this test
+                failure (in assertion messages)?
+              </p>
+              <p>
+                Code comments don’t enforce anything, they provide context and
+                that context always needs to be taken with a grain of salt. A
+                good code comment documenting the why helps the reader today
+                figure out what they might be able to do differently if external
+                constraints have changed.
+              </p>
+              <p>
+                For example, Stripe's email framework restricts reply-to
+                addresses in emails. This is not a technical limitation, but one
+                in service of security and product quality. We don't want
+                replies from users to get black-holed or end up somewhere that
+                is not a proper support channel. Someone can read that code
+                comment, understand the criteria / current posture, and have
+                clear next steps on what to do.
+              </p>
+              <h1 id="code-generation">
+                <a href="#code-generation">Code generation</a>
+              </h1>
+              <p>
+                One place you'll see tons of useless comments is in generated
+                boilerplate. It was reasonable when the code was first generated
+                to include a bunch of comments explaining how to use and modify
+                the generated code, but after that these comments are very
+                noisy. It is hard to know what comments were the boilerplate and
+                which were explicitly left by the author.
+              </p>
+              <p>
+                To combat this in Stripe's email framework, I included a
+                wholesome test to strip boiler-plate comments written by the
+                code generator most engineers use to start writing an email. We
+                used a special Ruby comment syntax:
+              </p>
+              <pre><code class="language-rb"><span class="hljs-comment">#### This comment is boiler-plate / generated and should be removed</span>
+
+<span class="hljs-comment"># This is a comment that should be preserved.</span>
+</code></pre>
+              <p>The code-mod to strip the comments is very simple:</p>
+              <pre><code class="language-rb"><span class="hljs-keyword">def</span> <span class="hljs-title function_">strip_generated_comments</span>(<span class="hljs-params">code</span>)
+  code
+    .lines
+    .reject {|<span class="hljs-params">line</span>| line.strip.start_with?(<span class="hljs-string">&#x27;####&#x27;</span>)}
+    .join
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                Boiler-plate comments from code generators should be removed,
+                they temporarily explain the 'what' for convenience but once
+                you’d seen an email or two in the framework, you’ve seen them
+                ~all.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

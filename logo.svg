@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="480px" height="480px" viewBox="0 0 480 480" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>avatar</title>
+    <desc>Created with Sketch.</desc>
+    <g id="avatar" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#0088FF" x="0" y="0" width="480" height="480"></rect>
+        <g id="see-aye-white" transform="translate(80.000000, 25.000000)" fill="#FFFFFF">
+            <path d="M319.527064,49.9427243 L279.825089,91.6122617 C256.398626,69.7375478 224.312712,56.25 188.920494,56.25 C117.188182,56.25 59.0376544,111.654762 59.0376544,180 C59.0376544,248.345238 117.188182,303.75 188.920494,303.75 C224.312712,303.75 256.398626,290.262452 279.825089,268.387738 L319.527064,310.057276 C285.600174,340.994452 239.58982,360 188.920494,360 C84.5825862,360 0,279.411255 0,180 C0,80.588745 84.5825862,0 188.920494,0 C239.58982,0 285.600174,19.0055481 319.527064,49.9427243 Z" id="Combined-Shape"></path>
+            <path d="M260,430 L160,230 L60,430 L0,430 L160,110 L320,430 L260,430 Z" id="Combined-Shape"></path>
+        </g>
+    </g>
+</svg>

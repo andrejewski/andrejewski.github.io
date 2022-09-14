@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Locality</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Locality is an important measure of code quality, covering the where and when."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link
+      rel="canonical"
+      href="http://localhost:8620/_reserved/not-found.html"
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Locality" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta
+      property="og:url"
+      content="http://localhost:8620/_reserved/not-found.html"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .eBtA-dh {
+        margin: 3rem 0;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'eBtA-dh,';
+      } /*!sc*/
+      .iUGkOU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'iUGkOU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .gIJIXF {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #ffc87b;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .gIJIXF:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .gIJIXF {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'gIJIXF,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .hHECxp {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #ffe8c7;
+        color: #d19649;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .hHECxp .sc-iBkjds {
+        color: #402604;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .hHECxp ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .hHECxp a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .hHECxp a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #efd5b4;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'hHECxp,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #fef2e7;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-eIVHya1'] {
+        content: 'sc-global-eIVHya1,';
+      } /*!sc*/
+      .fyabtt {
+        padding: 1rem 0px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .fyabtt h1 {
+        font-size: 1.5rem;
+        margin: 0;
+      } /*!sc*/
+      .fyabtt h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .fyabtt h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .fyabtt ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: right;
+      } /*!sc*/
+      .fyabtt ul li {
+        display: inline-block;
+        padding: 0px 0.5rem;
+        text-align: right;
+      } /*!sc*/
+      data-styled.g13[id='sc-kDDrLX'] {
+        content: 'fyabtt,';
+      } /*!sc*/
+      .dXbzen h1 > a,
+      .dXbzen h2 > a,
+      .dXbzen h3 > a,
+      .dXbzen h4 > a,
+      .dXbzen h5 > a,
+      .dXbzen h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .dXbzen h1 > a:hover,
+      .dXbzen h2 > a:hover,
+      .dXbzen h3 > a:hover,
+      .dXbzen h4 > a:hover,
+      .dXbzen h5 > a:hover,
+      .dXbzen h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .dXbzen p,
+      .dXbzen li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen p,
+        .dXbzen li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .dXbzen a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .dXbzen ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .dXbzen code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .dXbzen h1 code,
+      .dXbzen h2 code,
+      .dXbzen h3 code,
+      .dXbzen h4 code,
+      .dXbzen h5 code,
+      .dXbzen h6 code,
+      .dXbzen li code,
+      .dXbzen p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #ffeeda;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen h1 code,
+        .dXbzen h2 code,
+        .dXbzen h3 code,
+        .dXbzen h4 code,
+        .dXbzen h5 code,
+        .dXbzen h6 code,
+        .dXbzen li code,
+        .dXbzen p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .dXbzen pre {
+        background-color: #ffeed9;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .dXbzen img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .dXbzen video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .dXbzen figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .dXbzen figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .dXbzen figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .dXbzen .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .dXbzen .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'dXbzen,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-kDDrLX fyabtt">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi eBtA-dh">
+            <p class="sc-iBkjds xFOWy">
+              <a
+                href="/category/code-quality/index.html"
+                class="sc-ftvSup gIJIXF"
+                >Code quality principles</a
+              ><a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup gIJIXF"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf iUGkOU">
+              <a href="#" class="sc-papXJ iHVwPn"><span>Locality</span></a>
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              Locality is an important measure of code quality, covering the
+              where and when.
+            </p>
+          </div>
+          <div class="sc-jqUVSM hHECxp">
+            <p class="sc-iBkjds xFOWy">Table of contents</p>
+            <div>
+              <ul>
+                <li><a href="#placement">Placement</a></li>
+                <li><a href="#immediacy">Immediacy</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-crXcEl dXbzen">
+              <p>
+                Locality is a measure of where code is organized and how it is
+                interacted with. It's an important dimension to writing good
+                code as it's the largest factor in development velocity.
+              </p>
+              <p>
+                In general, you want good locality between relevant pieces of
+                code. It's like writing a good story: you explain things in a
+                certain order and a series of events are located in the same
+                chapter. However, in a sufficiently large code base, not
+                everything can be local and you would not want it to be anyway:
+                too many things are hard to reason about. The story would be too
+                long and you don't have time to read it all.
+              </p>
+              <h2 id="placement"><a href="#placement">Placement</a></h2>
+              <p>
+                Locality at a more &quot;physical&quot; level is how things are
+                grouped:
+              </p>
+              <ul>
+                <li>
+                  Similar methods are grouped together within a section of a
+                  file
+                </li>
+                <li>Similar sections are grouped into a file</li>
+                <li>Similar files are grouped in a directory</li>
+                <li>
+                  Similar directories are grouped into a package, repo, and so
+                  on
+                </li>
+              </ul>
+              <p>
+                The elephant in the room is “what does similar mean?” There are
+                two trains of thought:
+              </p>
+              <ul>
+                <li>Group by type of thing</li>
+                <li>Group by feature or concern</li>
+              </ul>
+              <p>
+                Supposing we have a simple app with users logging in and
+                checking their bank balance, if we were to group by type of
+                thing we'd have:
+              </p>
+              <pre><code>my-app/
+  models/
+    user
+    user_session
+    bank_account
+    balance_entries
+  views/
+    login
+    logout
+    balance_page
+  servers/
+    primary
+</code></pre>
+              <p>And this same structure grouped by feature we'd have:</p>
+              <pre><code>my-app/
+  authentication/
+    user
+    user_session
+    login
+    logout
+  banking
+    bank_account
+    balance_entries
+    balance_page
+  servers/
+    primary
+</code></pre>
+              <p>
+                In this feature (or “concern”) case, you'll notice that
+                <code>servers</code> remain the same as presumably the server is
+                hosting both the authentication and the banking features. It
+                does not distinctly belong in one or the other. In each style
+                there will be things that don't all fit into neat boxes.
+              </p>
+              <p>But let's compare these two approaches:</p>
+              <ul>
+                <li>
+                  <p>
+                    Grouping by type of thing, it's immediately obvious how many
+                    things of each type there are. For example, we can plainly
+                    see there are 4 models. However, with all models placed in
+                    the same folder, it is hard to conceptually drive a wedge
+                    between how models are used and how they ought to interact.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Grouping by feature, it's immediately clear that
+                    <code>user_session</code> is for authentication and
+                    <code>balance_entry</code> is for banking. However, what is
+                    a model and what is a view we cannot be certain.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                When we consider change management, the &quot;type of
+                thing&quot; approach is generally more optimal for the
+                &quot;type of thing&quot; team to work on: everything they need
+                to touch regarding the big picture of models is in one place.
+                It's easier to make sweeping changes to all models and oversee
+                their usages. The feature approach is more optimal for feature
+                developers as the elements that compose into a useful feature
+                are in one place and can be iterated on is lockstep. Ideally if
+                an entire feature is made obsolete, you can simply delete the
+                feature's folder and move on.
+              </p>
+              <p>
+                There's an inherent struggle here on which locality scheme is
+                optimal. In my experience which style is adopted in a given
+                situation is oriented around the organization of people working
+                on the code. An infrastructure team will naturally bias towards
+                the &quot;type of thing&quot; they are responsible for: this
+                code structure is neat and orderly for them. A product team will
+                group by feature as that's how they iterate: building feature
+                after feature, some succeed and some fail. They are primarily
+                responsible for producing value, not organizing things such that
+                they can steward a single feature long term or maintain it
+                indefinitely.
+              </p>
+              <p>
+                I recommend a balanced approach here where infrastructure teams
+                and product teams are catered to. The reasoning:
+              </p>
+              <ul>
+                <li>
+                  <p>
+                    <strong>Product teams are nomadic.</strong> Once a feature
+                    is built, they move on. This is optimal: innovation comes
+                    from chasing, taking risks, and failing. With this mobility
+                    and churn, knowledge transfer breaks down more readily:
+                    people come and go and don't understand the things that have
+                    been built. As such you want to allow product teams the
+                    liberty to isolate features and draw proper boundaries.
+                    Those isolated features that do succeed tend to be easier
+                    for infrastructure teams to adopt and champion.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <strong>Infrastructure teams grind.</strong> All those
+                    successful features become entrenched and hard to change.
+                    Strewn throughout a codebase with no way to grok the big
+                    picture and make cross-feature changes to these common types
+                    of things leaves infrastructure teams in a tough spot. They
+                    may not be able to dig themselves out of a hole and in the
+                    meantime product teams working in isolation in aggregate
+                    exacerbate the problems. In order for infrastructure teams
+                    to keep pace with product teams, they need to be trailing
+                    but not too far behind.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <strong>Culture and leadership are major factors.</strong>
+                    Leaders who value features and won't see the value in
+                    infrastructure see developer velocity grind to halts.
+                    Leaders who allow the infrastructure to always be tip-top
+                    never see features. Interestingly, in these environments,
+                    the best engineers are often running the unspoken
+                    counter-culture: incremental releases of features and
+                    continual, strategic investment in velocity. This is the
+                    balanced approach.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                A balanced approach to the above, in which you can enable both
+                styles to coexist, looks like:
+              </p>
+              <pre><code>my-app/
+  authentication/
+    models/
+      user
+      user_session
+    views/
+      login
+      logout
+  banking
+    models/
+      bank_account
+      balance_entries
+    views/
+      balance_page
+  servers/
+    primary
+</code></pre>
+              <p>
+                We can build tools to observe code structured in this format
+                using both product and infrastructure lenses. We treat the
+                <code>authentication</code> and <code>banking</code> directories
+                as features (more commonly called modules or packages), modeling
+                them as a &quot;type of thing.&quot; We build tooling to support
+                introspecting these features in aggregate, e.g. &quot;Give me a
+                list of all the features.&quot;
+              </p>
+              <p>
+                This serves as a starting point to drive a consistent structure
+                within features. For example, enforce that all models must live
+                in the <code>${feature}/models</code> directory. Now we can get
+                all of the models by querying for all models within each
+                feature. In this case, product teams write against a prescribed
+                pattern but otherwise code how they want to model and work out a
+                problem. And infrastructure teams can still understand the big
+                picture and make sweeping changes across models as they need.
+              </p>
+              <p>
+                At a macro-level code locality is an approximation of the
+                organization of people which maintain the code. Expect the
+                optimal locality to change over a feature's lifetime.
+              </p>
+              <h2 id="immediacy"><a href="#immediacy">Immediacy</a></h2>
+              <p>Code locality is an optimization problem of:</p>
+              <ol>
+                <li>Make code easier to find.</li>
+                <li>
+                  Make code easier to read. (If you can't find it, you can't
+                  read it.)
+                </li>
+                <li>
+                  Make code easier to change. (If you can't read it, good luck
+                  changing it.)
+                </li>
+              </ol>
+              <p>
+                Logical and consistent grouping, in addition to search tools,
+                make finding code much easier than without. This is the
+                fundamental prerequisite to any development not starting from
+                scratch. That grouping aids in reading: it's the difference
+                between reading a chaotic novel and a beloved short story. And
+                finally, accomplishing a change in a single grouping is much
+                easier than making a single change in dozens of disparate
+                places.
+              </p>
+              <p>
+                But great code locality is not merely about the right place. It
+                is also about the right time. Discovery, readability, and
+                iteration can be aided by a spectrum of tools and engineers
+                ought to be diligent and mindful of taking advantage of them.
+              </p>
+              <p>Here's a list of assistive tools sorted from best to worse:</p>
+              <ul>
+                <li>Auto-complete</li>
+                <li>Type-checking</li>
+                <li>Tests</li>
+                <li>Code comments</li>
+                <li>Documentation</li>
+                <li>Human assistance</li>
+              </ul>
+              <p>
+                The &quot;right time&quot; with regard to code locality is
+                almost always as soon as possible. Auto-complete helps you type,
+                type-checking helps you as you type (in most interactive
+                development environments (IDEs)), tests help you as you save
+                changes locally (if they are fast enough (so make them fast)).
+                Code comments, documentation, and other humans help provide
+                context not encoded (and perhaps outdated); each being
+                progressively slower to find/use.
+              </p>
+              <p>
+                One instance in which timeliness of code locality should not be
+                ASAP is when it results in an intractable proliferation of
+                options. So called &quot;over-choice&quot; is a burden and
+                distraction as it presents the developer new problems to solve,
+                not solutions to their problems.
+              </p>
+              <p>
+                Another instance in which ASAP timeliness is not optimal is when
+                it creates poor code quality. A common example of this is the
+                abuse of code-generation tools. Often engineers struggle to
+                properly encode a comprehensive and minimal interface and resort
+                to generating massive amounts of boilerplate code. This is a
+                form of auto-complete which can be actively harmful, littering a
+                code base with inconsistency and noise that can be difficult to
+                claw back. Helping fellow engineers write bad code faster is not
+                worth doing. More timely and easy to use tools must create
+                positive feedback loops.
+              </p>
+              <p>
+                Leveraging code locality on this dimension is a potential boon
+                for every engineer:
+              </p>
+              <ul>
+                <li>
+                  <p>
+                    For product engineers, a more precise modeling and shorter
+                    feedback loops lead to faster development and fewer bugs.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    For infrastructure engineers, leveraging these tools makes
+                    the features they support more self-service; freeing them up
+                    to support product teams in more domains.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                However, the rub is leveraging these assistive tools generally
+                takes more of an engineer's immediate time. You would not want
+                to build a collection of auto-complete snippets for something
+                that turns out to never be used. You must be judicious in
+                deciding at what rung you ought to help yourself and fellow
+                developers compared to delivering the features themselves.
+              </p>
+              <p>
+                This is yet again a place where I recommend the balanced
+                approach: incremental releases of features and continual,
+                strategic investment in velocity.
+              </p>
+              <p>
+                Infrastructure teams do well to allow product teams to try a
+                bunch of things, see what sticks, and then encode and elevate
+                the victors. Product teams do well to explicitly model and
+                encode the domain they are working in such that they succeed in
+                building features. This is why we see strong engineering
+                cultures enforce bare minimums, for example, that all code must
+                have tests or that all code must have type annotations.
+              </p>
+              <hr />
+              <p>
+                Locality is a balancing act in two aspects: placement and
+                timeliness.
+              </p>
+              <p>
+                In regards to placement, the correct approach is a trade off of
+                who to cater to, e.g. who is the audience. Above we juxtaposed
+                infrastructure and product teams, but we can have many more
+                audiences than that: non-technical people (e.g. needing to
+                introspect/audit the system) and even computers and the
+                technical limitations they present us (e.g. constraints of
+                hardware and distributed systems).
+              </p>
+              <p>
+                For timeliness, we weigh investing in velocity versus features.
+                We consider the tools at our disposal to help us write code
+                faster and better.
+              </p>
+              <p>
+                In each dimension, moderation and incremental, continual
+                investment is the best path forward between possible extremes.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

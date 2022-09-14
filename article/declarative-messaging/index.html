@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Declarative messaging</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="A framework and pattern of designing communication systems."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link
+      rel="canonical"
+      href="http://localhost:8620/_reserved/not-found.html"
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Declarative messaging" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta
+      property="og:url"
+      content="http://localhost:8620/_reserved/not-found.html"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .eBtA-dh {
+        margin: 3rem 0;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'eBtA-dh,';
+      } /*!sc*/
+      .iUGkOU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'iUGkOU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .gIJIXF {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #ffc87b;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .gIJIXF:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .gIJIXF {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'gIJIXF,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .hHECxp {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #ffe8c7;
+        color: #d19649;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .hHECxp .sc-iBkjds {
+        color: #402604;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .hHECxp ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .hHECxp a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .hHECxp a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #efd5b4;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'hHECxp,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #fef2e7;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-eIVHya1'] {
+        content: 'sc-global-eIVHya1,';
+      } /*!sc*/
+      .fyabtt {
+        padding: 1rem 0px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .fyabtt h1 {
+        font-size: 1.5rem;
+        margin: 0;
+      } /*!sc*/
+      .fyabtt h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .fyabtt h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .fyabtt ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: right;
+      } /*!sc*/
+      .fyabtt ul li {
+        display: inline-block;
+        padding: 0px 0.5rem;
+        text-align: right;
+      } /*!sc*/
+      data-styled.g13[id='sc-kDDrLX'] {
+        content: 'fyabtt,';
+      } /*!sc*/
+      .dXbzen h1 > a,
+      .dXbzen h2 > a,
+      .dXbzen h3 > a,
+      .dXbzen h4 > a,
+      .dXbzen h5 > a,
+      .dXbzen h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .dXbzen h1 > a:hover,
+      .dXbzen h2 > a:hover,
+      .dXbzen h3 > a:hover,
+      .dXbzen h4 > a:hover,
+      .dXbzen h5 > a:hover,
+      .dXbzen h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .dXbzen p,
+      .dXbzen li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen p,
+        .dXbzen li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .dXbzen a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .dXbzen ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .dXbzen code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .dXbzen h1 code,
+      .dXbzen h2 code,
+      .dXbzen h3 code,
+      .dXbzen h4 code,
+      .dXbzen h5 code,
+      .dXbzen h6 code,
+      .dXbzen li code,
+      .dXbzen p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #ffeeda;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen h1 code,
+        .dXbzen h2 code,
+        .dXbzen h3 code,
+        .dXbzen h4 code,
+        .dXbzen h5 code,
+        .dXbzen h6 code,
+        .dXbzen li code,
+        .dXbzen p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .dXbzen pre {
+        background-color: #ffeed9;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .dXbzen img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .dXbzen video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .dXbzen figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .dXbzen figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .dXbzen figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .dXbzen .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .dXbzen .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'dXbzen,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-kDDrLX fyabtt">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi eBtA-dh">
+            <p class="sc-iBkjds xFOWy">
+              <a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup gIJIXF"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf iUGkOU">
+              <a href="#" class="sc-papXJ iHVwPn"
+                ><span>Declarative messaging</span></a
+              >
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              A framework and pattern of designing communication systems.
+            </p>
+          </div>
+          <div class="sc-jqUVSM hHECxp">
+            <p class="sc-iBkjds xFOWy">Table of contents</p>
+            <div>
+              <ul>
+                <li><a href="#state-of-the-art">State of the art</a></li>
+                <li><a href="#react-for-messaging">React for messaging</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-crXcEl dXbzen">
+              <p>
+                In 2019, Stripe needed to send some new emails. So I was there
+                :)
+              </p>
+              <p>
+                A lot of what I find interesting about working at Stripe is our
+                focus on users and how we engage with them. To people not on
+                Stripe, we want to be seen as moving quickly, innovating, and
+                building and maintaining trustworthy, reliable systems. To
+                people on Stripe, we want that and to be seen as
+                <em>solving away</em> major problems in running a business.
+              </p>
+              <p>
+                &quot;Redesigning a plane while it is in flight&quot; is the
+                Stripe day to day. Laws and regulations change, payment methods
+                die and are born again, and tax law is tax law. The value prop
+                of Stripe is not needing to know this, as a user.
+              </p>
+              <p>
+                What this means in regard to communicating to users, is that
+                reaching out and making them do anything is not great. And so we
+                don't send a lot of emails and it is no one's goal to send a lot
+                of emails. I'm a fan and strong advocate of not wasting people's
+                time, and that reflects in our messaging.
+              </p>
+              <p>
+                So, anyway, we did need to send some (okay, a lot of) emails.
+                Better make it good, then!
+              </p>
+              <h2 id="state-of-the-art">
+                <a href="#state-of-the-art">State of the art</a>
+              </h2>
+              <p>
+                We'd sent lots of emails prior to 2019, so there's tons of
+                history. What we were looking to build next was a multi-step
+                email campaign, synced with messaging via notifications in the
+                Dashboard and even SMS. Based on the actions people took, or
+                didn't take in time, we would send more emails or change account
+                functionality (very sensitive!).
+              </p>
+              <p>
+                Previous campaigns were sent manually and tracked in
+                spreadsheets, run as inefficient, offline data migrations, or
+                used some convoluted flow of emitting events based on actions
+                and heartbeats on a schedule. The last option was particularly
+                gnarly as it would &quot;infect&quot; the core business logic,
+                and being sprinkled about made it hard to reason about and
+                change.
+              </p>
+              <p>
+                Coming from a web development background I thought, &quot;Is
+                this <a href="https://backbonejs.org/">Backbone</a>?&quot; Event
+                listeners/emitters all over, state tracking in a whole bunch of
+                places, no lifecycle management, and terribly complex testing.
+              </p>
+              <p>
+                I wanted to bring some clarity to this madness for this next set
+                of campaigns, and future campaigns. Lots of one-off frameworks
+                cropped up over the years, and I reviewed them all to see what
+                worked and what didn't. Ultimately, each system devolved to
+                optimizing a single use case or set of use cases the supporting
+                team had. What could I glean to make something general purpose
+                for everyone to be able to use?
+              </p>
+              <p>
+                I wanted something testable. These campaigns would be serious
+                business and while there's always a constant push in the
+                messaging space for going more and more no-code in the tooling,
+                having systems in code lets us write tests. I wanted the tests
+                for campaigns to be easy to write and comprehensive. More
+                precisely, since the business logic itself could not be reduced
+                further (complex things are complex), making the communication
+                part of the problem easier was my aim.
+              </p>
+              <p>
+                I've found time and time again, designing something testable
+                yields something simple. In some ways, it is a matter of
+                incentives: if it is easier to write tests, more tests will be
+                written. If it's easy to write tests, that means there's not
+                much ceremony (e.g. no FactoryFactories) or boilerplate. If
+                there's not much boilerplate, it means we're working with the
+                good stuff: simple functions and data.
+              </p>
+              <h2 id="react-for-messaging">
+                <a href="#react-for-messaging">React for messaging</a>
+              </h2>
+              <p>
+                Backbone was replaced with React, so I went on an API design
+                journey to build a React but for communication systems. The
+                central premise I built on was, &quot;What should the user be
+                looking at right now?&quot; Based on external state we'd have a
+                function returning messaging as data:
+              </p>
+              <pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">render</span>(<span class="hljs-params">state</span>) {
+  <span class="hljs-keyword">if</span> (state.<span class="hljs-property">userHasUpdatedCompanyOwnership</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title function_">messaging</span>({ <span class="hljs-attr">status</span>: <span class="hljs-string">&#x27;finished&#x27;</span> })
+  }
+
+  <span class="hljs-keyword">return</span> <span class="hljs-title function_">messaging</span>({
+    <span class="hljs-attr">status</span>: <span class="hljs-string">&#x27;needs_to_update&#x27;</span>,
+    <span class="hljs-attr">email</span>: {
+      <span class="hljs-attr">key</span>: <span class="hljs-string">&#x27;reminder&#x27;</span>,
+      <span class="hljs-attr">subject</span>: <span class="hljs-string">&#x27;[Action required] Update company ownership&#x27;</span>,
+      <span class="hljs-comment">// ...</span>
+    },
+  })
+}
+</code></pre>
+              <p>
+                This is a simple example. We are trying to have a user update
+                their account info. If they have done that we have nothing to
+                show them. If they haven't they should get an email.
+              </p>
+              <p>
+                The <code>key</code> is required and used for idempotency.
+                Sending the email will be recorded in the database and
+                subsequent emails matching that key won't be sent. This is
+                similar to React's DOM diffing, applying only what has changed
+                by comparing the old and new render tree.
+              </p>
+              <p>
+                The <code>status</code> is also required but is more of a
+                convenience label for observability into the campaign. We always
+                want to track the progression of campaigns, and use the status
+                to aggregate users into cohorts.
+              </p>
+              <p>
+                But <code>render</code> is totally user-defined, you can call it
+                a million times and it would do nothing but return plain data.
+                This is perfect for tests and left the actual messaging to the
+                framework, which provided two methods:
+              </p>
+              <ul>
+                <li>
+                  <code
+                    >applyCommunications({campaignType, userId,
+                    messaging})</code
+                  >
+                  to diff against the current state and trigger emails and other
+                  communications if necessary.
+                </li>
+                <li>
+                  <code>getCommunications({campaignType, userId})</code> to
+                  receive the trail of sent messages. This could be used to
+                  inform the external state passed to <code>render</code>.
+                </li>
+              </ul>
+              <p>
+                The <code>campaignType</code> is a way of isolating campaigns
+                from one another.
+              </p>
+              <p>Using this framework has many benefits:</p>
+              <ul>
+                <li>
+                  <p>
+                    <strong>Testing is easy and fast.</strong> The
+                    <code>render</code> function contains just business logic
+                    and returns data. So tests didn't need to verify what would
+                    happen end-to-end and were simple to construct and decoupled
+                    from database and network reads/writes. Developers could
+                    trust the underlying framework to do the right thing and not
+                    re-test those internals.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <strong>Supporting multiple channels is easy.</strong> In
+                    the example above, we have an <code>email:</code> slot. The
+                    framework's design easily accommodates other channels, like
+                    text messaging:
+                  </p>
+                  <pre><code class="language-js"><span class="hljs-title function_">messaging</span>({
+  <span class="hljs-attr">status</span>: <span class="hljs-string">&#x27;urgently_needs_to_update&#x27;</span>,
+  <span class="hljs-attr">text_message</span>: {
+    <span class="hljs-attr">key</span>: <span class="hljs-string">&#x27;urgent_alert&#x27;</span>,
+    <span class="hljs-attr">text</span>: <span class="hljs-string">&#x27;Yo, like seriously, you gotta update your account.&#x27;</span>,
+  },
+})
+</code></pre>
+                  <p>
+                    One cool limitation in this particular interface which I
+                    love is you can't send two emails about a campaign at once.
+                    By only having single <code>email:</code> and
+                    <code>text_message:</code> slots, we have guarded against a
+                    bad practice of sending conflicting or too many messages at
+                    each step in a campaign.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <strong>Campaigns are described in one place.</strong> The
+                    <code>render</code> function tells the whole story of what
+                    contributes to what a user is seeing. The calculation of
+                    state could be super complicated but the communications stay
+                    simple.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <strong>Functions provide the composition.</strong> Helpers
+                    and utilities building around plain functions and data are
+                    the easiest to write. We can build an ecosystem of reusable
+                    components. To break up a complex system, we break it into
+                    more render functions.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <strong>Good baseline observability.</strong> The
+                    <code>status</code> and the paper trail of messages sent by
+                    campaign to a user allows us to provide tooling and
+                    dashboards for free showing where a campaign is and detailed
+                    breakdowns for individual users. Each campaign used to
+                    require manual work to track itself, but now all someone
+                    needs is the <code>campaignType</code> to start digging.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                This is fundamentally what was built, but it's worth calling out
+                some complexities. There are things to consider beyond what's
+                described here:
+              </p>
+              <ul>
+                <li>
+                  <p>
+                    <strong>When is <code>render</code> called?</strong> A
+                    framework like React controls the state and provides
+                    <code>setState</code> so it can see when it changes. In a
+                    backend you could build something to watch the database I
+                    suppose. In practice we leverage events to trigger
+                    <code>render</code>, or if the passage of time factors in,
+                    trigger <code>render</code> via a cron job. We encapsulated
+                    <code>render</code> and applying the messages together to
+                    prevent mistakes of calling the wrong
+                    <code>render</code> for a campaign while still keeping it
+                    testable in isolation.
+                  </p>
+                  <p>
+                    In general, being agnostic here allows campaign owners to
+                    expend the exact amount of compute they feel necessary to
+                    run a good campaign.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <strong>State is more permanent.</strong> In a front-end
+                    framework, if you screw up in your
+                    <code>render</code> method, the fix is to refresh the page.
+                    For messaging, state is much more long lived and for most
+                    messaging channels you can't scrape those messages out of
+                    people's inboxes once sent.
+                  </p>
+                  <p>
+                    Testing and making regular changes safe and easy is more
+                    important to a successful project. Prioritizing
+                    observability, metrics, detectors, kill switches, etc is
+                    prudent to safe operation. Luckily much of this can be
+                    provided by the framework and common tooling.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                Finally, I'll leave you with the coolest thing about this
+                design: <strong>dark testing</strong>. We encode what the user
+                should be seeing right now, but oftentimes a messaging
+                campaign's greatest enemy is assuming we actually modeled our
+                system correctly.
+              </p>
+              <p>
+                We have a stateless <code>render</code> at our disposal so we
+                can have tons of fun simulating campaigns <em>before</em> they
+                happen, against production data. Running them in the dark
+                against users, but not showing or sending users any messaging,
+                to gain confidence in how production will behave.
+              </p>
+              <p>
+                You can build this simulation tooling in many ways, but when all
+                you have is engineers stringing complex messaging flows together
+                by hand, no one is going to build this out as they go. Designed
+                this way, it's simply yet another feature of the framework and
+                its tooling.
+              </p>
+              <p>
+                I get really excited about this style of encoding messaging
+                systems. They can be super expressive and easy to test, enabling
+                good separation of concerns and some sick tooling. I haven't
+                come across this elsewhere since I built it up in 2019, so I
+                wanted to share!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

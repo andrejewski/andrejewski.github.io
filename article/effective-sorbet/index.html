@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Effective Sorbet</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Tips, tricks, and things to avoid with the Ruby type-checker Sorbet."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link
+      rel="canonical"
+      href="http://localhost:8620/_reserved/not-found.html"
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Effective Sorbet" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta
+      property="og:url"
+      content="http://localhost:8620/_reserved/not-found.html"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .eBtA-dh {
+        margin: 3rem 0;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'eBtA-dh,';
+      } /*!sc*/
+      .iUGkOU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'iUGkOU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .gIJIXF {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #ffc87b;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .gIJIXF:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .gIJIXF {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'gIJIXF,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .hHECxp {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #ffe8c7;
+        color: #d19649;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .hHECxp .sc-iBkjds {
+        color: #402604;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .hHECxp ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .hHECxp a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .hHECxp a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #efd5b4;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'hHECxp,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #fef2e7;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-eIVHya1'] {
+        content: 'sc-global-eIVHya1,';
+      } /*!sc*/
+      .fyabtt {
+        padding: 1rem 0px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .fyabtt h1 {
+        font-size: 1.5rem;
+        margin: 0;
+      } /*!sc*/
+      .fyabtt h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .fyabtt h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .fyabtt ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: right;
+      } /*!sc*/
+      .fyabtt ul li {
+        display: inline-block;
+        padding: 0px 0.5rem;
+        text-align: right;
+      } /*!sc*/
+      data-styled.g13[id='sc-kDDrLX'] {
+        content: 'fyabtt,';
+      } /*!sc*/
+      .dXbzen h1 > a,
+      .dXbzen h2 > a,
+      .dXbzen h3 > a,
+      .dXbzen h4 > a,
+      .dXbzen h5 > a,
+      .dXbzen h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .dXbzen h1 > a:hover,
+      .dXbzen h2 > a:hover,
+      .dXbzen h3 > a:hover,
+      .dXbzen h4 > a:hover,
+      .dXbzen h5 > a:hover,
+      .dXbzen h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .dXbzen p,
+      .dXbzen li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen p,
+        .dXbzen li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .dXbzen a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .dXbzen ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .dXbzen code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .dXbzen h1 code,
+      .dXbzen h2 code,
+      .dXbzen h3 code,
+      .dXbzen h4 code,
+      .dXbzen h5 code,
+      .dXbzen h6 code,
+      .dXbzen li code,
+      .dXbzen p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #ffeeda;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen h1 code,
+        .dXbzen h2 code,
+        .dXbzen h3 code,
+        .dXbzen h4 code,
+        .dXbzen h5 code,
+        .dXbzen h6 code,
+        .dXbzen li code,
+        .dXbzen p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .dXbzen pre {
+        background-color: #ffeed9;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .dXbzen img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .dXbzen video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .dXbzen figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .dXbzen figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .dXbzen figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .dXbzen .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .dXbzen .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'dXbzen,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-kDDrLX fyabtt">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi eBtA-dh">
+            <p class="sc-iBkjds xFOWy">
+              <a href="/category/ruby/index.html" class="sc-ftvSup gIJIXF"
+                >Ruby programming</a
+              ><a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup gIJIXF"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf iUGkOU">
+              <a href="#" class="sc-papXJ iHVwPn"
+                ><span>Effective Sorbet</span></a
+              >
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              Tips, tricks, and things to avoid with the Ruby type-checker
+              Sorbet.
+            </p>
+          </div>
+          <div class="sc-jqUVSM hHECxp">
+            <p class="sc-iBkjds xFOWy">Table of contents</p>
+            <div>
+              <ul>
+                <li>
+                  <a href="#all-new-code-should-be-typed-strict"
+                    >All new code should be <code>typed: strict</code></a
+                  >
+                </li>
+                <li>
+                  <a href="#understand-flow-sensitivity"
+                    >Understand flow sensitivity</a
+                  >
+                </li>
+                <li>
+                  <a href="#use-tstruct-liberally"
+                    >Use <code>T::Struct</code> liberally</a
+                  >
+                  <ul>
+                    <li>
+                      <a href="#always-use-const-over-prop"
+                        >Always use <code>const</code> over <code>prop</code></a
+                      >
+                    </li>
+                    <li>
+                      <a href="#dont-put-methods--business-logic-on-tstructs"
+                        >Don’t put methods / business logic on
+                        <code>T::Structs</code></a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#make-things-exhaustive-and-use-tenum-liberally"
+                    >Make things exhaustive and use
+                    <code>T::Enum</code> liberally</a
+                  >
+                </li>
+                <li>
+                  <a href="#use-tenumtry_deserialize-for-untrusted-enum-inputs"
+                    >Use <code>T::Enum.try_deserialize</code> for untrusted enum
+                    inputs</a
+                  >
+                </li>
+                <li><a href="#dont-use-shapes">Don’t use shapes</a></li>
+                <li>
+                  <a href="#dont-include-nilclass-in-your-union-or-type-alias"
+                    >Don’t include <code>NilClass</code> in your union or type
+                    alias</a
+                  >
+                </li>
+                <li>
+                  <a href="#get-un-tuntyped-asap"
+                    >Get un-<code>T.untyped</code> ASAP</a
+                  >
+                </li>
+                <li>
+                  <a href="#make-almost-everything-final"
+                    >Make almost everything <code>final!</code></a
+                  >
+                </li>
+                <li>
+                  <a href="#beware-hash-literals-are-poorly-typed"
+                    >Beware: hash literals are poorly typed</a
+                  >
+                </li>
+                <li>
+                  <a href="#use-meaningful-return-types"
+                    >Use meaningful return types</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-crXcEl dXbzen">
+              <p>
+                I have written Ruby code with Sorbet since 2018. Over the time,
+                I put considerable effort into learning how to leverage Sorbet
+                to its fullest. I've fought it, complained about it, and
+                wouldn't write Ruby code without it. These are my lessons
+                learned.
+              </p>
+              <p>
+                Sorbet can’t model complex meta-programming and other more
+                clever dynamic features of Ruby. The lack of meta-programming is
+                made up for by code generation tools. You’ll find that code
+                explicitly needs to be designed around “making Sorbet happy” and
+                this limits how code and APIs can be designed pretty
+                dramatically.
+              </p>
+              <p>
+                All pages of
+                <a href="https://sorbet.org/">Sorbet's own documentation</a> are
+                required reading.
+              </p>
+              <h1 id="all-new-code-should-be">
+                <a href="#all-new-code-should-be"
+                  >All new code should be <code>typed: strict</code></a
+                >
+              </h1>
+              <p>
+                Sorbet type-checking is enabled for a Ruby file using a
+                <code>typed:</code> sigil which look like one of these at the
+                time of the file:
+              </p>
+              <pre><code class="language-rb"><span class="hljs-comment"># typed: false</span>
+<span class="hljs-comment"># typed: true</span>
+<span class="hljs-comment"># typed: strict</span>
+<span class="hljs-comment"># typed: strong</span>
+</code></pre>
+              <p>
+                You can read about the
+                <a
+                  href="https://sorbet.org/docs/static#file-level-granularity-strictness-levels"
+                  >difference between these modes</a
+                >, but know that for most code you'll struggle to achieve
+                <code>typed: strong</code> as even a lot of Sorbet itself isn't
+                up to that caliber of safety (mostly due to lacking generics).
+                So we aim for the best we can and the minimum floor for good
+                code is <code>typed: strict</code>.
+              </p>
+              <p>
+                This can’t be stressed enough. There’s no better contribution
+                you can make to code health during your day to day work than to
+                be writing at least <code>typed: strict</code> code.
+              </p>
+              <p>
+                And this doesn’t just mean brand new features, but also work on
+                existing code. If I am building out new methods that will be
+                exercised for the first time (adding types could break things so
+                we can’t go wild) I cut a new file just for that few set of
+                methods so they can be written strict. Having Sorbet’s help far
+                outweighs minor code locality concerns.
+              </p>
+              <h1 id="understand-flow-sensitivity">
+                <a href="#understand-flow-sensitivity"
+                  >Understand flow sensitivity</a
+                >
+              </h1>
+              <p>
+                The #1 source of questions by far about Sorbet are centered
+                around
+                <a href="https://sorbet.org/docs/flow-sensitive"
+                  >flow sensitivity</a
+                >.
+              </p>
+              <p>
+                Read about this how works and really absorb it. It breaks my
+                heart to see unnecessary <code>T.must</code> and
+                <code>T.cast</code> calls. These are suppose to be used
+                exceptionally. The majority of times I legitimately need them, I
+                also put a comment there to explain why.
+              </p>
+              <p>
+                In some cases, there are just way better methods available to
+                use. For example,
+              </p>
+              <pre><code class="language-rb">T.must(Model.find_by_id(id))
+<span class="hljs-comment">#=&gt; raises &quot;unexpected nil&quot;</span>
+</code></pre>
+              <p>
+                Should use an available method which gives a much better error
+                message:
+              </p>
+              <pre><code class="language-rb">Model.find_by_id!(id)
+<span class="hljs-comment">#=&gt; raises &quot;record not found for id: &lt;id&gt;&quot;</span>
+</code></pre>
+              <h1 id="use-liberally">
+                <a href="#use-liberally"
+                  >Use <code>T::Struct</code> liberally</a
+                >
+              </h1>
+              <p>
+                Sorbet's <code>T::Struct</code> is Ruby’s Clojure map: use them
+                everywhere. Don’t invent new data structures just for your use
+                case, leverage <code>T::Struct</code>. Because
+                <code>T::Struct</code> initializers are automatically created,
+                there’s no better alternative with less boilerplate.
+              </p>
+              <p>
+                If you know the fixed set of keys in the Hash, make a
+                <code>T::Struct</code> instead. Dealing with old code where
+                hashes are being passed around? For your new code create a
+                <code>hash_to_my_struct</code> method and then start passing the
+                struct around for new code.
+              </p>
+              <p>
+                Don’t use <a href="https://sorbet.org/docs/shapes">Shapes</a>.
+                It is an experimental feature. There are a bunch of nasty quirks
+                about the implementation and no immediate plans to fix them.
+                They are also super verbose as every field must be specified
+                even if it is <code>nil</code>.
+              </p>
+              <p>
+                Don’t lean on tuples for returning multiple values, use a struct
+                instead to name all the values:
+              </p>
+              <pre><code class="language-rb">a, b, c = f(x)
+<span class="hljs-comment"># versus</span>
+r = f(x)
+r.to_addresses
+r.cc_addresses
+r.bcc_addresses
+</code></pre>
+              <h2 id="always-use-over">
+                <a href="#always-use-over"
+                  >Always use <code>const</code> over <code>prop</code></a
+                >
+              </h2>
+              <p>
+                It is incredibly rare for me to need my structs to have setters.
+                Defaulting to <code>const</code> tells the reader that no one is
+                mutating the struct as it flows through a program. Good to know!
+              </p>
+              <p>
+                If you want to make a copy of a struct with only some of the
+                fields changed, instead of falling back to
+                <code>prop</code> use:
+              </p>
+              <pre><code class="language-rb">new_struct = struct.with(new_props)
+</code></pre>
+              <h2 id="dont-put-methods--business-logic-on">
+                <a href="#dont-put-methods--business-logic-on"
+                  >Don’t put methods / business logic on
+                  <code>T::Structs</code></a
+                >
+              </h2>
+              <p>
+                It’s important to decouple data from business logic. Great code
+                is referentially transparent functions passing around
+                primitives, standard library types, and structs.
+              </p>
+              <h1 id="make-things-exhaustive-and-use-liberally">
+                <a href="#make-things-exhaustive-and-use-liberally"
+                  >Make things exhaustive and use
+                  <code>T::Enum</code> liberally</a
+                >
+              </h1>
+              <p>
+                To really put Sorbet to work helping you write code, you'll want
+                to master
+                <a href="https://sorbet.org/docs/exhaustiveness"
+                  >exhaustiveness</a
+                >.
+              </p>
+              <p>
+                These constructs are really powerful tools. I love making use
+                especially of <code>T::Enum</code>. I just sprinkle
+                <code>T.absurd</code> and then next time I need to add something
+                I can just follow the type errors. This is a huge aid,
+                especially for developer experience, that with sufficient
+                planning you can make the addition/removal of features almost
+                brain-dead game-play.
+              </p>
+              <p>
+                <a href="https://sorbet.org/docs/sealed">Sealed classes</a> are
+                quite limited but they can work wonders that simple Enums can’t.
+              </p>
+              <h1 id="use-for-untrusted-enum-inputs">
+                <a href="#use-for-untrusted-enum-inputs"
+                  >Use <code>T::Enum.try_deserialize</code> for untrusted enum
+                  inputs</a
+                >
+              </h1>
+              <p>
+                If you try to deserialize an enum value like so, you’ll get a
+                <code>KeyError</code>:
+              </p>
+              <pre><code class="language-rb"><span class="hljs-keyword">begin</span>
+  MyEnum.deserialize(<span class="hljs-string">&#x27;this_is_not_an_enum_value&#x27;</span>)
+<span class="hljs-keyword">rescue</span> KeyError
+  <span class="hljs-comment"># input didn&#x27;t match an enum value</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                Instead reach for <code>try_deserialize</code> It’s much less
+                boilerplate and returns a <code>T.nilable(MyEnum)</code> so
+                Sorbet can help you handle the invalid case:
+              </p>
+              <pre><code class="language-rb">enum = MyEnum.try_deserialize(<span class="hljs-string">&#x27;this_is_not_an_enum_value&#x27;</span>)
+<span class="hljs-keyword">if</span> !enum
+  <span class="hljs-comment"># input didn&#x27;t match an enum value</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <h1 id="dont-use-shapes">
+                <a href="#dont-use-shapes">Don’t use shapes</a>
+              </h1>
+              <p>
+                <a href="https://sorbet.org/docs/shapes">Shapes</a> are a
+                massively broken, experimental feature of Sorbet. Any place you
+                want to use a shape reach for a <code>T::Struct</code> instead.
+                Beyond not working, shapes are much less ergonomic than structs
+                because you have to specify values for all hash keys, even the
+                nil-able keys.
+              </p>
+              <h1 id="dont-include-in-your-union-or-type-alias">
+                <a href="#dont-include-in-your-union-or-type-alias"
+                  >Don’t include <code>NilClass</code> in your union or type
+                  alias</a
+                >
+              </h1>
+              <p>Consider these type aliases:</p>
+              <pre><code class="language-rb">AnyOfIncludingNil = T.type_alias <span class="hljs-keyword">do</span>
+  T.any(TypeFoo, TypeBar, NilClass)
+<span class="hljs-keyword">end</span>
+
+NilableAnyOf = T.type_alias <span class="hljs-keyword">do</span>
+  T.nilable(T.any(TypeFoo, TypeBar))
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                While these are valid aliases, they aren’t the greatest for
+                usability because they have coupled nil-ability to the type. The
+                better way to define this type:
+              </p>
+              <pre><code class="language-rb">FooOrBar = T.type_alias {T.any(TypeFoo, TypeBar)}
+
+<span class="hljs-comment"># Then use T.nilable in context with:</span>
+sig {params(<span class="hljs-symbol">foo_or_bar:</span> T.nilable(FooOrBar)).void}
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">perform</span>(<span class="hljs-params">foo_or_bar</span>); <span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                &quot;A FooOrBar may not be provided here&quot; vs &quot;A
+                FooOrBar can be nil.&quot;
+              </p>
+              <p>
+                This becomes more obvious as you use type aliases more places.
+                Often you'll want to handle the <code>nil</code> case and then
+                move on to a method that doesn't need to handle that anymore.
+                For that new method, since you've coupled nil-ness to the type
+                alias you can't reuse it.
+              </p>
+              <p>
+                Nil-ability is about when: When it is not nil? When is it
+                required? When is it optional? Bolting nil into a type, we can’t
+                really say. For more on this train of thought check out
+                <a href="https://www.youtube.com/watch?v=YR5WdGrpoug"
+                  >Maybe Not [talk]</a
+                >.
+              </p>
+              <h1 id="get-un--asap">
+                <a href="#get-un--asap">Get un-<code>T.untyped</code> ASAP</a>
+              </h1>
+              <p>
+                In strict mode you can still be dealing with code which is
+                <code>T.untyped</code>. Some of this is unavoidable but you
+                definitely want to minimize your usages of
+                <code>T.untyped</code> and more importantly minimize spreading
+                it around.
+              </p>
+              <p>
+                Quickly take that <code>T.untyped</code>'d thing and make a new
+                typed thing to pass around:
+              </p>
+              <pre><code class="language-rb"><span class="hljs-keyword">class</span> <span class="hljs-title class_">GoodData</span> &lt; T::Struct
+  const <span class="hljs-symbol">:foo</span>, String
+<span class="hljs-keyword">end</span>
+
+sig {params(<span class="hljs-symbol">bad_data:</span> T.untyped).returns(GoodData)}
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">self</span>.make_good_data(bad_data)
+  <span class="hljs-title class_">GoodData</span>.new(
+    <span class="hljs-symbol">foo:</span> bad_data.foo
+  )
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                Avoid letting those <code>T.untyped</code> value leak into other
+                pieces of code, it makes refactoring much harder in the future.
+              </p>
+              <h1 id="make-almost-everything">
+                <a href="#make-almost-everything"
+                  >Make almost everything <code>final!</code></a
+                >
+              </h1>
+              <p>
+                <a href="https://sorbet.org/docs/final"
+                  >Sorbet docs on final →</a
+                >
+              </p>
+              <p>
+                One part of writing good code is ensuring it can’t be abused in
+                ways it didn’t intend to be. This is doubly important for APIs
+                shared across package boundaries. But Ruby doesn’t do much to
+                help us guard by default, for example <code>private</code> and
+                <code>private_class_method</code> annotations are needed to hide
+                methods from other calls. Less obvious abuse can be done via
+                inheritance, for example:
+              </p>
+              <pre><code class="language-rb"><span class="hljs-keyword">module</span> MyPackage
+  <span class="hljs-keyword">module</span> MyModule
+    sig {returns(String)}
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">self</span>.make_string
+      <span class="hljs-string">&quot;string&quot;</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                Seems like good code: module instead of class, static methods
+                accepting/returning data. However someone can do this:
+              </p>
+              <pre><code class="language-rb"><span class="hljs-keyword">module</span> MyOtherPackage
+  <span class="hljs-keyword">module</span> UnrelatedModule
+    extend Opus::MyPackage::MyModule
+
+    sig {returns(String)}
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">self</span>.make_string
+      <span class="hljs-string">&quot;other-string&quot;</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                And people can start using <code>UnrelatedModule</code> in place
+                of <code>MyModule</code>. Effectively <code>MyModule</code> is
+                being used as a mix-in and mix-ins are bad.
+              </p>
+              <p>
+                Well, we didn’t intend for that… (and almost never intend for
+                that). Luckily Sorbet gives us a helpful annotation
+                <code>final!</code> which prevents this extension:
+              </p>
+              <pre><code class="language-rb"><span class="hljs-keyword">module</span> Opus::MyPackage
+  <span class="hljs-keyword">module</span> MyModule
+    extend T::Helpers
+    final!
+
+    sig(<span class="hljs-symbol">:final</span>) {returns(String)}
+    <span class="hljs-keyword">def</span> <span class="hljs-title function_">self</span>.make_string
+      <span class="hljs-string">&quot;string&quot;</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                Now Sorbet will guard against that for us.
+                <a
+                  href="https://sorbet.run/#%23%20typed%3A%20true%0Amodule%20MyPackage%0A%20%20module%20MyModule%0A%20%20%20%20extend%20T%3A%3ASig%0A%20%20%20%20extend%20T%3A%3AHelpers%0A%20%20%20%20final!%0A%0A%20%20%20%20sig%28%3Afinal%29%20%7Breturns%28String%29%7D%0A%20%20%20%20def%20self.make_string%0A%20%20%20%20%20%20%22string%22%0A%20%20%20%20end%0A%20%20end%0Aend%0A%0Amodule%20MyOtherPackage%0A%20%20module%20UnrelatedModule%0A%20%20%20%20extend%20T%3A%3ASig%0A%20%20%20%20extend%20MyPackage%3A%3AMyModule%0A%0A%20%20%20%20sig%20%7Breturns%28String%29%7D%0A%20%20%20%20def%20self.make_string%0A%20%20%20%20%20%20%22other-string%22%0A%20%20%20%20end%0A%20%20end%0Aend"
+                  >sorbet.run example →</a
+                >
+              </p>
+              <p>
+                You’ll notice <code>make_string</code>'s signature now has this
+                <code>sig(:final)</code> on it. When <code>final!</code> is used
+                all methods in the module/class need to be
+                <code>sig(:final)</code>. And <code>sig(:final)</code> can also
+                be used a-la-carte on any method to prevent it from being
+                overridden.
+              </p>
+              <p>Marking a method as final has great benefits:</p>
+              <ul>
+                <li>The method cannot be overridden or redefined.</li>
+                <li>
+                  The method cannot be mocked in tests. Method mocking is
+                  disallowed so people can't write bad and brittle tests mocking
+                  that method.
+                </li>
+                <li>
+                  The Sorbet compiler can optimize this method call since it
+                  doesn’t need to account for potential dynamic dispatch.
+                </li>
+              </ul>
+              <p>
+                Modules, methods, and classes which are not meant to be
+                extended, overridden, or mocked (which is most good code) should
+                be marked final.
+              </p>
+              <h1 id="beware:-hash-literals-are-poorly-typed">
+                <a href="#beware:-hash-literals-are-poorly-typed"
+                  >Beware: hash literals are poorly typed</a
+                >
+              </h1>
+              <p>Consider:</p>
+              <pre><code class="language-rb">my_hash = {<span class="hljs-symbol">a:</span> <span class="hljs-number">1</span>, <span class="hljs-symbol">b:</span> <span class="hljs-number">2</span>, <span class="hljs-symbol">c:</span> <span class="hljs-number">3</span>}
+</code></pre>
+              <p>
+                This hash is clearly <code>T::Hash[Symbol, Integer]</code> but
+                Sorbet does not agree. The hash will have the shape
+                <code>T::Hash[T.untyped, T.untyped]</code> unless you explicitly
+                cast it.
+                <a
+                  href="https://sorbet.run/#%23%20typed%3A%20true%0A%0Apoorly_typed_hash%20%3D%20%7Ba%3A%201%2C%20b%3A%202%2C%20c%3A%203%7D%0AT.reveal_type%28poorly_typed_hash%29%0A%0Agood_hash%20%3D%20T.let%28%7Ba%3A%201%2C%20b%3A%202%2C%20c%3A%203%7D%2C%20T%3A%3AHash%5BSymbol%2C%20Integer%5D%29%0AT.reveal_type%28good_hash%29"
+                  >Sorbet run link →</a
+                >
+              </p>
+              <h1 id="use-meaningful-return-types">
+                <a href="#use-meaningful-return-types"
+                  >Use meaningful return types</a
+                >
+              </h1>
+              <pre><code class="language-rb">sig {params(<span class="hljs-symbol">x:</span> Integer).returns(T.nilable(String))}
+</code></pre>
+              <p>
+                Sometimes we’ll overuse <code>nil</code> in return types, which
+                makes sense: it’s pretty easy to do even by accident. However,
+                when working through things, sprinkling
+                <code>T.nilable</code> all over the place, we start to lose
+                actionable context. What does a <code>nil</code> return value
+                mean? If you’re asking this question, reach for a richer, more
+                readable type:
+              </p>
+              <pre><code class="language-rb"><span class="hljs-keyword">class</span> <span class="hljs-title class_">NoMatchingResponseCode</span>; <span class="hljs-keyword">end</span>
+
+sig {params(<span class="hljs-symbol">x:</span> Integer).returns(T.any(String, NotMatchingRespo
+nseCode))}
+</code></pre>
+              <p>Woah, I like get what this sig is for now.</p>
+              <p>
+                This isn’t clear cut as some things are obvious, but especially
+                when you may be returning from multiple places, it’s good to
+                document the subtle concerns. One cool thing about this is
+                testing! Consider:
+              </p>
+              <pre><code class="language-rb"><span class="hljs-keyword">def</span> <span class="hljs-title function_">self</span>.build_thing(field_a, field_b)
+  <span class="hljs-keyword">if</span> field_a.empty?
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-keyword">if</span> !valid?(field_b)
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-title class_">Thing</span>.new(field_a, field_b)
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                It’s hard to tell why were are returning nil from just calling
+                the code. However if we write:
+              </p>
+              <pre><code class="language-rb"><span class="hljs-keyword">def</span> <span class="hljs-title function_">self</span>.build_thing(field_a, field_b)
+  <span class="hljs-keyword">if</span> field_a.empty?
+    <span class="hljs-keyword">return</span> FieldAEmpty.new
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-keyword">if</span> !valid?(field_b)
+    <span class="hljs-keyword">return</span> InvalidFieldB.new
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-title class_">Thing</span>.new(field_a, field_b)
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                We can write sick tests like this to ensure we’re actually
+                testing the proper branches:
+              </p>
+              <pre><code class="language-rb">assert_instance_of(FieldAEmpty, build_thing(...))
+assert_instance_of(InvalidFieldB, build_thing(...))
+</code></pre>
+              <p>
+                For those more complex/unclear things, reach for something
+                better than <code>T.nilable</code>!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

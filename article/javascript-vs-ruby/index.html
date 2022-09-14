@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaScript vs Ruby</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Comparing Ruby and JavaScript with some observations and ranting mixed in for good measure."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link
+      rel="canonical"
+      href="http://localhost:8620/_reserved/not-found.html"
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="JavaScript vs Ruby" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta
+      property="og:url"
+      content="http://localhost:8620/_reserved/not-found.html"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .eBtA-dh {
+        margin: 3rem 0;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'eBtA-dh,';
+      } /*!sc*/
+      .iUGkOU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'iUGkOU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .gIJIXF {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #ffc87b;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .gIJIXF:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .gIJIXF {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'gIJIXF,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .hHECxp {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #ffe8c7;
+        color: #d19649;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .hHECxp .sc-iBkjds {
+        color: #402604;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .hHECxp ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .hHECxp a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .hHECxp a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #efd5b4;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'hHECxp,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #fef2e7;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-eIVHya1'] {
+        content: 'sc-global-eIVHya1,';
+      } /*!sc*/
+      .fyabtt {
+        padding: 1rem 0px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .fyabtt h1 {
+        font-size: 1.5rem;
+        margin: 0;
+      } /*!sc*/
+      .fyabtt h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .fyabtt h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .fyabtt ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: right;
+      } /*!sc*/
+      .fyabtt ul li {
+        display: inline-block;
+        padding: 0px 0.5rem;
+        text-align: right;
+      } /*!sc*/
+      data-styled.g13[id='sc-kDDrLX'] {
+        content: 'fyabtt,';
+      } /*!sc*/
+      .dXbzen h1 > a,
+      .dXbzen h2 > a,
+      .dXbzen h3 > a,
+      .dXbzen h4 > a,
+      .dXbzen h5 > a,
+      .dXbzen h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .dXbzen h1 > a:hover,
+      .dXbzen h2 > a:hover,
+      .dXbzen h3 > a:hover,
+      .dXbzen h4 > a:hover,
+      .dXbzen h5 > a:hover,
+      .dXbzen h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .dXbzen p,
+      .dXbzen li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen p,
+        .dXbzen li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .dXbzen a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .dXbzen ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .dXbzen code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .dXbzen h1 code,
+      .dXbzen h2 code,
+      .dXbzen h3 code,
+      .dXbzen h4 code,
+      .dXbzen h5 code,
+      .dXbzen h6 code,
+      .dXbzen li code,
+      .dXbzen p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #ffeeda;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen h1 code,
+        .dXbzen h2 code,
+        .dXbzen h3 code,
+        .dXbzen h4 code,
+        .dXbzen h5 code,
+        .dXbzen h6 code,
+        .dXbzen li code,
+        .dXbzen p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .dXbzen pre {
+        background-color: #ffeed9;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .dXbzen img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .dXbzen video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .dXbzen figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .dXbzen figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .dXbzen figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .dXbzen .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .dXbzen .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'dXbzen,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-kDDrLX fyabtt">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi eBtA-dh">
+            <p class="sc-iBkjds xFOWy">
+              <a href="/category/ruby/index.html" class="sc-ftvSup gIJIXF"
+                >Ruby programming</a
+              ><a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup gIJIXF"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf iUGkOU">
+              <a href="#" class="sc-papXJ iHVwPn"
+                ><span>JavaScript vs Ruby</span></a
+              >
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              Comparing Ruby and JavaScript with some observations and ranting
+              mixed in for good measure.
+            </p>
+          </div>
+          <div class="sc-jqUVSM hHECxp">
+            <p class="sc-iBkjds xFOWy">Table of contents</p>
+            <div>
+              <ul>
+                <li>
+                  <a href="#stripe-ruby-and-javascript"
+                    >Stripe Ruby and JavaScript</a
+                  >
+                </li>
+                <li>
+                  <a href="#fundamental-difference">Fundamental difference</a>
+                </li>
+                <li>
+                  <a href="#development-approach">Development approach</a>
+                  <ul>
+                    <li><a href="#runtime-checks">Runtime checks</a></li>
+                    <li>
+                      <a href="#front-end-deficiencies"
+                        >Front-end deficiencies</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#language-features">Language features</a>
+                  <ul>
+                    <li><a href="#blocks">Blocks</a></li>
+                    <li><a href="#variables">Variables</a></li>
+                    <li><a href="#expressions">Expressions</a></li>
+                    <li>
+                      <a href="#falsy--type-coercion"
+                        >Falsy &amp; type coercion</a
+                      >
+                    </li>
+                    <li><a href="#strings">Strings</a></li>
+                  </ul>
+                </li>
+                <li><a href="#wrapping-up">Wrapping up</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-crXcEl dXbzen">
+              <p>
+                It's been almost two years since I joined Stripe and started
+                working with Ruby day to day. I have been doing JavaScript for a
+                decade. There are things I like and dislike about both
+                languages, some interesting observations, and a tad bit of
+                venting I'd like to share.
+              </p>
+              <h2 id="stripe-ruby-and-javascript">
+                <a href="#stripe-ruby-and-javascript"
+                  >Stripe Ruby and JavaScript</a
+                >
+              </h2>
+              <p>
+                Stripe Ruby is primarily written in conjunction with
+                <a href="https://sorbet.org/">Sorbet</a>. So much in fact that
+                Stripe Ruby code not written with Sorbet is considered bad code.
+                I've been able to witness and experience Sorbet's evolution of
+                features, tooling, and company adoption. Despite its bugs, I've
+                grown fond of it and probably would not write Ruby without it,
+                even outside Stripe.
+              </p>
+              <p>
+                At Stripe we have four flavors of JavaScript in production:
+                vanilla, CoffeeScript, Flow, and TypeScript. The majority is
+                written in Flow. Before Stripe I had not used a
+                tack-on-type-system for JavaScript and for front-end projects
+                I've only worked with Flow due to where in existing code I was
+                working. I definitely have not felt pressure to use Flow outside
+                of Stripe.
+              </p>
+              <h2 id="fundamental-difference">
+                <a href="#fundamental-difference">Fundamental difference</a>
+              </h2>
+              <p>
+                There are a lot of ways to say JavaScript and Ruby are different
+                languages. The one that resonates with me with the most
+                conciseness follows from these two snippets:
+              </p>
+              <pre><code class="language-rb">return_value = ruby_object.method
+</code></pre>
+              <pre><code class="language-js">js_function = js_object.<span class="hljs-property">property</span>
+return_value = <span class="hljs-title function_">js_function</span>()
+</code></pre>
+              <p>
+                In Ruby, everything is an object and objects receive and respond
+                to messages. In JavaScript, objects have properties, those
+                properties have values, and those values can be functions.
+              </p>
+              <p>
+                Ruby's consistency in modeling is pleasant to me conceptually
+                but not being able to decouple method from value gives me fewer
+                guarantees. In JavaScript, properties defined with
+                getter/setters suffer from this same problem. For example:
+              </p>
+              <pre><code>foo = obj.bar
+</code></pre>
+              <p>
+                If you are
+                <a href="/stop">writing good JavaScript code</a> (e.g. no
+                getters), you can know this is a constant time lookup of
+                <code>bar</code> on <code>obj</code>. In Ruby I am calling a
+                method that can do anything, including maybe never finish
+                running.
+              </p>
+              <p>
+                For concrete disadvantages of Ruby's approach, we can look to
+                Sorbet. One of the most common frictions developers face when
+                starting with Sorbet is understanding &quot;flow
+                sensitivity.&quot;
+              </p>
+              <pre><code class="language-rb"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyClass</span>
+  sig {returns(T.any(Integer, NilClass))}
+  <span class="hljs-keyword">def</span> <span class="hljs-title function_">maybe_int</span>
+    <span class="hljs-keyword">if</span> rand &gt; <span class="hljs-number">0.5</span>
+      <span class="hljs-number">1</span>
+    <span class="hljs-keyword">else</span>
+      <span class="hljs-literal">nil</span>
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+  sig {returns(Integer)}
+  <span class="hljs-keyword">def</span> <span class="hljs-title function_">my_method</span>
+    <span class="hljs-keyword">if</span> maybe_int == <span class="hljs-literal">nil</span>
+      <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>
+    <span class="hljs-keyword">end</span>
+
+    maybe_int
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                <a
+                  href="https://sorbet.run/#%2523%20typed%253A%20true%0Aclass%20A%0A%20%20sig%20%7Breturns(T.any(Integer%252C%20NilClass))%7D%0A%20%20def%20maybe_int%0A%20%20%20%20if%20rand%20%3E%205%0A%20%20%20%20%20%201%0A%20%20%20%20else%0A%20%20%20%20%20%20nil%0A%20%20%20%20end%0A%20%20end%0A%0A%20%20sig%20%7Breturns(Integer)%7D%0A%20%20def%20my_method%0A%20%20%20%20if%20maybe_int%20%253D%253D%20nil%0A%20%20%20%20%20%20return%200%0A%20%20%20%20end%0A%0A%20%20%20%20maybe_int%0A%20%20end%0Aend%0A"
+                  >Sorbet won't allow this</a
+                >
+                because <code>maybe_int</code> can return a different value on
+                each invocation. To narrow this we need to use a
+                <a
+                  href="https://sorbet.run/#%2523%20typed%253A%20true%0Aclass%20A%0A%20%20sig%20%7Breturns(T.any(Integer%252C%20NilClass))%7D%0A%20%20def%20maybe_int%0A%20%20%20%20if%20rand%20%3E%205%0A%20%20%20%20%20%201%0A%20%20%20%20else%0A%20%20%20%20%20%20nil%0A%20%20%20%20end%0A%20%20end%0A%0A%20%20sig%20%7Breturns(Integer)%7D%0A%20%20def%20my_method%0A%20%20%20%20local_var%20%253D%20maybe_int%0A%20%20%20%20if%20local_var%20%253D%253D%20nil%0A%20%20%20%20%20%20return%200%0A%20%20%20%20end%0A%0A%20%20%20%20local_var%0A%20%20end%0Aend%0A"
+                  >local variable to deal in values</a
+                >. Flow sensitivity is covered in more detail in the
+                <a href="https://sorbet.org/docs/flow-sensitive">Sorbet docs</a
+                >.
+              </p>
+              <p>
+                This example isn't meant to illustrate Ruby is wrong, just that
+                methods are powerful and maps/properties are dumb. In most cases
+                methods <em>should</em> be referentially transparent but Sorbet
+                doesn't model this, which introduces typing overhead JavaScript
+                doesn't have to deal with as much because properties are inert
+                indirection between methods and values (in good code).
+              </p>
+              <h2 id="development-approach">
+                <a href="#development-approach">Development approach</a>
+              </h2>
+              <p>
+                How I develop something is highly influenced by what it is. If I
+                do follow a standard procedure in development, it's buried in my
+                subconscious. However, variance of work aside, I see a
+                difference when comparing JavaScript and Ruby.
+              </p>
+              <p>
+                In JavaScript, I write and get the code working, then make Flow
+                happy, then make the tests happy. In Ruby, I write short chunks
+                of code, get those chunks Sorbet-happy, repeat, and then finally
+                make tests happy. Not too different, but why not the same?
+              </p>
+              <p>
+                My first thought was I'm just way more familiar with JavaScript.
+                I have been grinding around JavaScript's plethora of quirks so
+                long they are baked into my brain interpreter. There's nothing
+                Flow can tell me that I didn't already know about the code I
+                just wrote. I know my code works, and getting Flow to agree with
+                me is in service of long term maintainability. However, I've
+                done enough Ruby to have a pretty decent brain interpreter for
+                it too.
+              </p>
+              <p>I don't have a clear answer, only miscellaneous threads.</p>
+              <h3 id="runtime-checks">
+                <a href="#runtime-checks">Runtime checks</a>
+              </h3>
+              <p>
+                Sorbet type checks at runtime (unless code is opted out for
+                performance reasons). I have very low confidence in types which
+                aren't exercised in production since people will always find
+                ways to lie to the type system to move faster. Also, in code
+                where types are tacked on, for typed code that's interacting
+                with untyped code being able to say for the past X days/months
+                in production the untyped code honored the typed contract is
+                really powerful.
+              </p>
+              <p>
+                Thanks to runtime checks I'm not fighting in distinct
+                compile-time and run-time phases, I can focus on getting the
+                code working by running it and Sorbet ensures my assumptions as
+                I go.
+              </p>
+              <h3 id="front-end-deficiencies">
+                <a href="#front-end-deficiencies">Front-end deficiencies</a>
+              </h3>
+              <p>
+                When I'm writing Ruby, I have the advantage of writing in a more
+                closed system. I'm writing code that interacts with other typed
+                code that's roughly consistently written. Achieving optimal code
+                is much more clear cut as non-business logic complexity and
+                structure has been mostly fleshed out at Stripe.
+              </p>
+              <p>
+                When I'm writing front-end JavaScript, I've gotta make the
+                browser happy. Web APIs are intentionally designed to be
+                inconsistent (wait, they're not you say?) and in the face of all
+                this complexity (saying nothing of browser differences) I'm more
+                inclined to try grinding out a working solution than type check
+                my code to success. All that one-off, most likely dead end
+                experimentation doesn't need types until it works.
+              </p>
+              <p>
+                I can see types playing a bigger, more helpful role in
+                server-side JavaScript development where one could construct a
+                similarly closed system.
+              </p>
+              <h2 id="language-features">
+                <a href="#language-features">Language features</a>
+              </h2>
+              <p>
+                It's interesting to me that with both JavaScript and Ruby the
+                statement &quot;The language has many features, about only 10%
+                should be used&quot; I agree with. Despite Ruby certainly
+                leaning towards object orientation a lot more, they both support
+                all the programming styles. As such, I manage to get by with my
+                classic data and functions approach just about as well in Ruby
+                as in JavaScript.
+              </p>
+              <h3 id="blocks"><a href="#blocks">Blocks</a></h3>
+              <p>
+                Ruby blocks are special and don't have a JavaScript (or most
+                other languages) equivalent. Blocks are essentially anonymous
+                functions (first example) which have access to outer scope flow
+                control constructs (second example).
+              </p>
+              <pre><code class="language-rb"><span class="hljs-keyword">def</span> <span class="hljs-title function_">my_method</span>(<span class="hljs-params">x, y, &amp;blk</span>) <span class="hljs-comment"># Explicit block arguments like &amp;blk here</span>
+  <span class="hljs-keyword">yield</span> x + y             <span class="hljs-comment"># tend to be non-idiomatic in plain Ruby.</span>
+  <span class="hljs-comment"># ^ De-sugars to:       # In order to Sorbet type blocks, we need</span>
+  <span class="hljs-comment"># blk.call(x + y)       # the explicit arg so I always write it.</span>
+<span class="hljs-keyword">end</span>
+
+my_method(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>) <span class="hljs-keyword">do</span> |<span class="hljs-params">sum</span>|
+  puts sum <span class="hljs-comment"># =&gt; prints 3</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <pre><code class="language-rb"><span class="hljs-keyword">def</span> <span class="hljs-title function_">sum_even_numbers</span>(<span class="hljs-params">list</span>)
+  sum = <span class="hljs-number">0</span>
+
+  list.each <span class="hljs-keyword">do</span> |<span class="hljs-params">num</span>| <span class="hljs-comment"># Like JavaScript&#x27;s Array::forEach</span>
+    <span class="hljs-keyword">if</span> !num.even?
+      <span class="hljs-keyword">next</span> <span class="hljs-comment"># Like JavaScript&#x27;s continue keyword</span>
+    <span class="hljs-keyword">end</span>
+
+    sum += num
+  <span class="hljs-keyword">end</span>
+
+  sum
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                While cool to look at, blocks are hard to wrap my head around
+                even now. I only use them to allow callers of my methods to use
+                the familiar <code>do ... end</code> syntax, never really using
+                them for or intending they be used with all the flow control
+                constructs. Ruby offers lambdas which are the real anonymous
+                functions and I reach for those more often.
+              </p>
+              <h3 id="variables"><a href="#variables">Variables</a></h3>
+              <p>
+                Switching between Ruby and JavaScript daily, I've gotten tired
+                of variable declaration keywords in JavaScript:
+              </p>
+              <pre><code class="language-js"><span class="hljs-keyword">var</span> x = <span class="hljs-number">0</span>
+<span class="hljs-keyword">let</span> y = <span class="hljs-number">0</span>
+<span class="hljs-keyword">const</span> z = <span class="hljs-number">0</span>
+</code></pre>
+              <p>In Ruby you only need:</p>
+              <pre><code class="language-rb">x = <span class="hljs-number">0</span>
+</code></pre>
+              <p>
+                What <code>x</code> is in the Ruby context is ambiguous in some
+                contexts and cannot be made constant/final. However I use a lot
+                of variables and most are constant so I feel the pain of JS
+                boilerplate a lot more than I see value in the long term
+                readability.
+              </p>
+              <p>Where Ruby variables get messy is in allowing this:</p>
+              <pre><code class="language-rb"><span class="hljs-keyword">def</span> <span class="hljs-title function_">my_method</span>(<span class="hljs-params">x</span>)
+  <span class="hljs-keyword">if</span> x != <span class="hljs-number">4</span>
+    y = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">end</span>
+
+  y
+<span class="hljs-keyword">end</span>
+
+my_method(<span class="hljs-number">4</span>) <span class="hljs-comment"># =&gt; returns nil</span>
+</code></pre>
+              <p>
+                Ruby local variables suffer from the same issues as JavaScript's
+                <code>var</code> hoisting. At least the JavaScript equivalent
+                sets off alarm bells since <code>var</code> is basically
+                obsolete:
+              </p>
+              <pre><code class="language-js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">myMethod</span>(<span class="hljs-params">x</span>) {
+  <span class="hljs-keyword">if</span> (x !== <span class="hljs-number">4</span>) {
+    <span class="hljs-keyword">var</span> y = <span class="hljs-number">0</span>
+  }
+
+  <span class="hljs-keyword">return</span> y
+}
+
+<span class="hljs-title function_">myMethod</span>(<span class="hljs-number">4</span>) <span class="hljs-comment">// =&gt; returns undefined</span>
+</code></pre>
+              <h3 id="expressions"><a href="#expressions">Expressions</a></h3>
+              <p>
+                Speaking of less boilerplate, Ruby is much better than
+                JavaScript because most code is expressions instead of
+                statements. A big advantage is explicit returns:
+              </p>
+              <pre><code class="language-rb"><span class="hljs-keyword">def</span> <span class="hljs-title function_">my_method</span>
+  <span class="hljs-number">4</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                Most good code returns values so making the common case easy is
+                great.
+              </p>
+              <p>
+                Even better than the implicit return, conditionals are also
+                expressions:
+              </p>
+              <pre><code class="language-rb">x =
+  <span class="hljs-keyword">if</span> y
+    <span class="hljs-number">1</span>
+  <span class="hljs-keyword">else</span>
+    <span class="hljs-number">2</span>
+  <span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                In JavaScript (excluding ternaries), you would need to write:
+              </p>
+              <pre><code class="language-js"><span class="hljs-keyword">let</span> x
+<span class="hljs-keyword">if</span> (y) {
+  x = <span class="hljs-number">1</span>
+} <span class="hljs-keyword">else</span> {
+  x = <span class="hljs-number">2</span>
+}
+</code></pre>
+              <p>
+                With conditional expressions, we can discount the hoisting issue
+                from the previous section:
+              </p>
+              <pre><code class="language-rb"><span class="hljs-keyword">def</span> <span class="hljs-title function_">my_method</span>(<span class="hljs-params">x</span>)
+  y = <span class="hljs-keyword">if</span> x != <span class="hljs-number">4</span>
+    <span class="hljs-number">0</span>
+  <span class="hljs-keyword">end</span>
+
+  y
+<span class="hljs-keyword">end</span>
+
+my_method(<span class="hljs-number">4</span>) <span class="hljs-comment"># =&gt; returns nil</span>
+</code></pre>
+              <p>
+                Ruby case/when (unlike JavaScript's switch statement) and
+                begin/rescue/ensure (try/catch/finally) expressions are also
+                much nicer.
+              </p>
+              <h3 id="falsy-and-type-coercion">
+                <a href="#falsy-and-type-coercion">Falsy &amp; type coercion</a>
+              </h3>
+              <p>
+                In JavaScript, for <code>!!x</code>
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Glossary/Falsy"
+                  >eight values plus a browser quirk</a
+                >
+                evaluate to false. In Ruby, only <code>!!false</code> and
+                <code>!!nil</code> evaluate to false. Ruby blows JavaScript out
+                of the water in being actually understandable.
+              </p>
+              <p>
+                The same goes for type coercion, Ruby could do a lot of things
+                more implicitly but doesn't. The mental baggage of working in
+                Ruby is much less.
+              </p>
+              <h3 id="strings"><a href="#strings">Strings</a></h3>
+              <p>
+                In JavaScript strings are immutable, in Ruby they are mutable.
+              </p>
+              <p>&quot;Woah, JavaScript is better at something?&quot; - You</p>
+              <p>
+                Ruby has a special pragma to make string literals frozen by
+                default and there are plans to eventually make that the default.
+                In practice, string mutability hasn't been a sharp edge because
+                most developers agree mutability is bad and making copies of
+                strings is easy and common.
+              </p>
+              <hr />
+              <p>
+                As languages, Ruby is better than JavaScript. Of course,
+                JavaScript never got by on its language merits so this isn't too
+                surprising. To be clear, Ruby has quicks of its own. Really bad
+                ones, like this one:
+              </p>
+              <pre><code class="language-rb"><span class="hljs-keyword">def</span> <span class="hljs-title function_">my_method</span>
+  <span class="hljs-number">4</span>
+<span class="hljs-keyword">end</span>
+
+Object.new.my_method <span class="hljs-comment"># =&gt; 4</span>
+[].my_method <span class="hljs-comment"># =&gt; 4</span>
+<span class="hljs-number">1</span>.my_method <span class="hljs-comment"># =&gt; 4</span>
+</code></pre>
+              <p>
+                &quot;I see you defined a top-level method, but methods need an
+                object..Geez, where should I put this? What's a sane default?
+                Oh, I know: <em>everywhere</em>.&quot;
+              </p>
+              <p>
+                But the difference between that quirk and the ones above is that
+                JavaScript imposes a constant and pervasive mental overhead to
+                basically everything you do. Ruby sucks in smaller doses.
+              </p>
+              <h2 id="wrapping-up"><a href="#wrapping-up">Wrapping up</a></h2>
+              <p>
+                This article is a bit less focused than most of my writing. It's
+                fair to say writing this out had the main benefit of just
+                getting it out of my head in an attempted coherent fashion. This
+                is one of those articles that could be a lot longer, but this is
+                enough for me for now.
+              </p>
+              <p>
+                I hope you either learned something or this kicked up some
+                introspection of your own. Thanks for reading!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

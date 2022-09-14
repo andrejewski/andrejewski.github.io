@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Database interface evolution</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="A history of how my homemade database access interface has evolved."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link
+      rel="canonical"
+      href="http://localhost:8620/_reserved/not-found.html"
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Database interface evolution" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta
+      property="og:url"
+      content="http://localhost:8620/_reserved/not-found.html"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .eBtA-dh {
+        margin: 3rem 0;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'eBtA-dh,';
+      } /*!sc*/
+      .iUGkOU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'iUGkOU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .gIJIXF {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #ffc87b;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .gIJIXF:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .gIJIXF {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'gIJIXF,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .hHECxp {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #ffe8c7;
+        color: #d19649;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .hHECxp .sc-iBkjds {
+        color: #402604;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .hHECxp ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .hHECxp a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .hHECxp a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #efd5b4;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hHECxp a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'hHECxp,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #fef2e7;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-eIVHya1'] {
+        content: 'sc-global-eIVHya1,';
+      } /*!sc*/
+      .fyabtt {
+        padding: 1rem 0px;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .fyabtt h1 {
+        font-size: 1.5rem;
+        margin: 0;
+      } /*!sc*/
+      .fyabtt h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .fyabtt h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .fyabtt ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: right;
+      } /*!sc*/
+      .fyabtt ul li {
+        display: inline-block;
+        padding: 0px 0.5rem;
+        text-align: right;
+      } /*!sc*/
+      data-styled.g13[id='sc-kDDrLX'] {
+        content: 'fyabtt,';
+      } /*!sc*/
+      .dXbzen h1 > a,
+      .dXbzen h2 > a,
+      .dXbzen h3 > a,
+      .dXbzen h4 > a,
+      .dXbzen h5 > a,
+      .dXbzen h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .dXbzen h1 > a:hover,
+      .dXbzen h2 > a:hover,
+      .dXbzen h3 > a:hover,
+      .dXbzen h4 > a:hover,
+      .dXbzen h5 > a:hover,
+      .dXbzen h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .dXbzen p,
+      .dXbzen li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen p,
+        .dXbzen li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .dXbzen a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .dXbzen ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .dXbzen code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .dXbzen h1 code,
+      .dXbzen h2 code,
+      .dXbzen h3 code,
+      .dXbzen h4 code,
+      .dXbzen h5 code,
+      .dXbzen h6 code,
+      .dXbzen li code,
+      .dXbzen p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #ffeeda;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen h1 code,
+        .dXbzen h2 code,
+        .dXbzen h3 code,
+        .dXbzen h4 code,
+        .dXbzen h5 code,
+        .dXbzen h6 code,
+        .dXbzen li code,
+        .dXbzen p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .dXbzen pre {
+        background-color: #ffeed9;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dXbzen pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .dXbzen img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .dXbzen video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .dXbzen figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .dXbzen figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .dXbzen figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .dXbzen .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .dXbzen .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'dXbzen,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-kDDrLX fyabtt">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi eBtA-dh">
+            <p class="sc-iBkjds xFOWy">
+              <a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup gIJIXF"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf iUGkOU">
+              <a href="#" class="sc-papXJ iHVwPn"
+                ><span>Database interface evolution</span></a
+              >
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              A history of how my homemade database access interface has
+              evolved.
+            </p>
+          </div>
+          <div class="sc-jqUVSM hHECxp">
+            <p class="sc-iBkjds xFOWy">Table of contents</p>
+            <div>
+              <ul>
+                <li><a href="#raw-sql">Raw SQL</a></li>
+                <li><a href="#sql-as-data">SQL as data</a></li>
+                <li><a href="#models">Models</a></li>
+                <li><a href="#models-and-executor">Models and executor</a></li>
+                <li><a href="#more-modeling">More modeling</a></li>
+                <li><a href="#reflection">Reflection</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-crXcEl dXbzen">
+              <p>
+                At the start of 2018, I began a journey of building my own
+                database interface. It has grown a lot over the years and now
+                felt like a good time to look back at how it has evolved.
+              </p>
+              <h2 id="raw-sql"><a href="#raw-sql">Raw SQL</a></h2>
+              <p>
+                I had used so many database wrappers, object relational mappers
+                (ORMs), and query builder interfaces prior to 2018 that I didn't
+                have a good understanding of the fundamentals. So I wanted to
+                use an interface as close to the &quot;metal&quot; as possible:
+                raw SQL strings.
+              </p>
+              <p>
+                I started using
+                <a href="https://www.npmjs.com/package/sql-template-strings"
+                  ><code>sql-template-strings</code></a
+                >
+                on top of
+                <a href="https://www.npmjs.com/package/pg"
+                  ><code>node-pg</code></a
+                >
+                to write queries like this:
+              </p>
+              <pre><code class="language-js"><span class="hljs-keyword">const</span> { <span class="hljs-title class_">Pool</span> } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;pg&#x27;</span>)
+<span class="hljs-keyword">const</span> sql = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;sql-template-strings&#x27;</span>)
+
+<span class="hljs-keyword">const</span> pg = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Pool</span>({ <span class="hljs-attr">connectionString</span>: uri })
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">findHuntById</span>(<span class="hljs-params">huntId</span>) {
+  <span class="hljs-keyword">const</span> query = sql<span class="hljs-string">`
+    select
+      id,
+      name,
+      code,
+      type,
+      description,
+      begin_message as &quot;beginMessage&quot;,
+      end_message as &quot;endMessage&quot;,
+      clue_list as &quot;clueList&quot;
+    from hunts
+    where id = <span class="hljs-subst">${huntId}</span>
+  `</span>
+  <span class="hljs-keyword">return</span> pg.<span class="hljs-title function_">query</span>(query).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">{ rows: [hunt] }</span>) =&gt;</span> hunt)
+}
+</code></pre>
+              <p>Things to call out:</p>
+              <ul>
+                <li>
+                  <p>
+                    I wanted to use a bunch of
+                    <code>snake_case_name as &quot;camelCaseName&quot;</code> so
+                    the columns would look idiomatic in the resulting
+                    JavaScript. Snake case is the superior casing: easier to
+                    read, break into words, and doesn't suffer from the acronym
+                    problem (e.g. &quot;HttpServer&quot; vs
+                    &quot;HTTPServer&quot;). Otherwise I could have made the
+                    table columns also use camel case to skip this annoying
+                    conversion.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    I wanted to avoid <code>select *</code> and be explicit
+                    about the columns I needed so there wouldn't be any waste.
+                    There are trade-offs with choosing to be explicit each time:
+                    no waste, but also higher maintenance as new columns are
+                    added or removed.
+                  </p>
+                  <p>
+                    Most applications only need a subset of the data, however
+                    for the intermediate steps between that use case and where
+                    the data is loaded from the database, mirroring that usage
+                    is difficult. If you really do care about performance, you
+                    can eat the cost of a proliferation of specific queries and
+                    less reuse to support that. Being explicit also means if you
+                    run a migration to delete an unused column, if you don't
+                    update the queries first you will get &quot;column not
+                    found&quot; errors instead of getting some data gracefully.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    This query could be wasteful/inefficient. We really only
+                    want a single hunt but I forgot to add the
+                    <code>LIMIT 1</code> to say that in the query. The ID is
+                    unique so we'd hopefully stop searching after the first
+                    result. This is to say our use of results can not match our
+                    query, queries may rely on implicit assumptions, and human
+                    error can creep in easily.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    This can easily be debugged in isolation. Simply fire up
+                    <code>psql</code> and run this same query to see what
+                    happens. There are not layers and layers of indirection that
+                    make understanding what is actually happening hard.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                At this point I wasn't thinking about evolving beyond these
+                strings. However as months went on, I made more and more of the
+                same queries over and over with only slight variations. This
+                repetition and boilerplate along with all the brittleness seemed
+                like it needed some abstraction.
+              </p>
+              <p>
+                Raw query strings could be optimized really well and were the
+                most comprehensive interface, however it wasn't a good
+                programming interface.
+              </p>
+              <h2 id="sql-as-data"><a href="#sql-as-data">SQL as data</a></h2>
+              <p>
+                Many people over the years have expounded on the problematic
+                legacy SQL has left by only exposing a human string interface.
+                The same can be said of terminal shells and other things that
+                speak over text instead of structured data. They are painful to
+                program against.
+              </p>
+              <p>
+                So the next phase I went through was building a data-oriented
+                interface for constructing SQL queries. This project I wrote and
+                published as
+                <a href="https://github.com/andrejewski/querie"
+                  ><code>querie</code></a
+                >, allows writing queries without string templates:
+              </p>
+              <pre><code class="language-js"><span class="hljs-keyword">import</span> { createQuery } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;querie&#x27;</span>
+
+<span class="hljs-keyword">const</span> huntTable = {
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;hunts&#x27;</span>,
+  <span class="hljs-attr">aliases</span>: {
+    <span class="hljs-attr">beginMessage</span>: <span class="hljs-string">&#x27;begin_message&#x27;</span>,
+    <span class="hljs-attr">endMessage</span>: <span class="hljs-string">&#x27;end_message&#x27;</span>,
+    <span class="hljs-attr">clueList</span>: <span class="hljs-string">&#x27;clue_list&#x27;</span>,
+  },
+}
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">findHuntById</span>(<span class="hljs-params">huntId</span>) {
+  <span class="hljs-keyword">const</span> query = <span class="hljs-title function_">createQuery</span>({
+    <span class="hljs-attr">kind</span>: <span class="hljs-string">&#x27;select&#x27;</span>,
+    <span class="hljs-attr">table</span>: huntTable,
+    <span class="hljs-attr">columns</span>: [
+      <span class="hljs-string">&#x27;id&#x27;</span>,
+      <span class="hljs-string">&#x27;name&#x27;</span>,
+      <span class="hljs-string">&#x27;code&#x27;</span>,
+      <span class="hljs-string">&#x27;type&#x27;</span>,
+      <span class="hljs-string">&#x27;description&#x27;</span>,
+      <span class="hljs-string">&#x27;beginMessage&#x27;</span>,
+      <span class="hljs-string">&#x27;endMessage&#x27;</span>,
+      <span class="hljs-string">&#x27;clueList&#x27;</span>,
+    ],
+    <span class="hljs-attr">where</span>: {
+      <span class="hljs-attr">id</span>: [<span class="hljs-string">&#x27;=&#x27;</span>, huntId],
+    },
+  })
+
+  <span class="hljs-keyword">return</span> pg.<span class="hljs-title function_">query</span>(query).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">{ rows: [hunt] }</span>) =&gt;</span> hunt)
+}
+</code></pre>
+              <p>Things to note:</p>
+              <ul>
+                <li>
+                  <p>
+                    Dang, now we need to learn this too. We no longer have
+                    something we can directly copy and paste into
+                    <code>psql</code>. We do have a separation between query
+                    building and query running here so we could set a breakpoint
+                    to grab <code>query</code>, but we've got to get into a
+                    place to execute this code.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Already we are losing many features provided by raw SQL. For
+                    example, there is ambiguity with selecting &quot;column
+                    names&quot;. These column names will be properly escaped to
+                    avoid SQL injection attacks, but that means functions like
+                    &quot;count(*)&quot; will also escape as columns and not
+                    work.
+                  </p>
+                  <p>
+                    Our <code>where</code> clause is also limited since it is
+                    modeled as a hash of
+                    <code>{[column]: [operation, value]}</code>. If we wanted to
+                    have a query like
+                    <code>column &gt; 3 AND column &lt; 8</code> we need a more
+                    powerful syntax, which <code>querie</code> does:
+                  </p>
+                  <pre><code class="language-js"><span class="hljs-attr">where</span>: [
+  [<span class="hljs-string">&#x27;&gt;&#x27;</span>, <span class="hljs-string">&#x27;column&#x27;</span>, <span class="hljs-number">3</span>],
+  [<span class="hljs-string">&#x27;&lt;&#x27;</span>, <span class="hljs-string">&#x27;column&#x27;</span>, <span class="hljs-number">8</span>],
+]
+</code></pre>
+                </li>
+                <li>
+                  <p>
+                    We have moved the column casing issue: we now have an alias
+                    map so we can think in JS terms universally in the code.
+                    This takes some additional boilerplate but that boilerplate
+                    only lives in one place and can be reused.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                SQL has so many features that I never had time to create a data
+                interface to replicate. Definitely <code>querie</code> serves a
+                purpose that plain SQL could not: it let me start building
+                cooler abstractions on top. However, I also think
+                <code>querie</code> has a sweet spot: it is stateless,
+                side-effect free, and only builds query strings. Having this
+                serve as a library made it really easy to put to work in many
+                places.
+              </p>
+              <h2 id="models"><a href="#models">Models</a></h2>
+              <p>
+                On top of <code>querie</code> I started building something like
+                an ORM. It isn't an ORM because models and results were not
+                really object-oriented objects. They were collections of
+                functions that would accept and return plain data.
+              </p>
+              <p>
+                Models were where I could start defining common methods like
+                <code>findById(id)</code> because I could start to assume things
+                you couldn't with plain SQL (e.g. that every row has an ID).
+                These models did the query building and ran the query to give
+                the result:
+              </p>
+              <pre><code class="language-js"><span class="hljs-keyword">const</span> huntModel = <span class="hljs-title function_">createModel</span>({
+  <span class="hljs-attr">tableName</span>: <span class="hljs-string">&#x27;hunts&#x27;</span>,
+  <span class="hljs-attr">columns</span>: [...]
+})
+
+<span class="hljs-keyword">const</span> hunt = <span class="hljs-keyword">await</span> huntModel.<span class="hljs-title function_">findById</span>(huntId)
+</code></pre>
+              <p>Things to note:</p>
+              <ul>
+                <li>
+                  <p>
+                    We aren't really talking about queries anymore, we are
+                    calling functions and hoping they return the right data. It
+                    is yet another layer of indirection on top of
+                    <code>querie</code>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    We aren't really talking about SQL anymore, we could be
+                    loading these from a non-SQL data store.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                While common utilities are nice, we also need the flexibility to
+                query things only on specific models. To satisfy this need,
+                models included a <code>model.escapeHatchQuery</code> which
+                directly exposed <code>querie</code>'s more flexible interface.
+              </p>
+              <h2 id="models-and-executor">
+                <a href="#models-and-executor">Models and executor</a>
+              </h2>
+              <p>
+                Models had become well established in the code for about a year
+                before I made a somewhat large refactor to fix one thing.
+                Testing the model interface as it was designed was super
+                painful. The coupling between query and performing the
+                side-effect leads to gross hacks to be able to test. I had set
+                in the rest of the codebase a high bar for testing: everything
+                needed to be testable without mocking.
+              </p>
+              <p>
+                So I aligned models more closely with <code>querie</code>, they
+                were rewritten to return only query data. A new side-effect
+                performer would take that data and finally do the work:
+              </p>
+              <pre><code class="language-js"><span class="hljs-keyword">const</span> query = huntModel.<span class="hljs-title function_">findById</span>(huntId)
+<span class="hljs-keyword">const</span> hunt = <span class="hljs-keyword">await</span> db.<span class="hljs-title function_">exec</span>(query)
+</code></pre>
+              <p>
+                These enable some really cool things. For example, say we wanted
+                to use a totally different database per customer (e.g. sharding
+                by customer). We don't need to plumb the customer down to calls
+                on models, only the <code>db</code> needs to route to the right
+                database. These benefits apply more generally to connection
+                pooling and management as well.
+              </p>
+              <h2 id="more-modeling">
+                <a href="#more-modeling">More modeling</a>
+              </h2>
+              <p>
+                The remaining work I've done to evolve the interface has really
+                come down to:
+              </p>
+              <ol>
+                <li>
+                  Take on various problems and try to solve them perfectly (best
+                  performance, best problem modeling) using
+                  <code>escapeHatchQuery</code>.
+                </li>
+                <li>
+                  Examine common themes and create utilities to reuse across
+                  them.
+                </li>
+                <li>Pilot the new utilities on a current problem.</li>
+                <li>
+                  Go back and rewrite the old <code>escapeHatchQueries</code> to
+                  use the well defined interface.
+                </li>
+              </ol>
+              <p>
+                One cool place where this organic growth and evolution happened
+                was with pagination. Pagination seems so simple, but I found
+                myself struggling with it each time I came back to write it at a
+                higher level of abstraction. The interface pagination finally
+                arrived at:
+              </p>
+              <pre><code class="language-js"><span class="hljs-comment">// pagination that orders by the created_at column</span>
+<span class="hljs-keyword">const</span> pagination = huntModel.<span class="hljs-title function_">makeCreatedPagination</span>()
+<span class="hljs-keyword">const</span> resultPage = <span class="hljs-keyword">await</span> <span class="hljs-title function_">loadModelPage</span>({
+  db,
+  pagination,
+  <span class="hljs-attr">paging</span>: {
+    <span class="hljs-attr">startingAfter</span>: <span class="hljs-string">&#x27;hunt_1234&#x27;</span>,
+    <span class="hljs-attr">limit</span>: <span class="hljs-number">10</span>,
+  },
+})
+</code></pre>
+              <p>
+                The <code>pagination</code> itself is a collection of queries
+                that <code>loadModelPage</code> leverages to get a page of
+                results.
+              </p>
+              <p>
+                Eventually the well-defined interfaces became comprehensive
+                enough we could fully remove <code>escapeHatchQuery</code>.
+              </p>
+              <h2 id="reflection"><a href="#reflection">Reflection</a></h2>
+              <p>
+                This turned out to be quite the journey despite being able to
+                summarize it in only a few paragraphs.
+              </p>
+              <ul>
+                <li>
+                  <p>
+                    <strong>I learned a lot.</strong> Working on my own
+                    interface really gives me a good perspective on other ODMs
+                    and such. Now some things I can appreciate more and others I
+                    can look at in greater horror.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <strong
+                      >There's always a lesson that optimization is a
+                      trade-off.</strong
+                    >
+                    When I started I wanted to do everything perfectly, no waste
+                    and very performant. This took a lot of mental overhead,
+                    tons of finely crafted boilerplate, and a lack of
+                    reusability.
+                  </p>
+                  <p>
+                    These days, I am more interested in moving quickly relying
+                    on abstractions my past self built and accept being
+                    non-optimal. It's tricky though: I feel comfortable leaning
+                    on the abstractions because I knew a perfectionist spent way
+                    too much time on them. I've definitely felt like there are
+                    abstractions I couldn't appreciate without knowing their
+                    history.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <strong>A limited feature set is a feature.</strong> This
+                    came along as more and more features which used
+                    <code>escapeHatchQuery</code> became well-defined. Every
+                    time this happened it was a relief to not have to think
+                    about the specific hard wiring anymore. I could be more
+                    confident in binary answers: if it doesn't have a
+                    well-defined interface, it is not supported and needs due
+                    diligence to add.
+                  </p>
+                  <p>
+                    Restricting the interface also allows for something that I
+                    see as more valuable than performance: predictable
+                    performance. If someone is able to write a super inefficient
+                    query it can have so many downstream impacts on other
+                    unrelated things. Well defined interfaces limit the blast
+                    radius of any change, and that's more a comfort than knowing
+                    something is the most performant it could be.
+                  </p>
+                  <p>
+                    There is a spectrum of trust we feel we can lend ourselves
+                    in the way we design interfaces. This is pretty cool.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                I definitely spent more time on this than I anticipated and it
+                never feels like the work is quite done. For so many years I had
+                only ever gotten to use and see the by-products and artifacts of
+                others taking on the same problem. I wanted to share these
+                iterations so others might be able to make their own journey
+                better or appreciate the work involved a bit more.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
