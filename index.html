@@ -165,12 +165,12 @@
       data-styled.g17[id='sc-breuTD'] {
         content: 'cAkxQS,';
       } /*!sc*/
-      .hqPzVW {
+      .cafSa {
         list-style: none;
         margin: 1rem 0;
         padding: 0;
       } /*!sc*/
-      .hqPzVW li {
+      .cafSa li {
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
@@ -185,20 +185,51 @@
         justify-content: space-between;
         padding: 0.5rem;
       } /*!sc*/
-      .hqPzVW li:nth-child(2n-1) {
+      .cafSa li:nth-child(2n-1) {
         background-color: #eff7fd;
       } /*!sc*/
       @media (prefers-color-scheme: dark) {
-        .hqPzVW li:nth-child(2n-1) {
+        .cafSa li:nth-child(2n-1) {
           background-color: #20344c;
         }
       } /*!sc*/
-      .hqPzVW li time {
+      @media (max-width: 400px) {
+        .cafSa li {
+          -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+          flex-direction: column;
+          -webkit-box-pack: start;
+          -webkit-justify-content: flex-start;
+          -ms-flex-pack: start;
+          justify-content: flex-start;
+          -webkit-align-items: flex-start;
+          -webkit-box-align: flex-start;
+          -ms-flex-align: flex-start;
+          align-items: flex-start;
+        }
+        .cafSa li .sc-bczRLJ {
+          width: 100%;
+        }
+      } /*!sc*/
+      .cafSa li span,
+      .cafSa li time {
         opacity: 0.7;
         font-size: 0.9rem;
       } /*!sc*/
+      .cafSa li span {
+        text-align: right;
+      } /*!sc*/
+      .cafSa li span a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .cafSa li span a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
       data-styled.g18[id='sc-ksZaOG'] {
-        content: 'hqPzVW,';
+        content: 'cafSa,';
       } /*!sc*/
       .caAbhE {
         max-width: 87.5px;
@@ -287,7 +318,7 @@
             <div class="sc-fEOsli kQGJHn">
               <div class="sc-bjUoiL eEdubZ">
                 <h2 class="sc-breuTD cAkxQS">Code</h2>
-                <ul class="sc-ksZaOG hqPzVW">
+                <ul class="sc-ksZaOG cafSa">
                   <li><a href="/raj" class="sc-bczRLJ kvjZgE">Raj</a></li>
                   <li>
                     <a href="/himalaya" class="sc-bczRLJ kvjZgE">Himalaya</a>
@@ -331,7 +362,7 @@
               </div>
               <div class="sc-bjUoiL eEdubZ">
                 <h2 class="sc-breuTD cAkxQS">Games</h2>
-                <ul class="sc-ksZaOG hqPzVW">
+                <ul class="sc-ksZaOG cafSa">
                   <li>
                     <a href="/urinal-picker" class="sc-bczRLJ kvjZgE"
                       >Urinal Picker</a
@@ -378,7 +409,7 @@
               </div>
               <div class="sc-bjUoiL eEdubZ">
                 <h2 class="sc-breuTD cAkxQS">Tools</h2>
-                <ul class="sc-ksZaOG hqPzVW">
+                <ul class="sc-ksZaOG cafSa">
                   <li>
                     <a href="https://issuefirst.org" class="sc-bczRLJ kvjZgE"
                       >IssueFirst.org
@@ -427,7 +458,7 @@
             <div class="sc-fEOsli kQGJHn">
               <div class="sc-bjUoiL eEdubZ">
                 <h2 class="sc-breuTD cAkxQS">Drawing</h2>
-                <ul class="sc-ksZaOG hqPzVW">
+                <ul class="sc-ksZaOG cafSa">
                   <li>
                     <a href="/comics" class="sc-bczRLJ kvjZgE">Web comics</a>
                   </li>
@@ -442,7 +473,7 @@
               </div>
               <div class="sc-bjUoiL eEdubZ">
                 <h2 class="sc-breuTD cAkxQS">Presentations</h2>
-                <ul class="sc-ksZaOG hqPzVW">
+                <ul class="sc-ksZaOG cafSa">
                   <li>
                     <a
                       href="https://docs.google.com/presentation/d/1FbvjgLFk2Ky69ZEy4g7FV7MaTxdMP_TFeNI8vOs98N4/edit?usp=sharing"
@@ -479,61 +510,115 @@
             <p class="sc-iBkjds xFOWy">
               Life stuff, engineering, and even some fiction!
             </p>
-            <ul class="sc-ksZaOG hqPzVW">
+            <ul class="sc-ksZaOG cafSa">
+              <li>
+                <a href="/article/moral-bottom" class="sc-bczRLJ kvjZgE"
+                  >Moral bottom</a
+                ><span
+                  ><a href="/category/fiction/index.html">Fiction</a> ·
+                  <time datetime="2022-09-23T00:00:00.000Z"
+                    >9/23/2022</time
+                  ></span
+                >
+              </li>
               <li>
                 <a
                   href="/article/human-friendly-tokens"
                   class="sc-bczRLJ kvjZgE"
                   >Human friendly tokens</a
-                ><time datetime="2022-09-11T00:00:00.000Z">9/11/2022</time>
+                ><span
+                  ><a href="/category/engineering/index.html">Engineering</a> ·
+                  <time datetime="2022-09-11T00:00:00.000Z"
+                    >9/11/2022</time
+                  ></span
+                >
               </li>
               <li>
                 <a
                   href="/article/learning-to-like-types"
                   class="sc-bczRLJ kvjZgE"
                   >Learning to like types</a
-                ><time datetime="2022-08-22T00:00:00.000Z">8/22/2022</time>
+                ><span
+                  ><a href="/category/engineering/index.html">Engineering</a> ·
+                  <time datetime="2022-08-22T00:00:00.000Z"
+                    >8/22/2022</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/code-comments" class="sc-bczRLJ kvjZgE"
                   >Code comments</a
-                ><time datetime="2022-07-31T00:00:00.000Z">7/31/2022</time>
+                ><span
+                  ><a href="/category/ruby/index.html">Ruby programming</a> ·
+                  <time datetime="2022-07-31T00:00:00.000Z"
+                    >7/31/2022</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/effective-sorbet" class="sc-bczRLJ kvjZgE"
                   >Effective Sorbet</a
-                ><time datetime="2022-07-31T00:00:00.000Z">7/31/2022</time>
+                ><span
+                  ><a href="/category/ruby/index.html">Ruby programming</a> ·
+                  <time datetime="2022-07-31T00:00:00.000Z"
+                    >7/31/2022</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/logical-groups" class="sc-bczRLJ kvjZgE"
                   >Logical groups</a
-                ><time datetime="2022-07-31T00:00:00.000Z">7/31/2022</time>
+                ><span
+                  ><a href="/category/system-design/index.html"
+                    >System design</a
+                  >
+                  ·
+                  <time datetime="2022-07-31T00:00:00.000Z"
+                    >7/31/2022</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/ruby-style-guide" class="sc-bczRLJ kvjZgE"
                   >Ruby style guide</a
-                ><time datetime="2022-07-31T00:00:00.000Z">7/31/2022</time>
+                ><span
+                  ><a href="/category/ruby/index.html">Ruby programming</a> ·
+                  <time datetime="2022-07-31T00:00:00.000Z"
+                    >7/31/2022</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/swing-swarm" class="sc-bczRLJ kvjZgE"
                   >Swing swarm</a
-                ><time datetime="2022-06-25T00:00:00.000Z">6/25/2022</time>
+                ><span
+                  ><a href="/category/politics/index.html">Politics</a> ·
+                  <time datetime="2022-06-25T00:00:00.000Z"
+                    >6/25/2022</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/womens-rights" class="sc-bczRLJ kvjZgE"
                   >Women&#x27;s rights</a
-                ><time datetime="2022-06-25T00:00:00.000Z">6/25/2022</time>
+                ><span
+                  ><a href="/category/politics/index.html">Politics</a> ·
+                  <time datetime="2022-06-25T00:00:00.000Z"
+                    >6/25/2022</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/locality" class="sc-bczRLJ kvjZgE">Locality</a
-                ><time datetime="2022-06-20T00:00:00.000Z">6/20/2022</time>
-              </li>
-              <li>
-                <a
-                  href="/article/postgres-on-conflict-retrieve"
-                  class="sc-bczRLJ kvjZgE"
-                  >Postgres: On Conflict Retrieve</a
-                ><time datetime="2021-12-29T00:00:00.000Z">12/29/2021</time>
+                ><span
+                  ><a href="/category/code-quality/index.html"
+                    >Code quality principles</a
+                  >
+                  ·
+                  <time datetime="2022-06-20T00:00:00.000Z"
+                    >6/20/2022</time
+                  ></span
+                >
               </li>
             </ul>
             <p style="text-align: right" class="sc-iBkjds xFOWy">
@@ -558,7 +643,7 @@
               </div>
               <div class="sc-bjUoiL eEdubZ">
                 <h2 class="sc-breuTD cAkxQS">Elsewhere</h2>
-                <ul class="sc-ksZaOG hqPzVW">
+                <ul class="sc-ksZaOG cafSa">
                   <li>
                     <a
                       href="mailto:christopher.andrejewski@gmail.com"

@@ -156,12 +156,12 @@
       data-styled.g16[id='sc-evZas'] {
         content: 'glLgsE,';
       } /*!sc*/
-      .hqPzVW {
+      .cafSa {
         list-style: none;
         margin: 1rem 0;
         padding: 0;
       } /*!sc*/
-      .hqPzVW li {
+      .cafSa li {
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
@@ -176,20 +176,51 @@
         justify-content: space-between;
         padding: 0.5rem;
       } /*!sc*/
-      .hqPzVW li:nth-child(2n-1) {
+      .cafSa li:nth-child(2n-1) {
         background-color: #eff7fd;
       } /*!sc*/
       @media (prefers-color-scheme: dark) {
-        .hqPzVW li:nth-child(2n-1) {
+        .cafSa li:nth-child(2n-1) {
           background-color: #20344c;
         }
       } /*!sc*/
-      .hqPzVW li time {
+      @media (max-width: 400px) {
+        .cafSa li {
+          -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+          flex-direction: column;
+          -webkit-box-pack: start;
+          -webkit-justify-content: flex-start;
+          -ms-flex-pack: start;
+          justify-content: flex-start;
+          -webkit-align-items: flex-start;
+          -webkit-box-align: flex-start;
+          -ms-flex-align: flex-start;
+          align-items: flex-start;
+        }
+        .cafSa li .sc-bczRLJ {
+          width: 100%;
+        }
+      } /*!sc*/
+      .cafSa li span,
+      .cafSa li time {
         opacity: 0.7;
         font-size: 0.9rem;
       } /*!sc*/
+      .cafSa li span {
+        text-align: right;
+      } /*!sc*/
+      .cafSa li span a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .cafSa li span a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
       data-styled.g18[id='sc-ksZaOG'] {
-        content: 'hqPzVW,';
+        content: 'cafSa,';
       } /*!sc*/
     </style>
 
@@ -224,7 +255,12 @@
             </p>
           </div>
           <section class="sc-evZas glLgsE">
-            <ul class="sc-ksZaOG hqPzVW">
+            <ul class="sc-ksZaOG cafSa">
+              <li>
+                <a href="/article/moral-bottom" class="sc-bczRLJ kvjZgE"
+                  >Moral bottom</a
+                ><time datetime="2022-09-23T00:00:00.000Z">9/23/2022</time>
+              </li>
               <li>
                 <a href="/article/scripted" class="sc-bczRLJ kvjZgE">Scripted</a
                 ><time datetime="2020-10-03T00:00:00.000Z">10/3/2020</time>

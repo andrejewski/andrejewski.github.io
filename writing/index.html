@@ -173,12 +173,12 @@
       data-styled.g17[id='sc-breuTD'] {
         content: 'cAkxQS,';
       } /*!sc*/
-      .hqPzVW {
+      .cafSa {
         list-style: none;
         margin: 1rem 0;
         padding: 0;
       } /*!sc*/
-      .hqPzVW li {
+      .cafSa li {
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
@@ -193,20 +193,51 @@
         justify-content: space-between;
         padding: 0.5rem;
       } /*!sc*/
-      .hqPzVW li:nth-child(2n-1) {
+      .cafSa li:nth-child(2n-1) {
         background-color: #eff7fd;
       } /*!sc*/
       @media (prefers-color-scheme: dark) {
-        .hqPzVW li:nth-child(2n-1) {
+        .cafSa li:nth-child(2n-1) {
           background-color: #20344c;
         }
       } /*!sc*/
-      .hqPzVW li time {
+      @media (max-width: 400px) {
+        .cafSa li {
+          -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+          flex-direction: column;
+          -webkit-box-pack: start;
+          -webkit-justify-content: flex-start;
+          -ms-flex-pack: start;
+          justify-content: flex-start;
+          -webkit-align-items: flex-start;
+          -webkit-box-align: flex-start;
+          -ms-flex-align: flex-start;
+          align-items: flex-start;
+        }
+        .cafSa li .sc-bczRLJ {
+          width: 100%;
+        }
+      } /*!sc*/
+      .cafSa li span,
+      .cafSa li time {
         opacity: 0.7;
         font-size: 0.9rem;
       } /*!sc*/
+      .cafSa li span {
+        text-align: right;
+      } /*!sc*/
+      .cafSa li span a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .cafSa li span a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
       data-styled.g18[id='sc-ksZaOG'] {
-        content: 'hqPzVW,';
+        content: 'cafSa,';
       } /*!sc*/
     </style>
 
@@ -240,7 +271,9 @@
           <section class="sc-evZas glLgsE">
             <h2 class="sc-breuTD cAkxQS">Categories</h2>
             <p>
-              <a
+              <a href="/category/fiction/index.html" class="sc-ftvSup hmuBWy"
+                >Fiction</a
+              ><a
                 href="/category/engineering/index.html"
                 class="sc-ftvSup hmuBWy"
                 >Engineering</a
@@ -258,255 +291,515 @@
                 >Code quality principles</a
               ><a href="/category/life/index.html" class="sc-ftvSup hmuBWy"
                 >Life</a
-              ><a href="/category/fiction/index.html" class="sc-ftvSup hmuBWy"
-                >Fiction</a
               >
             </p>
           </section>
           <section class="sc-evZas glLgsE">
             <h2 class="sc-breuTD cAkxQS">Articles</h2>
-            <ul class="sc-ksZaOG hqPzVW">
+            <ul class="sc-ksZaOG cafSa">
+              <li>
+                <a href="/article/moral-bottom" class="sc-bczRLJ kvjZgE"
+                  >Moral bottom</a
+                ><span
+                  ><a href="/category/fiction/index.html">Fiction</a> ·
+                  <time datetime="2022-09-23T00:00:00.000Z"
+                    >9/23/2022</time
+                  ></span
+                >
+              </li>
               <li>
                 <a
                   href="/article/human-friendly-tokens"
                   class="sc-bczRLJ kvjZgE"
                   >Human friendly tokens</a
-                ><time datetime="2022-09-11T00:00:00.000Z">9/11/2022</time>
+                ><span
+                  ><a href="/category/engineering/index.html">Engineering</a> ·
+                  <time datetime="2022-09-11T00:00:00.000Z"
+                    >9/11/2022</time
+                  ></span
+                >
               </li>
               <li>
                 <a
                   href="/article/learning-to-like-types"
                   class="sc-bczRLJ kvjZgE"
                   >Learning to like types</a
-                ><time datetime="2022-08-22T00:00:00.000Z">8/22/2022</time>
+                ><span
+                  ><a href="/category/engineering/index.html">Engineering</a> ·
+                  <time datetime="2022-08-22T00:00:00.000Z"
+                    >8/22/2022</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/code-comments" class="sc-bczRLJ kvjZgE"
                   >Code comments</a
-                ><time datetime="2022-07-31T00:00:00.000Z">7/31/2022</time>
+                ><span
+                  ><a href="/category/ruby/index.html">Ruby programming</a> ·
+                  <time datetime="2022-07-31T00:00:00.000Z"
+                    >7/31/2022</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/effective-sorbet" class="sc-bczRLJ kvjZgE"
                   >Effective Sorbet</a
-                ><time datetime="2022-07-31T00:00:00.000Z">7/31/2022</time>
+                ><span
+                  ><a href="/category/ruby/index.html">Ruby programming</a> ·
+                  <time datetime="2022-07-31T00:00:00.000Z"
+                    >7/31/2022</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/logical-groups" class="sc-bczRLJ kvjZgE"
                   >Logical groups</a
-                ><time datetime="2022-07-31T00:00:00.000Z">7/31/2022</time>
+                ><span
+                  ><a href="/category/system-design/index.html"
+                    >System design</a
+                  >
+                  ·
+                  <time datetime="2022-07-31T00:00:00.000Z"
+                    >7/31/2022</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/ruby-style-guide" class="sc-bczRLJ kvjZgE"
                   >Ruby style guide</a
-                ><time datetime="2022-07-31T00:00:00.000Z">7/31/2022</time>
+                ><span
+                  ><a href="/category/ruby/index.html">Ruby programming</a> ·
+                  <time datetime="2022-07-31T00:00:00.000Z"
+                    >7/31/2022</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/swing-swarm" class="sc-bczRLJ kvjZgE"
                   >Swing swarm</a
-                ><time datetime="2022-06-25T00:00:00.000Z">6/25/2022</time>
+                ><span
+                  ><a href="/category/politics/index.html">Politics</a> ·
+                  <time datetime="2022-06-25T00:00:00.000Z"
+                    >6/25/2022</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/womens-rights" class="sc-bczRLJ kvjZgE"
                   >Women&#x27;s rights</a
-                ><time datetime="2022-06-25T00:00:00.000Z">6/25/2022</time>
+                ><span
+                  ><a href="/category/politics/index.html">Politics</a> ·
+                  <time datetime="2022-06-25T00:00:00.000Z"
+                    >6/25/2022</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/locality" class="sc-bczRLJ kvjZgE">Locality</a
-                ><time datetime="2022-06-20T00:00:00.000Z">6/20/2022</time>
+                ><span
+                  ><a href="/category/code-quality/index.html"
+                    >Code quality principles</a
+                  >
+                  ·
+                  <time datetime="2022-06-20T00:00:00.000Z"
+                    >6/20/2022</time
+                  ></span
+                >
               </li>
               <li>
                 <a
                   href="/article/postgres-on-conflict-retrieve"
                   class="sc-bczRLJ kvjZgE"
                   >Postgres: On Conflict Retrieve</a
-                ><time datetime="2021-12-29T00:00:00.000Z">12/29/2021</time>
+                ><span
+                  ><a href="/category/engineering/index.html">Engineering</a> ·
+                  <time datetime="2021-12-29T00:00:00.000Z"
+                    >12/29/2021</time
+                  ></span
+                >
               </li>
               <li>
                 <a
                   href="/article/declarative-messaging"
                   class="sc-bczRLJ kvjZgE"
                   >Declarative messaging</a
-                ><time datetime="2021-07-14T00:00:00.000Z">7/14/2021</time>
+                ><span
+                  ><a href="/category/engineering/index.html">Engineering</a> ·
+                  <time datetime="2021-07-14T00:00:00.000Z"
+                    >7/14/2021</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/anime-2020" class="sc-bczRLJ kvjZgE"
                   >Anime of 2020</a
-                ><time datetime="2021-03-27T00:00:00.000Z">3/27/2021</time>
+                ><span
+                  ><a href="/category/life/index.html">Life</a> ·
+                  <time datetime="2021-03-27T00:00:00.000Z"
+                    >3/27/2021</time
+                  ></span
+                >
               </li>
               <li>
                 <a
                   href="/article/interface-design-security"
                   class="sc-bczRLJ kvjZgE"
                   >Interface Design: Security</a
-                ><time datetime="2021-03-25T00:00:00.000Z">3/25/2021</time>
+                ><span
+                  ><a href="/category/engineering/index.html">Engineering</a> ·
+                  <time datetime="2021-03-25T00:00:00.000Z"
+                    >3/25/2021</time
+                  ></span
+                >
               </li>
               <li>
                 <a
                   href="/article/db-interface-evolution"
                   class="sc-bczRLJ kvjZgE"
                   >Database interface evolution</a
-                ><time datetime="2021-01-18T00:00:00.000Z">1/18/2021</time>
+                ><span
+                  ><a href="/category/engineering/index.html">Engineering</a> ·
+                  <time datetime="2021-01-18T00:00:00.000Z"
+                    >1/18/2021</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/before-you-before" class="sc-bczRLJ kvjZgE"
                   >Before you before</a
-                ><time datetime="2020-11-04T00:00:00.000Z">11/4/2020</time>
+                ><span
+                  ><a href="/category/engineering/index.html">Engineering</a> ·
+                  <time datetime="2020-11-04T00:00:00.000Z"
+                    >11/4/2020</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/layering" class="sc-bczRLJ kvjZgE">Layering</a
-                ><time datetime="2020-11-03T00:00:00.000Z">11/3/2020</time>
+                ><span
+                  ><a href="/category/code-quality/index.html"
+                    >Code quality principles</a
+                  >
+                  ·
+                  <time datetime="2020-11-03T00:00:00.000Z"
+                    >11/3/2020</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/power" class="sc-bczRLJ kvjZgE">Power</a
-                ><time datetime="2020-11-03T00:00:00.000Z">11/3/2020</time>
+                ><span
+                  ><a href="/category/code-quality/index.html"
+                    >Code quality principles</a
+                  >
+                  ·
+                  <time datetime="2020-11-03T00:00:00.000Z"
+                    >11/3/2020</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/scripted" class="sc-bczRLJ kvjZgE">Scripted</a
-                ><time datetime="2020-10-03T00:00:00.000Z">10/3/2020</time>
+                ><span
+                  ><a href="/category/fiction/index.html">Fiction</a> ·
+                  <time datetime="2020-10-03T00:00:00.000Z"
+                    >10/3/2020</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/diversity" class="sc-bczRLJ kvjZgE"
                   >Diversity</a
-                ><time datetime="2020-06-07T00:00:00.000Z">6/7/2020</time>
+                ><span
+                  ><a href="/category/fiction/index.html">Fiction</a> ·
+                  <time datetime="2020-06-07T00:00:00.000Z"
+                    >6/7/2020</time
+                  ></span
+                >
               </li>
               <li>
                 <a
                   href="/article/interface-design-developer-experience"
                   class="sc-bczRLJ kvjZgE"
                   >Interface Design: Developer Experience</a
-                ><time datetime="2020-05-31T00:00:00.000Z">5/31/2020</time>
+                ><span
+                  ><a href="/category/engineering/index.html">Engineering</a> ·
+                  <time datetime="2020-05-31T00:00:00.000Z"
+                    >5/31/2020</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/javascript-vs-ruby" class="sc-bczRLJ kvjZgE"
                   >JavaScript vs Ruby</a
-                ><time datetime="2020-05-18T00:00:00.000Z">5/18/2020</time>
+                ><span
+                  ><a href="/category/ruby/index.html">Ruby programming</a> ·
+                  <time datetime="2020-05-18T00:00:00.000Z"
+                    >5/18/2020</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/existential" class="sc-bczRLJ kvjZgE"
                   >Existential</a
-                ><time datetime="2020-04-14T00:00:00.000Z">4/14/2020</time>
+                ><span
+                  ><a href="/category/fiction/index.html">Fiction</a> ·
+                  <time datetime="2020-04-14T00:00:00.000Z"
+                    >4/14/2020</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/investing" class="sc-bczRLJ kvjZgE"
                   >Investing</a
-                ><time datetime="2020-04-08T00:00:00.000Z">4/8/2020</time>
+                ><span
+                  ><a href="/category/life/index.html">Life</a> ·
+                  <time datetime="2020-04-08T00:00:00.000Z"
+                    >4/8/2020</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/friends" class="sc-bczRLJ kvjZgE">Friends</a
-                ><time datetime="2020-03-22T00:00:00.000Z">3/22/2020</time>
+                ><span
+                  ><a href="/category/fiction/index.html">Fiction</a> ·
+                  <time datetime="2020-03-22T00:00:00.000Z"
+                    >3/22/2020</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/permanent" class="sc-bczRLJ kvjZgE"
                   >Permanent</a
-                ><time datetime="2020-02-16T00:00:00.000Z">2/16/2020</time>
+                ><span
+                  ><a href="/category/fiction/index.html">Fiction</a> ·
+                  <time datetime="2020-02-16T00:00:00.000Z"
+                    >2/16/2020</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/anime-2019-h2" class="sc-bczRLJ kvjZgE"
                   >Anime of 2019 H2</a
-                ><time datetime="2019-12-31T00:00:00.000Z">12/31/2019</time>
+                ><span
+                  ><a href="/category/life/index.html">Life</a> ·
+                  <time datetime="2019-12-31T00:00:00.000Z"
+                    >12/31/2019</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/sum-2019" class="sc-bczRLJ kvjZgE"
                   >Sum of 2019</a
-                ><time datetime="2019-12-31T00:00:00.000Z">12/31/2019</time>
+                ><span
+                  ><a href="/category/life/index.html">Life</a> ·
+                  <time datetime="2019-12-31T00:00:00.000Z"
+                    >12/31/2019</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/cube-one" class="sc-bczRLJ kvjZgE">Cube One</a
-                ><time datetime="2019-11-02T00:00:00.000Z">11/2/2019</time>
+                ><span
+                  ><a href="/category/fiction/index.html">Fiction</a> ·
+                  <time datetime="2019-11-02T00:00:00.000Z"
+                    >11/2/2019</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/death-bed" class="sc-bczRLJ kvjZgE"
                   >Death Bed</a
-                ><time datetime="2019-08-04T00:00:00.000Z">8/4/2019</time>
+                ><span
+                  ><a href="/category/fiction/index.html">Fiction</a> ·
+                  <time datetime="2019-08-04T00:00:00.000Z"
+                    >8/4/2019</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/moonshot" class="sc-bczRLJ kvjZgE">Moonshot</a
-                ><time datetime="2019-08-04T00:00:00.000Z">8/4/2019</time>
+                ><span
+                  ><a href="/category/fiction/index.html">Fiction</a> ·
+                  <time datetime="2019-08-04T00:00:00.000Z"
+                    >8/4/2019</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/anime-2019-h1" class="sc-bczRLJ kvjZgE"
                   >Anime of 2019 H1</a
-                ><time datetime="2019-07-04T00:00:00.000Z">7/4/2019</time>
+                ><span
+                  ><a href="/category/life/index.html">Life</a> ·
+                  <time datetime="2019-07-04T00:00:00.000Z"
+                    >7/4/2019</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/retry-logic" class="sc-bczRLJ kvjZgE"
                   >Retry Logic</a
-                ><time datetime="2019-01-06T00:00:00.000Z">1/6/2019</time>
+                ><span
+                  ><a href="/category/fiction/index.html">Fiction</a> ·
+                  <time datetime="2019-01-06T00:00:00.000Z"
+                    >1/6/2019</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/sum-2018" class="sc-bczRLJ kvjZgE"
                   >Sum of 2018</a
-                ><time datetime="2018-12-31T00:00:00.000Z">12/31/2018</time>
+                ><span
+                  ><a href="/category/life/index.html">Life</a> ·
+                  <time datetime="2018-12-31T00:00:00.000Z"
+                    >12/31/2018</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/anime-2018" class="sc-bczRLJ kvjZgE"
                   >Anime of 2018</a
-                ><time datetime="2018-12-28T00:00:00.000Z">12/28/2018</time>
+                ><span
+                  ><a href="/category/life/index.html">Life</a> ·
+                  <time datetime="2018-12-28T00:00:00.000Z"
+                    >12/28/2018</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/nothing" class="sc-bczRLJ kvjZgE">Nothing</a
-                ><time datetime="2018-08-11T00:00:00.000Z">8/11/2018</time>
+                ><span
+                  ><a href="/category/engineering/index.html">Engineering</a> ·
+                  <time datetime="2018-08-11T00:00:00.000Z"
+                    >8/11/2018</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/objections" class="sc-bczRLJ kvjZgE"
                   >Objections</a
-                ><time datetime="2018-07-13T00:00:00.000Z">7/13/2018</time>
+                ><span
+                  ><a href="/category/engineering/index.html">Engineering</a> ·
+                  <time datetime="2018-07-13T00:00:00.000Z"
+                    >7/13/2018</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/envelope" class="sc-bczRLJ kvjZgE"
                   >Envelopes</a
-                ><time datetime="2018-06-09T00:00:00.000Z">6/9/2018</time>
+                ><span
+                  ><a href="/category/engineering/index.html">Engineering</a> ·
+                  <time datetime="2018-06-09T00:00:00.000Z"
+                    >6/9/2018</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/profiling" class="sc-bczRLJ kvjZgE"
                   >Profiling</a
-                ><time datetime="2018-05-22T00:00:00.000Z">5/22/2018</time>
+                ><span
+                  ><a href="/category/fiction/index.html">Fiction</a> ·
+                  <time datetime="2018-05-22T00:00:00.000Z"
+                    >5/22/2018</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/what-is-raj" class="sc-bczRLJ kvjZgE"
                   >What is Raj</a
-                ><time datetime="2018-05-19T00:00:00.000Z">5/19/2018</time>
+                ><span
+                  ><a href="/category/engineering/index.html">Engineering</a> ·
+                  <time datetime="2018-05-19T00:00:00.000Z"
+                    >5/19/2018</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/rr-lyrics" class="sc-bczRLJ kvjZgE"
                   >Rhythmic Rebellion Lyrics</a
-                ><time datetime="2017-12-18T00:00:00.000Z">12/18/2017</time>
+                ><span
+                  ><a href="/category/engineering/index.html">Engineering</a> ·
+                  <time datetime="2017-12-18T00:00:00.000Z"
+                    >12/18/2017</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/stop" class="sc-bczRLJ kvjZgE">Stop</a
-                ><time datetime="2017-11-16T00:00:00.000Z">11/16/2017</time>
+                ><span
+                  ><a href="/category/engineering/index.html">Engineering</a> ·
+                  <time datetime="2017-11-16T00:00:00.000Z"
+                    >11/16/2017</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/cali-a2j-doc" class="sc-bczRLJ kvjZgE"
                   >CALI A2J Doc</a
-                ><time datetime="2017-10-30T00:00:00.000Z">10/30/2017</time>
+                ><span
+                  ><a href="/category/engineering/index.html">Engineering</a> ·
+                  <time datetime="2017-10-30T00:00:00.000Z"
+                    >10/30/2017</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/why-raj" class="sc-bczRLJ kvjZgE">Why Raj</a
-                ><time datetime="2017-10-03T04:00:00.000Z">10/3/2017</time>
+                ><span
+                  ><a href="/category/engineering/index.html">Engineering</a> ·
+                  <time datetime="2017-10-03T04:00:00.000Z"
+                    >10/3/2017</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/recurrance" class="sc-bczRLJ kvjZgE"
                   >Recurrence</a
-                ><time datetime="2017-09-03T00:00:00.000Z">9/3/2017</time>
+                ><span
+                  ><a href="/category/fiction/index.html">Fiction</a> ·
+                  <time datetime="2017-09-03T00:00:00.000Z"
+                    >9/3/2017</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/performance" class="sc-bczRLJ kvjZgE"
                   >Performance</a
-                ><time datetime="2017-08-21T00:00:00.000Z">8/21/2017</time>
+                ><span
+                  ><a href="/category/engineering/index.html">Engineering</a> ·
+                  <time datetime="2017-08-21T00:00:00.000Z"
+                    >8/21/2017</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/about-me" class="sc-bczRLJ kvjZgE">About me</a
-                ><time datetime="2017-07-30T00:00:00.000Z">7/30/2017</time>
+                ><span
+                  ><a href="/category/life/index.html">Life</a> ·
+                  <time datetime="2017-07-30T00:00:00.000Z"
+                    >7/30/2017</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/quote" class="sc-bczRLJ kvjZgE">Quote</a
-                ><time datetime="2017-07-30T00:00:00.000Z">7/30/2017</time>
+                ><span
+                  ><a href="/category/life/index.html">Life</a> ·
+                  <time datetime="2017-07-30T00:00:00.000Z"
+                    >7/30/2017</time
+                  ></span
+                >
               </li>
               <li>
                 <a href="/article/contact-forms" class="sc-bczRLJ kvjZgE"
                   >Contact forms</a
-                ><time datetime="2015-04-04T00:00:00.000Z">4/4/2015</time>
+                ><span
+                  ><a href="/category/engineering/index.html">Engineering</a> ·
+                  <time datetime="2015-04-04T00:00:00.000Z"
+                    >4/4/2015</time
+                  ></span
+                >
               </li>
             </ul>
           </section>
