@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>System design interviews</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="The signals I try to gather as an interviewer and how I try to touch on those signals as a candidate."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link rel="canonical" href="/article/system-design-interviews/index.html" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="System design interviews" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta
+      property="og:url"
+      content="/article/system-design-interviews/index.html"
+    />
+
+    <meta property="twitter:card" content="summary" />
+    <meta name="twitter:site" content="compooter" />
+    <meta name="twitter:title" content="System design interviews" />
+    <meta
+      name="twitter:description"
+      content="The signals I try to gather as an interviewer and how I try to touch on those signals as a candidate."
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .eBtA-dh {
+        margin: 3rem 0;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'eBtA-dh,';
+      } /*!sc*/
+      .kaKiDU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      @media (max-width: 720px) {
+        .kaKiDU {
+          font-size: 1.8rem;
+        }
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'kaKiDU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .hmuBWy {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #9ed2f9;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .hmuBWy:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hmuBWy {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'hmuBWy,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .fPhkML {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #daefff;
+        color: #769fbe;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .fPhkML {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .fPhkML .sc-iBkjds {
+        color: #153248;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .fPhkML .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .fPhkML ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .fPhkML a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .fPhkML a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .fPhkML a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #b9dbf5;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .fPhkML a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'fPhkML,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #eff7fd;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-kFwHxP1'] {
+        content: 'sc-global-kFwHxP1,';
+      } /*!sc*/
+      .kylQxs {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .kylQxs h1 {
+        font-size: 1.5rem;
+        padding: 1rem 0px;
+        margin: 0;
+      } /*!sc*/
+      .kylQxs h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .kylQxs h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (max-width: 720px) {
+        .kylQxs .sc-kDDrLX {
+          display: none;
+        }
+      } /*!sc*/
+      data-styled.g14[id='sc-iqcoie'] {
+        content: 'kylQxs,';
+      } /*!sc*/
+      .ismAZz h1 > a,
+      .ismAZz h2 > a,
+      .ismAZz h3 > a,
+      .ismAZz h4 > a,
+      .ismAZz h5 > a,
+      .ismAZz h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .ismAZz h1 > a:hover,
+      .ismAZz h2 > a:hover,
+      .ismAZz h3 > a:hover,
+      .ismAZz h4 > a:hover,
+      .ismAZz h5 > a:hover,
+      .ismAZz h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .ismAZz p,
+      .ismAZz li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ismAZz p,
+        .ismAZz li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .ismAZz a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ismAZz a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .ismAZz ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .ismAZz code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .ismAZz h1 code,
+      .ismAZz h2 code,
+      .ismAZz h3 code,
+      .ismAZz h4 code,
+      .ismAZz h5 code,
+      .ismAZz h6 code,
+      .ismAZz li code,
+      .ismAZz p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #eff7fd;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ismAZz h1 code,
+        .ismAZz h2 code,
+        .ismAZz h3 code,
+        .ismAZz h4 code,
+        .ismAZz h5 code,
+        .ismAZz h6 code,
+        .ismAZz li code,
+        .ismAZz p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .ismAZz pre {
+        background-color: #eff7fd;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ismAZz pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .ismAZz img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .ismAZz video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .ismAZz figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .ismAZz figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .ismAZz figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .ismAZz .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .ismAZz .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'ismAZz,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-iqcoie kylQxs">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi eBtA-dh">
+            <p class="sc-iBkjds xFOWy">
+              <a
+                href="/category/system-design/index.html"
+                class="sc-ftvSup hmuBWy"
+                >System design</a
+              ><a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup hmuBWy"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf kaKiDU">
+              <a href="#" class="sc-papXJ iHVwPn"
+                ><span>System design interviews</span></a
+              >
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              The signals I try to gather as an interviewer and how I try to
+              touch on those signals as a candidate.
+            </p>
+          </div>
+          <div class="sc-jqUVSM fPhkML">
+            <p class="sc-iBkjds xFOWy">Table of contents</p>
+            <div>
+              <ul>
+                <li>
+                  <a href="#valuable-signals">Valuable signals</a>
+                  <ul>
+                    <li><a href="#simplicity">Simplicity</a></li>
+                    <li>
+                      <a href="#solving-the-right-problem"
+                        >Solving the right problem</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#presenting-a-design">Presenting a design</a>
+                  <ul>
+                    <li><a href="#simplicity-1">Simplicity</a></li>
+                    <li>
+                      <a href="#solving-the-right-problem-1"
+                        >Solving the right problem</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#approach">Approach</a>
+                      <ul>
+                        <li><a href="#correctness">Correctness</a></li>
+                        <li><a href="#error-handling">Error handling</a></li>
+                        <li><a href="#reliability">Reliability</a></li>
+                        <li><a href="#scaling">Scaling</a></li>
+                        <li><a href="#maintenance">Maintenance</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li><a href="#conclusion">Conclusion</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-crXcEl ismAZz">
+              <p>
+                For the past couple years I've worked on Stripe's engineering
+                interview committee. Our remit is the design, scoring, and
+                curation of technical interview questions for engineering
+                individual contributors (ICs) and engineering managers (EMs). My
+                areas of ownership/responsibility are:
+              </p>
+              <ul>
+                <li>
+                  <p>
+                    Some of our internal tooling for engineers participating in
+                    the hiring process. All engineering ICs beyond
+                    L1/entry-level participate in the hiring process for other
+                    engineers. We conduct interviews and score candidates using
+                    rubrics. These rubrics are designed by the committee and
+                    volunteers. We build and maintain some tools for engineers
+                    to apply to spin-up on new interviews and see which
+                    interviews they are trained up for.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    I also steward the system design interviews Stripe uses.
+                    When I interview candidates this is my exclusive focus and I
+                    really enjoy it. On the committee, I've facilitated rubric
+                    changes. I advocate, explain, and iterate on the signals we
+                    try to capture using our system design questions.
+                  </p>
+                </li>
+              </ul>
+              <p>This article explains:</p>
+              <ul>
+                <li>
+                  The signals I've found in practice to demonstrate a firm
+                  understanding of system design, and
+                </li>
+                <li>
+                  How capable candidates can hit on these signals by being more
+                  deliberate.
+                </li>
+              </ul>
+              <p>
+                This is not an article on how to hack Stripe's interview
+                process. This is because fortunately the rubric puts emphasis on
+                practical experience and well reasoned decisions, not specific
+                design patterns, algorithms, or buzzwords. We poke, prod, and
+                push candidates on their decisions: it's difficult to rehearse
+                or fake it for such a dynamic interview.
+              </p>
+              <h1 id="valuable-signals">
+                <a href="#valuable-signals">Valuable signals</a>
+              </h1>
+              <p>The core components I value in any design are:</p>
+              <h2 id="simplicity"><a href="#simplicity">Simplicity</a></h2>
+              <p>
+                No component of the system should lack a compelling purpose. The
+                purpose needs to be more compelling than the added complexity it
+                brings. Carelessly added or unjustified components often take
+                the shape of complex data pipelines, caches, or unnecessary
+                redundancy.
+              </p>
+              <p>
+                Unfamiliar technologies are perfectly alright but they must be
+                presented in terms of &quot;first principles.&quot; For example,
+                someone may articulate a special/custom database for the
+                presented problem, but they must not pepper over those essential
+                truths (correctness, latency, atomicity, CAP theorem, time- and
+                space-complexities of data structures, etc) under the guise of
+                &quot;it works&quot; or &quot;it's magic.&quot;
+              </p>
+              <h2 id="solving-the-right-problem">
+                <a href="#solving-the-right-problem"
+                  >Solving the right problem</a
+                >
+              </h2>
+              <p>
+                Alternatively put: have the design fit the requirements well.
+                There are the basic functional requirements, then the
+                non-functional, and so on to touch organizational concerns and
+                as you scale trading off multiple competing goals against each
+                other.
+              </p>
+              <p>
+                Sometimes the goals are obvious, other times you should lean on
+                your interviewer to be the oracle of user needs and
+                organizational context.
+              </p>
+              <h1 id="presenting-a-design">
+                <a href="#presenting-a-design">Presenting a design</a>
+              </h1>
+              <p>
+                Okay, so how can a capable candidate present their design to
+                maximally hit on these signals?
+              </p>
+              <h2 id="simplicity"><a href="#simplicity">Simplicity</a></h2>
+              <p>
+                Software engineering interviews have a bad reputation. Puzzles,
+                algorithm questions, and trick questions. Most candidates'
+                instincts are to demonstrate a vocabulary, not an in-depth
+                understanding of problem solving. This often leads to candidates
+                out of the gate rattling off: cache, queue, load balancer,
+                shards, consistent hashing, and cache again. This will lose you
+                points massively when a measure is simplicity.
+              </p>
+              <p>
+                Instead, I always tell candidates upfront that they should start
+                with the simplest thing possible. Understand the functional
+                requirements and hit them. This should be really quick. (If you
+                are asked to diagram a system, draw this out to start with.)
+                Demonstrating you understand what can be the simplest thing
+                possible speaks volumes.
+              </p>
+              <p>
+                This style is advantageous because complexity is more palatable
+                when it is justified. With a basic structure in place you can
+                now move from merely solving the problem to solving it well. You
+                can now always make a trade-off decision: to add something else
+                you must trade it off against simplicity, which should be hard
+                to do because you should value simplicity. This sets you up to
+                tell a good story.
+              </p>
+              <h2 id="solving-the-right-problem">
+                <a href="#solving-the-right-problem"
+                  >Solving the right problem</a
+                >
+              </h2>
+              <p>
+                Oftentimes in larger engineering organizations, we tend to form
+                groups of more specialized roles going from generalist to
+                ‘front-end, back-end‘ to ‘product, platform, infra’ and so on.
+                This layering is a means of organizing and making work, to some
+                degree of well, people who often aren’t presently capable of
+                being those do-it-all generalists. (And of course individual
+                specialists in the field are truly temporarily irreplaceable,
+                but any engineering organization ought to actively mitigate this
+                as a risk to the business.) The really strong engineers don’t
+                exist in one of these single bubbles, they must transcend them
+                to some degree to make really successful systems.
+              </p>
+              <p>
+                This is something that I’ve come to learn really well working on
+                platform teams for more than half a decade. Achieving a
+                successful design is not solving for your immediate internal
+                stakeholders most of the time. Instead it is extracting the
+                essence of what the very best internal teams are doing for
+                external customers and commoditizing it for the rest of the
+                organization to leverage. You must make internal stakeholders
+                happy, but they should only be happy doing the work that will
+                make the end user happy. It’s an interesting game of guard rails
+                and incentives.
+              </p>
+              <p>
+                That is one example, another is designing for your future self
+                or for the future team which will be tasked with making changes.
+              </p>
+              <p>
+                Through this multi-faceted lens you can ask what people are
+                trying to do and why and how your system can help (if it
+                should).
+              </p>
+              <p>
+                Now this is all rather meta, and in an interview you’ll have
+                even less to come close to articulating a narrative such as
+                this. What we can do tactically is:
+              </p>
+              <ul>
+                <li>
+                  Narrow scope. Cut, cut, cut anything not essential to the
+                  tasks needed. Do not add any additional features or nice to
+                  haves. You will not have time to do them justice.
+                </li>
+                <li>
+                  Call out what the system won’t be for, provide an example of
+                  some use case that won’t be served.
+                </li>
+                <li>
+                  Enumerate the stakeholders. You don’t have to perfectly embody
+                  each one. State that there are more stakeholders than might
+                  meet the eye.
+                </li>
+              </ul>
+              <h2 id="approach"><a href="#approach">Approach</a></h2>
+              <p>
+                With a simple design for a well-defined problem, how you then
+                solve it well is up to you. Presenting a philosophy and
+                progression is a great way to demonstrate this isn’t your first
+                rodeo. Here’s mine, as in what I solve and in what order:
+              </p>
+              <ol>
+                <li>Correctness</li>
+                <li>Error handling</li>
+                <li>Reliability</li>
+                <li>Scale</li>
+                <li>Maintenance</li>
+              </ol>
+              <p>Let’s lightly map these out in more detail.</p>
+              <p>
+                Note that it is very unlikely I could actually get through all
+                of these considerations in a design interview due to time
+                constraints (Stripe’s system design interview is only 45
+                minutes), but laying out the process and not finishing due to
+                time has value. Lay out a framework, follow it loosely,
+                highlighting some considerations so the interviewer can
+                understand that you have breadth because you have a framework
+                but also depth because they get concrete examples to cite.
+              </p>
+              <h3 id="correctness"><a href="#correctness">Correctness</a></h3>
+              <ul>
+                <li>
+                  Agree on terminology with the interviewer. For example, what
+                  do you mean when you say “cache”? Is it a distributed or
+                  in-memory cache? Does it have a TTL? If you are drawing
+                  diagrams, have a shared understanding of what the boxes and
+                  lines represent. (As an interviewer, I often assist scattered
+                  candidates by restating what I believe they are saying.)
+                </li>
+                <li>
+                  Focus on simplicity. This is the stage where you are making
+                  the simplest thing possible.
+                </li>
+                <li>
+                  Model domain complexity precisely. Candidates often try to
+                  over-abstract or expand the scope of a system too early and
+                  design a floor wax that is also a dessert topping. Do not get
+                  side tracked solving tangent problems.
+                </li>
+                <li>
+                  Demonstrate end to end understanding of critical flows. Prove
+                  that you have the simplest design that meets the requirements
+                  by walking through the important data flows step by step.
+                </li>
+              </ul>
+              <h3 id="error-handling">
+                <a href="#error-handling">Error handling</a>
+              </h3>
+              <ul>
+                <li>How do you handle any logic errors?</li>
+                <li>
+                  How do you handle network errors?
+                  <ul>
+                    <li>
+                      Any component may be permanently unavailable and you can’t
+                      keep adding more and more network components to prevent
+                      this.
+                    </li>
+                    <li>
+                      Do you retry? And how? Some common ideas:
+                      <ul>
+                        <li>Solve thundering herd problems using jitter.</li>
+                        <li>
+                          Solve retry blasts by giving up on some requests and
+                          returning &quot;DO NOT RETRY&quot; to prevent more
+                          retries.
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  How will errors be surfaced in the system’s API? Which things
+                  are exceptional?
+                </li>
+              </ul>
+              <h3 id="reliability"><a href="#reliability">Reliability</a></h3>
+              <ul>
+                <li>
+                  Eliminate Single Points of Failure (SPOFs). For each component
+                  of the system identify how it might bring the whole system
+                  down if it is unavailable and remedy it. Usual fixes:
+                  <ul>
+                    <li>Load balancing</li>
+                    <li>Shards</li>
+                    <li>Backups, standbys, and redundancy</li>
+                  </ul>
+                </li>
+                <li>
+                  Identify opportunities where single components can continue
+                  working in a partially degraded state when the components it
+                  uses are not reliable. Try to minimize total failure for
+                  critical flows. This works hand in hand with eliminating
+                  SPOFs: it is reliable in depth.
+                </li>
+                <li>
+                  Bias towards predictable performance over sometimes optimal
+                  performance. Usual fixes:
+                  <ul>
+                    <li>Use index hints in the database components.</li>
+                    <li>
+                      Avoid hot shard keys by avoiding hashing solutions in
+                      favor of dedicated capacity for known exceptional cases.
+                    </li>
+                    <li>
+                      Distribute requests with simple logic, e.g. round robin or
+                      random strategies.
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  Cover latency requirements and make it a part of trade-off
+                  discussions.
+                </li>
+              </ul>
+              <h3 id="scaling"><a href="#scaling">Scaling</a></h3>
+              <ul>
+                <li>
+                  Identify which components will fall over first due to load.
+                  Discuss options for horizontal and vertical scaling. Adding
+                  more hosts might require being more stateless and/or
+                  introducing eventual consistency.
+                </li>
+                <li>
+                  Consider duplicating infrastructure in multiple regions or
+                  data centers. Within each region have multiple copies of each
+                  system component. (This is much easier now that SPOFs are
+                  dealt with.) Identify areas where batching or aggregation are
+                  appropriate. If you are starting to introduce caches, consider
+                  how they will be populated. (Maybe pre-populate them.)
+                </li>
+                <li>
+                  Now that we have mapped so much out in the previous steps, we
+                  can consider scale properly and modify requirements. Often
+                  there is no way to scale further than to drop or loosen
+                  guarantees or invariants. (Moving things async, eventual
+                  consistency, less reliability for non-critical tasks, priority
+                  tiers.)
+                </li>
+                <li>
+                  With so many nodes in a distributed system you might delve
+                  into how you might handle service discovery, access control,
+                  and cryptography (public key infrastructure (PKI), network
+                  meshes (m/TLS)) if your system has particular needs in these
+                  areas.
+                </li>
+              </ul>
+              <h3 id="maintenance"><a href="#maintenance">Maintenance</a></h3>
+              <ul>
+                <li>
+                  Describe what common changes might be made to the system. Make
+                  those changes simple.
+                </li>
+                <li>
+                  Describe what we can do to ensure the system works as we
+                  expect. Observability such as logging, audit trail, metrics,
+                  detectors, and alerting.
+                </li>
+                <li>
+                  Design the system for the organization it is built for. How is
+                  ownership of different aspects of the system managed? As the
+                  system evolves, who should be making the changes? How are
+                  engineers properly incentivized to keep the system healthy?
+                </li>
+              </ul>
+              <h1 id="conclusion"><a href="#conclusion">Conclusion</a></h1>
+              <p>
+                System design interviews can be really awesome. As an
+                interviewer, the interview is so much more dynamic and engaging
+                than pass-or-fail code exercises. For candidates, these
+                interviews can be quite stressful and daunting. Most interview
+                processes are poorly designed and executed to really understand
+                someone’s capabilities–it is a hard problem with time
+                constraints after all.
+              </p>
+              <p>
+                Here I have laid out my definition of the essence of an
+                excellent, time-constrained system design:
+              </p>
+              <ul>
+                <li>Design the simplest thing first, then expand upon it.</li>
+                <li>
+                  Design for the right problem, stakeholders, and outcomes.
+                </li>
+                <li>
+                  Present a clear narrative of how you go about designing the
+                  system.
+                </li>
+              </ul>
+              <p>
+                As an interviewer, I want to be coming out of the interview
+                knowing the candidate has done all these things so it is to your
+                advantage to facilitate that.
+              </p>
+              <p>
+                The interview process is two sided, the employer assesses you
+                and you assess the employer. Design interviews will be run
+                differently. The important meta point to take away from this
+                article is, “Does this approach to assessing a system design as
+                an interviewer and this approach to designing systems as a
+                candidate resonate with you?”
+              </p>
+              <p>
+                If it does, I recommend taking some of the advice here and
+                applying it on both sides of the table if possible. It would
+                really make the industry a better place in my opinion.
+              </p>
+              <p>
+                If it doesn’t, what does? Consider both sides of the table, what
+                you would assess and how you could best perform well by your
+                measure. And most importantly let me know!
+              </p>
+              <p>Thanks for reading!</p>
+              <p>
+                If you made it this far, feel free to get in touch with me about
+                doing a mock system design interview when you go on the hunt for
+                your next job–I’m happy to help.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
