@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sorbet T.must_because</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="A small contribution to Sorbet I made" />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link rel="canonical" href="/article/sorbet-t-must-because/index.html" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Sorbet T.must_because" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta
+      property="og:url"
+      content="/article/sorbet-t-must-because/index.html"
+    />
+
+    <meta property="twitter:card" content="summary" />
+    <meta name="twitter:site" content="compooter" />
+    <meta name="twitter:title" content="Sorbet T.must_because" />
+    <meta
+      name="twitter:description"
+      content="A small contribution to Sorbet I made"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .eBtA-dh {
+        margin: 3rem 0;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'eBtA-dh,';
+      } /*!sc*/
+      .kaKiDU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      @media (max-width: 720px) {
+        .kaKiDU {
+          font-size: 1.8rem;
+        }
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'kaKiDU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .hmuBWy {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #9ed2f9;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .hmuBWy:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hmuBWy {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'hmuBWy,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .fPhkML {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #daefff;
+        color: #769fbe;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .fPhkML {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .fPhkML .sc-iBkjds {
+        color: #153248;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .fPhkML .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .fPhkML ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .fPhkML a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .fPhkML a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .fPhkML a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #b9dbf5;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .fPhkML a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'fPhkML,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #eff7fd;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-kFwHxP1'] {
+        content: 'sc-global-kFwHxP1,';
+      } /*!sc*/
+      .kylQxs {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .kylQxs h1 {
+        font-size: 1.5rem;
+        padding: 1rem 0px;
+        margin: 0;
+      } /*!sc*/
+      .kylQxs h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .kylQxs h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (max-width: 720px) {
+        .kylQxs .sc-kDDrLX {
+          display: none;
+        }
+      } /*!sc*/
+      data-styled.g14[id='sc-iqcoie'] {
+        content: 'kylQxs,';
+      } /*!sc*/
+      .ismAZz h1 > a,
+      .ismAZz h2 > a,
+      .ismAZz h3 > a,
+      .ismAZz h4 > a,
+      .ismAZz h5 > a,
+      .ismAZz h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .ismAZz h1 > a:hover,
+      .ismAZz h2 > a:hover,
+      .ismAZz h3 > a:hover,
+      .ismAZz h4 > a:hover,
+      .ismAZz h5 > a:hover,
+      .ismAZz h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .ismAZz p,
+      .ismAZz li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ismAZz p,
+        .ismAZz li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .ismAZz a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ismAZz a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .ismAZz ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .ismAZz code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .ismAZz h1 code,
+      .ismAZz h2 code,
+      .ismAZz h3 code,
+      .ismAZz h4 code,
+      .ismAZz h5 code,
+      .ismAZz h6 code,
+      .ismAZz li code,
+      .ismAZz p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #eff7fd;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ismAZz h1 code,
+        .ismAZz h2 code,
+        .ismAZz h3 code,
+        .ismAZz h4 code,
+        .ismAZz h5 code,
+        .ismAZz h6 code,
+        .ismAZz li code,
+        .ismAZz p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .ismAZz pre {
+        background-color: #eff7fd;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ismAZz pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .ismAZz img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .ismAZz video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .ismAZz figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .ismAZz figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .ismAZz figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .ismAZz .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .ismAZz .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'ismAZz,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-iqcoie kylQxs">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi eBtA-dh">
+            <p class="sc-iBkjds xFOWy">
+              <a href="/category/ruby/index.html" class="sc-ftvSup hmuBWy"
+                >Ruby programming</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf kaKiDU">
+              <a href="#" class="sc-papXJ iHVwPn"
+                ><span>Sorbet T.must_because</span></a
+              >
+            </h1>
+            <p class="sc-iBkjds xFOWy">A small contribution to Sorbet I made</p>
+          </div>
+          <div class="sc-jqUVSM fPhkML">
+            <p class="sc-iBkjds xFOWy">Table of contents</p>
+            <div>
+              <ul>
+                <li><a href="#the-before-times">The before times</a></li>
+                <li><a href="#adding-context">Adding context</a></li>
+                <li>
+                  <a href="#interesting-things-i-learned-in-the-process"
+                    >Interesting things I learned in the process</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-crXcEl ismAZz">
+              <p>
+                A couple of weeks ago I landed a small addition to Sorbet
+                <a href="https://sorbet.org/docs/type-assertions#tmust"
+                  ><code>T.must_because</code></a
+                >. Out of context the method name sounds a bit odd but it's been
+                super useful to have around.
+              </p>
+              <h1 id="the-before-times">
+                <a href="#the-before-times">The before times</a>
+              </h1>
+              <p>
+                Since I started using Sorbet, it has had a plain
+                <code>T.must</code> method, which narrows a nil-able type:
+              </p>
+              <pre><code class="language-rb">int = T.must(int_or_nil)
+</code></pre>
+              <p>But these were infuriating to me:</p>
+              <ul>
+                <li>as a code reviewer</li>
+                <li>as someone who reads code</li>
+                <li>as someone who needs to fix bugs on these calls</li>
+              </ul>
+              <p>
+                The error message <code>T.must</code> raises when a
+                <code>nil</code> is passed is simply:
+              </p>
+              <pre><code>Unexpected nil pass to T.must
+</code></pre>
+              <h1 id="adding-context">
+                <a href="#adding-context">Adding context</a>
+              </h1>
+              <p>
+                What I have wanted for a long time is a place to provide
+                <em>context</em>. With <code>T.must_because</code> we have nice
+                friendly and concise way of doing just that:
+              </p>
+              <pre><code class="language-rb">sig {params(<span class="hljs-symbol">list:</span> T::Array[String]).returns(String)}
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">human_readable_second_item</span>(<span class="hljs-params">list</span>)
+  <span class="hljs-keyword">if</span> list.size &lt; <span class="hljs-number">2</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;List not long enough&quot;</span>
+  <span class="hljs-keyword">end</span>
+
+  item = T.must_because(list[<span class="hljs-number">1</span>]) {<span class="hljs-string">&#x27;we check the size above&#x27;</span>}
+  <span class="hljs-string">&quot;Second item: <span class="hljs-subst">#{item}</span>&quot;</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                Despite not having worked with C++ or Sorbet's test suite
+                before, the process was pretty straight forward to land the
+                feature. Check out the
+                <a
+                  href="https://github.com/sorbet/sorbet/commit/2cb8794a47308e872cbc5f6c12b431c45085f0b4"
+                  >pull request on Github</a
+                >!
+              </p>
+              <p>
+                The <code>T.must_because</code> method is gaining steam
+                internally at Stripe and I recommend giving it a try in other
+                codebases. I personally have no reason to use
+                <code>T.must</code> ever again. Context, especially when you're
+                escaping the type system, is always good.
+              </p>
+              <h1 id="interesting-things-i-learned-in-the-process">
+                <a href="#interesting-things-i-learned-in-the-process"
+                  >Interesting things I learned in the process</a
+                >
+              </h1>
+              <ul>
+                <li>
+                  <p>
+                    <strong
+                      >Sorbet is all about those integration tests.</strong
+                    >
+                    Most of the tests for Sorbet are on the level of textual
+                    output and uses a pseudo language for making assertions
+                    about what errors are expected.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <strong
+                      >All Ruby methods take an implicit block so a block
+                      doesn't add performance overhead in itself.</strong
+                    >
+                    In evaluating call signatures for this method I learned from
+                    the Sorbet Slack channel that the
+                    <code>{&quot;msg&quot;}</code> syntax was optimal. Coming
+                    from JavaScript where function allocations need to be
+                    considered in performance-sensitive code, this was
+                    surprising. This definitely seems like a place where the
+                    Sorbet compiler would be able to optimize to an extent such
+                    that it would become perf-sensitive.
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

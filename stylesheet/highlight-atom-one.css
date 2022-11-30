@@ -251,7 +251,9 @@ hue-6-2: #e6c07b
 
   .hljs-comment,
   .hljs-quote {
-    color: #5c6370;
+    /* color: #5c6370; */
+    /* EDIT: Choosing a color with better contrast. */
+    color: #b5c5e3;
     font-style: italic;
   }
 
