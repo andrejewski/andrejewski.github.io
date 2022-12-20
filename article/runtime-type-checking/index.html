@@ -484,7 +484,7 @@
               <p>
                 Sorbet can't achieve a more powerful type system because the
                 runtime type-checking needs to be grounded in reality (types
-                must be class/module-based to make checking practical).
+                must be class/module/value-based to make checking practical).
                 TypeScript can't provide runtime checks because it is so
                 expressive it cannot translate to a viable runtime checking
                 analog (structured types are prohibitively expensive to check at
@@ -585,7 +585,7 @@ sig {params(<span class="hljs-symbol">status_code:</span> Integer).returns(T.nil
                 runtime checks disabled in the code-bases I work in. Sorbet
                 allows this with:
               </p>
-              <pre><code class="language-rb">sig {params(<span class="hljs-symbol">x:</span> Integer).checked(<span class="hljs-symbol">:tests</span>)}
+              <pre><code class="language-rb">sig {params(<span class="hljs-symbol">x:</span> Integer).returns(Integer).checked(<span class="hljs-symbol">:tests</span>)}
 <span class="hljs-keyword">def</span> <span class="hljs-title function_">method_underpinning_everything</span>(<span class="hljs-params">x</span>); <span class="hljs-keyword">end</span>
 </code></pre>
               <p>
@@ -639,8 +639,7 @@ T.let({<span class="hljs-symbol">a:</span> <span class="hljs-number">1</span>, <
                 at runtime. The checks performed are usually
                 <a href="https://apidock.com/ruby/v2_5_5/Object/is_a%3F"
                   ><code>is_a?()</code></a
-                >
-                checks but there are other data-like constructs like
+                >-like checks but there are other data-like constructs like
                 <code>T::Boolean</code> which is a union type of
                 <code>TrueClass</code> and <code>FalseClass</code> that get
                 represented at runtime quite transparently:
@@ -685,7 +684,7 @@ sig <span class="hljs-keyword">do</span>
 </code></pre>
               <p>
                 Definitely another win for runtime checks. We want types to be
-                tools in our day to day work as well, not just code comments.
+                tools in our day-to-day work as well, not just code comments.
               </p>
               <h1 id="conclusion"><a href="#conclusion">Conclusion</a></h1>
               <p>
