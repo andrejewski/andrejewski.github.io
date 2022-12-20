@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Runtime type checking</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Reviewing my influences TypeScript, Sorbet, and Clojure Spec"
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link rel="canonical" href="/article/runtime-type-checking/index.html" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Runtime type checking" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta
+      property="og:url"
+      content="/article/runtime-type-checking/index.html"
+    />
+
+    <meta property="twitter:card" content="summary" />
+    <meta name="twitter:site" content="compooter" />
+    <meta name="twitter:title" content="Runtime type checking" />
+    <meta
+      name="twitter:description"
+      content="Reviewing my influences TypeScript, Sorbet, and Clojure Spec"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .eBtA-dh {
+        margin: 3rem 0;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'eBtA-dh,';
+      } /*!sc*/
+      .kaKiDU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      @media (max-width: 720px) {
+        .kaKiDU {
+          font-size: 1.8rem;
+        }
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'kaKiDU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .hmuBWy {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #9ed2f9;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .hmuBWy:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hmuBWy {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'hmuBWy,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .fPhkML {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #daefff;
+        color: #769fbe;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .fPhkML {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .fPhkML .sc-iBkjds {
+        color: #153248;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .fPhkML .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .fPhkML ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .fPhkML a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .fPhkML a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .fPhkML a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #b9dbf5;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .fPhkML a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'fPhkML,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #eff7fd;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-kFwHxP1'] {
+        content: 'sc-global-kFwHxP1,';
+      } /*!sc*/
+      .kylQxs {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .kylQxs h1 {
+        font-size: 1.5rem;
+        padding: 1rem 0px;
+        margin: 0;
+      } /*!sc*/
+      .kylQxs h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .kylQxs h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (max-width: 720px) {
+        .kylQxs .sc-kDDrLX {
+          display: none;
+        }
+      } /*!sc*/
+      data-styled.g14[id='sc-iqcoie'] {
+        content: 'kylQxs,';
+      } /*!sc*/
+      .ismAZz h1 > a,
+      .ismAZz h2 > a,
+      .ismAZz h3 > a,
+      .ismAZz h4 > a,
+      .ismAZz h5 > a,
+      .ismAZz h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .ismAZz h1 > a:hover,
+      .ismAZz h2 > a:hover,
+      .ismAZz h3 > a:hover,
+      .ismAZz h4 > a:hover,
+      .ismAZz h5 > a:hover,
+      .ismAZz h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .ismAZz p,
+      .ismAZz li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ismAZz p,
+        .ismAZz li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .ismAZz a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ismAZz a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .ismAZz ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .ismAZz code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .ismAZz h1 code,
+      .ismAZz h2 code,
+      .ismAZz h3 code,
+      .ismAZz h4 code,
+      .ismAZz h5 code,
+      .ismAZz h6 code,
+      .ismAZz li code,
+      .ismAZz p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #eff7fd;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ismAZz h1 code,
+        .ismAZz h2 code,
+        .ismAZz h3 code,
+        .ismAZz h4 code,
+        .ismAZz h5 code,
+        .ismAZz h6 code,
+        .ismAZz li code,
+        .ismAZz p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .ismAZz pre {
+        background-color: #eff7fd;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ismAZz pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .ismAZz img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .ismAZz video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .ismAZz figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .ismAZz figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .ismAZz figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .ismAZz .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .ismAZz .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'ismAZz,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-iqcoie kylQxs">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi eBtA-dh">
+            <p class="sc-iBkjds xFOWy">
+              <a href="/category/ruby/index.html" class="sc-ftvSup hmuBWy"
+                >Ruby programming</a
+              ><a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup hmuBWy"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf kaKiDU">
+              <a href="#" class="sc-papXJ iHVwPn"
+                ><span>Runtime type checking</span></a
+              >
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              Reviewing my influences TypeScript, Sorbet, and Clojure Spec
+            </p>
+          </div>
+          <div class="sc-jqUVSM fPhkML">
+            <p class="sc-iBkjds xFOWy">Table of contents</p>
+            <div>
+              <ul>
+                <li>
+                  <a href="#expression-vs-confidence"
+                    >Expression vs confidence</a
+                  >
+                </li>
+                <li><a href="#breaking-changes">Breaking changes</a></li>
+                <li>
+                  <a href="#checking-performance">Checking performance</a>
+                </li>
+                <li><a href="#types-as-data">Types as data</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-crXcEl ismAZz">
+              <p>
+                <a href="https://jez.io/">Jake</a> asked my thoughts on Sorbet's
+                runtime type checking. At the same time I've been revisiting
+                Clojure's runtime type checking alternative
+                <a href="https://clojure.org/about/spec">Spec</a>. So I think
+                this is a good time to flesh out some thoughts.
+              </p>
+              <h1 id="expression-vs-confidence">
+                <a href="#expression-vs-confidence">Expression vs confidence</a>
+              </h1>
+              <p>
+                I primarily code in TypeScript and Sorbet Ruby, for both work
+                and personal projects. TypeScript's type system is quite
+                powerful <em>for a type system</em>. It's rich, has tons of
+                features, nice syntactic sugar, and meshes well with the stated
+                goal of being a bolt-on type system to JavaScript. We don't
+                escape any of the pain of JavaScript, it's just made more
+                bearable by the compile-time type-checking and IDE experience.
+                And that's where TypeScript's help stops.
+              </p>
+              <p>
+                Sorbet has runtime type checking so it goes further than
+                TypeScript, all the way with us into production (by default).
+                These
+                <a href="/article/javascript-vs-ruby#runtime-checks"
+                  >runtime checks are awesome</a
+                >
+                because they don't lie. TypeScript can be a puzzle game: 'how do
+                I express this invariant in a way that the compiler will enforce
+                it' is a fun exercise but someone will do
+                <code>x as any</code> when the time comes and that puzzle
+                becomes useless to what actually matters: production code.
+                Sorbet is not just Ruby: the runtime type-checking does add
+                additional overhead. Sorbet is a less feature-ful type system,
+                but ~everything it does provide is enforced in both static and
+                runtime scenarios.
+              </p>
+              <p>TypeScript and Sorbet are juxtaposed on two axis:</p>
+              <ul>
+                <li>
+                  Expressiveness of type system: getting to say the most things
+                </li>
+                <li>
+                  Reach of the type system: how much of what is said is true
+                </li>
+              </ul>
+              <p>
+                Sorbet can't achieve a more powerful type system because the
+                runtime type-checking needs to be grounded in reality (types
+                must be class/module-based to make checking practical).
+                TypeScript can't provide runtime checks because it is so
+                expressive it cannot translate to a viable runtime checking
+                analog (structured types are prohibitively expensive to check at
+                runtime).
+              </p>
+              <p>
+                As much as I like TypeScript, Sorbet has the better trade-offs
+                to me:
+              </p>
+              <ul>
+                <li>
+                  <p>
+                    When I read Sorbet code, I know it says something about
+                    production behavior. With Typescript code, I know it says
+                    basically nothing.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    TypeScript is more expressive, but when you can't confirm it
+                    in production it has less meaning. Structured code comments
+                    can lead to messes of complexity that don't provide value.
+                    With Sorbet things have to be kept simple, within Sorbet's
+                    limits or you must annotate where you've exceeded the limits
+                    (e.g. <code>T.untyped</code>) and it's clear you're going on
+                    your own.
+                  </p>
+                </li>
+              </ul>
+              <h1 id="breaking-changes">
+                <a href="#breaking-changes">Breaking changes</a>
+              </h1>
+              <p>
+                Adding runtime checks can be a breaking change, so working with
+                existing code that is not typed needs to be updated carefully.
+                Sorbet provides
+                <a
+                  href="https://sorbet.org/docs/runtime#on_failure-changing-what-happens-on-runtime-errors"
+                  ><code>on_failure</code></a
+                >
+                to do that change management, allowing an evolution:
+              </p>
+              <pre><code class="language-rb"><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_http_error_from_status_code</span>(<span class="hljs-params">status_code</span>); <span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># We log when the validation fails and monitor the logs to gain</span>
+<span class="hljs-comment"># production confidence the type annotations are correct.</span>
+sig <span class="hljs-keyword">do</span>
+ params(<span class="hljs-symbol">status_code:</span> Integer)
+   .returns(T.nilable(HttpError))
+   .on_failure(<span class="hljs-symbol">:log</span>)
+<span class="hljs-keyword">end</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">get_http_error_from_status_code</span>(<span class="hljs-params">status_code</span>); <span class="hljs-keyword">end</span>
+
+<span class="hljs-comment"># Confident, we can remove the logging</span>
+sig {params(<span class="hljs-symbol">status_code:</span> Integer).returns(T.nilable(HttpError))}
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">get_http_error_from_status_code</span>(<span class="hljs-params">status_code</span>); <span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                Contrast this with TypeScript where there is no change
+                management story for breaking changes because the type system
+                doesn't play a role in production. TypeScript is free to
+                continually make breaking changes of the type system and
+                end-developers write whatever contracts they want in a void.
+              </p>
+              <p>
+                You must either accept that your types are going to mean very
+                little or shoulder a relatively heavy-weight change management
+                process to 'earn' that value.
+              </p>
+              <p>
+                While you might consider this a ding against Sorbet, think about
+                it this way: you're heavily invested in your type system and all
+                new code has types. Writing new code has no extra overhead
+                change management wise, you get it right the first time perhaps.
+              </p>
+              <p>
+                For Sorbet users, this means the types are 100% trustworthy when
+                they are used. For TypeScript it means you're just one moment
+                away from someone sneaking around the type system all the time.
+                You're embracing the type system in both cases, but only with
+                Sorbet does confidence <em>compound</em> for your investment.
+              </p>
+              <h1 id="checking-performance">
+                <a href="#checking-performance">Checking performance</a>
+              </h1>
+              <p>
+                I just said a lot of good things about Sorbet. Unlike
+                TypeScript, it's not just glorified code comments, it does give
+                us production confidence.
+              </p>
+              <p>
+                However, there's a bunch of places Sorbet does not give us
+                confidence in production and most of them are due to
+                performance.
+              </p>
+              <p>
+                Notably, lots of code that executes in the critical path has
+                runtime checks disabled in the code-bases I work in. Sorbet
+                allows this with:
+              </p>
+              <pre><code class="language-rb">sig {params(<span class="hljs-symbol">x:</span> Integer).checked(<span class="hljs-symbol">:tests</span>)}
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">method_underpinning_everything</span>(<span class="hljs-params">x</span>); <span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                In this case, checks only will run in tests. But sometimes it
+                goes further to no checks at all and sometimes even
+                <code>sig</code> itself is prohibitive.
+              </p>
+              <p>
+                Sorbet also gives up on checking generic types in some places.
+                Take these examples:
+              </p>
+              <pre><code class="language-rb"><span class="hljs-comment"># Fails statically but no issue at runtime.</span>
+T.let([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-string">&#x27;string&#x27;</span>], T::Array[Integer])
+
+<span class="hljs-comment"># This one doesn&#x27;t even fail statically.</span>
+<span class="hljs-comment"># (As of this writing at least)</span>
+T.let({<span class="hljs-symbol">a:</span> <span class="hljs-number">1</span>, <span class="hljs-symbol">b:</span> <span class="hljs-string">&#x27;string&#x27;</span>}, T::Hash[Symbol, Integer])
+</code></pre>
+              <p>
+                An array or hash with an unbound number of elements, keys, or
+                values is too expensive to check and lacks predictable
+                performance. Sorbet is lying to us in these cases, what we
+                really have at hand in production is
+                <code>T::Array[T.untyped]</code> and
+                <code>T::Hash[T.untyped, T.untyped]</code> and very few people
+                internalize this.
+              </p>
+              <p>
+                Trading off performance, Sorbet erodes that trust I liked so
+                much. In the <code>checked</code> case it's not as bad because
+                it is explicit, but the generic case is something I have and
+                others have gotten burned by. But hey, still doing better than
+                TypeScript which doesn't compete at all.
+              </p>
+              <p>
+                It was these compromises in type safety that got me really
+                excited about the
+                <a
+                  href="https://sorbet.org/blog/2021/07/30/open-sourcing-sorbet-compiler"
+                  >Sorbet compiler</a
+                >
+                when it was announced. The performance gains of the compilation
+                over interpretation overcome the added cost of type-checking to
+                make the performance vs. confidence gap much narrower.
+              </p>
+              <h1 id="types-as-data">
+                <a href="#types-as-data">Types as data</a>
+              </h1>
+              <p>
+                Sorbet's runtime checks require types be represented in some way
+                at runtime. The checks performed are usually
+                <a href="https://apidock.com/ruby/v2_5_5/Object/is_a%3F"
+                  ><code>is_a?()</code></a
+                >
+                checks but there are other data-like constructs like
+                <code>T::Boolean</code> which is a union type of
+                <code>TrueClass</code> and <code>FalseClass</code> that get
+                represented at runtime quite transparently:
+              </p>
+              <pre><code>&gt; T::Boolean
+#=&gt; #&lt;T::Private::Types::TypeAlias:0x0123
+ @callable=#&lt;Proc:0x0456&gt;
+ @aliased_type=#&lt;T::Private::Types::SimplePairUnion:0x0789
+   @raw_a=true,
+   @raw_b=false
+ &gt;
+&gt;
+</code></pre>
+              <p>
+                One thing that's annoying about TypeScript is after you've
+                gotten your types working, it's kind of a reuse dead end. You
+                have to reach for spooky additional tooling like
+                <a href="https://gcanti.github.io/io-ts/"><code>io-ts</code></a>
+                and throw out those types you just wrote or hand roll your
+                checks yet again.
+              </p>
+              <p>
+                Sorbet types, because they have a runtime presence, are not a
+                dead-end. We can use them to parse untrusted inputs:
+              </p>
+              <pre><code class="language-rb"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span> &lt; T::Struct
+ const <span class="hljs-symbol">:first_name</span>, String
+ const <span class="hljs-symbol">:last_name</span>, String
+<span class="hljs-keyword">end</span>
+
+sig <span class="hljs-keyword">do</span>
+ params(<span class="hljs-symbol">hash:</span> T::Hash[T.untyped, T.untyped])
+   .returns(T.nilable(Person))
+<span class="hljs-keyword">end</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">try_to_parse_person</span>(<span class="hljs-params">hash</span>)
+ <span class="hljs-keyword">begin</span>
+   Person.from_hash(hash)
+ <span class="hljs-keyword">rescue</span> TypeError
+   <span class="hljs-literal">nil</span>
+ <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                Definitely another win for runtime checks. We want types to be
+                tools in our day to day work as well, not just code comments.
+              </p>
+              <h1 id="conclusion"><a href="#conclusion">Conclusion</a></h1>
+              <p>
+                Runtime type-checking is a more situated problem than
+                compile-time only. You have both stories to manage instead of
+                one. Because of performance and how code executes, the type
+                system offering runtime checking will be more constrained in
+                what it offers and offers with confidence.
+              </p>
+              <p>
+                TypeScript and Sorbet are defined by their host languages,
+                neither had a clean slate and met their ecosystems where they
+                were. Given a clean slate, I aspire to the outcomes Sorbet
+                achieves more than TypeScript.
+              </p>
+              <p>
+                Facilitating runtime checks is what is so great about Sorbet.
+                While it is limited expressively, Sorbet sets engineers down the
+                right track of solving problems, not puzzles.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
