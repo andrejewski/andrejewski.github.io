@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>/writing</id>
+    <title>Writing – Chris Andrejewski</title>
+    <updated>2022-12-22T00:00:00.000Z</updated>
+    <generator> </generator>
+    <author>
+        <name>Chris Andrejewski</name>
+        <email>christopher.andrejewski@gmail.com</email>
+        <uri>https://jew.ski</uri>
+    </author>
+    <link rel="alternate" href="/writing/feed.atom.xml"/>
+    <subtitle>All articles published to Chris's website.</subtitle>
+    <logo>/logo.svg</logo>
+    <icon>/favicon.ico</icon>
+    <category term="Engineering"/>
+    <category term="Ruby programming"/>
+    <category term="System design"/>
+    <category term="Fiction"/>
+    <category term="Politics"/>
+    <category term="Code quality principles"/>
+    <category term="Life"/>
+    <entry>
+        <title type="html"><![CDATA[Start writing good code]]></title>
+        <id>start-writing-good-code</id>
+        <link href="/article/start-writing-good-code/"/>
+        <updated>2022-12-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[An argument for breaking bad habits in code]]></summary>
+        <content type="html"><![CDATA[Check out this article on the website!]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Runtime type checking]]></title>
+        <id>runtime-type-checking</id>
+        <link href="/article/runtime-type-checking/"/>
+        <updated>2022-12-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Reviewing my influences TypeScript, Sorbet, and Clojure Spec]]></summary>
+        <content type="html"><![CDATA[Check out this article on the website!]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Team processes]]></title>
+        <id>team-processes</id>
+        <link href="/article/team-processes/"/>
+        <updated>2022-12-08T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Some of the successful processes that have developed on my team over the years.]]></summary>
+        <content type="html"><![CDATA[Check out this article on the website!]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Giving your best]]></title>
+        <id>giving-your-best</id>
+        <link href="/article/giving-your-best/"/>
+        <updated>2022-12-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[A loose framework for mentorship & evaluating performance]]></summary>
+        <content type="html"><![CDATA[Check out this article on the website!]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Sorbet T.must_because]]></title>
+        <id>sorbet-t-must-because</id>
+        <link href="/article/sorbet-t-must-because/"/>
+        <updated>2022-11-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[A small contribution to Sorbet I made]]></summary>
+        <content type="html"><![CDATA[Check out this article on the website!]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[System design interviews]]></title>
+        <id>system-design-interviews</id>
+        <link href="/article/system-design-interviews/"/>
+        <updated>2022-10-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[The signals I try to gather as an interviewer and how I try to touch on those signals as a candidate.]]></summary>
+        <content type="html"><![CDATA[Check out this article on the website!]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Service oriented architecture]]></title>
+        <id>service-oriented-lies</id>
+        <link href="/article/service-oriented-lies/"/>
+        <updated>2022-10-02T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Another voice of caution against service oriented architectures (SOA)]]></summary>
+        <content type="html"><![CDATA[Check out this article on the website!]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Moral bottom]]></title>
+        <id>moral-bottom</id>
+        <link href="/article/moral-bottom/"/>
+        <updated>2022-09-23T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[The fickleness of morally conscious burden]]></summary>
+        <content type="html"><![CDATA[Check out this article on the website!]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Human friendly tokens]]></title>
+        <id>human-friendly-tokens</id>
+        <link href="/article/human-friendly-tokens/"/>
+        <updated>2022-09-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Thoughts on designing tokens for secrets, sessions, and tokens.]]></summary>
+        <content type="html"><![CDATA[Check out this article on the website!]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Learning to like types]]></title>
+        <id>learning-to-like-types</id>
+        <link href="/article/learning-to-like-types/"/>
+        <updated>2022-08-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[The considerations that took me from being opposed to type systems to enjoying (some of) them.]]></summary>
+        <content type="html"><![CDATA[Check out this article on the website!]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Code comments]]></title>
+        <id>code-comments</id>
+        <link href="/article/code-comments/"/>
+        <updated>2022-07-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Code comments should explain 'why' the code is written as it is. Otherwise, try to let the code document itself.]]></summary>
+        <content type="html"><![CDATA[Check out this article on the website!]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Effective Sorbet]]></title>
+        <id>effective-sorbet</id>
+        <link href="/article/effective-sorbet/"/>
+        <updated>2022-07-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Tips, tricks, and things to avoid with the Ruby type-checker Sorbet.]]></summary>
+        <content type="html"><![CDATA[Check out this article on the website!]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Logical groups]]></title>
+        <id>logical-groups</id>
+        <link href="/article/logical-groups/"/>
+        <updated>2022-07-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Thoughts on avoiding coupling in modeling, using users and database partitions as examples.]]></summary>
+        <content type="html"><![CDATA[Check out this article on the website!]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Ruby style guide]]></title>
+        <id>ruby-style-guide</id>
+        <link href="/article/ruby-style-guide/"/>
+        <updated>2022-07-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Style guidelines and tips I've developed and adhere to when writing Ruby code.]]></summary>
+        <content type="html"><![CDATA[Check out this article on the website!]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Swing swarm]]></title>
+        <id>swing-swarm</id>
+        <link href="/article/swing-swarm/"/>
+        <updated>2022-06-25T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[We, democrats, independents, and moderates can get America back on track by moving to red states and voting.]]></summary>
+        <content type="html"><![CDATA[Check out this article on the website!]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Women's rights]]></title>
+        <id>womens-rights</id>
+        <link href="/article/womens-rights/"/>
+        <updated>2022-06-25T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[We cannot lean on the Supreme Court to bring social progress to this country. The battles are back on, the war for women's rights is still ongoing.]]></summary>
+        <content type="html"><![CDATA[Check out this article on the website!]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Locality]]></title>
+        <id>locality</id>
+        <link href="/article/locality/"/>
+        <updated>2022-06-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Locality is an important measure of code quality, covering the where and when.]]></summary>
+        <content type="html"><![CDATA[Check out this article on the website!]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Postgres: On Conflict Retrieve]]></title>
+        <id>postgres-on-conflict-retrieve</id>
+        <link href="/article/postgres-on-conflict-retrieve/"/>
+        <updated>2021-12-29T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[A Postgres feature request for supporting create-or-retrieve on INSERT statements.]]></summary>
+        <content type="html"><![CDATA[Check out this article on the website!]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Declarative messaging]]></title>
+        <id>declarative-messaging</id>
+        <link href="/article/declarative-messaging/"/>
+        <updated>2021-07-14T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[A framework and pattern of designing communication systems.]]></summary>
+        <content type="html"><![CDATA[Check out this article on the website!]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Anime of 2020]]></title>
+        <id>anime-2020</id>
+        <link href="/article/anime-2020/"/>
+        <updated>2021-03-27T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[A reflection on the anime I watched in 2020.]]></summary>
+        <content type="html"><![CDATA[Check out this article on the website!]]></content>
+    </entry>
+</feed>
