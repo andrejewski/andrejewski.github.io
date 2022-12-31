@@ -2,12 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>/writing</id>
     <title>Writing – Chris Andrejewski</title>
-    <updated>2022-12-22T00:00:00.000Z</updated>
+    <updated>2022-12-31T00:00:00.000Z</updated>
     
     <author>
         <name>Chris Andrejewski</name>
         <email>christopher.andrejewski@gmail.com</email>
-        <uri>https://jew.ski</uri>
     </author>
     <link rel="alternate" href="https://jew.ski/writing/feed.atom.xml"/>
     <subtitle>All articles published to Chris's website.</subtitle>
@@ -20,6 +19,13 @@
     <category term="Politics"/>
     <category term="Code quality principles"/>
     <category term="Life"/>
+    <entry>
+        <title type="html"><![CDATA[Adding feed reader support]]></title>
+        <id>adding-feed-reader-support</id>
+        <link href="https://jew.ski/article/adding-feed-reader-support/"/>
+        <updated>2022-12-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Try feed reading! (Also, I wrote a package to make publishing easier.)]]></summary>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Start writing good code]]></title>
         <id>start-writing-good-code</id>
@@ -152,12 +158,5 @@
         <link href="https://jew.ski/article/declarative-messaging/"/>
         <updated>2021-07-14T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[A framework and pattern of designing communication systems.]]></summary>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Anime of 2020]]></title>
-        <id>anime-2020</id>
-        <link href="https://jew.ski/article/anime-2020/"/>
-        <updated>2021-03-27T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[A reflection on the anime I watched in 2020.]]></summary>
     </entry>
 </feed>
