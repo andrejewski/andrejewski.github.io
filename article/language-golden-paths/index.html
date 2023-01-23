@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Language golden paths</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Golden paths that programming language designers should incorporate into their core principles"
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link rel="canonical" href="/article/language-golden-paths/index.html" />
+
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Language golden paths" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta
+      property="og:url"
+      content="/article/language-golden-paths/index.html"
+    />
+
+    <meta property="twitter:card" content="summary" />
+    <meta name="twitter:site" content="compooter" />
+    <meta name="twitter:title" content="Language golden paths" />
+    <meta
+      name="twitter:description"
+      content="Golden paths that programming language designers should incorporate into their core principles"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .eBtA-dh {
+        margin: 3rem 0;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'eBtA-dh,';
+      } /*!sc*/
+      .kaKiDU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      @media (max-width: 720px) {
+        .kaKiDU {
+          font-size: 1.8rem;
+        }
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'kaKiDU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .hmuBWy {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #9ed2f9;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .hmuBWy:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hmuBWy {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'hmuBWy,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .fPhkML {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #daefff;
+        color: #769fbe;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .fPhkML {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .fPhkML .sc-iBkjds {
+        color: #153248;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .fPhkML .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .fPhkML ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .fPhkML a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .fPhkML a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .fPhkML a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #b9dbf5;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .fPhkML a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'fPhkML,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #eff7fd;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-kFwHxP1'] {
+        content: 'sc-global-kFwHxP1,';
+      } /*!sc*/
+      .kylQxs {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .kylQxs h1 {
+        font-size: 1.5rem;
+        padding: 1rem 0px;
+        margin: 0;
+      } /*!sc*/
+      .kylQxs h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .kylQxs h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (max-width: 720px) {
+        .kylQxs .sc-kDDrLX {
+          display: none;
+        }
+      } /*!sc*/
+      data-styled.g14[id='sc-iqcoie'] {
+        content: 'kylQxs,';
+      } /*!sc*/
+      .ismAZz h1 > a,
+      .ismAZz h2 > a,
+      .ismAZz h3 > a,
+      .ismAZz h4 > a,
+      .ismAZz h5 > a,
+      .ismAZz h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .ismAZz h1 > a:hover,
+      .ismAZz h2 > a:hover,
+      .ismAZz h3 > a:hover,
+      .ismAZz h4 > a:hover,
+      .ismAZz h5 > a:hover,
+      .ismAZz h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .ismAZz p,
+      .ismAZz li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ismAZz p,
+        .ismAZz li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .ismAZz a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ismAZz a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .ismAZz ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .ismAZz code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .ismAZz h1 code,
+      .ismAZz h2 code,
+      .ismAZz h3 code,
+      .ismAZz h4 code,
+      .ismAZz h5 code,
+      .ismAZz h6 code,
+      .ismAZz li code,
+      .ismAZz p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #eff7fd;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ismAZz h1 code,
+        .ismAZz h2 code,
+        .ismAZz h3 code,
+        .ismAZz h4 code,
+        .ismAZz h5 code,
+        .ismAZz h6 code,
+        .ismAZz li code,
+        .ismAZz p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .ismAZz pre {
+        background-color: #eff7fd;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ismAZz pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .ismAZz img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .ismAZz video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .ismAZz figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .ismAZz figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .ismAZz figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .ismAZz .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .ismAZz .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'ismAZz,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-iqcoie kylQxs">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi eBtA-dh">
+            <p class="sc-iBkjds xFOWy">
+              <a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup hmuBWy"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf kaKiDU">
+              <a href="#" class="sc-papXJ iHVwPn"
+                ><span>Language golden paths</span></a
+              >
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              Golden paths that programming language designers should
+              incorporate into their core principles
+            </p>
+          </div>
+          <div class="sc-jqUVSM fPhkML">
+            <p class="sc-iBkjds xFOWy">Table of contents</p>
+            <div>
+              <ul>
+                <li><a href="#private-by-default">Private by default</a></li>
+                <li>
+                  <a href="#immutable-by-default">Immutable by default</a>
+                </li>
+                <li><a href="#modular-by-default">Modular by default</a></li>
+                <li><a href="#simple-by-necessity">Simple by necessity</a></li>
+                <li>
+                  <a href="#interactive-by-default">Interactive by default</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-crXcEl ismAZz">
+              <p>
+                In my experience, great software tends to converge at a few
+                common points:
+              </p>
+              <ul>
+                <li>
+                  Simple constructs are provided that can be used in any context
+                  (building blocks)
+                </li>
+                <li>
+                  Compositions of those building blocks is very intentional
+                  (explicit opt-in)
+                </li>
+                <li>
+                  The least amount of power is used to address problems (bias
+                  for data)
+                </li>
+              </ul>
+              <p>
+                These paths manifest in concrete language choices, or in my case
+                restricted ways I use fuller languages in more simple ways.
+                These are their stories.
+              </p>
+              <h1 id="private-by-default">
+                <a href="#private-by-default">Private by default</a>
+              </h1>
+              <p>
+                Arguably the most important golden path: enforcing the surface
+                area or interface of any piece of software be small. This is
+                also known as encapsulation, but doesn't need to be related to
+                object-oriented programming.
+              </p>
+              <p>JavaScript modules are a good example of this:</p>
+              <pre><code class="language-js"><span class="hljs-comment">// Local to the module, not accessible outside</span>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">x</span>(<span class="hljs-params"></span>) {}
+
+<span class="hljs-comment">// Exported to be used by other modules</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">y</span>(<span class="hljs-params"></span>) {}
+</code></pre>
+              <p>
+                It's not too much more typing but enough to communicate the
+                explicit choice to make some things public and keep others
+                private.
+              </p>
+              <p>Compare this with a poor example from Ruby:</p>
+              <pre><code class="language-rb"><span class="hljs-keyword">module</span> X
+ <span class="hljs-comment"># Public to everyone to be called</span>
+ <span class="hljs-keyword">def</span> <span class="hljs-title function_">self</span>.x; <span class="hljs-keyword">end</span>
+
+
+ <span class="hljs-comment"># Can only be called within the module</span>
+ private_class_method <span class="hljs-keyword">def</span> <span class="hljs-title function_">self</span>.y; <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                Ruby is encouraging public-by-default by making the private
+                version way more typing. When the more lax thing is easiest to
+                do, it becomes unclear what the author's intent was: did they
+                mean to expose the method to everyone or did they simply forget
+                to close that door?
+              </p>
+              <p>
+                These differences may seem minor but don't underestimate the
+                influence of defaults, especially with regard to language
+                design. Modern Ruby is always a game of fighting interwoven
+                messes while JavaScript ESM has brought much needed isolated
+                sanity to JavaScript, which also used to be a wild west of
+                over-exposed interfaces. The difference is night and day.
+              </p>
+              <h1 id="immutable-by-default">
+                <a href="#immutable-by-default">Immutable by default</a>
+              </h1>
+              <p>
+                Simple programs have a clear delineation between data and
+                behavior. Data is passed to pure functions which hold no
+                internal state. Adhering to this principle leads to better code,
+                but as a mere author in someone else's language, achieving pure
+                data can be quite a challenge.
+              </p>
+              <p>
+                Both JavaScript and Ruby data structures are mostly mutable.
+                JavaScript is a bit better because its strings are consistently
+                immutable. Contrast these languages with Clojure where
+                everything is immutable by default, only mutation is the
+                exception:
+              </p>
+              <pre><code class="language-js"><span class="hljs-comment">// In JavaScript `const` only means</span>
+<span class="hljs-comment">// the variable cannot be reassigned.</span>
+<span class="hljs-keyword">const</span> a = { <span class="hljs-attr">foo</span>: <span class="hljs-string">&#x27;bar&#x27;</span> }
+a.<span class="hljs-property">foo</span> = <span class="hljs-string">&#x27;baz&#x27;</span>
+</code></pre>
+              <pre><code class="language-rb"><span class="hljs-comment"># In Ruby you might reach for a class</span>
+<span class="hljs-comment"># over the plain Hash structure here.</span>
+a = {<span class="hljs-symbol">foo:</span> <span class="hljs-string">&#x27;bar&#x27;</span>}
+a[<span class="hljs-symbol">:foo</span>] = <span class="hljs-string">&#x27;baz&#x27;</span>
+</code></pre>
+              <pre><code class="language-clj"><span class="hljs-comment">; and here&#x27;s Clojure</span>
+(<span class="hljs-keyword">def</span> <span class="hljs-title">a</span> {<span class="hljs-symbol">:foo</span> <span class="hljs-string">&quot;bar&quot;</span>})
+(<span class="hljs-name"><span class="hljs-built_in">assoc</span></span> a <span class="hljs-symbol">:foo</span> <span class="hljs-string">&quot;baz&quot;</span>)
+<span class="hljs-comment">; Variable &#x27;a is still its original value,</span>
+<span class="hljs-comment">; we&#x27;ve only made an altered copy.</span>
+
+
+<span class="hljs-comment">; If we want to make the change mutably,</span>
+<span class="hljs-comment">; we need to invoke additional APIs:</span>
+(<span class="hljs-keyword">def</span> <span class="hljs-title">a</span>
+ (<span class="hljs-name"><span class="hljs-built_in">-&gt;</span></span> {<span class="hljs-symbol">:foo</span> <span class="hljs-string">&quot;bar&quot;</span>}
+     (<span class="hljs-name"><span class="hljs-built_in">transient</span></span>)
+     (<span class="hljs-name"><span class="hljs-built_in">assoc</span></span> <span class="hljs-symbol">:foo</span> <span class="hljs-string">&quot;baz&quot;</span>)
+     (<span class="hljs-name"><span class="hljs-built_in">persistent!</span></span>)))
+</code></pre>
+              <p>
+                Assume the language doesn't go as far as Clojure: calling
+                convention is another way to discourage mutability. For example,
+                Ruby often uses (as Clojure does above) the exclamation point
+                <code>!</code> to denote mutable changes to objects, offering
+                both favors:
+              </p>
+              <pre><code class="language-rb">a = <span class="hljs-string">&quot;Hello  &quot;</span>
+
+
+<span class="hljs-comment"># Makes a trimmed copy</span>
+b = a.strip
+
+
+<span class="hljs-comment"># Mutates `a` in place</span>
+a.strip!
+</code></pre>
+              <p>
+                Whereas in JavaScript you might consult the documentation to see
+                whether a given method on an object mutates it.
+              </p>
+              <p>
+                Variable declarations ought to encourage immutability as well:
+              </p>
+              <pre><code class="language-js"><span class="hljs-comment">// (JavaScript) Bad, the more immutable choice is longer.</span>
+<span class="hljs-keyword">let</span> x = <span class="hljs-number">0</span>
+<span class="hljs-keyword">const</span> y = <span class="hljs-number">1</span>
+</code></pre>
+              <pre><code class="language-js"><span class="hljs-comment">// Better! The mutability is screaming in your face.</span>
+<span class="hljs-keyword">let</span> mutable x = <span class="hljs-number">0</span>
+<span class="hljs-keyword">let</span> y = <span class="hljs-number">1</span>
+</code></pre>
+              <h1 id="modular-by-default">
+                <a href="#modular-by-default">Modular by default</a>
+              </h1>
+              <p>
+                Another key component of good code is the ability to introspect
+                it. In an integrated development environment, we're usually
+                looking to achieve go-to-definition and find-all-references code
+                traversal operations. The editing experience is night and day
+                once we have these operations, so a programming language should
+                lend itself to helping achieve them.
+              </p>
+              <p>
+                JavaScript modules enable this readily by using import
+                statements:
+              </p>
+              <pre><code class="language-js"><span class="hljs-keyword">import</span> { foo } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./other-module&#x27;</span>
+
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">bar</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-title function_">foo</span>()
+}
+</code></pre>
+              <p>
+                Humans and editors alike can find quite easily where
+                <code>foo</code> is sourced from.
+              </p>
+              <p>Ruby does not enable this on its own:</p>
+              <pre><code class="language-rb"><span class="hljs-keyword">module</span> Example
+ <span class="hljs-keyword">def</span> <span class="hljs-title function_">bar</span>
+   OtherModule.foo
+ <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+              <p>
+                Ruby is such a dynamic system it doesn't care how code is
+                loaded. All that must be true is that by the time
+                <code>Example.bar</code> is called
+                <code>OtherModule.foo</code> better have been loaded somewhere.
+                Good luck with that one, IDE! And especially you, human.
+              </p>
+              <p>
+                Without a module loading system in the language, Ruby is left
+                with a lot of options. But at scale there are really only two
+                module loading options:
+              </p>
+              <ul>
+                <li>
+                  Explicit <code>require &quot;file-path&quot;</code> loading,
+                  or
+                </li>
+                <li>
+                  Path-based autoloading (ala
+                  <a href="https://github.com/fxn/zeitwerk">Zeitwerk</a>)
+                </li>
+              </ul>
+              <p>
+                Explicit requirements are similar to JavaScript imports but
+                suffer from the problem being that &quot;loading a file of Ruby
+                code&quot; and &quot;having explicit access to imported
+                code&quot; is a wide chasm. Loading a file of Ruby code can
+                create namespaces anywhere. It's not really an isolated unit
+                that can be reasoned about as such. It's more akin to C/C++
+                includes, which is to say not good.
+              </p>
+              <p>
+                Path-based autoloading suffers the problem of almost the
+                opposite: too aggressive coupling between a global hierarchy
+                (the Ruby namespace) and implementations. Without additional
+                global configuration, every class or module needs to be a
+                dedicated file. This is more akin to Java class files, which is
+                to say not good.
+              </p>
+              <p>
+                Clojure's code loading is also not modular. Anyone can
+                contribute new methods to an existing namespace and namespaces
+                are loaded based on file system class paths. There is no module
+                isolation. However, at least the imports of namespaces are
+                explicit:
+              </p>
+              <pre><code class="language-clj">(<span class="hljs-name"><span class="hljs-built_in">ns</span></span> my-namespace
+ (<span class="hljs-symbol">:require</span> &#x27;[clojure.string <span class="hljs-symbol">:as</span> str]))
+
+
+(<span class="hljs-keyword">def</span> <span class="hljs-title">foo</span>
+ (<span class="hljs-name">str/join</span> <span class="hljs-string">&quot;Hello &quot;</span> <span class="hljs-string">&quot;world&quot;</span>))
+</code></pre>
+              <p>
+                Clojure makes this namespace problem a bit more manageable by
+                using long namespaces such as
+                <code>com.example.project</code> to make collisions less likely
+                (a carry-over of Java packages).
+              </p>
+              <p>
+                While this explicit module scope discussion has some overlap
+                with private by default, the core advantage argued here is one
+                of better enabled code navigation and traceability. Private by
+                default is about hiding details, modular design is a focus on
+                what shouldn't be hidden.
+              </p>
+              <p>
+                Another way you might think of this is: minimize global
+                assumptions and global context. Avoid:
+              </p>
+              <ul>
+                <li>
+                  Modules which re-define globals for every other context, also
+                  known as monkey-patching for good reason.
+                </li>
+                <li>
+                  Modules which add to globals. Adding to a collection is fine
+                  when there's only one adder, but allowing independent modules
+                  to add to globals leads to conflicts.
+                </li>
+                <li>
+                  Modules which have side-effect-ful behavior, not just those
+                  across code boundaries. Prevent modules from, e.g. making
+                  database calls or reading from the filesystem until called
+                  upon.
+                </li>
+              </ul>
+              <p>
+                Restrictions such as these set a firm baseline for modular code
+                to be written.
+              </p>
+              <h1 id="simple-by-necessity">
+                <a href="#simple-by-necessity">Simple by necessity</a>
+              </h1>
+              <p>
+                If there's something to know about working at the bottom of
+                everyone's stuff, it's that you'll often stumble into saying to
+                yourself, &quot;This is why we can't have nice things.&quot; An
+                inch will be given and a mile will be taken in whatever
+                convenience we offer up to others and ourselves. What you can
+                have is only the most simple things and means for others to add
+                conveniences atop.
+              </p>
+              <p>
+                No truer can this be known than in how we treat data in our
+                programs. Every convenience that is offered about data
+                structures is met with regret.
+              </p>
+              <p>JavaScript is riddled with niceties:</p>
+              <ul>
+                <li>
+                  The equality operator <code>==</code> performing implicit
+                  conversions.
+                </li>
+                <li>
+                  All objects have both prototypical inheritance and associative
+                  arrays.
+                </li>
+                <li>Function and variable <code>var</code> hoisting.</li>
+              </ul>
+              <p>
+                Things that were nice at the time to someone but have aged to
+                not be and have gone on to cause thousands of people to learn
+                things they didn't need to ever otherwise learn.
+              </p>
+              <p>Clojure also falters on having many niceties:</p>
+              <ul>
+                <li>Data structures being both function and data.</li>
+                <li>A vast swath of read macros and syntactic sugar.</li>
+                <li>Severely overloaded functions.</li>
+              </ul>
+              <p>
+                And no doubt Ruby has something for everyone in this department.
+                My personal pick is how top-level methods are added to
+                <code>Object</code>. Others might <em>rail</em> on other things.
+              </p>
+              <p>
+                We need to dissect everything and decide if it is simple and
+                essential or if it is just a nice-to-have. Leave the
+                nice-to-haves to someone else, for that someone to decide what
+                is essential to them. But we don't drag everyone else along just
+                for that problem space.
+              </p>
+              <h1 id="interactive-by-default">
+                <a href="#interactive-by-default">Interactive by default</a>
+              </h1>
+              <p>
+                Most of engineering is learning by doing. We must enable
+                interactive development and have tight feedback loops to quickly
+                test hypotheses and see our code working.
+              </p>
+              <p>
+                As systems scale, we struggle to manage the complexity of what
+                we've created. The goal posts change from &quot;get it working
+                now&quot; to &quot;is it working still?&quot; and &quot;how does
+                it work?&quot;
+              </p>
+              <p>
+                What we need in both these cases is a dynamic system for
+                interacting with our programs. We've lost this spirit out of
+                learned fear, lack of discipline, and lack of tooling but the
+                programming of the future is at things like a REPL and more
+                powerful IDE.
+              </p>
+              <p>
+                I'll state my biases: JavaScript, Ruby, and Clojure all provide
+                REPL experiences. I can't stand working in languages without
+                them. Iteratively building up a working program has to be the
+                optimal way to construct a program.
+              </p>
+              <p>
+                What's interesting about an introspectable system is that it
+                requires a special means of interacting with programs that are
+                seemingly incongruent with some of the above golden paths. A
+                REPL often is littered with niceties, encourages jumping into
+                private bits, conflicts with an explicit import system with
+                regard to verbosity, and allows mutation of otherwise immutable
+                programs.
+              </p>
+              <p>
+                In striving for a decent REPL-hood, compromises are made. And
+                once those compromises are made, where does it end? Why not have
+                the whole language itself be as the REPL it will support. For
+                JavaScript, the REPL is a narrow window into the language. For
+                Clojure and Ruby, there's really no distinction or mode.
+              </p>
+              <p>
+                How can we have our iterative development and hold to our
+                principals?
+              </p>
+              <ul>
+                <li>
+                  Immutability: represent the entire program as an immutable
+                  data structure. There is no redefining a program, only
+                  creating an entirely new program with methods replaced.
+                </li>
+                <li>
+                  Private by default &amp; modular by default: retain the
+                  boundaries by making imports similarly dynamic and traverse
+                  into modules explicitly at the REPL. This would be akin to how
+                  in Clojure one can assume a namespace temporarily.
+                </li>
+                <li>
+                  Simple by necessity: find the simplest way to support both the
+                  language and the REPL experience with the same primitives. (No
+                  pressure :))
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

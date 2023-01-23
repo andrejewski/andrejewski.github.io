@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>/writing</id>
     <title>Writing – Chris Andrejewski</title>
-    <updated>2022-12-31T00:00:00.000Z</updated>
+    <updated>2023-01-22T00:00:00.000Z</updated>
     
     <author>
         <name>Chris Andrejewski</name>
@@ -19,6 +19,13 @@
     <category term="Politics"/>
     <category term="Code quality principles"/>
     <category term="Life"/>
+    <entry>
+        <title type="html"><![CDATA[Language golden paths]]></title>
+        <id>language-golden-paths</id>
+        <link href="https://jew.ski/article/language-golden-paths/"/>
+        <updated>2023-01-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Golden paths that programming language designers should incorporate into their core principles]]></summary>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Adding feed reader support]]></title>
         <id>adding-feed-reader-support</id>
@@ -151,12 +158,5 @@
         <link href="https://jew.ski/article/postgres-on-conflict-retrieve/"/>
         <updated>2021-12-29T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[A Postgres feature request for supporting create-or-retrieve on INSERT statements.]]></summary>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Declarative messaging]]></title>
-        <id>declarative-messaging</id>
-        <link href="https://jew.ski/article/declarative-messaging/"/>
-        <updated>2021-07-14T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[A framework and pattern of designing communication systems.]]></summary>
     </entry>
 </feed>
