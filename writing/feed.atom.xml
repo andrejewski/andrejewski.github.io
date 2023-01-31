@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>/writing</id>
     <title>Writing – Chris Andrejewski</title>
-    <updated>2023-01-22T00:00:00.000Z</updated>
+    <updated>2023-01-30T00:00:00.000Z</updated>
     
     <author>
         <name>Chris Andrejewski</name>
@@ -19,6 +19,13 @@
     <category term="Politics"/>
     <category term="Code quality principles"/>
     <category term="Life"/>
+    <entry>
+        <title type="html"><![CDATA[Platform teams]]></title>
+        <id>platform-teams</id>
+        <link href="https://jew.ski/article/platform-teams/"/>
+        <updated>2023-01-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Platform teams are the glue and velocity drivers of an engineering organization. They are the supporting teams for the business focused product teams.]]></summary>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Language golden paths]]></title>
         <id>language-golden-paths</id>
@@ -151,12 +158,5 @@
         <link href="https://jew.ski/article/locality/"/>
         <updated>2022-06-20T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Locality is an important measure of code quality, covering the where and when.]]></summary>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Postgres: On Conflict Retrieve]]></title>
-        <id>postgres-on-conflict-retrieve</id>
-        <link href="https://jew.ski/article/postgres-on-conflict-retrieve/"/>
-        <updated>2021-12-29T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[A Postgres feature request for supporting create-or-retrieve on INSERT statements.]]></summary>
     </entry>
 </feed>
