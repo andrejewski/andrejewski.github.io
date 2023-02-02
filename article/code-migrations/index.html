@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Code migrations</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Stop running and push back against fan-out code migrations. Do effective self-run migrations instead."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link rel="canonical" href="/article/code-migrations/index.html" />
+
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Code migrations" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta property="og:url" content="/article/code-migrations/index.html" />
+
+    <meta property="twitter:card" content="summary" />
+    <meta name="twitter:site" content="compooter" />
+    <meta name="twitter:title" content="Code migrations" />
+    <meta
+      name="twitter:description"
+      content="Stop running and push back against fan-out code migrations. Do effective self-run migrations instead."
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .eBtA-dh {
+        margin: 3rem 0;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'eBtA-dh,';
+      } /*!sc*/
+      .kaKiDU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      @media (max-width: 720px) {
+        .kaKiDU {
+          font-size: 1.8rem;
+        }
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'kaKiDU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .hmuBWy {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #9ed2f9;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .hmuBWy:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .hmuBWy {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'hmuBWy,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .fPhkML {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #daefff;
+        color: #769fbe;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .fPhkML {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .fPhkML .sc-iBkjds {
+        color: #153248;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .fPhkML .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .fPhkML ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .fPhkML a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .fPhkML a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .fPhkML a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #b9dbf5;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .fPhkML a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'fPhkML,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #eff7fd;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-kFwHxP1'] {
+        content: 'sc-global-kFwHxP1,';
+      } /*!sc*/
+      .kylQxs {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .kylQxs h1 {
+        font-size: 1.5rem;
+        padding: 1rem 0px;
+        margin: 0;
+      } /*!sc*/
+      .kylQxs h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .kylQxs h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (max-width: 720px) {
+        .kylQxs .sc-kDDrLX {
+          display: none;
+        }
+      } /*!sc*/
+      data-styled.g14[id='sc-iqcoie'] {
+        content: 'kylQxs,';
+      } /*!sc*/
+      .ismAZz h1 > a,
+      .ismAZz h2 > a,
+      .ismAZz h3 > a,
+      .ismAZz h4 > a,
+      .ismAZz h5 > a,
+      .ismAZz h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .ismAZz h1 > a:hover,
+      .ismAZz h2 > a:hover,
+      .ismAZz h3 > a:hover,
+      .ismAZz h4 > a:hover,
+      .ismAZz h5 > a:hover,
+      .ismAZz h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .ismAZz p,
+      .ismAZz li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ismAZz p,
+        .ismAZz li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .ismAZz a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ismAZz a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .ismAZz ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .ismAZz code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .ismAZz h1 code,
+      .ismAZz h2 code,
+      .ismAZz h3 code,
+      .ismAZz h4 code,
+      .ismAZz h5 code,
+      .ismAZz h6 code,
+      .ismAZz li code,
+      .ismAZz p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #eff7fd;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ismAZz h1 code,
+        .ismAZz h2 code,
+        .ismAZz h3 code,
+        .ismAZz h4 code,
+        .ismAZz h5 code,
+        .ismAZz h6 code,
+        .ismAZz li code,
+        .ismAZz p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .ismAZz pre {
+        background-color: #eff7fd;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ismAZz pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .ismAZz img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .ismAZz video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .ismAZz figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .ismAZz figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .ismAZz figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .ismAZz .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .ismAZz .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'ismAZz,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-iqcoie kylQxs">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi eBtA-dh">
+            <p class="sc-iBkjds xFOWy">
+              <a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup hmuBWy"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf kaKiDU">
+              <a href="#" class="sc-papXJ iHVwPn"
+                ><span>Code migrations</span></a
+              >
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              Stop running and push back against fan-out code migrations. Do
+              effective self-run migrations instead.
+            </p>
+          </div>
+          <div class="sc-jqUVSM fPhkML">
+            <p class="sc-iBkjds xFOWy">Table of contents</p>
+            <div>
+              <ul>
+                <li>
+                  <a href="#involving-other-teams">Involving other teams</a>
+                  <ul>
+                    <li>
+                      <a href="#at-the-climax-of-a-mind-virus"
+                        >At the climax of a mind virus</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#downsides-of-fan-out-migrations"
+                        >Downsides of fan-out migrations</a
+                      >
+                      <ul>
+                        <li>
+                          <a href="#attrition-and-negative-cultural-effects"
+                            >Attrition and negative cultural effects</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="#significant-time-lost-to-communication-overhead"
+                            >Significant time lost to communication overhead</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="#significant-time-lost-to-discussions-around-ownership"
+                            >Significant time lost to discussions around
+                            ownership</a
+                          >
+                        </li>
+                        <li>
+                          <a href="#tons-of-incidents">Tons of incidents</a>
+                        </li>
+                        <li>
+                          <a href="#individuals-are-punished"
+                            >Individuals are punished</a
+                          >
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#do-the-code-migration-yourself"
+                    >Do the code migration yourself</a
+                  >
+                  <ul>
+                    <li>
+                      <a href="#fan-outs-are-side-steps"
+                        >Fan-outs are side steps</a
+                      >
+                    </li>
+                    <li><a href="#define-the-goal">Define the goal</a></li>
+                    <li><a href="#gather-the-data">Gather the data</a></li>
+                    <li><a href="#decide-a-strategy">Decide a strategy</a></li>
+                    <li>
+                      <a href="#upsides-of-self-run-migrations"
+                        >Upsides of self-run migrations</a
+                      >
+                      <ul>
+                        <li>
+                          <a href="#attrition-and-negative-cultural-effects-1"
+                            >Attrition and negative cultural effects</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="#significant-time-lost-to-communication-overhead-1"
+                            >Significant time lost to communication overhead</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            href="#significant-time-lost-to-discussions-around-ownership-1"
+                            >Significant time lost to discussions around
+                            ownership</a
+                          >
+                        </li>
+                        <li>
+                          <a href="#tons-of-incidents-1">Tons of incidents</a>
+                        </li>
+                        <li>
+                          <a href="#individuals-are-punished-1"
+                            >Individuals are punished</a
+                          >
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li><a href="#summary">Summary</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-crXcEl ismAZz">
+              <p>
+                As someone who works on a platform team at a large tech company,
+                a week ago I realized something. &quot;Completing company-wide
+                code migrations without involving other teams&quot; is my love
+                language.
+              </p>
+              <h1 id="involving-other-teams">
+                <a href="#involving-other-teams">Involving other teams</a>
+              </h1>
+              <p>
+                This love language is a developed taste from learned experience.
+                Years ago, I ran a code migration going the other way: there was
+                a lot of code at the company to move to a new framework, I cut
+                Jira tickets for teams, documented and tracked overall progress,
+                and wore the hat of a project manager coordinating impacted
+                teams through the process.
+              </p>
+              <h2 id="at-the-climax-of-a-mind-virus">
+                <a href="#at-the-climax-of-a-mind-virus"
+                  >At the climax of a mind virus</a
+                >
+              </h2>
+              <p>
+                My migration was one of many code migrations that the company
+                undertook that year. I think there were more than a dozen
+                migrations of that size and much, much larger that we placed on
+                the plates of basically every engineering team in the company.
+                There was internal momentum that this style of migration was a
+                trifecta of how to operate:
+              </p>
+              <ul>
+                <li>
+                  Individuals were awarded in performance reviews for
+                  cross-company impact. To be seen as someone who could work
+                  across the company with many teams on a problem was more
+                  important to one's career than simply doing the work. This
+                  dynamic had been building slowly over time as management
+                  rarely asked whether projects could be done better with less
+                  coordination and recognized the most visible, interconnected
+                  work.
+                </li>
+                <li>
+                  Teams were conditioned throughout this gauntlet of migrations
+                  to not push back. In the mix of migrations were legitimate
+                  company priorities and non-priorities that were coming too
+                  fast to decipher. Each team's work was so upended by these
+                  migrations teams began to plan around them. In a healthy
+                  state, teams would simply push back and that'd be the end of
+                  that.
+                </li>
+                <li>
+                  Teams, particularly platform and infrastructure teams, had
+                  been stifled for quite some time due to lack of direct
+                  staffing and investment. It had been common for software
+                  migrations to take years or never be completed. In lieu of
+                  clear focus and with a hazy migration green light, there were
+                  many projects for which many teams felt the time was now or
+                  never to complete given the momentum around code migrations.
+                </li>
+              </ul>
+              <p>
+                It's easier with years of retrospect to be able to identify and
+                understand how a mind virus came to be, perhaps even easier when
+                you as someone managing one of these projects yourself were both
+                a victim (of other people's migrations) and a driver/exemplar. I
+                was on both sides of the coin, most often simultaneously.
+              </p>
+              <p>
+                I was promoted in no small part due to my handling of the
+                migration I shepherded. The migration completed in a relatively
+                short period of time. The code migration took my team from one
+                which seemed perpetually dead-locked in code maintenance to
+                positive feature velocity. What wasn't to love about this way of
+                going about code migrations?
+              </p>
+              <p>
+                Ultimately, the main thing that I regret is that I made the
+                lives of the people around me and even people I didn't know at
+                the company objectively and subjectively worse. The whirlwind of
+                migrations and deadlines facing every team led a lot of people
+                to feel bad and hate their jobs. Heated conversations were
+                commonplace and many weeks of people's lives were lost not only
+                on the work but in the coordination overhead as well.
+              </p>
+              <p>
+                There's a lot a business can weather. I am not a business. These
+                terrible experiences and emotions are what I remember about that
+                period of time.
+              </p>
+              <p>
+                For a business, these problems do eventually come to roost. The
+                cultural effects of people feeling helpless, stressed, and
+                disengaged make waves which do harm the business. While I feel
+                the business did correct for this virus over time, it was not a
+                permanently learned lesson for the company like it was for me.
+              </p>
+              <h2 id="downsides-of-fan-out-migrations">
+                <a href="#downsides-of-fan-out-migrations"
+                  >Downsides of fan-out migrations</a
+                >
+              </h2>
+              <p>
+                For completeness, the downsides of running code migrations in
+                the shape of &quot;fan out work to teams, coordinate them to do
+                it&quot; are:
+              </p>
+              <h3 id="attrition-and-negative-cultural-effects">
+                <a href="#attrition-and-negative-cultural-effects"
+                  >Attrition and negative cultural effects</a
+                >
+              </h3>
+              <p>
+                As stated above, the psychological problems individuals faced
+                led to attrition of top talent and enforced a negative culture
+                around how work is done.
+              </p>
+              <p>
+                Now, I recognize that what was happening at this time might be
+                considered an extreme case of code migrations gone wrong. I
+                would instead argue: Rome doesn't fall in a day. All it takes is
+                a loose pattern to form and implicit incentives to align to
+                create such a mind virus.
+              </p>
+              <p>
+                Was it an extreme situation in the sense of being an
+                industry-wide outlier? No.
+              </p>
+              <p>
+                Was it extreme because fan-out code migrations were the
+                local-maximum worst they got? Yes, and we call that the climax.
+                You build towards a climax.
+              </p>
+              <h3 id="significant-time-lost-to-communication-overhead">
+                <a href="#significant-time-lost-to-communication-overhead"
+                  >Significant time lost to communication overhead</a
+                >
+              </h3>
+              <p>
+                What could have been completed by a handful of engineers became
+                a handful of engineers loosely shepherding hundreds of
+                engineers.
+              </p>
+              <h3 id="significant-time-lost-to-discussions-around-ownership">
+                <a href="#significant-time-lost-to-discussions-around-ownership"
+                  >Significant time lost to discussions around ownership</a
+                >
+              </h3>
+              <p>
+                &quot;Code ownership&quot; in the context of fanned-out code
+                migrations answered the question of, &quot;for this piece of
+                code, who will do the work to change it?&quot; Now this was
+                already an expectation of what being a code owner meant before
+                the migration spree, however the spree was the first to put that
+                responsibility to the test.
+              </p>
+              <p>
+                Ownership going into the spree was pretty loose because the cost
+                of ownership was low. With a gauntlet of migrations coming from
+                across the company, competing with each team's actual work,
+                naturally what had been a minor consideration became massive.
+                Tactically, because migrations might take whole engineering
+                months away from your team, weeks or months of bickering about
+                ownership were worth it if they succeeded in deferring ownership
+                to someone else: it was a net win for the team.
+              </p>
+              <p>
+                And so that's exactly what we saw: months of arguing over
+                ownership of work that would only take days. You knew taking
+                ownership of some code on one migration's battlefield meant
+                losing battles for upcoming migrations where the changes might
+                in fact take months, not the days being argued about in the
+                present moment. Everyone wanted ownership decided in their
+                favor.
+              </p>
+              <p>
+                Additionally, the ownership discussions were doubly unfruitful
+                and difficult because all teams involved in ownership
+                discussions did not care about the work. The migrations had no
+                value to them. It's one thing to have heated discussions about
+                important things, but it's a whole other level of toxic to have
+                heated discussions about things which are not important to all
+                involved parties.
+              </p>
+              <p>
+                (As an aside, I don't care for &quot;ownership&quot; of code
+                because it is a backstop only for the mediocre people you should
+                have let go anyways. I much prefer stewardship: identifying the
+                people who care the most, have the most context, and have a
+                vision of a piece of software. I understand that's a tough
+                needle of nuance to thread in larger organizations. But life's
+                tough, figure it out because it's important.)
+              </p>
+              <h3 id="tons-of-incidents">
+                <a href="#tons-of-incidents">Tons of incidents</a>
+              </h3>
+              <p>
+                Individual teams owning their small slice of a code migration
+                meant that they would also own the incidents that resulted from
+                the changes. For each migration we saw multiple teams have
+                incidents. My code migration I believe resulted in about five or
+                six incidents for various teams.
+              </p>
+              <p>
+                Incidents are bad, but what was uniquely bad about these
+                incidents:
+              </p>
+              <ul>
+                <li>
+                  Incident learnings traveled slowly. Most incidents were
+                  repeats. One team would have an issue and by the time they had
+                  gotten a handle on their situation another teams' changes were
+                  tipping over. The code migration work was distributed faster
+                  than we could learn in real-time how to do the migrations
+                  better.
+                </li>
+                <li>
+                  Learnings often didn't travel to the code migration team soon
+                  enough for them to help. Shepherding a code migration is a 9-5
+                  job, but incidents are 24/7 affairs.
+                </li>
+                <li>
+                  Once &quot;enough&quot; incidents happened some migrations
+                  were downright paused, reworked centrally and then rebooted
+                  and re-assigned. One particular migration spent the whole
+                  calendar year in a start/stop pattern before it was even 20%
+                  complete. These incidents magnified communication overhead as
+                  one migration was actually a series of coordinated migration
+                  attempts. This made planning a useless exercise.
+                </li>
+              </ul>
+              <p>
+                The incidents also revealed the incorrectness of one of the
+                primary reasons people naively bias towards fanning out to
+                teams: the team shepherding the code migration doesn't know
+                other teams' code intimately enough to change it efficiently.
+              </p>
+              <p>
+                These incidents presented the real truth: no one knew the code
+                intimately enough to change it efficiently. Teams
+                &quot;own&quot; code but the reality is that the tenure of an
+                individual at the company is at best a few years. The situated
+                context needs to be constructed anew no matter who is doing the
+                work.
+              </p>
+              <p>
+                Individual teams would often try to page in the code migration
+                sheppards to help with an incident. It was more often than not
+                the case that the code migration sheppards had more context
+                because they at least knew <em>half</em> the problem: their own
+                bits that needed changed, which was more than a team not knowing
+                their own code in any particular capacity had.
+              </p>
+              <h3 id="individuals-are-punished">
+                <a href="#individuals-are-punished">Individuals are punished</a>
+              </h3>
+              <p>
+                Many individuals were dinged in performance review for not
+                hitting their own team goals. A classic tale as old as time: the
+                company, through indecisiveness, made an attempt to have its
+                cake and eat it too:
+              </p>
+              <ul>
+                <li>
+                  Let the engineering organization run wild upending itself with
+                  code migrations.
+                </li>
+                <li>
+                  Still hold teams accountable to their goals as if those
+                  migrations were not going on and were not valuable.
+                </li>
+              </ul>
+              <p>
+                Now of course this is poor leadership. Setting clear priorities
+                and deciding what does and does not need to happen at a company
+                level can only be done by leaders. Putting that aside, let's
+                talk about how fan-out code migrations are a poor fit for a
+                company that does performance reviews.
+              </p>
+              <p>Performance reviews are conducted on the basis of:</p>
+              <ul>
+                <li>
+                  An individual's performance as measured against their peers.
+                </li>
+                <li>
+                  The approximate measure of performance is impact: what did the
+                  individual do to push the business forward, how optimal was
+                  that push.
+                </li>
+                <li>
+                  At anything other than a small company, &quot;impact&quot; of
+                  an individual is incredibly difficult to assess in terms of
+                  business value.
+                </li>
+                <li>
+                  In effect, what is valued is mostly weighted by the other
+                  factor: against their peers. How one &quot;stacks up&quot; to
+                  how others in their immediate team and others company-wide in
+                  the same role create &quot;impact.&quot;
+                </li>
+                <li>
+                  Lacking good measure, the things reviews can look at are:
+                  novelty and consistency. More precisely, the enduring measure
+                  of performance is &quot;consistent novelty.&quot;
+                </li>
+              </ul>
+              <p>
+                Fan-out code migrations are the antithesis of consistent novelty
+                for software engineers. Hundreds of engineers are doing the
+                exact same work as you are. Since everyone does it, it's
+                considered brain-dead gameplay (even when it might not be in any
+                given situation) by the time performance reviews come around. At
+                best your assessment for that stretch of work will be a nil-case
+                &quot;doesn't hurt, doesn't help&quot; and &quot;low risk, low
+                reward.&quot; For individuals trying to get promoted the work is
+                a temporary death sentence for their career.
+              </p>
+              <p>
+                So for individuals there's no incentive to do the work,
+                certainly not do it well, and the poor individuals left holding
+                the bag are penalized for it.
+              </p>
+              <h1 id="do-the-code-migration-yourself">
+                <a href="#do-the-code-migration-yourself"
+                  >Do the code migration yourself</a
+                >
+              </h1>
+              <p>
+                You or your team need to make a company-wide change. The correct
+                approach is to do it yourselves.
+              </p>
+              <p>
+                Woah, I just said &quot;correct&quot; but every good answer is
+                &quot;it depends.&quot; Silly me, let me clarify into something
+                more of a universal truth: directionally the code migrations a
+                company carries out should progress towards self-run, non-fanout
+                migrations to ensure:
+              </p>
+              <ul>
+                <li>success of those projects (displacement),</li>
+                <li>a positive development velocity (velocity),</li>
+                <li>and healthy engineering culture (acceleration).</li>
+              </ul>
+              <p>And some code migrations don't need to happen.</p>
+              <h2 id="fan-outs-are-side-steps">
+                <a href="#fan-outs-are-side-steps">Fan-outs are side steps</a>
+              </h2>
+              <p>
+                Fan-out migrations are most appealing because they are a means
+                to skirt staffing issues. Your team has something really
+                important (in your eyes) but leadership, implicitly or
+                explicitly, disagrees and does not staff the effort. Fan-out
+                migrations are a means to sneak around that disagreement.
+                Resolving the disagreement is a lot of work and, lacking
+                psychological safety and good leaders, outright
+                <em>dangerous</em> work to embark on to get that proper funding.
+              </p>
+              <p>
+                Most people in those situations would reasonably decide to
+                pursue other options, because the work isn't actually so
+                important to stake themselves on. (Hint: then it's not
+                important.)
+              </p>
+              <p>
+                So without changes to staffing and the work still to do, the
+                next problem will be that your estimates of the work show that
+                if your team does the work it will take until the end of time.
+                With only your team's man-power competing with the growth of the
+                code you'll never catch up. You need man-power and it has to
+                come from somewhere. And thus the fan-out migration idea is
+                formed.
+              </p>
+              <p>
+                If there's no prior art at your current company, there's art
+                from your past or other companies. You do a trial balloon: you
+                try the fan-out migration, most teams don't do the work, but a
+                sliver do for whatever reason, and leadership either doesn't
+                care or doesn't catch wind of it. This is now a strategy you and
+                others can employ to skirt staffing issues. If not stomped out,
+                these organization hacks will eventually snowball into the
+                situation described above.
+              </p>
+              <p>The important bits here are:</p>
+              <ul>
+                <li>
+                  When you pursue a fan-out migration, leadership is not on your
+                  side in the right way.
+                </li>
+                <li>
+                  Anyone advocating a fan-out migration is either being
+                  disingenuous about the situation and their estimates, or lacks
+                  the expertise to do better.
+                </li>
+              </ul>
+              <p>
+                Being disingenuous is complicated: it is often a mixture of
+                operating in a bubble and subconscious thinking that distorts
+                urgency and importance. You need to press yourself really hard
+                to justify this work to the business, and first to yourself. If
+                you can't justify it to yourself and make it a priority for
+                yourself, how can you expect others to work on it?
+              </p>
+              <p>
+                My team was asked to do a fairly large migration awhile ago. I
+                let them know this work wasn't important to us so we wouldn't be
+                prioritizing it. They said because they were an understaffed
+                team they couldn't do the work. I asked, &quot;Well if this is
+                important enough to ask us, this must be a top priority for
+                you?&quot; They quickly rebutted, &quot;No, no, no. We've got
+                much more important things to do: X, Y, Z...&quot; Long story
+                short, the solution was not to fan-out work no one cared about.
+                It was to follow the need for the migration back to its source
+                and ask the team that would benefit most to put in the work, not
+                everyone else.
+              </p>
+              <p>
+                If the work isn't important to you, it's even less important to
+                anyone else.
+              </p>
+              <p>
+                Okay, now you've convinced yourself that this work is important
+                to the company. Let's approach it from a clean slate and see
+                what we can do with a fan-out migration off the table.
+              </p>
+              <h2 id="define-the-goal">
+                <a href="#define-the-goal">Define the goal</a>
+              </h2>
+              <p>
+                Like any project, the most important thing to figure out is the
+                goal. There's not too much in particular to recommend here given
+                how open-ended your goals might be. You definitely don't want to
+                start at &quot;we need a code migration&quot; and work
+                backwards.
+              </p>
+              <p>
+                A rough goal is fine to proceed into the next few sections
+                because we can shape it a bit more by placing emphasis on
+                data-driven, output-oriented decisions.
+              </p>
+              <h2 id="gather-the-data">
+                <a href="#gather-the-data">Gather the data</a>
+              </h2>
+              <p>
+                Every migration has a before and an after. We'll want to measure
+                progress and know when the goal is reached.
+              </p>
+              <p>Data we want for an initial assessment:</p>
+              <ul>
+                <li>
+                  an approximate count of the how many things need changed,
+                </li>
+                <li>
+                  the approximate &quot;utilization&quot; of each of those
+                  things,
+                </li>
+                <li>
+                  an understanding of the derivatives of these things: the
+                  velocity and acceleration of number-of-things and their
+                  utilization.
+                </li>
+              </ul>
+              <p>
+                Utilization is a measure of importance. &quot;If a tree falls in
+                the woods and no one is around to hear it, does it make a
+                sound?&quot; You might have thousands of pieces of code to
+                upgrade, but if they are dead code already it doesn't quite
+                matter what you do.
+              </p>
+              <p>Some concrete examples of count and utilization:</p>
+              <ul>
+                <li>Number of email types in a codebase,</li>
+                <li>Number of emails sent to customers per type.</li>
+              </ul>
+              <p>
+                Assuming email types are distinctly defined in code, we can use
+                source control history and greps to compute current count as
+                well as velocity and acceleration of growth in email types.
+              </p>
+              <p>
+                For the number of emails sent, we will need to consult
+                databases, logs, and/or metrics to understand which email types
+                are sent and what their trends are.
+              </p>
+              <p>
+                With this data in hand, we can start to talk about strategies.
+              </p>
+              <h2 id="decide-a-strategy">
+                <a href="#decide-a-strategy">Decide a strategy</a>
+              </h2>
+              <p>
+                For completeness, you might find that after looking at the data
+                you might have negative velocity and acceleration on your hands.
+                In which case, the migration might be simple: time will
+                eliminate the problem or at worst make it more manageable, you
+                may have to do much less than you anticipated to kill it off if
+                you can wait.
+              </p>
+              <p>
+                Let's now assume non-negative growth or that you can't wait.
+                Assume X (e.g. an email type) is the subject of the code
+                migration (often the concept), A is the current solution, B is
+                the new solution. Some archetypes:
+              </p>
+              <ul>
+                <li>Total migration: 100% of A is now B</li>
+                <li>Partial migration: 50/90/95% of A is now B</li>
+                <li>
+                  Ratchet migration: All new Xs are Bs instead of As,
+                  alternatively &quot;no more As&quot;
+                </li>
+              </ul>
+              <p>
+                In terms of difficulty and cost: ratchet &lt; partial &lt;
+                total. In terms of value, well that's where things get more
+                complicated.
+              </p>
+              <p>
+                At a company where the number of X is doubling every year,
+                simply doing a ratchet to prevent new As will achieve a partial
+                migration of 50% to Bs in just a year's time. This is the power
+                of the &quot;golden path&quot;: by making the easiest thing the
+                best thing, time will be your greatest ally in enacting change.
+              </p>
+              <p>
+                Partial migrations also have significant benefits when we factor
+                in utilization. It's very rare to have a migration that when
+                measured by utilization doesn't follow a
+                <a href="https://en.wikipedia.org/wiki/Pareto_distribution"
+                  >Pareto distribution</a
+                >
+                aka the 80-20 rule: &quot;80% of outcomes are due to 20% of
+                causes.&quot; There will be big fish to fry and the rest have
+                increasingly diminishing returns.
+              </p>
+              <p>
+                Utilization is the more appropriate thing to strategize on
+                because it is output-based. We don't care how many email types
+                we have, we care that, for example, &quot;emails are set to the
+                correct users&quot; 99% of the time.
+              </p>
+              <p>
+                This is where we see with data-driven, output-based decisions
+                that total migrations have little room to stand. Achieving 100%
+                has two merits:
+              </p>
+              <ul>
+                <li>
+                  Setting a new baseline (e.g. &quot;all emails must be
+                  localized&quot;)
+                </li>
+                <li>
+                  Simplifying complexity (e.g. &quot;we only need to reason
+                  about a single mailing system&quot;)
+                </li>
+              </ul>
+              <p>
+                Baselines are awesome ideals, but diminishing returns on the
+                utilization front make the ratchet and partial approaches much
+                more appealing. After all, customers don't complain loud enough
+                about the 1% case that's not just migrated that they rarely see.
+              </p>
+              <p>
+                Complexity can be a valid concern, but its reduction is often
+                better fought for on different battlefields: those of security,
+                reliability, and storage and compute cost. Achieving 100% isn't
+                about the migration, it's about the inherent cost of keeping
+                something around. Code's pretty cheap but data breaches,
+                incidents, and servers can be quite costly. Those will be much
+                more palatable reasons to kill something completely.
+              </p>
+              <p>
+                Total migrations are always a terrible idea from a project's
+                outset. If you've decided 100% is the appropriate strategy,
+                you're probably wrong and setting the project up for failure.
+                Almost assuredly, the correct place to stop a code migration for
+                diminishing returns is before 100%. If the ratchet and partial
+                migrations work and a new goal presents itself to finally cut
+                the remaining bits: great. Just don't jump into total migrations
+                to start.
+              </p>
+              <h2 id="upsides-of-self-run-migrations">
+                <a href="#upsides-of-self-run-migrations"
+                  >Upsides of self-run migrations</a
+                >
+              </h2>
+              <p>
+                Let's contrast the downsides of running code migrations in the
+                shape of &quot;fan out work to teams, coordinate them to do
+                it&quot; to self-run migrations.
+              </p>
+              <h3 id="attrition-and-negative-cultural-effects">
+                <a href="#attrition-and-negative-cultural-effects"
+                  >Attrition and negative cultural effects</a
+                >
+              </h3>
+              <p>
+                Self-run migrations inherently don't have this problem. For
+                every other team, the migrations are all win. Someone is coming
+                in and making improvements. Sounds lovely.
+              </p>
+              <p>
+                We can't escape the fact that there can be poor execution here,
+                but it's isolated and easier to hold individuals accountable.
+                There's no magic fix in doing self-run migrations for culture if
+                the general sense is that poor execution is the norm. Self-run
+                migrations will be more successful in general and can boost
+                morale slightly, but engineering cultures place heavy emphasis
+                on the negatives. If your goal is to improve culture alone,
+                you'll want to chase the most negative negatives instead (unless
+                code migrations are one).
+              </p>
+              <h3 id="significant-time-lost-to-communication-overhead">
+                <a href="#significant-time-lost-to-communication-overhead"
+                  >Significant time lost to communication overhead</a
+                >
+              </h3>
+              <p>
+                A handful of engineers &gt; handful of engineers loosely
+                shepherding hundreds of engineers.
+              </p>
+              <h3 id="significant-time-lost-to-discussions-around-ownership">
+                <a href="#significant-time-lost-to-discussions-around-ownership"
+                  >Significant time lost to discussions around ownership</a
+                >
+              </h3>
+              <p>
+                The main issue, disruption of team goals, is not present here.
+                The people doing the work are the people who care about the
+                work.
+              </p>
+              <p>
+                Nothing is taken away from teams due to this work so they have
+                no reason to be defensive, only rightfully cautious of changes
+                to their systems in general. In fact teams are even receptive to
+                accepting ownership of slightly more things if the migrating
+                team does the work and provides good documentation/support for
+                those bits going forward.
+              </p>
+              <h3 id="tons-of-incidents">
+                <a href="#tons-of-incidents">Tons of incidents</a>
+              </h3>
+              <p>
+                There will be incidents. However we know the migration will be
+                centrally managed. There will be multiple small incremental
+                changes. There will be consistent and centrally managed rollback
+                mechanisms. The issues while making changes will be learned
+                immediately by the central team doing the rollout.
+              </p>
+              <p>
+                This is a much better situation than the dozens of independent
+                incidents, tragic repeat issues, and churn of start/stops. As
+                the migration plan evolves and is reworked due to incidents or
+                new knowledge, the central team will be the only one adapting.
+              </p>
+              <h3 id="individuals-are-punished">
+                <a href="#individuals-are-punished">Individuals are punished</a>
+              </h3>
+              <p>
+                Self-run code migrations are the epitome of &quot;consistent
+                novelty.&quot; A small number of individuals are making a huge
+                impact, not simply coordinating one. Here, we don't wrongly
+                promote coordination or busywork. Most importantly, no one is
+                given work that's not valuable, takes away from the work they
+                should be doing, and that won't have an impact.
+              </p>
+              <h1 id="summary"><a href="#summary">Summary</a></h1>
+              <ul>
+                <li>
+                  Never do fan-out code migrations. They suck on every
+                  dimension.
+                </li>
+                <li>
+                  Fan-out migrations are disingenuous. How can someone expect
+                  others to do work they don't feel is important enough to do
+                  themselves?
+                </li>
+                <li>
+                  Never plan total migrations from the outset. Achieving 100% is
+                  actually two separate goals and ought to be two separate
+                  projects: (1) capturing sufficient utilization to address the
+                  majority of an outcome-based problem, then (2) mitigating a
+                  cost or risk.
+                </li>
+                <li>
+                  To prevent fan-out migrations from wreaking havoc on your
+                  engineering organization:
+                  <ul>
+                    <li>
+                      As a leader, promote work done, not work coordinated.
+                      Don't applaud fan-out migrations as they are process
+                      failures.
+                    </li>
+                    <li>
+                      As a team receiving work, push back for your and your
+                      company's sake. It's often as simply as saying that you
+                      won't be doing it.
+                    </li>
+                    <li>
+                      As a team needing to get a lot of work done, put in the
+                      work to make a case for getting proper support from the
+                      company, find a goal you can hit with what you have, or
+                      let it go. Fanning out work can't be an option on the
+                      table.
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <p>
+                I did not talk about concrete engineering approaches in this
+                article. We can't start to talk about approaches without a
+                strong understanding of what to avoid. Having made the case for
+                self-run migrations, we can next discuss efficient
+                <em>change management</em>. That's the next problem, for another
+                day.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

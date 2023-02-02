@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>/writing</id>
     <title>Writing – Chris Andrejewski</title>
-    <updated>2023-01-30T00:00:00.000Z</updated>
+    <updated>2023-02-01T00:00:00.000Z</updated>
     
     <author>
         <name>Chris Andrejewski</name>
@@ -19,6 +19,13 @@
     <category term="Politics"/>
     <category term="Code quality principles"/>
     <category term="Life"/>
+    <entry>
+        <title type="html"><![CDATA[Code migrations]]></title>
+        <id>code-migrations</id>
+        <link href="https://jew.ski/article/code-migrations/"/>
+        <updated>2023-02-01T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Stop running and push back against fan-out code migrations. Do effective self-run migrations instead.]]></summary>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Platform teams]]></title>
         <id>platform-teams</id>
@@ -151,12 +158,5 @@
         <link href="https://jew.ski/article/womens-rights/"/>
         <updated>2022-06-25T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[We cannot lean on the Supreme Court to bring social progress to this country. The battles are back on, the war for women's rights is still ongoing.]]></summary>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Locality]]></title>
-        <id>locality</id>
-        <link href="https://jew.ski/article/locality/"/>
-        <updated>2022-06-20T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Locality is an important measure of code quality, covering the where and when.]]></summary>
     </entry>
 </feed>
