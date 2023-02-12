@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>About me</title>
+    <title>SREPL</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="description" content="An incredibly short autobiography" />
+    <meta
+      name="description"
+      content="Save-Read-Eval-Print-Loop: The file is the REPL"
+    />
     <meta name="robots" content="noindex, nofollow" />
 
-    <link rel="canonical" href="/article/about-me/index.html" />
+    <link rel="canonical" href="/article/srepl/index.html" />
 
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/logo192.png" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#178bfb" />
 
-    <meta property="og:title" content="About me" />
+    <meta property="og:title" content="SREPL" />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Chris Andrejewski" />
-    <meta property="og:url" content="/article/about-me/index.html" />
+    <meta property="og:url" content="/article/srepl/index.html" />
 
     <meta property="twitter:card" content="summary" />
     <meta name="twitter:site" content="compooter" />
-    <meta name="twitter:title" content="About me" />
+    <meta name="twitter:title" content="SREPL" />
     <meta
       name="twitter:description"
-      content="An incredibly short autobiography"
+      content="Save-Read-Eval-Print-Loop: The file is the REPL"
     />
 
     <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
@@ -371,70 +374,68 @@
           <div class="sc-jSMfEi imgLsS">
             <p class="sc-iBkjds xFOWy">
               <a href="/writing" class="sc-ftvSup clAnHv">Articles</a
-              ><a href="/category/life/index.html" class="sc-ftvSup clAnHv"
-                >Life</a
+              ><a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup clAnHv"
+                >Engineering</a
               >
             </p>
             <h1 class="sc-gKXOVf kaKiDU">
-              <a href="#" class="sc-papXJ iHVwPn"><span>About me</span></a>
+              <a href="#" class="sc-papXJ iHVwPn"><span>SREPL</span></a>
             </h1>
-            <p class="sc-iBkjds xFOWy">An incredibly short autobiography</p>
+            <p class="sc-iBkjds xFOWy">
+              Save-Read-Eval-Print-Loop: The file is the REPL
+            </p>
           </div>
           <div class="sc-eCYdqJ jZkxEC">
             <div class="sc-evZas cqaWMv">
               <p>
-                My name is Chris Andrejewski (/andra-jes-key/). I live in
-                Seattle, Washington, but if you meet me in person you are going
-                to learn my hometown is Erie, Pennsylvania.
+                In the
+                <a href="/article/language-golden-paths"
+                  >language golden paths</a
+                >
+                article, I highlighted the importance of interactive development
+                but fell short describing how we might achieve it. After some
+                time, I came up with the idea for a REPL but inside the working
+                file instead of in some far off REPL session with a special
+                mode.
               </p>
               <p>
-                When I was in elementary school, my music teacher told us people
-                from Erie don't have accents–y'all that was so wrong. Having
-                lived on the west coast for the past few years, I've learned
-                that us east coasters say 'yes' when we agree, but west coasters
-                say 'yes' when they understand. I remain baffled by the latter,
-                and decently intelligible despite the former.
+                To that end, I present SREPL. The S stands for Save because
+                every time you save a file where SREPL is in use the file is
+                evaluated and the results are printed out alongside the code as
+                comments. I
+                <a href="https://www.youtube.com/watch?v=EvuYXqb4kxE"
+                  >recorded a video</a
+                >
+                to demonstrate what development looks like with SREPL.
               </p>
               <p>
-                I have written way too much code. I started programming when I
-                was ten, wrote a simple webpage and said, &quot;this is
-                dumb.&quot; I took a long three month break, but returned to the
-                computer. Google search was too cool to keep me away. And from
-                there I never stopped.
+                I've been playing around with SREPL for a few days and it's been
+                a big improvement over the standard <code>node</code> REPL,
+                though I've always found the Node REPL especially clunky.
               </p>
               <p>
-                My wonderful parents bought me a desktop and laptop over the
-                years to support my coding hobby. BUT I was handicapped by their
-                fear of <em>buying things online</em> (that's how old I am) so I
-                had no recourse but to do a ton of open-source projects.
-                Eventually I got old enough to buy stuff myself and I found
-                employment and consulting doing web and server development.
+                SREPL is
+                <a href="https://github.com/andrejewski/srepl">open-source</a>
+                and
+                <a href="https://www.npmjs.com/package/srepl"
+                  >available on NPM</a
+                >. It supports both JavaScript and TypeScript. While a concrete
+                implementation is great, my overall goal here is to encourage
+                more thinking about how to bring interactive development back to
+                the forefront of language design. I hope SREPL is an example of
+                how to do so and, of course, hopefully is of use to people.
               </p>
-              <p>
-                After a few years in the industry, I landed my dream job at
-                Stripe and have been working there for almost half a decade.
-                I've expanded my responsibilities to team lead and mentor to a
-                great few. I'm always looking to help folks along to their next
-                best ever piece of engineering.
-              </p>
-              <p>
-                Outside of work, I do more coding. Mainly video games people
-                hate. I also draw web comics and write articles (both
-                non-fiction and fiction) which I share on this website. I'm a
-                big fan of stand-up comedians and film. For exercise, I've been
-                a tennis guy but the past year or so I've gotten into badminton.
-                It's pretty fun!
-              </p>
-              <p>Thanks for visiting my website, I hope you like it!</p>
             </div>
           </div>
           <div class="sc-crXcEl iPPOhF">
             <div class="sc-eCYdqJ jZkxEC">
               <p class="sc-iBkjds xFOWy">
                 <time
-                  datetime="2023-02-05T00:00:00.000Z"
-                  title="2023-02-05T00:00:00.000Z"
-                  >Published 2/4/2023</time
+                  datetime="2023-02-12T00:00:00.000Z"
+                  title="2023-02-12T00:00:00.000Z"
+                  >Published 2/11/2023</time
                 >
               </p>
               <p class="sc-iBkjds xFOWy">
@@ -447,8 +448,10 @@
             <div class="sc-eCYdqJ jZkxEC">
               <p class="sc-iBkjds xFOWy">
                 <a href="/writing" class="sc-ftvSup clAnHv">Articles</a
-                ><a href="/category/life/index.html" class="sc-ftvSup clAnHv"
-                  >Life</a
+                ><a
+                  href="/category/engineering/index.html"
+                  class="sc-ftvSup clAnHv"
+                  >Engineering</a
                 >
               </p>
             </div>
