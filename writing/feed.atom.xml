@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>/writing</id>
     <title>Writing – Chris Andrejewski</title>
-    <updated>2023-02-12T00:00:00.000Z</updated>
+    <updated>2023-02-13T00:00:00.000Z</updated>
     
     <author>
         <name>Chris Andrejewski</name>
@@ -19,6 +19,13 @@
     <category term="Fiction"/>
     <category term="Politics"/>
     <category term="Code quality principles"/>
+    <entry>
+        <title type="html"><![CDATA[Dattle]]></title>
+        <id>dattle</id>
+        <link href="https://jew.ski/article/dattle/"/>
+        <updated>2023-02-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[A simple data specification format and its design decisions]]></summary>
+    </entry>
     <entry>
         <title type="html"><![CDATA[SREPL]]></title>
         <id>srepl</id>
@@ -151,12 +158,5 @@
         <link href="https://jew.ski/article/logical-groups/"/>
         <updated>2022-07-31T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Thoughts on avoiding coupling in modeling, using users and database partitions as examples.]]></summary>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Ruby style guide]]></title>
-        <id>ruby-style-guide</id>
-        <link href="https://jew.ski/article/ruby-style-guide/"/>
-        <updated>2022-07-31T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Style guidelines and tips I've developed and adhere to when writing Ruby code.]]></summary>
     </entry>
 </feed>

@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dattle</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="A simple data specification format and its design decisions"
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link rel="canonical" href="/article/dattle/index.html" />
+
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Dattle" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta property="og:url" content="/article/dattle/index.html" />
+
+    <meta property="twitter:card" content="summary" />
+    <meta name="twitter:site" content="compooter" />
+    <meta name="twitter:title" content="Dattle" />
+    <meta
+      name="twitter:description"
+      content="A simple data specification format and its design decisions"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .kvjZgE {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .kvjZgE {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      data-styled.g1[id='sc-bczRLJ'] {
+        content: 'kvjZgE,';
+      } /*!sc*/
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .imgLsS {
+        padding-top: 3rem;
+        margin-bottom: 3rem;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'imgLsS,';
+      } /*!sc*/
+      .kaKiDU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      @media (max-width: 720px) {
+        .kaKiDU {
+          font-size: 1.8rem;
+        }
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'kaKiDU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .clAnHv {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #dcefff;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .clAnHv:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .clAnHv {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'clAnHv,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .dzrrbr {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #eef8ff;
+        color: #4a8dc8;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .dzrrbr label {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 0.85rem;
+        color: #08273f;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr label {
+          color: #dde0e3;
+        }
+      } /*!sc*/
+      .dzrrbr .sc-iBkjds {
+        color: #153248;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .dzrrbr ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .dzrrbr a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .dzrrbr a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #b9dbf5;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'dzrrbr,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #eff7fd;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-kFwHxP1'] {
+        content: 'sc-global-kFwHxP1,';
+      } /*!sc*/
+      .kylQxs {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .kylQxs h1 {
+        font-size: 1.5rem;
+        padding: 1rem 0px;
+        margin: 0;
+      } /*!sc*/
+      .kylQxs h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .kylQxs h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (max-width: 720px) {
+        .kylQxs .sc-kDDrLX {
+          display: none;
+        }
+      } /*!sc*/
+      data-styled.g14[id='sc-iqcoie'] {
+        content: 'kylQxs,';
+      } /*!sc*/
+      .iPPOhF {
+        border-top: 2px solid #d7d7d7;
+        margin: 4rem 0;
+        padding-top: 2rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .iPPOhF {
+          border-color: #4c545e;
+        }
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'iPPOhF,';
+      } /*!sc*/
+      .cqaWMv h1 > a,
+      .cqaWMv h2 > a,
+      .cqaWMv h3 > a,
+      .cqaWMv h4 > a,
+      .cqaWMv h5 > a,
+      .cqaWMv h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .cqaWMv h1 > a:hover,
+      .cqaWMv h2 > a:hover,
+      .cqaWMv h3 > a:hover,
+      .cqaWMv h4 > a:hover,
+      .cqaWMv h5 > a:hover,
+      .cqaWMv h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .cqaWMv p,
+      .cqaWMv li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .cqaWMv p,
+        .cqaWMv li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .cqaWMv a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .cqaWMv a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .cqaWMv ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .cqaWMv code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .cqaWMv h1 code,
+      .cqaWMv h2 code,
+      .cqaWMv h3 code,
+      .cqaWMv h4 code,
+      .cqaWMv h5 code,
+      .cqaWMv h6 code,
+      .cqaWMv li code,
+      .cqaWMv p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #eff7fd;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .cqaWMv h1 code,
+        .cqaWMv h2 code,
+        .cqaWMv h3 code,
+        .cqaWMv h4 code,
+        .cqaWMv h5 code,
+        .cqaWMv h6 code,
+        .cqaWMv li code,
+        .cqaWMv p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .cqaWMv pre {
+        background-color: #eff7fd;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .cqaWMv pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .cqaWMv img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .cqaWMv video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .cqaWMv figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .cqaWMv figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .cqaWMv figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .cqaWMv .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .cqaWMv .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g16[id='sc-evZas'] {
+        content: 'cqaWMv,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-iqcoie kylQxs">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi imgLsS">
+            <p class="sc-iBkjds xFOWy">
+              <a href="/writing" class="sc-ftvSup clAnHv">Articles</a
+              ><a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup clAnHv"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf kaKiDU">
+              <a href="#" class="sc-papXJ iHVwPn"><span>Dattle</span></a>
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              A simple data specification format and its design decisions
+            </p>
+          </div>
+          <div class="sc-jqUVSM dzrrbr">
+            <p class="sc-iBkjds xFOWy"><label>Table of contents</label></p>
+            <div>
+              <ul>
+                <li><a href="#examples">Examples</a></li>
+                <li>
+                  <a href="#motivation">Motivation</a>
+                  <ul>
+                    <li><a href="#goals">Goals</a></li>
+                    <li><a href="#riffing-from-edn">Riffing from EDN</a></li>
+                  </ul>
+                </li>
+                <li><a href="#specification">Specification</a></li>
+                <li>
+                  <a href="#decisions">Decisions</a>
+                  <ul>
+                    <li><a href="#numbers-not-found">Numbers not found</a></li>
+                    <li><a href="#dattle-is-utf-8">Dattle is UTF-8</a></li>
+                    <li>
+                      <a href="#comments-not-found">Comments not found</a>
+                    </li>
+                    <li>
+                      <a href="#the-dattle-name">The &quot;Dattle&quot; name</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-evZas cqaWMv">
+              <p>
+                Dattle is a new data specification format. Dattle sits in the
+                same camp as JSON and EDN formats. Data described in Dattle is
+                human readable and self-describing, e.g. you don't need an
+                out-of-band schema to parse the data.
+              </p>
+              <h1 id="examples"><a href="#examples">Examples</a></h1>
+              <p>A demonstration of all Dattle syntax:</p>
+              <pre><code>{&quot;nil&quot; nil
+ &quot;true&quot; true
+ &quot;false&quot; false
+ &quot;string&quot; &quot;UTF-8 \&quot;escaping\&quot;&quot;
+ [&quot;vector&quot;] [&quot;one&quot; &quot;two&quot; true false]
+ {&quot;map&quot; &quot;example&quot;} {&quot;key&quot; &quot;value&quot;
+                    &quot;name&quot; &quot;value&quot;}}
+</code></pre>
+              <p>
+                Files containing data expressed in Dattle should have the
+                extension <code>.dt</code>.
+              </p>
+              <h1 id="motivation"><a href="#motivation">Motivation</a></h1>
+              <p>
+                I'm mulling over the design of a new programming language. I
+                don't think it's any mistake that JSON became so popular because
+                JavaScript became so popular. There's a huge advantage to having
+                both a data format and a language which 'click' together. Data
+                is the more fundamental thing, so I want to start there.
+              </p>
+              <h2 id="goals"><a href="#goals">Goals</a></h2>
+              <ul>
+                <li>
+                  <strong>Human readable</strong> because it will be embedded
+                  into a programming language
+                </li>
+                <li>
+                  <strong>Parseable without out-of-band schemas</strong> to
+                  allow the data to stand alone
+                </li>
+                <li>
+                  <strong>Small set of composable data types</strong> to
+                  discourage coupling and reduce edge cases
+                </li>
+                <li>
+                  <strong>Minimal syntax and simple grammar</strong> to reduce
+                  complexity and fragmentation in parsing
+                </li>
+              </ul>
+              <h2 id="riffing-from-edn">
+                <a href="#riffing-from-edn">Riffing from EDN</a>
+              </h2>
+              <p>
+                The primary influence here is
+                <a href="https://github.com/edn-format/edn"
+                  >Extensible Data Notation (EDN)</a
+                >
+                which is the data language of the programming language Clojure.
+                This is another example of data format and language pairing.
+                Compared to JavaScript/JSON this relationship is hardcore: most
+                everything in Clojure is written in EDN.
+              </p>
+              <p>EDN gets a lot right:</p>
+              <ul>
+                <li>
+                  Unlike JSON, there's less noise. Map key-value pairs don't
+                  need the semicolon (<code>:</code>) between the keys and
+                  values. We certainly don't need the trailing comma
+                  (<code>,</code>).
+                </li>
+                <li>
+                  Simple data structures, simple data equality. Unlike JSON,
+                  where all map keys must be strings, map keys can be any data
+                  value. This lets us use maps in more places as they don't have
+                  to be dictionaries. For example, JSON can't do integer keyed
+                  maps.
+                </li>
+              </ul>
+              <p>EDN has a bunch I don't need though:</p>
+              <ul>
+                <li>
+                  While the noise is optional, it is optional. So there's
+                  nothing stopping anyone from doing
+                  <code
+                    >{&quot;a&quot;, &quot;b&quot;, &quot;c&quot;,
+                    &quot;d&quot;}</code
+                  >
+                  which is just confusing. Optionality has very little room to
+                  stand in data format. People like to do
+                  <code>stringify(parse(data))</code> to clean it up into its
+                  proper form so I want to reduce the number of
+                  allowable-but-not-proper forms. Dattle disallows commas
+                  outside of strings. This removes that piece of optionality.
+                </li>
+                <li>
+                  EDN has a bunch of data structures, relative to JSON. These
+                  include string-likes symbols and keywords and collection types
+                  lists, vectors, and sets. It can be difficult to know when to
+                  use what and some languages struggle to elegantly represent
+                  these types uniquely. In languages that aren't Clojure it
+                  leads to a lot of verbosity akin to code-generated Protobufs.
+                  In Dattle, we keep it simple: we only have strings and we only
+                  have lists (vectors in EDN).
+                </li>
+                <li>
+                  EDN is extensible. You can decorate the plain data with reader
+                  tags to give more context to pieces of data. These readers can
+                  determine the final output of the data, equality rules, etc.
+                  This is a means to be more self-describing. This extensibility
+                  is too complicated for a data format. This system results in a
+                  lack of portability due to reader fragmentation (along with
+                  hard to predict parsing performance) and people ignoring the
+                  reader system entirely to be compatible with the most things.
+                  Dattle has no extension system.
+                </li>
+              </ul>
+              <h1 id="specification">
+                <a href="#specification">Specification</a>
+              </h1>
+              <p>
+                Data expressed in Dattle is defined using the following
+                elements. Dattle is case sensitive, e.g. <code>TRUE</code> and
+                <code>True</code> not valid replacements for <code>true</code>.
+              </p>
+              <ul>
+                <li><code>true</code> and <code>false</code> for booleans</li>
+                <li>
+                  Strings. UTF-8, always double quoted, and supports escape
+                  sequences.
+                </li>
+                <li>
+                  Vectors. The types of elements of a vector can be
+                  heterogeneous. These should be represented in the language's
+                  native array, random-access, deque-like structure. These are
+                  lists, but the use of &quot;vector&quot; is preferred to avoid
+                  association with linked-lists and
+                  <a href="https://en.wikipedia.org/wiki/Cons">Lisp cons</a>.
+                </li>
+                <li>
+                  Maps. The types of keys and values of a vector can be
+                  heterogeneous. These should be represented in the language's
+                  native data structure for arbitrary key-value pairs if one
+                  exists. If such a structure does not exist, represent the map
+                  as a vector of key-value pairs.
+                </li>
+                <li>
+                  <code>nil</code> has three intended use cases:
+                  <ul>
+                    <li>
+                      to communicate the intent to remove a value from a map
+                    </li>
+                    <li>to communicate the absence of a value in a list</li>
+                    <li>
+                      to achieve either of the above when Dattle is used in
+                      streaming applications where chunks of Dattle are being
+                      processed.
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <p>
+                Dattle has a
+                <a
+                  href="https://gist.github.com/andrejewski/c45804a3728f66a3b2f06b1bc37a7976"
+                  >BNF specification</a
+                >.
+              </p>
+              <h1 id="decisions"><a href="#decisions">Decisions</a></h1>
+              <p>Some of the key decisions that make Dattle what it is.</p>
+              <h2 id="numbers-not-found">
+                <a href="#numbers-not-found">Numbers not found</a>
+              </h2>
+              <p>
+                Notably absent from the specification is numbers. Both EDN and
+                JSON have number types. It is an understatement to say numbers
+                are common in data formats.
+              </p>
+              <p>
+                However, numbers go against the design goals because they are
+                complex, both terms of problem space and syntax. There are
+                hundreds of different number memory representations and syntaxes
+                to pick from. For simplicity, Dattle does not make a decision
+                here.
+              </p>
+              <p>
+                Both JSON and EDN chose which to support based on the influences
+                of their languages. JSON numbers are 64-bit floating point
+                numbers, matching JavaScript. JavaScript has since added support
+                for BigIntegers of arbitrary-size. EDN supports integers and
+                doubles with togglable precisions, rooted in Java
+                <code>long</code> and <code>double</code>.
+              </p>
+              <p>
+                Mathmatical operations are not performed amongst inert data.
+                Numbers are a conveinence in a data format. This conveinence
+                forces formats to make a choice of:
+              </p>
+              <ul>
+                <li>
+                  <strong
+                    >Support a single set of blessed number types and nothing
+                    else.</strong
+                  >
+                  This is what both JSON and reader-less EDN do. JSON chose a
+                  single type, EDN chose multiple. For each supported option,
+                  the grammar gets more and more complicated. For example,
+                  supporting floating point numbers tends to result in absorbing
+                  all of that grammar into your own.
+                </li>
+                <li>
+                  <strong
+                    >Blow out your data format with an extension system.</strong
+                  >
+                  In EDN, you can reach for the reader tags to do a bit better:
+                  <code>#custom/uint8 4</code> such that the <code>4</code> is
+                  represented as the <code>uint8</code> type the programming
+                  language or parser may or may not support.
+                </li>
+              </ul>
+              <p>
+                Numbers can be represented using strings in Dattle:
+                <code>&quot;123&quot;</code>. This seems like the right outcome
+                in terms of being explicit, given the complex nature of numbers.
+                Both producer and consumer of Dattle will need to concious of
+                the memory/string representation of their numbers:
+              </p>
+              <pre><code class="language-js">number = <span class="hljs-number">6</span>
+dattle = <span class="hljs-title function_">stringify</span>({ <span class="hljs-attr">amount</span>: <span class="hljs-title function_">stringifyFloat</span>(number) })
+<span class="hljs-comment">// =&gt; &#x27;{&quot;amount&quot; &quot;6&quot;}&#x27;</span>
+
+result = <span class="hljs-title function_">parse</span>(dattle)
+
+<span class="hljs-title function_">assert</span>(<span class="hljs-built_in">parseFloat</span>(result.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;amount&#x27;</span>)), number)
+</code></pre>
+              <p>
+                For anyone who has worked with floating point numbers or
+                underspecified number formats before, this need to be explicit
+                comes as a huge relief.
+              </p>
+              <h2 id="dattle-is-utf-8">
+                <a href="#dattle-is-utf-8">Dattle is UTF-8</a>
+              </h2>
+              <p>
+                With numbers left undecided, it seems incongruent that strings
+                aren't also undecided. After all, strings have just as many
+                different representations and are certainly complicated.
+                However, strings are so complicated that for human readable
+                formats we've seemed to all arrive at the decision to use
+                Unicode.
+              </p>
+              <p>
+                UTF-8 was chosen with the expectation that since Dattle was
+                human readable and used in programming contexts that the
+                majority of strings would be ASCII but still need to be
+                extensible to support more complex characters. Otherwise, UTF-16
+                would also have been fine.
+              </p>
+              <h2 id="comments-not-found">
+                <a href="#comments-not-found">Comments not found</a>
+              </h2>
+              <p>
+                Another missing feature is the ability to write comments in
+                Dattle. They aren't supported in the spirit of reducing the
+                number of allowable-but-not-proper forms. Comments are not
+                composable, nor data. Having comments would lead people to
+                develop half-baked extension systems inside their Dattle files.
+              </p>
+              <p>
+                Creating a &quot;Dattle but with comments&quot; would be trivial
+                given how limited the grammar is. No one can stop others from
+                tacking comments on to their data format. So let's talk about it
+                here to avoid fragmentation.
+              </p>
+              <p>
+                Dattle with comments have the file extension
+                <code>.dtc</code> and the syntax is as follows:
+              </p>
+              <pre><code># &lt;comment&gt; #
+
+# &lt;multi-line-
+  &lt;comment&gt; #
+
+# &lt;comment with a hash \# in it&gt; #
+</code></pre>
+              <p>
+                The hash <code>#</code> is chosen for consistency with the other
+                single character &quot;container&quot; characters for strings,
+                vectors, and maps:
+              </p>
+              <pre><code>&quot;abcd&quot;
+[&quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;]
+{&quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;}
+# abcd #
+</code></pre>
+              <p>
+                The spacing between the comment text and hash are required. We
+                want to discourage extension systems using comments and
+                <code># marker #</code> deters that urge more than
+                <code>#marker#</code>.
+              </p>
+              <p>
+                We also don't support unclosed comments like
+                <code># comment &lt;end-of-line&gt;</code> as the Dattle grammar
+                has no notion of end-of-line itself. End-of-line behaviors get
+                weird for parsing done on streams of data as the parse now also
+                needs to factor those in.
+              </p>
+              <h2 id="the-dattle-name">
+                <a href="#the-dattle-name">The &quot;Dattle&quot; name</a>
+              </h2>
+              <p>Dattle was chosen because it:</p>
+              <ul>
+                <li>is not a real word,</li>
+                <li>should sound distinctly recognizable to programmers,</li>
+                <li>should be easy to search for online,</li>
+                <li>
+                  contains most of the word &quot;data&quot; to emphasize it's
+                  intended use,
+                </li>
+                <li>
+                  abbreviates to the relatively unclaimed file extension
+                  <code>.dt</code>.
+                </li>
+              </ul>
+              <p>
+                Speaking of brand optics, we also need a logo so here we go:
+              </p>
+              <figure>
+                <img
+                  width="120"
+                  alt="The Dattle logo is a stretched out brown letter D"
+                  src="/images/dattle/logo.png"
+                />
+              </figure>
+
+              <p>This logo was chosen because:</p>
+              <ul>
+                <li>It's easy to draw.</li>
+                <li>It's simple to reflect the simplicity of the language.</li>
+                <li>
+                  The logo looks elongated to express how far Dattle can be
+                  taken because it is compositional.
+                </li>
+                <li>
+                  The logo is one color so it's easy to modify to fit the
+                  situation.
+                </li>
+              </ul>
+              <p>And with that, Dattle has arrived.</p>
+            </div>
+          </div>
+          <div class="sc-crXcEl iPPOhF">
+            <div class="sc-eCYdqJ jZkxEC">
+              <p class="sc-iBkjds xFOWy">
+                <time
+                  datetime="2023-02-13T00:00:00.000Z"
+                  title="2023-02-13T00:00:00.000Z"
+                  >Published 2/12/2023</time
+                >
+              </p>
+              <p class="sc-iBkjds xFOWy">
+                Subscribe for new articles via
+                <a href="/writing/feed.atom.xml" class="sc-bczRLJ kvjZgE"
+                  >Atom feed</a
+                >
+              </p>
+            </div>
+            <div class="sc-eCYdqJ jZkxEC">
+              <p class="sc-iBkjds xFOWy">
+                <a href="/writing" class="sc-ftvSup clAnHv">Articles</a
+                ><a
+                  href="/category/engineering/index.html"
+                  class="sc-ftvSup clAnHv"
+                  >Engineering</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
