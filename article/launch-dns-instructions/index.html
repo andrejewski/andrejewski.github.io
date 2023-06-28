@@ -1,34 +1,31 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>Nothing</title>
+    <title>Launch: DnsInstructions.com</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta
-      name="description"
-      content="The complexities of the absence of a value in JavaScript."
-    />
+    <meta name="description" content="Announcing my new product" />
     <meta name="robots" content="index, follow" />
 
-    <link rel="canonical" href="/article/nothing/index.html" />
+    <link rel="canonical" href="/article/launch-dns-instructions/index.html" />
 
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/logo192.png" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#178bfb" />
 
-    <meta property="og:title" content="Nothing" />
+    <meta property="og:title" content="Launch: DnsInstructions.com" />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Chris Andrejewski" />
-    <meta property="og:url" content="/article/nothing/index.html" />
+    <meta
+      property="og:url"
+      content="/article/launch-dns-instructions/index.html"
+    />
 
     <meta property="twitter:card" content="summary" />
     <meta name="twitter:site" content="compooter" />
-    <meta name="twitter:title" content="Nothing" />
-    <meta
-      name="twitter:description"
-      content="The complexities of the absence of a value in JavaScript."
-    />
+    <meta name="twitter:title" content="Launch: DnsInstructions.com" />
+    <meta name="twitter:description" content="Announcing my new product" />
 
     <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
     <style data-styled="true" data-styled-version="5.3.5">
@@ -374,157 +371,85 @@
           <div class="sc-jSMfEi imgLsS">
             <p class="sc-iBkjds xFOWy">
               <a href="/writing" class="sc-ftvSup clAnHv">Articles</a
-              ><a
-                href="/category/engineering/index.html"
-                class="sc-ftvSup clAnHv"
-                >Engineering</a
+              ><a href="/category/product/index.html" class="sc-ftvSup clAnHv"
+                >Product</a
               >
             </p>
             <h1 class="sc-gKXOVf kaKiDU">
-              <a href="#" class="sc-papXJ iHVwPn"><span>Nothing</span></a>
+              <a href="#" class="sc-papXJ iHVwPn"
+                ><span>Launch: DnsInstructions.com</span></a
+              >
             </h1>
-            <p class="sc-iBkjds xFOWy">
-              The complexities of the absence of a value in JavaScript.
-            </p>
+            <p class="sc-iBkjds xFOWy">Announcing my new product</p>
           </div>
           <div class="sc-eCYdqJ jZkxEC">
             <div class="sc-evZas cqaWMv">
               <p>
-                In JavaScript, we have tons of foot guns. I was recently asked
-                how to best convey the absence of a value.
+                Introducing
+                <a href="https://dnsinstructions.com/">DnsInstructions.com</a>,
+                an amazing user experience for setting up DNS records that
+                embeds directly into products that offer DNS integrations. The
+                instructions match what the user's DNS provider is asking for to
+                make setup quick and easy.
               </p>
               <p>
-                My immediate reaction was, &quot;Definitely not
-                exceptions.&quot; Looking at a function signature will not let
-                us know to handle that case. Placing try/catch syntax around
-                calls is tedious in JavaScript as it is procedural, not
-                expression based. Exceptions have their place, but should not
-                express common or expected behavior.
+                I have had really poor experiences with DNS onboarding in the
+                past half decade, on both receiving DNS records to add and
+                giving others DNS records to add.
               </p>
               <p>
-                The next question was null or undefined. Null means &quot;no
-                object&quot; and undefined means &quot;not assigned.&quot;
-                Neither of these exactly means nothing. Before choosing, it is
-                worth knowing the differences.
+                DNS is a very technical concept and not user-friendly in its
+                design, and our industry does no favors with how fragmented the
+                user experiences around it are. Every user interface for
+                managing DNS records is different and often really confusing.
               </p>
               <p>
-                The type of null is object, the type of undefined is undefined.
-                Choosing undefined, a type check would blow up faster.
+                Facing that complexity, companies tend to throw their hands up
+                and give their users something that will technically work but
+                really fall short on the guidance and support. It's not uncommon
+                for a DNS integration to link to the docs of a few DNS
+                providers, whose docs are just as equally confusing, and call it
+                a day.
+              </p>
+              <p>This sucks for everyone involved because:</p>
+              <ul>
+                <li>
+                  <p>
+                    The business is leaving a lot of money on the table. They
+                    can charge a premium for DNS integrations and users are much
+                    more sticky when they get to use them. Poor onboarding
+                    experience tanks conversation rate on an otherwise healthy
+                    and viable feature set.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    Users then have a bad time, spinning their wheels trying to
+                    cobble things together and/or begin a game of telephone with
+                    their IT department to get it set up which drags things out.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    And in the end the lack of initial investment in the
+                    onboarding experience comes back to bite the business again:
+                    confused users who want something really bad reach out to
+                    support about it and now need arduous hand holding to get
+                    set up.
+                  </p>
+                </li>
+              </ul>
+              <p>
+                I am tired of this situation so I'm bringing an awesome DNS
+                onboarding experience mainstream. Just a few lines of code is
+                all it takes now to have a DNS onboarding experience that
+                converts well and cuts support burden.
               </p>
               <p>
-                Null key values are preserved in JSON serialization, undefined
-                is not. Choosing undefined, a key set to undefined would not be
-                present in JSON. (Interestingly, JSON.stringify casts undefined
-                within an array to null.)
-              </p>
-              <p>
-                Default values for arguments and destructuring only are used
-                when undefined. Choosing undefined, default values would be
-                used.
-              </p>
-              <p>
-                These differences do not provide a clear answer. Sometimes we
-                don't want to blow up on type checks since most JavaScript
-                developers do know the type of null is object. Sometimes we
-                would like to see a key in JSON to know something could be
-                there. Sometimes we do not want default values to apply unless
-                we are truly passed fewer arguments.
-              </p>
-              <p>
-                So it boils down to what is idiomatic for the absence of a
-                value. Undefined is the idiomatic choice based on the standard
-                data structures. The value of a key in an object that does not
-                exist is undefined. The value of an index in an array that does
-                not exist is undefined. If Array.find has no match, it returns
-                undefined.
-              </p>
-              <p>
-                Undefined is the idiomatic nothing for JavaScript, but can we do
-                better? Given only these two options we should pick undefined,
-                but there is another option. Our issue most often is one of
-                ambiguity where the values we deal in can be anything, including
-                nothing. If our consumer is dealing in undefined values, we
-                would still be clobbering their data.
-              </p>
-              <p>
-                Left to their own devices, consumers would most likely
-                encapsulate all of their values in some data wrapper. This
-                wrapper would hopefully allow us to process their values and
-                allow them to pluck back the original values. The consumer is
-                using <a href="/article/envelopes/">envelopes</a> to work around
-                our ambiguity.
-              </p>
-              <p>
-                We can do better by the consumer by returning union types. In
-                the case of returning nothing, we'd need something like a
-                &quot;Maybe&quot; type. Maybe we have a value or we have nothing
-                to return.
-              </p>
-              <p>
-                We can return a nothing object <code>{type: 'nothing'}</code> or
-                value object <code>{type: 'something', value}</code>. The caller
-                must anticipate the possibility of an absence of a value since
-                they will be forced to check the type. The value can be anything
-                since nothing is its own type.
-              </p>
-              <p>
-                Union types solve ambiguity, but are they idiomatic JavaScript?
-                The Maybe type has yet to see any strong mainstream
-                implementation.
-              </p>
-              <p>
-                Another common union type Result has existed in JavaScript for
-                some time. Result encapsulates either an error or a value. We
-                can trace JavaScript's Result all the way to callback hell. The
-                Node-style callback signature <code>(error, value)</code> was
-                the start. Over the years, Promises came to reflect the same in
-                resolve/reject. It has not progressed to being a
-                standalone/non-async value yet.
-              </p>
-              <p>
-                While union types solve the problem best, they are not yet
-                idiomatic.
-              </p>
-              <p>
-                For those of us writing JavaScript today, we are in a bit of a
-                pickle. If we choose undefined, we embrace what is idiomatic at
-                the sacrifice of ambiguity. If we choose union types, there is
-                no ambiguity but we lack an idiomatic bedrock to build upon.
-                Languages with common union types have many helpful utilities to
-                assist in handling them. JavaScript has no such support system
-                at the moment.
-              </p>
-              <p>
-                Unfortunately, we have to use our best judgement in approaching
-                these problems. Unfortunately, since this problem is both so
-                common yet so complex we will keep getting it wrong.
-              </p>
-              <p>
-                Ultimately, if we want to solve this problem we will need union
-                types at the language level. If this sounds unappealing, I can
-                sympathize. JavaScript continues to grow and I'll be the first
-                to admit I don't like
-                <a href="/article/stop/">many additions</a>. However, I come to
-                this conclusion after years of it being a known problem solved
-                many times in libraries.
-              </p>
-              <p>
-                Searching for Result and Maybe will reveal a land of misfit
-                union types, none of which have won out. It is hard to claim
-                victory when the solutions are so simplistic and easily
-                hand-rolled. Everyone wants a bit more of their own
-                functionality, less of anything else. The community has not
-                chosen a strong bedrock and we all suffer.
-              </p>
-              <p>
-                I think this is a problem worth addressing with a formal TC39
-                proposal. I have created a
-                <a href="https://github.com/andrejewski/proposal-unions"
-                  >TC-39 Strawman proposal</a
-                >
-                to start developing these ideas in hopes of proposing idiomatic
-                union types and getting this effort championed. If interested in
-                shaping this proposal please reach out.
+                Check it out on
+                <a href="https://dnsinstructions.com/">DnsInstructions.com</a>,
+                please tell anyone you know who might be interested in
+                up-leveling their product, and thanks for reading!
               </p>
             </div>
           </div>
@@ -532,9 +457,9 @@
             <div class="sc-eCYdqJ jZkxEC">
               <p class="sc-iBkjds xFOWy">
                 <time
-                  datetime="2018-08-11T00:00:00.000Z"
-                  title="2018-08-11T00:00:00.000Z"
-                  >Published 8/10/2018</time
+                  datetime="2023-06-28T00:00:00.000Z"
+                  title="2023-06-28T00:00:00.000Z"
+                  >Published 6/27/2023</time
                 >
               </p>
               <p class="sc-iBkjds xFOWy">
@@ -547,10 +472,8 @@
             <div class="sc-eCYdqJ jZkxEC">
               <p class="sc-iBkjds xFOWy">
                 <a href="/writing" class="sc-ftvSup clAnHv">Articles</a
-                ><a
-                  href="/category/engineering/index.html"
-                  class="sc-ftvSup clAnHv"
-                  >Engineering</a
+                ><a href="/category/product/index.html" class="sc-ftvSup clAnHv"
+                  >Product</a
                 >
               </p>
             </div>
