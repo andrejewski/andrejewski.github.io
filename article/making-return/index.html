@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Making Re:Turn</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Stuff I learned and reasoned through while making Re:Turn"
+    />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="canonical" href="/article/making-return/index.html" />
+
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Making Re:Turn" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta property="og:url" content="/article/making-return/index.html" />
+
+    <meta property="twitter:card" content="summary" />
+    <meta name="twitter:site" content="compooter" />
+    <meta name="twitter:title" content="Making Re:Turn" />
+    <meta
+      name="twitter:description"
+      content="Stuff I learned and reasoned through while making Re:Turn"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .kvjZgE {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .kvjZgE {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      data-styled.g1[id='sc-bczRLJ'] {
+        content: 'kvjZgE,';
+      } /*!sc*/
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .imgLsS {
+        padding-top: 3rem;
+        margin-bottom: 3rem;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'imgLsS,';
+      } /*!sc*/
+      .kaKiDU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      @media (max-width: 720px) {
+        .kaKiDU {
+          font-size: 1.8rem;
+        }
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'kaKiDU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .clAnHv {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #dcefff;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .clAnHv:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .clAnHv {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'clAnHv,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .dzrrbr {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #eef8ff;
+        color: #4a8dc8;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .dzrrbr label {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 0.85rem;
+        color: #08273f;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr label {
+          color: #dde0e3;
+        }
+      } /*!sc*/
+      .dzrrbr .sc-iBkjds {
+        color: #153248;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .dzrrbr ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .dzrrbr a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .dzrrbr a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #b9dbf5;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'dzrrbr,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #eff7fd;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-kFwHxP1'] {
+        content: 'sc-global-kFwHxP1,';
+      } /*!sc*/
+      .kylQxs {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .kylQxs h1 {
+        font-size: 1.5rem;
+        padding: 1rem 0px;
+        margin: 0;
+      } /*!sc*/
+      .kylQxs h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .kylQxs h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (max-width: 720px) {
+        .kylQxs .sc-kDDrLX {
+          display: none;
+        }
+      } /*!sc*/
+      data-styled.g14[id='sc-iqcoie'] {
+        content: 'kylQxs,';
+      } /*!sc*/
+      .iPPOhF {
+        border-top: 2px solid #d7d7d7;
+        margin: 4rem 0;
+        padding-top: 2rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .iPPOhF {
+          border-color: #4c545e;
+        }
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'iPPOhF,';
+      } /*!sc*/
+      .cqaWMv h1 > a,
+      .cqaWMv h2 > a,
+      .cqaWMv h3 > a,
+      .cqaWMv h4 > a,
+      .cqaWMv h5 > a,
+      .cqaWMv h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .cqaWMv h1 > a:hover,
+      .cqaWMv h2 > a:hover,
+      .cqaWMv h3 > a:hover,
+      .cqaWMv h4 > a:hover,
+      .cqaWMv h5 > a:hover,
+      .cqaWMv h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .cqaWMv p,
+      .cqaWMv li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .cqaWMv p,
+        .cqaWMv li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .cqaWMv a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .cqaWMv a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .cqaWMv ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .cqaWMv code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .cqaWMv h1 code,
+      .cqaWMv h2 code,
+      .cqaWMv h3 code,
+      .cqaWMv h4 code,
+      .cqaWMv h5 code,
+      .cqaWMv h6 code,
+      .cqaWMv li code,
+      .cqaWMv p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #eff7fd;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .cqaWMv h1 code,
+        .cqaWMv h2 code,
+        .cqaWMv h3 code,
+        .cqaWMv h4 code,
+        .cqaWMv h5 code,
+        .cqaWMv h6 code,
+        .cqaWMv li code,
+        .cqaWMv p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .cqaWMv pre {
+        background-color: #eff7fd;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .cqaWMv pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .cqaWMv img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .cqaWMv video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .cqaWMv figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .cqaWMv figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .cqaWMv figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .cqaWMv .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .cqaWMv .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g16[id='sc-evZas'] {
+        content: 'cqaWMv,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-iqcoie kylQxs">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi imgLsS">
+            <p class="sc-iBkjds xFOWy">
+              <a href="/writing" class="sc-ftvSup clAnHv">Articles</a
+              ><a href="/category/game-dev/index.html" class="sc-ftvSup clAnHv"
+                >Game development</a
+              ><a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup clAnHv"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf kaKiDU">
+              <a href="#" class="sc-papXJ iHVwPn"
+                ><span>Making Re:Turn</span></a
+              >
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              Stuff I learned and reasoned through while making Re:Turn
+            </p>
+          </div>
+          <div class="sc-jqUVSM dzrrbr">
+            <p class="sc-iBkjds xFOWy"><label>Table of contents</label></p>
+            <div>
+              <ul>
+                <li><a href="#background">Background</a></li>
+                <li><a href="#development">Development</a></li>
+                <li>
+                  <a href="#user-testing">User testing</a>
+                  <ul>
+                    <li>
+                      <a href="#go-forward-instruction"
+                        >Go forward instruction</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#revising-easy-mode">Revising easy mode</a>
+                    </li>
+                    <li>
+                      <a href="#click-here-animations">Click-here animations</a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a href="#parting-thoughts">Parting thoughts</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-evZas cqaWMv">
+              <p><a href="/return">Check out the game!</a></p>
+              <h1 id="background"><a href="#background">Background</a></h1>
+              <p>
+                A few weeks ago I was in New Zealand but more than that I was
+                <em>driving</em> in New Zealand on the left hand side of the
+                road.
+              </p>
+              <p>
+                The bar for driving on a side of the road you've never driven on
+                is quite low. The rental car agent basically said &quot;just go
+                slow&quot; and handed over the keys.
+              </p>
+              <p>
+                Overall, driving on the left wasn't too bad. With some
+                deliberate brain power applied to driving it was pretty chill
+                and yes people we're polite about me going slow sometimes.
+              </p>
+              <p>
+                The real hurdle was the roundabouts. I'd never done so many in
+                my life and grew to find a new appreciation for them. Sadly, I
+                don't feel the appreciation is transferable. Americans as a
+                population just don't get roundabout. They were nice when
+                everyone knew the rules and I could trust they did, but not so
+                in America. I'll keep my high skepticism with US roundabouts.
+              </p>
+              <p>
+                Anyhow, I was taken by these driving side differences and
+                sketched out a rough game of it on the 14 hour return flight
+                home.
+              </p>
+              <p>
+                Once I settled on the name Re:Turn it was all but guaranteed I
+                had to work on it. My fondness for the
+                <a
+                  href="https://myanimelist.net/anime/31240/Re_Zero_kara_Hajimeru_Isekai_Seikatsu?q=re%3Azero&amp;cat=anime"
+                  >anime Re:Zero</a
+                >
+                coupled with my desire to build out my Re:* portfolio of games
+                is very strong.
+              </p>
+              <p>
+                The first thing I wanted to tackle once I had the basic mechanic
+                was the game layout. Since I make games for the browser and aim
+                for them to be responsive on desktop, mobile, and everything in
+                between, a good layout scheme is essential to get right early in
+                the process to reduce iterations.
+              </p>
+              <p>
+                <img
+                  src="/images/making-return/return-initial-sketch.png"
+                  alt="The initial sketch of the game layout "
+                />
+              </p>
+              <p>
+                I sketched this initial layout and was happy enough with it to
+                jump into the code once I had the time to do so.
+              </p>
+              <h1 id="development"><a href="#development">Development</a></h1>
+              <p>My game development is done using:</p>
+              <ul>
+                <li>Typescript</li>
+                <li><a href="/raj">Raj</a></li>
+                <li>React (unless I use canvas or perf becomes prohibitive)</li>
+              </ul>
+              <p>
+                React was up to this task. In this game what's novel is the use
+                of an HTML table to make the game's layout. I really leaned into
+                letting the table do the work whereas in most games it's more a
+                matter of using CSS <code>position</code> wizardry, lots of fake
+                <code>div</code> elements, and other tricks.
+              </p>
+              <p>
+                Here's the table with borders so we can see how it works more
+                clearly:
+              </p>
+              <p>
+                <img
+                  src="/images/making-return/table-layout-highlight.png"
+                  alt="Game's central table with border spacing enabled to show the layout more clearly"
+                />
+              </p>
+              <p>
+                Notice that sick, sick <code>colspan</code> usage. I'm so proud.
+              </p>
+              <p>
+                If you look at the source code, you'll note I really did jam
+                most of the game except the context pages into the table shape.
+                An efficient use of space I must say.
+              </p>
+              <p>
+                I barely knew what side of the road New Zealand drove on before
+                planning the trip. Luckily Wikipedia has a comprehensive, easily
+                scrap-able
+                <a
+                  href="https://en.wikipedia.org/wiki/Left-_and_right-hand_traffic"
+                  >table of countries' driving sides</a
+                >
+                I was able to use.
+              </p>
+              <p>
+                The game features a ton of country flags and I was happy to find
+                <a href="https://github.com/hampusborgos/country-flags"
+                  >NPM package <code>svg-country-flags</code></a
+                >
+                and plug it in to provide the authentic flags. Thanks to this
+                repo the game had a lot more variation and complexity to deal
+                with which led me down the path of creating modes (initially
+                only easy and hard).
+              </p>
+              <p>
+                I generally don't use modes in my games. I try to keep the
+                experience of playing my games ~fair to everyone playing and not
+                worry people with which mode they ought to be in. But there's
+                just so many flags I could use, so I did.
+              </p>
+              <p>
+                Medium mode came about as a means to let people flex some of
+                their flag skills but not need to be an outright god like in
+                hard mode.
+              </p>
+              <p>
+                The other game graphics I designed by hand in my super old and
+                non-renewed version of Sketch. I am particularly happy with the
+                top-down view of the car:
+              </p>
+              <p>
+                <img
+                  src="/images/making-return/car-in-sketch.png"
+                  alt="The car in Sketch"
+                />
+              </p>
+              <p>
+                It's nice when people recognize a picture of a car as a car
+                quickly.
+              </p>
+              <h1 id="user-testing">
+                <a href="#user-testing">User testing</a>
+              </h1>
+              <p>
+                Where would a game be without people pointing out problems? In
+                initial play tests people found a few things confusing:
+              </p>
+              <h2 id="go-forward-instruction">
+                <a href="#go-forward-instruction">Go forward instruction</a>
+              </h2>
+              <p>
+                I wanted the driving experience to mirror that of a GPS or
+                navigation app. These programs don't say at every intersection
+                &quot;go forward&quot; because that would get old quickly. So in
+                my first iteration when instructed to go forward there was no
+                instruction to do so.
+              </p>
+              <p>
+                This was confusing to testers and I made the compromise to add
+                the forward instruction. The experience is jarring enough as it
+                is for new players and it was a quirk that would fade from an
+                intermediate player's mind anyways.
+              </p>
+              <h2 id="revising-easy-mode">
+                <a href="#revising-easy-mode">Revising easy mode</a>
+              </h2>
+              <p>
+                I began building the game before I had found and integrated the
+                flag set I ended up using. Because of this for easy mode I
+                simply used pictures of the letters L and R to indicate what
+                side of the road to turn into.
+              </p>
+              <p>
+                This was super confusing and it led me to advise playing medium
+                mode first and then play easy so the player had a sense of the
+                flag mechanic. For a lot of people, this feels roundabout. I
+                revised to make easy mode use some of the more common country
+                flags so that all the modes were now consistent.
+              </p>
+              <h2 id="click-here-animations">
+                <a href="#click-here-animations">Click-here animations</a>
+              </h2>
+              <p>
+                When the game started people didn't know what to do with regard
+                to controls. This is especially true on desktop where you might
+                think the keyboard is at your disposal. So a tutorial-like
+                animation plays on the first point of the game to highlight the
+                clickable areas to get someone started.
+              </p>
+              <h1 id="parting-thoughts">
+                <a href="#parting-thoughts">Parting thoughts</a>
+              </h1>
+              <ul>
+                <li>
+                  I'm happy with this new edition to the Re:* game franchise.
+                </li>
+                <li>
+                  I enjoyed how quick and easy it was to iterate with the tech
+                  stack as usual.
+                </li>
+                <li>
+                  Shout out to Wikipedia and open source for providing the
+                  knowledge and assets to make this game possible.
+                </li>
+              </ul>
+              <p>Thanks for playing and for reading!</p>
+            </div>
+          </div>
+          <div class="sc-crXcEl iPPOhF">
+            <div class="sc-eCYdqJ jZkxEC">
+              <p class="sc-iBkjds xFOWy">
+                <time
+                  datetime="2023-08-25T00:00:00.000Z"
+                  title="2023-08-25T00:00:00.000Z"
+                  >Published 8/25/2023</time
+                >
+              </p>
+              <p class="sc-iBkjds xFOWy">
+                Subscribe for new articles via
+                <a href="/writing/feed.atom.xml" class="sc-bczRLJ kvjZgE"
+                  >Atom feed</a
+                >
+              </p>
+            </div>
+            <div class="sc-eCYdqJ jZkxEC">
+              <p class="sc-iBkjds xFOWy">
+                <a href="/writing" class="sc-ftvSup clAnHv">Articles</a
+                ><a
+                  href="/category/game-dev/index.html"
+                  class="sc-ftvSup clAnHv"
+                  >Game development</a
+                ><a
+                  href="/category/engineering/index.html"
+                  class="sc-ftvSup clAnHv"
+                  >Engineering</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
