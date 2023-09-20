@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>/writing</id>
     <title>Writing – Chris Andrejewski</title>
-    <updated>2023-08-25T00:00:00.000Z</updated>
+    <updated>2023-09-19T00:00:00.000Z</updated>
     
     <author>
         <name>Chris Andrejewski</name>
@@ -12,15 +12,22 @@
     <subtitle>All articles published to Chris's website.</subtitle>
     <logo>https://jew.ski/logo.svg</logo>
     <icon>https://jew.ski/favicon.ico</icon>
+    <category term="Product"/>
     <category term="Game development"/>
     <category term="Engineering"/>
-    <category term="Product"/>
     <category term="Life"/>
     <category term="Ruby programming"/>
     <category term="System design"/>
     <category term="Fiction"/>
     <category term="Politics"/>
     <category term="Code quality principles"/>
+    <entry>
+        <title type="html"><![CDATA[Launch: LinkToInbox.com]]></title>
+        <id>launch-link-to-inbox</id>
+        <link href="https://jew.ski/article/launch-link-to-inbox/"/>
+        <updated>2023-09-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Taking inbox links mainstream with a paid product]]></summary>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Making Re:Turn]]></title>
         <id>making-return</id>
@@ -153,12 +160,5 @@
         <link href="https://jew.ski/article/learning-to-like-types/"/>
         <updated>2022-08-22T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[The considerations that took me from being opposed to type systems to enjoying (some of) them.]]></summary>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Code comments]]></title>
-        <id>code-comments</id>
-        <link href="https://jew.ski/article/code-comments/"/>
-        <updated>2022-07-31T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Code comments should explain 'why' the code is written as it is. Otherwise, try to let the code document itself.]]></summary>
     </entry>
 </feed>
