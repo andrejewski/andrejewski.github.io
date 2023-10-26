@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Making my first Ruby gem</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="An experience report of writing and publishing a Ruby gem"
+    />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="canonical" href="/article/making-my-first-ruby-gem/index.html" />
+
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Making my first Ruby gem" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta
+      property="og:url"
+      content="/article/making-my-first-ruby-gem/index.html"
+    />
+
+    <meta property="twitter:card" content="summary" />
+    <meta name="twitter:site" content="compooter" />
+    <meta name="twitter:title" content="Making my first Ruby gem" />
+    <meta
+      name="twitter:description"
+      content="An experience report of writing and publishing a Ruby gem"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .kvjZgE {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .kvjZgE {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      data-styled.g1[id='sc-bczRLJ'] {
+        content: 'kvjZgE,';
+      } /*!sc*/
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .imgLsS {
+        padding-top: 3rem;
+        margin-bottom: 3rem;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'imgLsS,';
+      } /*!sc*/
+      .kaKiDU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      @media (max-width: 720px) {
+        .kaKiDU {
+          font-size: 1.8rem;
+        }
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'kaKiDU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .clAnHv {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #dcefff;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .clAnHv:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .clAnHv {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'clAnHv,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .dzrrbr {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #eef8ff;
+        color: #4a8dc8;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .dzrrbr label {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 0.85rem;
+        color: #08273f;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr label {
+          color: #dde0e3;
+        }
+      } /*!sc*/
+      .dzrrbr .sc-iBkjds {
+        color: #153248;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .dzrrbr ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .dzrrbr a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .dzrrbr a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #b9dbf5;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'dzrrbr,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #eff7fd;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-kFwHxP1'] {
+        content: 'sc-global-kFwHxP1,';
+      } /*!sc*/
+      .kylQxs {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .kylQxs h1 {
+        font-size: 1.5rem;
+        padding: 1rem 0px;
+        margin: 0;
+      } /*!sc*/
+      .kylQxs h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .kylQxs h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (max-width: 720px) {
+        .kylQxs .sc-kDDrLX {
+          display: none;
+        }
+      } /*!sc*/
+      data-styled.g14[id='sc-iqcoie'] {
+        content: 'kylQxs,';
+      } /*!sc*/
+      .iPPOhF {
+        border-top: 2px solid #d7d7d7;
+        margin: 4rem 0;
+        padding-top: 2rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .iPPOhF {
+          border-color: #4c545e;
+        }
+      } /*!sc*/
+      data-styled.g15[id='sc-crXcEl'] {
+        content: 'iPPOhF,';
+      } /*!sc*/
+      .cqaWMv h1 > a,
+      .cqaWMv h2 > a,
+      .cqaWMv h3 > a,
+      .cqaWMv h4 > a,
+      .cqaWMv h5 > a,
+      .cqaWMv h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .cqaWMv h1 > a:hover,
+      .cqaWMv h2 > a:hover,
+      .cqaWMv h3 > a:hover,
+      .cqaWMv h4 > a:hover,
+      .cqaWMv h5 > a:hover,
+      .cqaWMv h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .cqaWMv p,
+      .cqaWMv li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .cqaWMv p,
+        .cqaWMv li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .cqaWMv a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .cqaWMv a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .cqaWMv ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .cqaWMv code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .cqaWMv h1 code,
+      .cqaWMv h2 code,
+      .cqaWMv h3 code,
+      .cqaWMv h4 code,
+      .cqaWMv h5 code,
+      .cqaWMv h6 code,
+      .cqaWMv li code,
+      .cqaWMv p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #eff7fd;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .cqaWMv h1 code,
+        .cqaWMv h2 code,
+        .cqaWMv h3 code,
+        .cqaWMv h4 code,
+        .cqaWMv h5 code,
+        .cqaWMv h6 code,
+        .cqaWMv li code,
+        .cqaWMv p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .cqaWMv pre {
+        background-color: #eff7fd;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .cqaWMv pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .cqaWMv img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .cqaWMv video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .cqaWMv figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .cqaWMv figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .cqaWMv figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .cqaWMv .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .cqaWMv .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g16[id='sc-evZas'] {
+        content: 'cqaWMv,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-iqcoie kylQxs">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi imgLsS">
+            <p class="sc-iBkjds xFOWy">
+              <a href="/writing" class="sc-ftvSup clAnHv">Articles</a
+              ><a href="/category/ruby/index.html" class="sc-ftvSup clAnHv"
+                >Ruby programming</a
+              ><a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup clAnHv"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf kaKiDU">
+              <a href="#" class="sc-papXJ iHVwPn"
+                ><span>Making my first Ruby gem</span></a
+              >
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              An experience report of writing and publishing a Ruby gem
+            </p>
+          </div>
+          <div class="sc-jqUVSM dzrrbr">
+            <p class="sc-iBkjds xFOWy"><label>Table of contents</label></p>
+            <div>
+              <ul>
+                <li><a href="#requirements">Requirements</a></li>
+                <li><a href="#what-i-liked">What I liked</a></li>
+                <li><a href="#where-i-deviated">Where I deviated</a></li>
+                <li>
+                  <a href="#friction-log">Friction log</a>
+                  <ul>
+                    <li><a href="#ruby-on-mac-pains">Ruby on Mac pains</a></li>
+                    <li><a href="#rubygem-yanks">RubyGem yanks</a></li>
+                    <li>
+                      <a href="#minor-vscode-and-rubyfmt"
+                        >Minor: VSCode and <code>rubyfmt</code></a
+                      >
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-evZas cqaWMv">
+              <p>
+                A couple nights ago I was overcome with the urge to publish a
+                Ruby gem. I have been writing Ruby for over 5 years and realized
+                that it was time to give Ruby development outside of Stripe's
+                Ruby infra a shot.
+              </p>
+              <p>
+                The package is
+                <a href="https://github.com/andrejewski/eclair"
+                  ><code>eclair</code></a
+                >
+                which I've wanted to build on and off for about three years now.
+                It's worth its own article and context, so that's all I'll say
+                about the gem itself here.
+              </p>
+              <h1 id="requirements">
+                <a href="#requirements">Requirements</a>
+              </h1>
+              <p>
+                I wanted to put a strong foot forward when publishing the gem. I
+                do a lot of advocacy for writing high-quality Ruby code, mostly
+                internal to Stripe, but also in public. Check out
+                <a href="/ruby-style-guide">Ruby style guide</a> and
+                <a href="/effective-sorbet">Effective Sorbet</a> for most of the
+                advice.
+              </p>
+              <p>
+                However, I haven't shared a whole Ruby library in public before.
+                While I didn't expect to do a perfect job with the new stuff, I
+                did want to get some things right.
+              </p>
+              <p>Requirements:</p>
+              <ul>
+                <li>
+                  Sorbet types, <code>strict</code> typing as the minimum.
+                </li>
+                <li>Format code using <code>rubyfmt</code>.</li>
+                <li>
+                  Follow the Ruby style guide and Effective Sorbet articles.
+                </li>
+              </ul>
+              <p>Plus the stuff I would do in any design:</p>
+              <ul>
+                <li>Provide a minimal API surface</li>
+                <li>Favor composition over inheritance</li>
+                <li>Make it hard to misuse by default</li>
+              </ul>
+              <h1 id="what-i-liked">
+                <a href="#what-i-liked">What I liked</a>
+              </h1>
+              <ul>
+                <li>
+                  <p>
+                    I learned much more about the Ruby language's built-in
+                    tooling. It's cool to see <code>ruby</code>,
+                    <code>irb</code>, <code>bundle</code>, and
+                    <code>gem</code> all coming as a unit. Never really knew
+                    they flocked together. Getting Ruby to a newer version got
+                    all these things to a newer version too.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    I'm a big fan of Clojure. In that ecosystem the mantra is
+                    everything is data. You often write configuration files as
+                    Clojure data structures. It was cool to see Ruby doing a
+                    similar thing, even if it forgot the data part.
+                    <code>Gemfile</code>, <code>Gemspec</code>,
+                    <code>Rakefile</code> are all Ruby code. I've definitely
+                    touched Stripe Gemfiles before but working with the RubyGem
+                    registry made it so much clearer how everything was fitting
+                    together.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    The Sorbet VSCode extension can be slow at Stripe scale. On
+                    a few hundred billion lines less of Ruby it was amazing.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    The <code>minitest</code> style of tests were nice. Having
+                    really only written RSpec-like tests,
+                    <code>minitest</code> feels a lot less magical and much
+                    smaller. Definitely reminded me of Go tests.
+                  </p>
+                </li>
+              </ul>
+              <h1 id="where-i-deviated">
+                <a href="#where-i-deviated">Where I deviated</a>
+              </h1>
+              <p>
+                I wanted to follow Effective Sorbet precisely but there was one
+                thing that I could not do because I felt it was not appropriate
+                for an open-source project.
+              </p>
+              <p>
+                Despite recommending them heavily, I didn't use
+                <code>T::Struct</code>. I had used
+                <code>T::Struct</code> initially but switched to plain old Ruby
+                objects (POROs).
+              </p>
+              <p>
+                The reasoning: too many methods and too many
+                <a
+                  href="https://sorbet.org/docs/tstruct#serialize-and-from_hash-converting-tstruct-to-and-from-hash"
+                  >bad methods</a
+                >, e.g. <code>with</code>, <code>from_hash</code>, etc. I can't
+                feel comfortable shipping a gem with that much baggage of
+                unexpected behavior.
+              </p>
+              <h1 id="friction-log">
+                <a href="#friction-log">Friction log</a>
+              </h1>
+              <p>
+                Stripes write friction logs. A friction log is basically a
+                stream of conscious document that details everything and
+                anything that went wrong or felt off about doing something. As a
+                platform team lead, I get friction logs from folks across the
+                company all the time. Those logs feed into what we choose to
+                prioritize. It's a good system.
+              </p>
+              <p>Here's a distillation of my frictions:</p>
+              <h2 id="ruby-on-mac-pains">
+                <a href="#ruby-on-mac-pains">Ruby on Mac pains</a>
+              </h2>
+              <p>
+                By far I wasted the most time trying to get Ruby set up on my
+                Macbook. Stripe-issued laptops solve this problem so I hadn't
+                felt the pain before.
+              </p>
+              <p>
+                Apple ships an old version of Ruby (~v2.6) but all the tooling I
+                worked with expected Ruby 3.0. In retrospect, had I got the Ruby
+                version issue fixed earlier in the process so many things would
+                have been smoother.
+              </p>
+              <p>
+                I felt this pain most when setting up Sorbet, in particular
+                initializing my project with
+                <a href="https://github.com/Shopify/tapioca">Tapioca</a>. The
+                exception thrown running
+                <code>bundle exec tapioca init</code> wasn't super helpful but
+                luckily enough to search me up a
+                <a href="https://github.com/Shopify/tapioca/issues/1592"
+                  >lead on how to fix it</a
+                >.
+              </p>
+              <p>
+                Once I eventually got <code>rbenv</code> setup and working, and
+                had rebooted everything to use it instead of the Mac-default
+                Ruby version things got better.
+              </p>
+              <h2 id="rubygem-yanks">
+                <a href="#rubygem-yanks">RubyGem yanks</a>
+              </h2>
+              <p>
+                In terms of wall-clock time spent, RubyGems caused me the
+                greatest time loss. RubyGems is great but the search page
+                results were a bit all too easy to misread. When I started my
+                gem-ing, the first thing I did was see if the name
+                &quot;eclair&quot; was available. I got so excited because I saw
+                it was.
+              </p>
+              <p>
+                It was only after a long night of working on the gem itself that
+                I finally went to publish my gem and it turned out
+                <code>eclair</code> was not available. The gem had been recently
+                &quot;yanked,&quot; meaning taken down by its author. The gem
+                was unused but I wouldn't be able to claim it for 3 months.
+              </p>
+              <p>Betrayal, the worst of all.</p>
+              <p>
+                Luckily only a little more than a day later after reaching out
+                to the current gem owner, they graciously transferred the gem
+                over to me. Thanks again, Cyrus!
+              </p>
+              <h2 id="minor:-vscode-and">
+                <a href="#minor:-vscode-and"
+                  >Minor: VSCode and <code>rubyfmt</code></a
+                >
+              </h2>
+              <p>
+                The Ruby formatter <code>rubyfmt</code> doesn't seem to
+                integrate with the
+                <a
+                  href="https://marketplace.visualstudio.com/items?itemName=Shopify.ruby-lsp"
+                  >Ruby LSP extension</a
+                >. It probably works with the old &quot;Ruby&quot; extension but
+                VSCode steers people away from downloading that one.
+              </p>
+              <p>
+                This isn't a big deal, I just didn't manage to get
+                format-on-save working.
+              </p>
+              <p>
+                Overall publishing a Ruby gem was a pleasant experience. I
+                learned a good amount from it and it was nice learning how to
+                set up Sorbet, <code>rubyfmt</code>, and other things I'd only
+                previously used because someone else installed them for me.
+                Thanks for reading!
+              </p>
+            </div>
+          </div>
+          <div class="sc-crXcEl iPPOhF">
+            <div class="sc-eCYdqJ jZkxEC">
+              <p class="sc-iBkjds xFOWy">
+                <time
+                  datetime="2023-10-25T00:00:00.000Z"
+                  title="2023-10-25T00:00:00.000Z"
+                  >Published 10/25/2023</time
+                >
+              </p>
+              <p class="sc-iBkjds xFOWy">
+                Subscribe for new articles via
+                <a href="/writing/feed.atom.xml" class="sc-bczRLJ kvjZgE"
+                  >Atom feed</a
+                >
+              </p>
+            </div>
+            <div class="sc-eCYdqJ jZkxEC">
+              <p class="sc-iBkjds xFOWy">
+                <a href="/writing" class="sc-ftvSup clAnHv">Articles</a
+                ><a href="/category/ruby/index.html" class="sc-ftvSup clAnHv"
+                  >Ruby programming</a
+                ><a
+                  href="/category/engineering/index.html"
+                  class="sc-ftvSup clAnHv"
+                  >Engineering</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

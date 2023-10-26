@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>/writing</id>
     <title>Writing – Chris Andrejewski</title>
-    <updated>2023-10-19T00:00:00.000Z</updated>
+    <updated>2023-10-25T00:00:00.000Z</updated>
     
     <author>
         <name>Chris Andrejewski</name>
@@ -12,16 +12,23 @@
     <subtitle>All articles published to Chris's website.</subtitle>
     <logo>https://jew.ski/logo.svg</logo>
     <icon>https://jew.ski/favicon.ico</icon>
-    <category term="JavaScript"/>
+    <category term="Ruby programming"/>
     <category term="Engineering"/>
+    <category term="JavaScript"/>
     <category term="Product"/>
     <category term="Game development"/>
     <category term="Life"/>
-    <category term="Ruby programming"/>
     <category term="System design"/>
     <category term="Fiction"/>
     <category term="Politics"/>
     <category term="Code quality principles"/>
+    <entry>
+        <title type="html"><![CDATA[Making my first Ruby gem]]></title>
+        <id>making-my-first-ruby-gem</id>
+        <link href="https://jew.ski/article/making-my-first-ruby-gem/"/>
+        <updated>2023-10-25T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[An experience report of writing and publishing a Ruby gem]]></summary>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Outgrowing ts-node]]></title>
         <id>outgrowing-ts-node</id>
@@ -154,12 +161,5 @@
         <link href="https://jew.ski/article/moral-bottom/"/>
         <updated>2022-09-23T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[The fickleness of morally conscious burden]]></summary>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Human friendly tokens]]></title>
-        <id>human-friendly-tokens</id>
-        <link href="https://jew.ski/article/human-friendly-tokens/"/>
-        <updated>2022-09-11T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Thoughts on designing tokens for secrets, sessions, and tokens.]]></summary>
     </entry>
 </feed>
