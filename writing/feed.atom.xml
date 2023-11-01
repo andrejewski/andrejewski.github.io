@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>/writing</id>
     <title>Writing – Chris Andrejewski</title>
-    <updated>2023-10-25T00:00:00.000Z</updated>
+    <updated>2023-10-31T00:00:00.000Z</updated>
     
     <author>
         <name>Chris Andrejewski</name>
@@ -22,6 +22,13 @@
     <category term="Fiction"/>
     <category term="Politics"/>
     <category term="Code quality principles"/>
+    <entry>
+        <title type="html"><![CDATA[ERBye]]></title>
+        <id>erbye</id>
+        <link href="https://jew.ski/article/erbye/"/>
+        <updated>2023-10-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Replacing ERB with Eclair to write better HTML in code]]></summary>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Making my first Ruby gem]]></title>
         <id>making-my-first-ruby-gem</id>
@@ -154,12 +161,5 @@
         <link href="https://jew.ski/article/service-oriented-lies/"/>
         <updated>2022-10-02T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Another voice of caution against service oriented architectures (SOA)]]></summary>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Moral bottom]]></title>
-        <id>moral-bottom</id>
-        <link href="https://jew.ski/article/moral-bottom/"/>
-        <updated>2022-09-23T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[The fickleness of morally conscious burden]]></summary>
     </entry>
 </feed>
