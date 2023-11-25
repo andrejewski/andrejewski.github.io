@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>/writing</id>
     <title>Writing – Chris Andrejewski</title>
-    <updated>2023-10-31T00:00:00.000Z</updated>
+    <updated>2023-11-09T00:00:00.000Z</updated>
     
     <author>
         <name>Chris Andrejewski</name>
@@ -12,8 +12,8 @@
     <subtitle>All articles published to Chris's website.</subtitle>
     <logo>https://jew.ski/logo.svg</logo>
     <icon>https://jew.ski/favicon.ico</icon>
-    <category term="Ruby programming"/>
     <category term="Engineering"/>
+    <category term="Ruby programming"/>
     <category term="JavaScript"/>
     <category term="Product"/>
     <category term="Game development"/>
@@ -22,6 +22,13 @@
     <category term="Fiction"/>
     <category term="Politics"/>
     <category term="Code quality principles"/>
+    <entry>
+        <title type="html"><![CDATA[Codo: TODO comment tool]]></title>
+        <id>codo-todo-comments</id>
+        <link href="https://jew.ski/article/codo-todo-comments/"/>
+        <updated>2023-11-09T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[The CLI to search, manage, format, and validate your TODOs]]></summary>
+    </entry>
     <entry>
         <title type="html"><![CDATA[ERBye]]></title>
         <id>erbye</id>
@@ -154,12 +161,5 @@
         <link href="https://jew.ski/article/system-design-interviews/"/>
         <updated>2022-10-30T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[The signals I try to gather as an interviewer and how I try to touch on those signals as a candidate.]]></summary>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Service oriented architecture]]></title>
-        <id>service-oriented-lies</id>
-        <link href="https://jew.ski/article/service-oriented-lies/"/>
-        <updated>2022-10-02T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Another voice of caution against service oriented architectures (SOA)]]></summary>
     </entry>
 </feed>
