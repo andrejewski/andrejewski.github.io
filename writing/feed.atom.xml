@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>/writing</id>
     <title>Writing – Chris Andrejewski</title>
-    <updated>2023-11-09T00:00:00.000Z</updated>
+    <updated>2023-12-13T00:00:00.000Z</updated>
     
     <author>
         <name>Chris Andrejewski</name>
@@ -22,6 +22,13 @@
     <category term="Fiction"/>
     <category term="Politics"/>
     <category term="Code quality principles"/>
+    <entry>
+        <title type="html"><![CDATA[Best talks]]></title>
+        <id>best-talks</id>
+        <link href="https://jew.ski/article/best-talks/"/>
+        <updated>2023-12-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[My favorite talks on software engineering]]></summary>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Codo: TODO comment tool]]></title>
         <id>codo-todo-comments</id>
@@ -154,12 +161,5 @@
         <link href="https://jew.ski/article/sorbet-t-must-because/"/>
         <updated>2022-11-30T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[A small contribution to Sorbet I made]]></summary>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[System design interviews]]></title>
-        <id>system-design-interviews</id>
-        <link href="https://jew.ski/article/system-design-interviews/"/>
-        <updated>2022-10-30T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[The signals I try to gather as an interviewer and how I try to touch on those signals as a candidate.]]></summary>
     </entry>
 </feed>
