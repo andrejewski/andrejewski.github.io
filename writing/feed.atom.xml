@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>/writing</id>
     <title>Writing – Chris Andrejewski</title>
-    <updated>2023-12-13T00:00:00.000Z</updated>
+    <updated>2024-01-13T00:00:00.000Z</updated>
     
     <author>
         <name>Chris Andrejewski</name>
@@ -22,6 +22,13 @@
     <category term="Fiction"/>
     <category term="Politics"/>
     <category term="Code quality principles"/>
+    <entry>
+        <title type="html"><![CDATA[Anti-concretion]]></title>
+        <id>anti-concretion</id>
+        <link href="https://jew.ski/article/anti-concretion/"/>
+        <updated>2024-01-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Reclaiming abstraction and words on not slicing a problem too thin]]></summary>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Best talks]]></title>
         <id>best-talks</id>
@@ -154,12 +161,5 @@
         <link href="https://jew.ski/article/giving-your-best/"/>
         <updated>2022-12-06T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[A loose framework for mentorship & evaluating performance]]></summary>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Sorbet T.must_because]]></title>
-        <id>sorbet-t-must-because</id>
-        <link href="https://jew.ski/article/sorbet-t-must-because/"/>
-        <updated>2022-11-30T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[A small contribution to Sorbet I made]]></summary>
     </entry>
 </feed>

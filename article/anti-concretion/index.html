@@ -1,33 +1,33 @@
 <!doctype html>
 <html lang="en-US">
   <head>
-    <title>ERBye</title>
+    <title>Anti-concretion</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta
       name="description"
-      content="Replacing ERB with Eclair to write better HTML in code"
+      content="Reclaiming abstraction and words on not slicing a problem too thin"
     />
     <meta name="robots" content="index, follow" />
 
-    <link rel="canonical" href="/article/erbye/index.html" />
+    <link rel="canonical" href="/article/anti-concretion/index.html" />
 
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/logo192.png" />
 
     <meta name="theme-color" content="#178bfb" />
 
-    <meta property="og:title" content="ERBye" />
+    <meta property="og:title" content="Anti-concretion" />
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="Chris Andrejewski" />
-    <meta property="og:url" content="/article/erbye/index.html" />
+    <meta property="og:url" content="/article/anti-concretion/index.html" />
 
     <meta property="twitter:card" content="summary" />
     <meta name="twitter:site" content="compooter" />
-    <meta name="twitter:title" content="ERBye" />
+    <meta name="twitter:title" content="Anti-concretion" />
     <meta
       name="twitter:description"
-      content="Replacing ERB with Eclair to write better HTML in code"
+      content="Reclaiming abstraction and words on not slicing a problem too thin"
     />
 
     <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
@@ -391,8 +391,6 @@
           <div class="sc-jSMfEi imgLsS">
             <p class="sc-iBkjds xFOWy">
               <a href="/writing" class="sc-ftvSup clAnHv">Articles</a
-              ><a href="/category/ruby/index.html" class="sc-ftvSup clAnHv"
-                >Ruby programming</a
               ><a
                 href="/category/engineering/index.html"
                 class="sc-ftvSup clAnHv"
@@ -400,149 +398,121 @@
               >
             </p>
             <h1 class="sc-gKXOVf kaKiDU">
-              <a href="#" class="sc-papXJ iHVwPn"><span>ERBye</span></a>
+              <a href="#" class="sc-papXJ iHVwPn"
+                ><span>Anti-concretion</span></a
+              >
             </h1>
             <p class="sc-iBkjds xFOWy">
-              Replacing ERB with Eclair to write better HTML in code
+              Reclaiming abstraction and words on not slicing a problem too thin
             </p>
           </div>
           <div class="sc-eCYdqJ jZkxEC">
             <div class="sc-dPyBCJ cxoMSa">
               <p>
-                I'm an accidental expert in ERB. I wrote a whole component
-                system on top of ERB when I was building Stripe's internal email
-                API. This was more than three years ago.
+                I recently re-watched
+                <a href="https://www.youtube.com/watch?v=5IUj1EZwpJY"
+                  >The Only Unbreakable Law</a
+                >
+                which breaks down
+                <a href="https://en.wikipedia.org/wiki/Conway%27s_law"
+                  >Conway's Law</a
+                >
+                of organizational structure and communication overhead. What
+                stood out to me this time around was the conflict between
+                optimal behavior and abstraction.
               </p>
               <p>
-                That component system is quite complicated and includes the
-                capability to type-check ERBs using Sorbet. We do this by
-                compiling each ERB file into Ruby code, slap some code-generated
-                <code>sig</code>'s on the template function, and run the
-                type-checker. This is fairly straightforward but won't land
-                <em>inside</em> Sorbet due to much higher priorities (rightfully
-                so).
+                In essence, we humans are limited in how we can solve problems.
+                We really don't have much in our problem-solving tool belt other
+                than to take a problem, break it up into pieces, solve those
+                easier problems, assemble, and refine. We can refine a few sets
+                of concepts or pieces at a time once we've identified them, but
+                the structure will be largely the same as what we started with
+                and heavily influenced by the design we already have. A premise
+                of Conway's Law is that how we decide to slice up the problem in
+                that initial first pass, shapes what allowable forms we take to
+                solve the problem at all. Communication costs immediately
+                following that slicing and maintenance costs longer term cement
+                these problem slices as boundaries and artifacts.
               </p>
               <p>
-                That is the worst thing about ERB: no one cares enough. It's
-                akin to writing code in Java. No one writing in ERB is trying
-                their best because they know the medium itself isn't one that is
-                attune to doing their best work. In this sense, writing ERB is
-                an uphill battle to start. No one considers it real code.
+                I saw this in practice just this week where I was solving a
+                trivial to describe user-facing feature request. The request was
+                for a CSV of all emails sent to a given recipient with about 10
+                fields of data for each email. This ought to be straightforward
+                in implementation as well but as tiny requirements unearthed
+                themselves, the architecture underneath needed vast iteration.
+                This difficulty is because of how the existing system was
+                designed. Some tasks are easy and some are hard and much of this
+                had to do with how the system had grown over the past five
+                years.
               </p>
               <p>
-                ERB does itself no favor by also being quite insecure by
-                default. A key aspect of the component system was eliminating
-                XSS vulnerabilities. Because stock ERB is HTML-unaware, it has
-                no syntax for safely escaping untrusted user input.
+                A lot of what it means to be successful in designing things in a
+                large software company is simply knowing your tool belt for
+                solving a problem. &quot;For this we'll need two database
+                tables, a web service, three cron jobs, logs and metrics here
+                and here, detectors built on those, and this feature flag to
+                control the rollout.&quot; This recipe of abstractions becomes
+                so commonplace that the abstractions can start to feel a lot
+                more like concretions, like Lego building blocks.
               </p>
               <p>
-                For example, if <code>user_name</code> were set to
-                <code>&quot;&lt;script&gt;evil()&lt;/script&gt;&quot;</code> in
-                this template:
-              </p>
-              <pre><code class="language-erb"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Hello, &lt;%=</span><span class="language-ruby"> user_name </span><span class="language-xml">%&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-</span></code></pre>
-              <p>The output is:</p>
-              <pre><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
-  Hello,
-  <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-    evil()
-  <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-</code></pre>
-              <p>
-                This gap led to a proliferation of ERB-likes that offer
-                additional safeguards. Before we aligned on the component system
-                there were competing ERB syntaxes and libraries in the codebase.
-                This made detection of potential XSS vulnerabilities basically
-                impossible. Fixing this library problem was one of my more
-                interesting security side-quests.
+                Lego's really are the perfect metaphor for abstractions. Yep you
+                can stitch them together all you want but it's gonna come out
+                looking blocky &amp; cookie cutter. If you want to make a
+                modification you'll have to break up that big construction and
+                strip many pieces away and then add them back to get something
+                good. Oh but it's so much easier to just add more on top. If you
+                step on abstraction the wrong way it's gonna hurt a lot. Etc,
+                etc. Probably the only place we give abstractions as lego's too
+                much credit is that it assumes they connect together at all. We
+                need glue code to get abstractions to fit.
               </p>
               <p>
-                The component system built atop ERB has gone on to see great
-                adoption. With over 400 components and 2000 distinct email types
-                it's become a staple developer experience. However, at the end
-                of the day despite all the effort I put into it, it's still
-                subpar.
+                What's been on my mind lately is <em>anti-abstraction</em>. Can
+                we escape Conway's Law or build something capable of it?
               </p>
               <p>
-                I knew what the better solution was three years ago but was
-                worried the approach would be too radical to get consensus. And
-                a migration from the old wild-west ERBs to a saner ERB system
-                was a lighter move in a better direction. I don't look back with
-                regret, just with curiosity about what could have been.
+                Going back to the problem solving tool belt, instead of
+                dissecting a problem, how can we solve it? Can we really solve a
+                large problem all in one go?
               </p>
               <p>
-                The better authoring experience is React's JSX code-based
-                component system. There's a lot of flashy, complex stuff in
-                React but JSX itself is great for sure. ERB templates are a
-                second-class citizen, but JSX <em>is</em> code. Developers grok
-                this and write much better code accordingly. It's generating
-                HTML just like ERB but somehow it feels more enduring and
-                reasonable to take the time to author good code.
+                Suppose we say we can't as humans approach the problem any other
+                way (randomness doesn't work either), can we devise an
+                optimizing program to take our abstraction littered MVP and
+                unwind it into the essentials needed to solve a problem?
               </p>
               <p>
-                This past week I
-                <a href="/making-my-first-ruby-gem">wrote a gem</a> to capture
-                this better authoring experience for Ruby. The gem is named
-                <a href="https://github.com/andrejewski/eclair">Eclair</a>. I
-                chose this name because eclair is a dessert like sorbet, eclair
-                starts with E like ERB, and &quot;eclair&quot; sounds like
-                &quot;declare&quot; as in the declarative nature of JSX.
-              </p>
-              <p>The above example but using Eclair:</p>
-              <pre><code class="language-rb">html = Eclair.render(
-   Eclair::Html.p({}, [<span class="hljs-string">&quot;Hello, &quot;</span>, user_name])
-)
-</code></pre>
-              <p>
-                The XSS issues are accounted for. If you wanted to allow raw
-                HTML into Eclair you would have to write it with much more
-                intent:
-              </p>
-              <pre><code class="language-rb">html = Eclair.render(
-   Eclair::Html.p(
-      {},
-      [
-         <span class="hljs-string">&quot;Hello, &quot;</span>,
-         <span class="hljs-title class_">Eclair::Element::DangerousUnescapedHtml</span>.new(
-            <span class="hljs-symbol">html:</span> user_name
-         )
-      ]
-   )
-)
-</code></pre>
-              <p>
-                That one will be caught in code review or by linters with ease.
+                Conway's Law dominates so much of what I design today. There
+                must be this alternate reality of design approaches that haven't
+                been taken simply because the one tasked with taking them was a
+                human or set of humans. More abstractly, we're unable to design
+                the very best solutions that may exist because there exists
+                communication overhead, a limited capacity in each node, and a
+                history of previous abstractions. A perfect design is physically
+                limited by the speed of light, conservation of energy, and time.
               </p>
               <p>
-                I'm also happy with how boilerplate-less Eclair is thanks to
-                Ruby's built-in <code>yield_self</code> method which removes the
-                namespace verbosity:
-              </p>
-              <pre><code class="language-rb"><span class="hljs-keyword">def</span> <span class="hljs-title function_">make_footer</span>
-   Eclair::Html.yield_self <span class="hljs-keyword">do</span> |<span class="hljs-params">h</span>|
-      h.footer({}, [
-         h.ul({}, [
-            h.li({}, [h.a({<span class="hljs-symbol">href:</span> <span class="hljs-string">&#x27;/&#x27;</span>}, [<span class="hljs-string">&#x27;Home&#x27;</span>])]),
-            h.li({}, [h.a({<span class="hljs-symbol">href:</span> <span class="hljs-string">&#x27;/about&#x27;</span>}, [<span class="hljs-string">&#x27;About&#x27;</span>])]),
-         ])
-      ])
-   <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
-
-html = Eclair.render(make_footer)
-<span class="hljs-comment">#=&gt; &#x27;&lt;footer&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;…&#x27;</span>
-</code></pre>
-              <p>
-                It's a small library with Sorbet types, but addresses all the
-                developer experience shortcomings of ERB. So much so that it's
-                time for me to say goodbye to ERB, at least where I can.
+                Abstraction is an overloaded term. The abstractions we build
+                today are concretions, a loose representation of a generic
+                solution that is poorly implemented for at least one thing or
+                more – it's not universal. A true abstraction is what's left
+                when everything is boiled away and it can't get any more simple.
+                The only thing that could be left is an abstraction. (This is
+                something you can hear a different way watching
+                <a href="https://www.youtube.com/watch?v=SxdOUGdseq4"
+                  >Simple Made Easy</a
+                >.)
               </p>
               <p>
-                Try
-                <a href="https://github.com/andrejewski/eclair">Eclair</a> for
-                yourself and thanks for reading!
+                I'm not suggesting we consider in our day to day how we might
+                consider breaking the laws of physics to achieve new, better
+                designs. Conway's Law to me is a challenge to solving problems
+                with few pieces, fewer problem space slices, to achieve better
+                designs and more fluidity in our solutions. There can be too
+                much decomposition and we need to be mindful of those costs.
               </p>
             </div>
           </div>
@@ -550,9 +520,9 @@ html = Eclair.render(make_footer)
             <p class="sc-iBkjds xFOWy">
               <small
                 ><time
-                  datetime="2023-10-31T00:00:00.000Z"
-                  title="2023-10-31T00:00:00.000Z"
-                  >Published 10/31/2023</time
+                  datetime="2024-01-13T00:00:00.000Z"
+                  title="2024-01-13T00:00:00.000Z"
+                  >Published 1/13/2024</time
                 ></small
               >
             </p>
