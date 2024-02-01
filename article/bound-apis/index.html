@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>Bound APIs</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Enforcing API contracts have maximum sizes"
+    />
+    <meta name="robots" content="index, follow" />
+
+    <link
+      rel="canonical"
+      href="https://jew.ski/article/bound-apis/index.html"
+    />
+
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Bound APIs" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta property="og:url" content="/article/bound-apis/index.html" />
+
+    <meta property="twitter:card" content="summary" />
+    <meta name="twitter:site" content="compooter" />
+    <meta name="twitter:title" content="Bound APIs" />
+    <meta
+      name="twitter:description"
+      content="Enforcing API contracts have maximum sizes"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .kvjZgE {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .kvjZgE {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      data-styled.g1[id='sc-bczRLJ'] {
+        content: 'kvjZgE,';
+      } /*!sc*/
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .imgLsS {
+        padding-top: 3rem;
+        margin-bottom: 3rem;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'imgLsS,';
+      } /*!sc*/
+      .kaKiDU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      @media (max-width: 720px) {
+        .kaKiDU {
+          font-size: 1.8rem;
+        }
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'kaKiDU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .clAnHv {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #dcefff;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .clAnHv:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .clAnHv {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'clAnHv,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .dzrrbr {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #eef8ff;
+        color: #4a8dc8;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .dzrrbr label {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 0.85rem;
+        color: #08273f;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr label {
+          color: #dde0e3;
+        }
+      } /*!sc*/
+      .dzrrbr .sc-iBkjds {
+        color: #153248;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .dzrrbr ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .dzrrbr a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .dzrrbr a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #b9dbf5;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'dzrrbr,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #eff7fd;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-kFwHxP1'] {
+        content: 'sc-global-kFwHxP1,';
+      } /*!sc*/
+      .kylQxs {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .kylQxs h1 {
+        font-size: 1.5rem;
+        padding: 1rem 0px;
+        margin: 0;
+      } /*!sc*/
+      .kylQxs h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .kylQxs h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (max-width: 720px) {
+        .kylQxs .sc-kDDrLX {
+          display: none;
+        }
+      } /*!sc*/
+      data-styled.g14[id='sc-iqcoie'] {
+        content: 'kylQxs,';
+      } /*!sc*/
+      .knOpkX {
+        border-top: 2px solid #d7d7d7;
+        margin: 4rem 0;
+        padding-top: 4rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .knOpkX {
+          border-color: #4c545e;
+        }
+      } /*!sc*/
+      data-styled.g54[id='sc-jOrMOR'] {
+        content: 'knOpkX,';
+      } /*!sc*/
+      .cxoMSa h1 > a,
+      .cxoMSa h2 > a,
+      .cxoMSa h3 > a,
+      .cxoMSa h4 > a,
+      .cxoMSa h5 > a,
+      .cxoMSa h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .cxoMSa h1 > a:hover,
+      .cxoMSa h2 > a:hover,
+      .cxoMSa h3 > a:hover,
+      .cxoMSa h4 > a:hover,
+      .cxoMSa h5 > a:hover,
+      .cxoMSa h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .cxoMSa p,
+      .cxoMSa li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .cxoMSa p,
+        .cxoMSa li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .cxoMSa a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .cxoMSa a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .cxoMSa ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .cxoMSa code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .cxoMSa h1 code,
+      .cxoMSa h2 code,
+      .cxoMSa h3 code,
+      .cxoMSa h4 code,
+      .cxoMSa h5 code,
+      .cxoMSa h6 code,
+      .cxoMSa li code,
+      .cxoMSa p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #eff7fd;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .cxoMSa h1 code,
+        .cxoMSa h2 code,
+        .cxoMSa h3 code,
+        .cxoMSa h4 code,
+        .cxoMSa h5 code,
+        .cxoMSa h6 code,
+        .cxoMSa li code,
+        .cxoMSa p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .cxoMSa pre {
+        background-color: #eff7fd;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .cxoMSa pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .cxoMSa img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .cxoMSa video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .cxoMSa figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .cxoMSa figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .cxoMSa figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .cxoMSa .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .cxoMSa .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g55[id='sc-dPyBCJ'] {
+        content: 'cxoMSa,';
+      } /*!sc*/
+      .IPkLw {
+        text-align: center;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .IPkLw {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .IPkLw h3 {
+        margin: 0.5em 0;
+      } /*!sc*/
+      .IPkLw p {
+        margin: 0;
+      } /*!sc*/
+      data-styled.g56[id='sc-bBXxYQ'] {
+        content: 'IPkLw,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-iqcoie kylQxs">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi imgLsS">
+            <p class="sc-iBkjds xFOWy">
+              <a href="/writing" class="sc-ftvSup clAnHv">Articles</a
+              ><a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup clAnHv"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf kaKiDU">
+              <a href="#" class="sc-papXJ iHVwPn"><span>Bound APIs</span></a>
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              Enforcing API contracts have maximum sizes
+            </p>
+          </div>
+          <div class="sc-jqUVSM dzrrbr">
+            <p class="sc-iBkjds xFOWy"><label>Table of contents</label></p>
+            <div>
+              <ul>
+                <li><a href="#becoming-bound">Becoming bound</a></li>
+                <li>
+                  <a href="#some-applications">Some applications</a>
+                  <ul>
+                    <li><a href="#max-request-sizes">Max request sizes</a></li>
+                    <li>
+                      <a href="#generative-testing">Generative testing</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-dPyBCJ cxoMSa">
+              <p>
+                A lot of making good API designs is about being careful about
+                what the limits of computers are.
+              </p>
+              <p>It's common to see APIs like:</p>
+              <pre><code class="language-rb">all_records = <span class="hljs-variable constant_">ORM</span><span class="hljs-symbol">:</span><span class="hljs-symbol">:MyTable</span>.load_all
+</code></pre>
+              <p>
+                Such APIs can make sense for prototyping or non-critical
+                systems, but we know that there is an implicit limit to how much
+                memory can be allocated to loading all the records. If this
+                piece of code is put into production, it will be a problem
+                eventually.
+              </p>
+              <p>
+                These APIs are unbounded. The tipping point where they cease to
+                function as expected is not specified. Additionally, even if
+                there is some limit a consumer of this API isn't made aware of
+                this concern anywhere in the interface.
+              </p>
+              <p>
+                Making the bounded APIs isn't difficult. In this case the
+                interface can require a limit to specified:
+              </p>
+              <pre><code class="language-rb">some_records = <span class="hljs-variable constant_">ORM</span><span class="hljs-symbol">:</span><span class="hljs-symbol">:MyTable</span>.load_all(<span class="hljs-symbol">limit:</span> <span class="hljs-number">1000</span>)
+</code></pre>
+              <p>
+                It immediately shines a light on the limitation. The
+                <code>load_all</code> will be insufficient for everything we
+                need. We'll need pagination and other tools to work with the
+                data in a reasonable way.
+              </p>
+              <h1 id="becoming-bound">
+                <a href="#becoming-bound">Becoming bound</a>
+              </h1>
+              <p>
+                When we start to focus on predictable performance, having bound
+                inputs and outputs becomes very important.
+              </p>
+              <p>
+                In my own projects where bound APIs are something I think is
+                worthwhile, I've been doing some cool stuff in this space.
+              </p>
+              <p>
+                Take a public-facing API for example. When I'm ready to enforce
+                that API be bound, I flip on an annotation:
+              </p>
+              <pre><code class="language-diff"> {
+   operation: &#x27;my_api_operation&#x27;,
+<span class="hljs-addition">+  sizeBound: true</span>
+ }
+</code></pre>
+              <p>
+                This annotation enforces that <code>my_api_operation</code>'s
+                API specification inputs and outputs all must be bound.
+              </p>
+              <p>In practical terms:</p>
+              <ul>
+                <li>All strings must have a max length.</li>
+                <li>All lists must have a max length.</li>
+                <li>
+                  For hashes with arbitrary keys and values, all keys and values
+                  must have a max length.
+                </li>
+              </ul>
+              <p>If I am sloppy or miss a field, a test fails.</p>
+              <p>
+                Having an opt-in annotation is better than simply requiring all
+                these conditions upfront because in my opinion that's too much
+                premature locking down. It's better to have control over when
+                you decide an operation or a whole API should become bound.
+              </p>
+              <h1 id="some-applications">
+                <a href="#some-applications">Some applications</a>
+              </h1>
+              <p>
+                Okay so we have this bound API. This is good for performance,
+                security, setting user expectations, compute and storage costs,
+                but what else can we gain from it?
+              </p>
+              <h2 id="max-request-sizes">
+                <a href="#max-request-sizes">Max request sizes</a>
+              </h2>
+              <p>
+                Most APIs sit behind some reverse-proxy or &quot;API
+                gateway&quot; that accepts incoming requests and fans them out.
+                In DDOS attacks against that API, there are a bunch of options
+                in our tool belt to reduce load.
+              </p>
+              <p>
+                Often what we try to do in this API gateway is figure out which
+                requests are garbage, e.g. would never make sense or be
+                processed by API operations, and reject them. Rejecting requests
+                saves wasted work.
+              </p>
+              <p>
+                An example of a request that probably doesn't make sense if
+                sending a 10GB request body. It's very common that a gateway has
+                a single max request size limit to reject anything above that
+                size.
+              </p>
+              <p>
+                Because we know our API is bounded, we can go further and
+                calculate for each operation its exact total max size. If a
+                request were to come in that was over that size, the API gateway
+                could reject it.
+              </p>
+              <h2 id="generative-testing">
+                <a href="#generative-testing">Generative testing</a>
+              </h2>
+              <p>
+                Property-based testing or generative testing is where we specify
+                an expected behavior and let the computer make the test cases to
+                prove its correctness.
+              </p>
+              <p>
+                An unbound API can't have empirically provable correctness.
+                Being unbound, there are either an infinite amount of behaviors
+                (and computers can't do infinite amounts of work) or a lack of
+                specificity that allows for bugs to surface.
+              </p>
+              <p>
+                A bound API can have empirically provable correctness. We know
+                the allowable set of inputs and outputs. We could, in theory,
+                generate them all and test each one.
+              </p>
+              <p>
+                In practice, generative testing, even with a bound set of
+                inputs, pushes up against the limits of the computer. Much of
+                what makes generative testing work are the algorithms around
+                bisecting the problem space and shrinking a found test failure
+                down to the minimal reproducible input.
+              </p>
+              <p>
+                Nonetheless, bound APIs have a narrower space of possible values
+                and therefore generative testing can be more useful as a tool
+                for verifying correctness.
+              </p>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <p class="sc-iBkjds xFOWy">
+              <small
+                ><time
+                  datetime="2024-01-31T00:00:00.000Z"
+                  title="2024-01-31T00:00:00.000Z"
+                  >Published 1/31/2024</time
+                ></small
+              >
+            </p>
+          </div>
+          <div
+            class="sc-jOrMOR knOpkX newsletter-container"
+            data-frame-src="https://newsletter.jew.ski/frame/subscribe"
+          >
+            <div class="sc-bBXxYQ IPkLw">
+              <h3>Subscribe for new articles</h3>
+              <div class="newsletter-form"></div>
+              <p>
+                <small
+                  >Or add the
+                  <a href="/writing/feed.atom.xml" class="sc-bczRLJ kvjZgE"
+                    >Atom feed</a
+                  >
+                  to your feed reader.</small
+                >
+              </p>
+            </div>
+            <script src="https://newsletter-js.jew.ski/v1/subscribe-embed.js"></script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

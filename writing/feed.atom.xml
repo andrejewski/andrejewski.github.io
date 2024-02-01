@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>/writing</id>
     <title>Writing – Chris Andrejewski</title>
-    <updated>2024-01-13T00:00:00.000Z</updated>
+    <updated>2024-01-31T00:00:00.000Z</updated>
     
     <author>
         <name>Chris Andrejewski</name>
@@ -22,6 +22,13 @@
     <category term="Fiction"/>
     <category term="Politics"/>
     <category term="Code quality principles"/>
+    <entry>
+        <title type="html"><![CDATA[Bound APIs]]></title>
+        <id>bound-apis</id>
+        <link href="https://jew.ski/article/bound-apis/"/>
+        <updated>2024-01-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Enforcing API contracts have maximum sizes]]></summary>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Anti-concretion]]></title>
         <id>anti-concretion</id>
@@ -154,12 +161,5 @@
         <link href="https://jew.ski/article/team-processes/"/>
         <updated>2022-12-08T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Some of the successful processes that have developed on my team over the years.]]></summary>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Giving your best]]></title>
-        <id>giving-your-best</id>
-        <link href="https://jew.ski/article/giving-your-best/"/>
-        <updated>2022-12-06T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[A loose framework for mentorship & evaluating performance]]></summary>
     </entry>
 </feed>
