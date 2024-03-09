@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>Mock soup</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Why and how to move away from test mocking"
+    />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="canonical" href="https://jew.ski/article/mock-soup/index.html" />
+
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+
+    <meta name="theme-color" content="#178bfb" />
+
+    <meta property="og:title" content="Mock soup" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Chris Andrejewski" />
+    <meta property="og:url" content="/article/mock-soup/index.html" />
+
+    <meta property="twitter:card" content="summary" />
+    <meta name="twitter:site" content="compooter" />
+    <meta name="twitter:title" content="Mock soup" />
+    <meta
+      name="twitter:description"
+      content="Why and how to move away from test mocking"
+    />
+
+    <link rel="stylesheet" href="/stylesheet/highlight-atom-one.css" />
+    <style data-styled="true" data-styled-version="5.3.5">
+      .kvjZgE {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .kvjZgE {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      data-styled.g1[id='sc-bczRLJ'] {
+        content: 'kvjZgE,';
+      } /*!sc*/
+      .cUDFKA {
+        padding-bottom: 4rem;
+      } /*!sc*/
+      data-styled.g2[id='sc-gsnTZi'] {
+        content: 'cUDFKA,';
+      } /*!sc*/
+      .ftgBFL {
+        background-color: #fff;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .ftgBFL {
+          background-color: #16202e;
+        }
+      } /*!sc*/
+      data-styled.g3[id='sc-dkzDqf'] {
+        content: 'ftgBFL,';
+      } /*!sc*/
+      .iMPPhc {
+        padding: 0px 1rem;
+        max-width: 720px;
+        margin: 0px auto;
+      } /*!sc*/
+      data-styled.g4[id='sc-hKMtZM'] {
+        content: 'iMPPhc,';
+      } /*!sc*/
+      .jZkxEC {
+        margin: 15px 0em;
+      } /*!sc*/
+      .jZkxEC:first-child {
+        margin-top: 0px;
+      } /*!sc*/
+      .jZkxEC:last-child {
+        margin-bottom: 0px;
+      } /*!sc*/
+      data-styled.g5[id='sc-eCYdqJ'] {
+        content: 'jZkxEC,';
+      } /*!sc*/
+      .imgLsS {
+        padding-top: 3rem;
+        margin-bottom: 3rem;
+      } /*!sc*/
+      data-styled.g6[id='sc-jSMfEi'] {
+        content: 'imgLsS,';
+      } /*!sc*/
+      .kaKiDU {
+        font-size: 3rem;
+        margin: 0px;
+      } /*!sc*/
+      @media (max-width: 720px) {
+        .kaKiDU {
+          font-size: 1.8rem;
+        }
+      } /*!sc*/
+      data-styled.g7[id='sc-gKXOVf'] {
+        content: 'kaKiDU,';
+      } /*!sc*/
+      .xFOWy {
+        margin: 0;
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .xFOWy {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      data-styled.g8[id='sc-iBkjds'] {
+        content: 'xFOWy,';
+      } /*!sc*/
+      .clAnHv {
+        display: inline-block;
+        font-size: 0.9rem;
+        line-height: 1rem;
+        background-color: #dcefff;
+        color: #151515;
+        border-radius: 3px;
+        padding: 0.25rem 0.5rem;
+        margin: 0.25rem 0.5rem 0.25rem 0;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        white-space: nowrap;
+      } /*!sc*/
+      .clAnHv:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .clAnHv {
+          background-color: #2f3d4e;
+          color: #c8d2e0;
+        }
+      } /*!sc*/
+      data-styled.g9[id='sc-ftvSup'] {
+        content: 'clAnHv,';
+      } /*!sc*/
+      .iHVwPn {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .iHVwPn:hover span {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .iHVwPn:hover:after {
+        opacity: 1;
+      } /*!sc*/
+      .iHVwPn:after {
+        content: '🔗';
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        opacity: 0.25;
+      } /*!sc*/
+      data-styled.g10[id='sc-papXJ'] {
+        content: 'iHVwPn,';
+      } /*!sc*/
+      .dzrrbr {
+        padding: 1rem;
+        margin: 3rem 0;
+        background-color: #eef8ff;
+        color: #4a8dc8;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr {
+          background-color: #2a3d55;
+          color: #95afd1;
+        }
+      } /*!sc*/
+      .dzrrbr label {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 0.85rem;
+        color: #08273f;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr label {
+          color: #dde0e3;
+        }
+      } /*!sc*/
+      .dzrrbr .sc-iBkjds {
+        color: #153248;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr .sc-iBkjds {
+          color: #d0e4ff;
+        }
+      } /*!sc*/
+      .dzrrbr ul {
+        margin: 0.5rem 0;
+        padding: 0;
+        padding-left: 1rem;
+      } /*!sc*/
+      .dzrrbr a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .dzrrbr a code {
+        font-family: Monaco, monospace;
+        font-size: 0.9rem;
+        padding: 0 0.25rem;
+        border-radius: 3px;
+        background-color: #b9dbf5;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .dzrrbr a code {
+          background-color: #354e6d;
+        }
+      } /*!sc*/
+      data-styled.g11[id='sc-jqUVSM'] {
+        content: 'dzrrbr,';
+      } /*!sc*/
+      * {
+        box-sizing: border-box;
+      } /*!sc*/
+      body {
+        margin: 0px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+          Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+          'Segoe UI Symbol';
+        background-color: #eff7fd;
+        color: #000;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #0d1117;
+          color: #fff;
+        }
+      } /*!sc*/
+      data-styled.g12[id='sc-global-kFwHxP1'] {
+        content: 'sc-global-kFwHxP1,';
+      } /*!sc*/
+      .kylQxs {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+      } /*!sc*/
+      .kylQxs h1 {
+        font-size: 1.5rem;
+        padding: 1rem 0px;
+        margin: 0;
+      } /*!sc*/
+      .kylQxs h1 a {
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        color: inherit;
+      } /*!sc*/
+      .kylQxs h1 a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      @media (max-width: 720px) {
+        .kylQxs .sc-kDDrLX {
+          display: none;
+        }
+      } /*!sc*/
+      data-styled.g14[id='sc-iqcoie'] {
+        content: 'kylQxs,';
+      } /*!sc*/
+      .knOpkX {
+        border-top: 2px solid #d7d7d7;
+        margin: 4rem 0;
+        padding-top: 4rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .knOpkX {
+          border-color: #4c545e;
+        }
+      } /*!sc*/
+      data-styled.g54[id='sc-jOrMOR'] {
+        content: 'knOpkX,';
+      } /*!sc*/
+      .cxoMSa h1 > a,
+      .cxoMSa h2 > a,
+      .cxoMSa h3 > a,
+      .cxoMSa h4 > a,
+      .cxoMSa h5 > a,
+      .cxoMSa h6 > a {
+        color: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+      } /*!sc*/
+      .cxoMSa h1 > a:hover,
+      .cxoMSa h2 > a:hover,
+      .cxoMSa h3 > a:hover,
+      .cxoMSa h4 > a:hover,
+      .cxoMSa h5 > a:hover,
+      .cxoMSa h6 > a:hover {
+        -webkit-text-decoration: underline;
+        text-decoration: underline;
+      } /*!sc*/
+      .cxoMSa p,
+      .cxoMSa li {
+        line-height: 1.5rem;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .cxoMSa p,
+        .cxoMSa li {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .cxoMSa a {
+        color: rgb(6, 90, 163);
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .cxoMSa a {
+          color: #5eb6ff;
+        }
+      } /*!sc*/
+      .cxoMSa ul {
+        padding-left: 1rem;
+      } /*!sc*/
+      .cxoMSa code {
+        font-family: Monaco, monospace;
+      } /*!sc*/
+      .cxoMSa h1 code,
+      .cxoMSa h2 code,
+      .cxoMSa h3 code,
+      .cxoMSa h4 code,
+      .cxoMSa h5 code,
+      .cxoMSa h6 code,
+      .cxoMSa li code,
+      .cxoMSa p code {
+        font-size: 0.9em;
+        padding: 0 0.25em;
+        border-radius: 3px;
+        background-color: #eff7fd;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .cxoMSa h1 code,
+        .cxoMSa h2 code,
+        .cxoMSa h3 code,
+        .cxoMSa h4 code,
+        .cxoMSa h5 code,
+        .cxoMSa h6 code,
+        .cxoMSa li code,
+        .cxoMSa p code {
+          background-color: #2b3644;
+        }
+      } /*!sc*/
+      .cxoMSa pre {
+        background-color: #eff7fd;
+        padding: 0.5rem 0.75rem;
+        overflow-x: scroll;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .cxoMSa pre {
+          background-color: #2b3645;
+        }
+      } /*!sc*/
+      .cxoMSa img {
+        display: block;
+        max-width: 100%;
+        max-height: 520px;
+        font-size: 0;
+        margin: 0px auto;
+        padding: 0px;
+      } /*!sc*/
+      .cxoMSa video {
+        display: block;
+        margin: 1rem auto;
+      } /*!sc*/
+      .cxoMSa figure {
+        text-align: center;
+        margin: 20px 0px;
+      } /*!sc*/
+      .cxoMSa figure img {
+        display: block;
+        max-width: 90vw;
+        margin: 0px auto;
+      } /*!sc*/
+      .cxoMSa figure figcaption {
+        opacity: 0.9;
+        font-size: 1.1em;
+        margin: 10px auto;
+      } /*!sc*/
+      .cxoMSa .cali-collage {
+        padding: 20px 0px;
+        text-align: center;
+      } /*!sc*/
+      .cxoMSa .cali-collage img {
+        display: inline-block;
+        margin: 10px;
+        max-width: 95vw;
+        vertical-align: middle;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      } /*!sc*/
+      data-styled.g55[id='sc-dPyBCJ'] {
+        content: 'cxoMSa,';
+      } /*!sc*/
+      .IPkLw {
+        text-align: center;
+      } /*!sc*/
+      @media (prefers-color-scheme: dark) {
+        .IPkLw {
+          color: #dbe0e7;
+        }
+      } /*!sc*/
+      .IPkLw h3 {
+        margin: 0.5em 0;
+      } /*!sc*/
+      .IPkLw p {
+        margin: 0;
+      } /*!sc*/
+      data-styled.g56[id='sc-bBXxYQ'] {
+        content: 'IPkLw,';
+      } /*!sc*/
+    </style>
+
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-G3SKTPFTEZ"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+      gtag('js', new Date())
+      gtag('config', 'G-G3SKTPFTEZ')
+    </script>
+  </head>
+  <body>
+    <div class="sc-dkzDqf ftgBFL">
+      <div class="sc-gsnTZi cUDFKA">
+        <div class="sc-dkzDqf ftgBFL">
+          <div class="sc-hKMtZM iMPPhc">
+            <nav class="sc-iqcoie kylQxs">
+              <h1><a href="/">Chris Andrejewski</a></h1>
+            </nav>
+          </div>
+        </div>
+        <div class="sc-hKMtZM iMPPhc">
+          <div class="sc-jSMfEi imgLsS">
+            <p class="sc-iBkjds xFOWy">
+              <a href="/writing" class="sc-ftvSup clAnHv">Articles</a
+              ><a
+                href="/category/engineering/index.html"
+                class="sc-ftvSup clAnHv"
+                >Engineering</a
+              >
+            </p>
+            <h1 class="sc-gKXOVf kaKiDU">
+              <a href="#" class="sc-papXJ iHVwPn"><span>Mock soup</span></a>
+            </h1>
+            <p class="sc-iBkjds xFOWy">
+              Why and how to move away from test mocking
+            </p>
+          </div>
+          <div class="sc-jqUVSM dzrrbr">
+            <p class="sc-iBkjds xFOWy"><label>Table of contents</label></p>
+            <div>
+              <ul>
+                <li>
+                  <a href="#dont-mock-me">Don't mock me</a>
+                  <ul>
+                    <li>
+                      <a href="#mocked-tests-test-things-that-dont-happen"
+                        >Mocked tests test things that don't happen</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#mocked-tests-are-brittle"
+                        >Mocked tests are brittle</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#mocks-are-a-false-sense-of-security"
+                        >Mocks are a false sense of security</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#alternatives">Alternatives</a>
+                  <ul>
+                    <li><a href="#abandon-mocks">Abandon mocks</a></li>
+                    <li><a href="#feature-flags">Feature flags</a></li>
+                    <li>
+                      <a href="#real-test-dependencies"
+                        >Real test dependencies</a
+                      >
+                    </li>
+                    <li>
+                      <a href="#better-testing-environments"
+                        >Better testing environments</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <div class="sc-dPyBCJ cxoMSa">
+              <p>
+                I write a lot of code, not so many tests. I've not been sneaky
+                not writing tests or anything like that, I just haven't found
+                most tests to be valuable.
+              </p>
+              <p>
+                Where I am still writing tests is around logic and API/user
+                boundaries. I'm testing simple, pure functions. And it's usually
+                the case that I can take a complex set of side-effecting
+                operations, littered with the real logic, and split it into
+                something testable, a &quot;policy,&quot; and the procedural
+                code that executes the side-effects. Nothing ideal or purist
+                here, these things muddle often into large functions where it
+                makes sense to not split them into chunks.
+              </p>
+              <h1 id="dont-mock-me">
+                <a href="#dont-mock-me">Don't mock me</a>
+              </h1>
+              <p>
+                What I'm not writing is mocks or code &quot;expectations.&quot;
+                In JavaScript/Jest parlance these would be
+                <code>expect(x).toBeSomething()</code> style assertions. In
+                Ruby, it would be <code>Class.expect(:method)</code> or some
+                such meta-language/DSL.
+              </p>
+              <p>
+                This expectation-style mocking is useless and a net negative for
+                these reasons:
+              </p>
+              <h2 id="mocked-tests-test-things-that-dont-happen">
+                <a href="#mocked-tests-test-things-that-dont-happen"
+                  >Mocked tests test things that don't happen</a
+                >
+              </h2>
+              <p>
+                Unless you're very careful or clever, mocking allows code not to
+                run. Inject your spies, method replacements, etc it all boils
+                down to making the code behave differently than it would in
+                production.
+              </p>
+              <h2 id="mocked-tests-are-brittle">
+                <a href="#mocked-tests-are-brittle">Mocked tests are brittle</a>
+              </h2>
+              <p>
+                The implementation details that no end-user sees ought to be
+                able to be revised and refactored with ease. We don't care if
+                method <code>x</code> was called, we care that our contract with
+                the edge (the API, the end-user) is upheld.
+              </p>
+              <p>
+                The carrying cost of mocked tests is huge. They don't reflect
+                production as stated above. So not only does code need to be
+                refactored, those mocked tests also need to be refactored. Tests
+                littered with expectations rarely have much explanation for
+                them. A codebase of mocks becomes a mentally taxing game of
+                trying to decipher what's real real, what's fake real, and what
+                is now irrelevant either because the code now does something
+                different or because the test never really tested anything
+                useful to begin with. The ratio of code change time to test
+                fixing time in codebases I come into with mocking is always
+                <em>at least</em> 1:3.
+              </p>
+              <h2 id="mocks-are-a-false-sense-of-security">
+                <a href="#mocks-are-a-false-sense-of-security"
+                  >Mocks are a false sense of security</a
+                >
+              </h2>
+              <p>
+                Developers are lulled into a false sense of security by the
+                presence of heavily mocked tests. A developer seeing a mountain
+                of tests and having no time to delve into their intricacies may
+                assume their change is safe when it passes existing tests. They
+                may not know that everything is passing simply because no code
+                is executed. Especially after fighting through a mountain of
+                brittle tests, one might think, &quot;Yes, finally. I know this
+                change is safe.&quot;
+              </p>
+              <p>
+                This is especially the case for integrations, i.e. external API
+                calls and events. There's too much dogma that every code change
+                needs a test. When you're writing an API integration you have
+                three choices: write tests with heavy mocking, toil away in
+                dependency injection to achieve the same useless outcome, or not
+                write automated tests (but this correct choice isn't allowed).
+              </p>
+              <h1 id="alternatives">
+                <a href="#alternatives">Alternatives</a>
+              </h1>
+              <p>
+                &quot;Okay, mocks suck duh,&quot; said anyone who's ever worked
+                in one of these codebases. What should we do instead?
+              </p>
+              <h2 id="abandon-mocks">
+                <a href="#abandon-mocks">Abandon mocks</a>
+              </h2>
+              <p>
+                If you work with others, mocks are just too sexy to someone
+                needing to ship hot garbage on a tight deadline. Mocks are the
+                glorious answer to test failures: just turn everything that
+                fails off just enough to squeeze the code change into
+                production.
+              </p>
+              <p>
+                This is not an article on banning shipping &quot;bad&quot; code
+                quickly. That's not always the wrong thing to do (see: any
+                startup). Mocks are particularly bad because they won't ever get
+                cleaned up and will be a long term maintenance burden. There are
+                better ways to ship bad code quickly.
+              </p>
+              <p>
+                It's prudent to provide your developers no way to write mocks at
+                all. This means dropping the hot garbage test frameworks like
+                JavaScript's Jest and choosing something more like
+                <a href="https://github.com/avajs/ava"><code>ava</code></a>
+                where the worst someone can do is use dependency injection
+                patterns (strictly better).
+              </p>
+              <p>
+                With no mocks allowed in the tool belt, developers will be
+                forced into finding or building the better options. What are
+                those options?
+              </p>
+              <h2 id="feature-flags">
+                <a href="#feature-flags">Feature flags</a>
+              </h2>
+              <p>
+                Feature flags still fit that bill of allowing anyone to ship bad
+                code to production quickly. Instead of littering mocks, someone
+                can instead litter <code>disable_flag(name)</code> and
+                <code>enable_flag(name)</code> in all their tests to get them
+                passing.
+              </p>
+              <p>
+                Feature flags are themselves mocks in automated tests, but they
+                are strictly better.
+              </p>
+              <p>
+                Flags are much, much less powerful. A flag can only be on or off
+                (generally, there are crazy feature flag systems that overpriced
+                companies peddle). Storing a single bit of difference, flags
+                represent the smallest amount of mocking possible. This divides
+                the code into two states and at least one branch must be real
+                code that does get executed in production.
+              </p>
+              <p>
+                Flags are also much simpler. Did you know that no matter what
+                mocking/expectation library or DSL you use, you can't possibly
+                know all its features? With flags you can, in fact I just
+                presented them above and they were obvious:
+                <code>disable_flag(name)</code> and
+                <code>enable_flag(name)</code>. Much better than that
+                <code>expect(x).toBeBlueOnATuesday()</code> nonsense.
+              </p>
+              <p>
+                You can build a very nice system of hygiene around flags,
+                getting everyone to either drive them to completion or remove
+                them if they never get turned on just with some light nudging.
+                We couldn't do the same for mocks: they're too complex, those
+                get-shit-done hacks that riddled the code base don't have one
+                nice <code>name</code>, like a flag does, to identify them by.
+                It's all just spaghetti in the codebase and the only cure is
+                bankruptcy.
+              </p>
+              <p>
+                Feature flags are awesome because you probably should have been
+                decoupling your deployment from your behavior change anyways.
+                Good stuff &amp; thank me later!
+              </p>
+              <h2 id="real-test-dependencies">
+                <a href="#real-test-dependencies">Real test dependencies</a>
+              </h2>
+              <p>
+                I don't mock but that doesn't mean I can't write more than just
+                unit tests. I can use real dependencies just fine. For example,
+                following an operation that is supposed to write a record to the
+                database I can in my test query for the presence of that record
+                in the database.
+              </p>
+              <p>
+                You can do this testing poorly too, like by asserting the whole
+                record needs to match a certain shape as opposed to just making
+                assertions on what you need. And real dependencies, if you're
+                not keeping an eye on test times and abuse through overuse, can
+                become super slow. But like feature flags, there are tools,
+                ratchets, and hygiene you can build to mitigate it.
+              </p>
+              <p>
+                At the end of the day, real dependencies are strictly better:
+                they're testing real behavior.
+              </p>
+              <h2 id="better-testing-environments">
+                <a href="#better-testing-environments"
+                  >Better testing environments</a
+                >
+              </h2>
+              <p>
+                I'm no QA or staging shill, that stuff is hugely wasteful and
+                hugely useless to maintain in a steady state. An absence of
+                mocks can put good pressure on an organization to invest in
+                quickly reproducible testing environments. Again, nothing crazy
+                here, just some ready-made test accounts, API keys, and fake
+                data to hit up real APIs and see what happens.
+              </p>
+              <p>
+                This is especially valuable when it's local development in an
+                environment like a REPL. Getting to run and debug code locally
+                is hugely underrated these days, but it really shouldn't be.
+              </p>
+            </div>
+          </div>
+          <div class="sc-eCYdqJ jZkxEC">
+            <p class="sc-iBkjds xFOWy">
+              <small
+                ><time
+                  datetime="2024-03-08T00:00:00.000Z"
+                  title="2024-03-08T00:00:00.000Z"
+                  >Published 3/8/2024</time
+                ></small
+              >
+            </p>
+          </div>
+          <div
+            class="sc-jOrMOR knOpkX newsletter-container"
+            data-frame-src="https://newsletter.jew.ski/frame/subscribe"
+          >
+            <div class="sc-bBXxYQ IPkLw">
+              <h3>Subscribe for new articles</h3>
+              <div class="newsletter-form"></div>
+              <p>
+                <small
+                  >Or add the
+                  <a href="/writing/feed.atom.xml" class="sc-bczRLJ kvjZgE"
+                    >Atom feed</a
+                  >
+                  to your feed reader.</small
+                >
+              </p>
+            </div>
+            <script src="https://newsletter-js.jew.ski/v1/subscribe-embed.js"></script>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
