@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>/writing</id>
     <title>Writing – Chris Andrejewski</title>
-    <updated>2024-07-04T00:00:00.000Z</updated>
+    <updated>2024-07-06T00:00:00.000Z</updated>
     
     <author>
         <name>Chris Andrejewski</name>
@@ -12,8 +12,8 @@
     <subtitle>All articles published to Chris's website.</subtitle>
     <logo>https://jew.ski/logo.svg</logo>
     <icon>https://jew.ski/favicon.ico</icon>
-    <category term="Engineering"/>
     <category term="Life"/>
+    <category term="Engineering"/>
     <category term="Product"/>
     <category term="Ruby programming"/>
     <category term="JavaScript"/>
@@ -22,6 +22,13 @@
     <category term="Fiction"/>
     <category term="Politics"/>
     <category term="Code quality principles"/>
+    <entry>
+        <title type="html"><![CDATA[Christianity is cool]]></title>
+        <id>christianity-is-cool</id>
+        <link href="https://jew.ski/article/christianity-is-cool/"/>
+        <updated>2024-07-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Peel back the layers and Christianity's got something cool to share]]></summary>
+    </entry>
     <entry>
         <title type="html"><![CDATA[API localization]]></title>
         <id>api-localization</id>
@@ -154,12 +161,5 @@
         <link href="https://jew.ski/article/platform-teams/"/>
         <updated>2023-01-30T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Platform teams are the glue and velocity drivers of an engineering organization. They are the supporting teams for the business focused product teams.]]></summary>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Language golden paths]]></title>
-        <id>language-golden-paths</id>
-        <link href="https://jew.ski/article/language-golden-paths/"/>
-        <updated>2023-01-22T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Golden paths that programming language designers should incorporate into their core principles]]></summary>
     </entry>
 </feed>
