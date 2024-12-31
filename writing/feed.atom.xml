@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>/writing</id>
     <title>Writing – Chris Andrejewski</title>
-    <updated>2024-07-06T00:00:00.000Z</updated>
+    <updated>2024-12-31T00:00:00.000Z</updated>
     
     <author>
         <name>Chris Andrejewski</name>
@@ -22,6 +22,13 @@
     <category term="Fiction"/>
     <category term="Politics"/>
     <category term="Code quality principles"/>
+    <entry>
+        <title type="html"><![CDATA[The 20/20 experience]]></title>
+        <id>twenty-twenty-experience</id>
+        <link href="https://jew.ski/article/twenty-twenty-experience/"/>
+        <updated>2024-12-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Tales from my eye surgery, the PRK edition]]></summary>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Christianity is cool]]></title>
         <id>christianity-is-cool</id>
@@ -154,12 +161,5 @@
         <link href="https://jew.ski/article/code-migrations/"/>
         <updated>2023-02-01T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Stop running and push back against fan-out code migrations. Do effective self-run migrations instead.]]></summary>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Platform teams]]></title>
-        <id>platform-teams</id>
-        <link href="https://jew.ski/article/platform-teams/"/>
-        <updated>2023-01-30T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Platform teams are the glue and velocity drivers of an engineering organization. They are the supporting teams for the business focused product teams.]]></summary>
     </entry>
 </feed>
