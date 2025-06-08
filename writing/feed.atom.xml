@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>/writing</id>
     <title>Writing – Chris Andrejewski</title>
-    <updated>2025-01-05T00:00:00.000Z</updated>
+    <updated>2025-06-07T00:00:00.000Z</updated>
     
     <author>
         <name>Chris Andrejewski</name>
@@ -12,6 +12,7 @@
     <subtitle>All articles published to Chris's website.</subtitle>
     <logo>https://jew.ski/logo.svg</logo>
     <icon>https://jew.ski/favicon.ico</icon>
+    <category term="Fiction"/>
     <category term="Life"/>
     <category term="Engineering"/>
     <category term="Product"/>
@@ -19,9 +20,15 @@
     <category term="JavaScript"/>
     <category term="Game development"/>
     <category term="System design"/>
-    <category term="Fiction"/>
     <category term="Politics"/>
     <category term="Code quality principles"/>
+    <entry>
+        <title type="html"><![CDATA[Raw Sewage]]></title>
+        <id>raw-sewage</id>
+        <link href="https://jew.ski/article/raw-sewage/"/>
+        <updated>2025-06-07T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[A story of being led astray]]></summary>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Bloody well]]></title>
         <id>bloody-well</id>
@@ -154,12 +161,5 @@
         <link href="https://jew.ski/article/srepl/"/>
         <updated>2023-02-12T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Save-Read-Eval-Print-Loop: The file is the REPL]]></summary>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[About me]]></title>
-        <id>about-me</id>
-        <link href="https://jew.ski/article/about-me/"/>
-        <updated>2023-02-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[An incredibly short autobiography]]></summary>
     </entry>
 </feed>
