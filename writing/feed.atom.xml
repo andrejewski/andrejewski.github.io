@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>/writing</id>
     <title>Writing – Chris Andrejewski</title>
-    <updated>2025-06-07T00:00:00.000Z</updated>
+    <updated>2025-06-09T00:00:00.000Z</updated>
     
     <author>
         <name>Chris Andrejewski</name>
@@ -12,8 +12,8 @@
     <subtitle>All articles published to Chris's website.</subtitle>
     <logo>https://jew.ski/logo.svg</logo>
     <icon>https://jew.ski/favicon.ico</icon>
-    <category term="Fiction"/>
     <category term="Life"/>
+    <category term="Fiction"/>
     <category term="Engineering"/>
     <category term="Product"/>
     <category term="Ruby programming"/>
@@ -22,6 +22,13 @@
     <category term="System design"/>
     <category term="Politics"/>
     <category term="Code quality principles"/>
+    <entry>
+        <title type="html"><![CDATA[Power Bowling]]></title>
+        <id>power-bowling</id>
+        <link href="https://jew.ski/article/power-bowling/"/>
+        <updated>2025-06-09T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[An introduction to an entertaining style of bowling]]></summary>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Raw Sewage]]></title>
         <id>raw-sewage</id>
@@ -154,12 +161,5 @@
         <link href="https://jew.ski/article/dattle/"/>
         <updated>2023-02-13T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[A simple data specification format and its design decisions]]></summary>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[SREPL]]></title>
-        <id>srepl</id>
-        <link href="https://jew.ski/article/srepl/"/>
-        <updated>2023-02-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[Save-Read-Eval-Print-Loop: The file is the REPL]]></summary>
     </entry>
 </feed>
