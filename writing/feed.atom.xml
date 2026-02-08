@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>/writing</id>
     <title>Writing – Chris Andrejewski</title>
-    <updated>2025-06-09T00:00:00.000Z</updated>
+    <updated>2026-02-08T00:00:00.000Z</updated>
     
     <author>
         <name>Chris Andrejewski</name>
@@ -22,6 +22,13 @@
     <category term="System design"/>
     <category term="Politics"/>
     <category term="Code quality principles"/>
+    <entry>
+        <title type="html"><![CDATA[Speed drawing party]]></title>
+        <id>speed-drawing-party</id>
+        <link href="https://jew.ski/article/speed-drawing-party/"/>
+        <updated>2026-02-08T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[A fun activity for you and your friends]]></summary>
+    </entry>
     <entry>
         <title type="html"><![CDATA[What is Power Bowling?]]></title>
         <id>power-bowling</id>
@@ -154,12 +161,5 @@
         <link href="https://jew.ski/article/launch-dns-instructions/"/>
         <updated>2023-06-28T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Announcing my new product]]></summary>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Dattle]]></title>
-        <id>dattle</id>
-        <link href="https://jew.ski/article/dattle/"/>
-        <updated>2023-02-13T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[A simple data specification format and its design decisions]]></summary>
     </entry>
 </feed>
